@@ -1,0 +1,38 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#banner-1 {
+    /* background-image: url('{{ asset('Image/Banner/bn-1.jpg') }}'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 45%;
+}
+
+#banner-2 .full-image{
+
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 1000px;
+}
+
+.box-search{
+    color: rgb(255,236.236);
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0.4rem 0.4rem 0.45rem rgba(0, 0, 25, 0.3);
+}
+
+.box-search form{
+    margin: 0 0;
+}
+
+.large-icon{
+    font-size: 1.5rem;
+}
+
