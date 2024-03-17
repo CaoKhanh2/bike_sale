@@ -1,5 +1,5 @@
 <div id="list-car">
-    <h3 class="mt-4 mb-4">Thông tin xe</h3>
+    <h3 class="mt-4 mb-5">Thông tin xe</h3>
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
             <div class="row g-0">
@@ -15,21 +15,21 @@
                             <div class="col mt-3 bt-4"><i class="bi bi-speedometer2"> Xe cũ </i></div>
                         </div> --}}
                         <div class="row justify-content-center align-items-center g-2">
-                            <div class="col mt-3 bt-4"><i class="bi bi-bookmark large-icon"> </i>SYM</div>
-                            <div class="col mt-3 bt-4"><i class="bi bi-card-list large-icon"> </i>Lx 150i</div>
+                            <div class="col mt-3"><i class="bi bi-bookmark large-icon"> </i>SYM</div>
+                            <div class="col mt-3"><i class="bi bi-card-list large-icon"> </i>Lx 150i</div>
                         </div>
                         <div class="row justify-content-center align-items-center g-2">
-                            <div class="col mt-3 bt-4"><i class="bi bi-calendar2 large-icon"> </i>2020</div>
-                            <div class="col mt-3 bt-4"><img class="img-fluid"
+                            <div class="col mt-3"><i class="bi bi-calendar2 large-icon"> </i>2020</div>
+                            <div class="col mt-3"><img class="img-fluid"
                                     src="{{ asset('Image\Icon\motorbike.png') }}" alt="" width="27px"
                                     height="27px"><i class="large-icon"> </i>Xe máy điện</div>
                         </div>
 
                         <div class="row justify-content-center align-items-center g-2 mt-4">
-                            <div class="col mt-3 bt-4">
-                                <h2 class="align-center"><span>16.900.000 ₫</span></h2>
+                            <div class="col mt-3">
+                                <h4><span>16.900.000 ₫</span></h4>
                             </div>
-                            <div class="col mt-3 bt-4">
+                            <div class="col mt-3">
                                 <div class="d-grid col mx-auto">
                                     <a name="" id="" class="btn btn-primary btn-block"
                                         href="#" role="button">Đặt mua</a>
@@ -55,21 +55,21 @@
                             <div class="col mt-3 bt-4"><i class="bi bi-speedometer2"> Xe cũ </i></div>
                         </div> --}}
                         <div class="row justify-content-center align-items-center g-2">
-                            <div class="col mt-3 bt-4"><i class="bi bi-bookmark large-icon"> </i>SYM</div>
-                            <div class="col mt-3 bt-4"><i class="bi bi-card-list large-icon"> </i>Lx 150i</div>
+                            <div class="col mt-3"><i class="bi bi-bookmark large-icon"> </i>SYM</div>
+                            <div class="col mt-3"><i class="bi bi-card-list large-icon"> </i>Lx 150i</div>
                         </div>
                         <div class="row justify-content-center align-items-center g-2">
-                            <div class="col mt-3 bt-4"><i class="bi bi-calendar2 large-icon"> </i>2020</div>
-                            <div class="col mt-3 bt-4"><img class="img-fluid"
+                            <div class="col mt-3"><i class="bi bi-calendar2 large-icon"> </i>2020</div>
+                            <div class="col mt-3"><img class="img-fluid"
                                     src="{{ asset('Image\Icon\motorbike.png') }}" alt="" width="27px"
                                     height="27px"><i class="large-icon"> </i>Xe máy điện</div>
                         </div>
 
                         <div class="row justify-content-center align-items-center g-2 mt-4">
-                            <div class="col mt-3 bt-4">
-                                <h2 class="align-center"><span>16.900.000 ₫</span></h2>
+                            <div class="col mt-3">
+                                <h4><span>16.900.000 ₫</span></h4>
                             </div>
-                            <div class="col mt-3 bt-4">
+                            <div class="col mt-3">
                                 <div class="d-grid col mx-auto">
                                     <a name="" id="" class="btn btn-primary btn-block"
                                         href="#" role="button">Đặt mua</a>
@@ -95,21 +95,21 @@
                             <div class="col mt-3 bt-4"><i class="bi bi-speedometer2"> Xe cũ </i></div>
                         </div> --}}
                         <div class="row justify-content-center align-items-center g-2">
-                            <div class="col mt-3 bt-4"><i class="bi bi-bookmark large-icon"> </i>SYM</div>
-                            <div class="col mt-3 bt-4"><i class="bi bi-card-list large-icon"> </i>Lx 150i</div>
+                            <div class="col mt-3"><i class="bi bi-bookmark large-icon"> </i>SYM</div>
+                            <div class="col mt-3"><i class="bi bi-card-list large-icon"> </i>Lx 150i</div>
                         </div>
                         <div class="row justify-content-center align-items-center g-2">
-                            <div class="col mt-3 bt-4"><i class="bi bi-calendar2 large-icon"> </i>2020</div>
-                            <div class="col mt-3 bt-4"><img class="img-fluid"
+                            <div class="col mt-3"><i class="bi bi-calendar2 large-icon"> </i>2020</div>
+                            <div class="col mt-3"><img class="img-fluid"
                                     src="{{ asset('Image\Icon\motorbike.png') }}" alt="" width="27px"
                                     height="27px"><i class="large-icon"> </i>Xe máy điện</div>
                         </div>
 
                         <div class="row justify-content-center align-items-center g-2 mt-4">
-                            <div class="col mt-3 bt-4">
-                                <h2 class="align-center"><span>16.900.000 ₫</span></h2>
+                            <div class="col mt-3">
+                                <h4><span>16.900.000 ₫</span></h4>
                             </div>
-                            <div class="col mt-3 bt-4">
+                            <div class="col mt-3">
                                 <div class="d-grid col mx-auto">
                                     <a name="" id="" class="btn btn-primary btn-block"
                                         href="#" role="button">Đặt mua</a>

@@ -1,6 +1,7 @@
 @extends('dashboard.layout.content')
-@section('title_ds','Danh mục khách hàng')
-@section('pg-hd-2','Danh mục khách hàng')
+
+@section('title_ds','Danh mục xe')
+@section('pg-hd-2','Danh mục xe')
 
 @section('main')
     
@@ -17,32 +18,28 @@
                         <h4 class="text-blue h4"></h4>
                     </div>
                     <div class="pb-20">
-                        <table class="table hover multiple-select-row data-table-export nowrap">
+                        <table class="table hover data-table-export">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Name</th>
-                                    <th>Age</th>
-                                    <th>Office</th>
-                                    <th>Address</th>
-                                    <th>Start Date</th>
-                                    <th>Salart</th>
+                                    <th>ID</th>
+                                    <th>Loại xe</th>
+                                    <th>Hãng xe</th>
+                                    <th>Danh mục</th>
+                                    <th>Tên xe</th>
+                                    <th>Giá bán</th>
                                     <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="table-plus">Gloria F. Mead</td>
+                                    <td>Gloria F. Mead</td>
                                     <td>25</td>
                                     <td>Sagittarius</td>
                                     <td>2829 Trainer Avenue Peoria, IL 61602</td>
                                     <td>29-03-2018</td>
                                     <td>$162,700</td>
                                     <td>
-                                        {{-- <a href="{{ url('/car_catalog/detail_inforcar') }}" type="button"
-                                            class="btn btn-primary">Sửa</a>
-                                        <a href="" type="button" class="btn btn-primary">Xóa</a> --}}
-
-                                        <a type="button" class="btn btn-primary" href="{{ url('/customer/detail_customer_info') }}">
+                                        <a type="button" class="btn btn-primary" href="{{ url('/car_catalog/detail_inforcar') }}">
                                             <i class="bi bi-pencil-fill"></i> Sửa
                                         </a>
                                         <a type="button" class="btn btn-danger" href="">
@@ -59,4 +56,5 @@
 
         </div>
     </div>
+    
 @endsection

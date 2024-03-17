@@ -12,16 +12,15 @@
         {{-- Mục Tìm kiếm --}}
             <div class="row justify-content-md-center">
                 <div class="col-xl">
-                    @include('home-page-component.search-box')
-                </div>
-                
+                    @include('home-page.search-box')
+                </div>               
             </div>
         {{-- End --}}
 
         {{-- Danh sách xe bán --}}
         <div class="row justify-content-md-center mt-4">
             <div class="col-xl">
-                @include('home-page-component.list-car')
+                @include('home-page.list-car')
             </div>
         </div>
         {{-- End --}}
@@ -38,7 +37,7 @@
         {{-- Thương hiệu xe --}}
         <div class="row justify-content-md-center mt-4 mb-4">
             <div class="col-xl">
-                @include('home-page-component.car-brand')
+                @include('home-page.car-brand')
             </div> 
         </div>
         {{-- End --}}
@@ -46,7 +45,7 @@
         {{-- Tin tức --}}
         <div class="row justify-content-md-center mt-4">
             <div class="col-xl">
-                @include('home-page-component.news')
+                @include('home-page.news')
             </div>
         </div>
         {{-- End --}}

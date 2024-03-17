@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('khachhang', function (Blueprint $table) {
             $table->string('makh',10);
             $table->string('hovaten',50);
-            $table->char('sodienthoai',10);
+            $table->date('ngaysinh');
+            $table->enum('gioitinh',['Nam','Nữ','Other']);
+            $table->string('sodienthoai',11);
+            $table->string('email',35);
             $table->string('diachi',100);
+            $table->tinyInteger('tinhtrang')->default(0);
             
             $table->primary('makh');
             

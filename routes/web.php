@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KhachHangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,22 +23,23 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/car_catalog', function () {
-    return view('dashboard.car.car_catalog');
+    return view('dashboard.category.car.car_catalog');
 });
 
 Route::get('/car_catalog/detail_inforcar', function () {
-    return view('dashboard.car.detail_inforcar');
+    return view('dashboard.category.car.detail_inforcar');
 });
 
 Route::get('/customer', function () {
-    return view('dashboard.customer.customer_info');
+    return view('dashboard.category.customer.customer_info');
 });
 
-Route::get('/customer/detail_customer_info', function () {
-    return view('dashboard.customer.detail_customer_info');
-});
+// Route::get('/customer/detail_customer_info', function () {
+//     return view('dashboard.category.customer.detail_customer_info');
+// });
+Route::get('/customer',[KhachHangController::class,'index']);
 
-Route::get('/shipping/ship_infor', function () {
-    return view('dashboard.shipping.ship_infor');
+Route::get('/shipping', function () {
+    return view('dashboard.category.shipping.ship_infor');
 });
 

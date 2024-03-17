@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('loaixe', function (Blueprint $table) {
-            $table->string('maloai',10);
-            $table->string('tenloai',10);
-            $table->string('mota');
+            $table->string('malx',15);
+            $table->string('tenloaixe',50);
+            $table->string('mota',50);
+
+            $table->primary('malx');
         });
     }
 

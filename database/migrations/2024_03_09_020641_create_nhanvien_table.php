@@ -15,15 +15,17 @@ return new class extends Migration
     {
         Schema::create('nhanvien', function (Blueprint $table) {
             $table->string('manv',10);
-            $table->string('macv',10);
-            $table->string('tennv',100);
+            $table->string('chucvu_id',5);
+            $table->string('hovaten',50);
             $table->date('ngaysinh');
             $table->enum('gioitinh', ['Nam', 'Nữ', 'Other'])->nullable();
-            $table->string('sodienthoai',10);
+            $table->char('sodienthoai',11);
+            $table->string('email',35);
             $table->string('diachi',255);
+            $table->text('ghichu');
 
             $table->primary('manv');
-            $table->foreign('macv')->references('macv')->on('chucvu')->onDelete('cascade');
+            $table->foreign('chucvu_id')->references('macv')->on('chucvu')->onDelete('cascade');
 
         });
     }
