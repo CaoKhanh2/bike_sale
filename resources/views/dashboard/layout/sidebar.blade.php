@@ -123,7 +123,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-table"></span><span class="mtext">Tables</span>
+                        <span class="micon bi bi-table"></span><span class="mtext">Quản lý đăng ký bán xe</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="basic-table.html">Basic Tables</a></li>
