@@ -114,7 +114,7 @@
                     <ul class="submenu">
                         <li><a href="{{ url('/car_catalog') }}">Quản lý danh mục xe</a></li>
                         <li><a href="{{ url('/customer') }}">Quản lý khách hàng</a></li>
-                        <li><a href="{{ url('/shipping') }}">Quản lý vận chuyển hàng</a></li>
+                        <li><a href="form-wizard.html">Quản lý vận chuyển hàng</a></li>
                         <li><a href="html5-editor.html">Quản lý nhân viên bán hàng</a></li>
                         <li><a href="form-pickers.html">Quản lý thanh toán</a></li>
                         <li><a href="image-cropper.html">Quản lý rủi ro</a></li>
@@ -123,7 +123,15 @@
                 </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-table"></span><span class="mtext">Quản lý đăng ký bán xe</span>
+                        <span class="micon bi bi-clipboard"></span><span class="mtext">Danh sách</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ url('/waiting_list') }}">Đăng ký bán</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon bi bi-table"></span><span class="mtext">Tables</span>
                     </a>
                     <ul class="submenu">
                         <li><a href="basic-table.html">Basic Tables</a></li>
