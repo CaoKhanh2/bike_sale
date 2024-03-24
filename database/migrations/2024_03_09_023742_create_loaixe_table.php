@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('loaixe', function (Blueprint $table) {
             $table->string('malx',15);
             $table->string('tenloaixe',50);
-            $table->string('mota',50);
+            $table->string('mota',50)->nullable();
 
             $table->primary('malx');
         });

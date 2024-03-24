@@ -17,7 +17,7 @@ class KhachHangSeeder extends Seeder
     public function run()
     {
         $fake = faker::create();
-        for ($i=0; $i < 50; $i++) { 
+        for ($i=0; $i < 20; $i++) { 
             KhachHang::create([
                 'makh'=> $fake -> numerify('MKH-####'),
                 'hovaten' => $fake -> name(),
@@ -26,8 +26,9 @@ class KhachHangSeeder extends Seeder
                 'sodienthoai' => $fake->numerify('0##########'),
                 'email' => $fake->unique()->safeEmail,
                 'diachi' => $fake->unique()->streetAddress(),
+                'tentk' => null,
+                'password'=> null,
                 'tinhtrang' => $fake -> numberBetween(0, 1)
-
             ]);
         }
     }

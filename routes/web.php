@@ -22,24 +22,28 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
 
-Route::get('/car_catalog', function () {
+Route::get('/dashboard/car_catalog', function () {
     return view('dashboard.category.car.car_catalog');
 });
 
-Route::get('/car_catalog/detail_inforcar', function () {
+Route::get('/dashboard/car_catalog/detail_inforcar', function () {
     return view('dashboard.category.car.detail_inforcar');
 });
 
-Route::get('/customer', function () {
+Route::get('/dashboard/customer', function () {
     return view('dashboard.category.customer.customer_info');
 });
 
 // Route::get('/customer/detail_customer_info', function () {
 //     return view('dashboard.category.customer.detail_customer_info');
 // });
-Route::get('/customer',[KhachHangController::class,'index']);
+Route::get('/dashboard/customer',[KhachHangController::class,'index']);
 
-Route::get('/shipping', function () {
+Route::get('/dashboard/shipping', function () {
     return view('dashboard.category.shipping.ship_infor');
+});
+
+Route::get('/dashboard/staff', function () {
+    return view('dashboard.category.sales_agent.staff_infor');
 });
 

@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hangxe', function (Blueprint $table) {
-            $table->string('mahx',5);
-            $table->string('tenhang',50);
-            $table->string('logo');
-            $table->string('xuatxu',20)->nullable();
+        Schema::create('thanhtoan', function (Blueprint $table) {
+            $table->string('mathanhtoan');
+            $table->string('phuongthucthanhtoan',20);
             $table->tinyInteger('trangthai');
+            $table->dateTime('ngaythanhtoan');
+            $table->string('sotaikhoan',15);
+            $table->string('tennguoigui',50);
+            $table->text('ghichu')->nullable();
 
-            $table->primary('mahx');
+            $table->primary('mathanhtoan');
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hangxe');
+        Schema::dropIfExists('thanhtoan');
     }
 };

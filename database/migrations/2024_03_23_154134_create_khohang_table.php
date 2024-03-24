@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chucvu', function (Blueprint $table) {
-            $table->string('macv',5);
-            $table->string('tencv',20);
-            $table->string('mota',50)->nullable();
+        Schema::create('khohang', function (Blueprint $table) {
+            $table->string('makho',5);
+            $table->string('tenkhohang',25);
+            $table->string('diachi',50)->nullable();
 
-            $table->primary('macv');
+            $table->primary('makho');
+
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chucvu');
+        Schema::dropIfExists('khohang');
     }
 };

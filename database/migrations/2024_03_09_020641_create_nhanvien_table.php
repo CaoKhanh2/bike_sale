@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('chucvu_id',5);
             $table->string('hovaten',50);
             $table->date('ngaysinh');
-            $table->enum('gioitinh', ['Nam', 'Nữ', 'Other'])->nullable();
+            $table->enum('gioitinh', ['Nam', 'Nữ', 'Other']);
             $table->char('sodienthoai',11);
             $table->string('email',35);
             $table->string('diachi',255);
-            $table->text('ghichu');
+            $table->text('ghichu')->nullable();
 
             $table->primary('manv');
             $table->foreign('chucvu_id')->references('macv')->on('chucvu')->onDelete('cascade');

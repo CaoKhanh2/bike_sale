@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('khachhang', function (Blueprint $table) {
             $table->string('makh',10);
             $table->string('hovaten',50);
-            $table->date('ngaysinh');
+            $table->date('ngaysinh')->nullable();
             $table->enum('gioitinh',['Nam','Nữ','Other']);
             $table->string('sodienthoai',11);
             $table->string('email',35);
-            $table->string('diachi',100);
+            $table->string('diachi',100)->nullable();
+            $table->string('tentk',20);
+            $table->string('password',20);
             $table->tinyInteger('tinhtrang')->default(0);
             
             $table->primary('makh');
