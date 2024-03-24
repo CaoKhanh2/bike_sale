@@ -38,7 +38,7 @@
                             class="img-fluid mx-auto d-block">
                         Thông báo
                     </a>
-                </li>-
+                </li>
             </ul>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
