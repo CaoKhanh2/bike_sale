@@ -5,7 +5,7 @@
                 class="d-inline-block align-text-center">
             XeToT
         </a>
-        <button class="navbar-toggler bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,30 +15,30 @@
                     <a class="nav-link active" aria-current="page" href="#">
                         <img src="{{ asset('Image\Icon\home.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
-                        Trang chủ
+                        <span class="text-center mx-auto d-block">Trang chủ</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">
                         <img src="{{ asset('Image\Icon\motorbike.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
-                        Mua xe máy
+                        <span class="text-center mx-auto d-block">Mua xe máy</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-disabled="true" href="">
                         <img src="{{ asset('Image\Icon\electric-scooter.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
-                        Mua xe đạp điện
+                            <span class="text-center mx-auto d-block">Mua xe đạp điện</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-disabled="true" href="">
                         <img src="{{ asset('Image\Icon\notification.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
-                        Thông báo
+                            <span class="text-center mx-auto d-block">Thông báo</span>
                     </a>
-                </li>-
+                </li>
             </ul>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -47,14 +47,14 @@
                     <a class="nav-link active" aria-disabled="true" href="">
                         <img src="{{ asset('Image\Icon\trade.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
-                        Đăng ký bán xe
+                            <span class="text-center mx-auto d-block">Đăng ký bán xe</span>
                     </a>
             </li>
             <li class="nav-item">
                     <a class="nav-link active" aria-disabled="true" href="">
                         <img src="{{ asset('Image\Icon\user.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
-                        Tài khoản
+                            <span class="text-center mx-auto d-block">Tài khoản</span>
                     </a>
                 </li>
             </ul>
