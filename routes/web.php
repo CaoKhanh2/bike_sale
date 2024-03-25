@@ -47,3 +47,14 @@ Route::get('/dashboard/staff', function () {
     return view('dashboard.category.sales_agent.staff_infor');
 });
 
+Route::get('/dashboard/waiting_list', function () {
+    return view('dashboard.waiting_list.waiting_list_info');
+});
+
+Route::get('/user', function(){
+    return view('/user.index');
+});
+
+Route::get('/selling_item', function(){
+    return view('/user.selling_item');
+});

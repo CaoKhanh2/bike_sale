@@ -4,75 +4,59 @@
 @section('pg-hd-2','Danh sách xe đăng ký bán')
 
 @section('main')
-	<div class="pd-20 card-box mb-30">
-		<div class="clearfix mb-20">
-			<div class="pull-left">
-				<h4 class="text-blue h4">Basic Table</h4>
-					<p>Add class <code>.table</code></p>
-			</div>
-			<div class="pull-right">
-				<a href="#basic-table" class="btn btn-primary btn-sm scroll-click" rel="content-y" data-toggle="collapse" role="button">
-					<i class="fa fa-code"></i>Source Code
-				</a>
-			</div>
-		</div>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">First</th>
-					<th scope="col">Last</th>
-					<th scope="col">Handle</th>
-					<th scope="col">Tag</th>
-				</tr>
-			</thead>
-				<tbody>
-					<tr>
-						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-						<td><span class="badge badge-primary">Prima</span></td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-						<td><span class="badge badge-secondary">Secondary</span></td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Larry</td>
-						<td>the Bird</td>
-						<td>@twitter</td>
-						<td><span class="badge badge-success">Success</span></td>
-					</tr>
-				</tbody>
-		</table>
-						<div class="collapse collapse-box" id="basic-table">
-							<div class="code-box">
-								<div class="clearfix">
-									<a href="javascript:;" class="btn btn-primary btn-sm code-copy pull-left" data-clipboard-target="#basic-table-code">
-										<i class="fa fa-clipboard"></i> Copy Code</a>
-									<a href="#basic-table" class="btn btn-primary btn-sm pull-right" rel="content-y" data-toggle="collapse" role="button">
-										<i class="fa fa-eye-slash"></i> Hide Code</a>
-								</div>
-								<pre><code class="xml copy-pre" id="basic-table-code">
-									<table class="table">
-  										<thead>
-    										<tr>
-      											<th scope="col">#</th>
-   											 </tr>
- 										</thead>
-  										<tbody>
-    										<tr>
-      											<th scope="row">1</th>
-    										</tr>
-  										</tbody>
-									</table>
-								</code></pre>
-							</div>
-						</div>
-					</div>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            {{-- Page Header --}}
+                @include('dashboard.layout.page-header')
+            {{-- End Page Header--}}
+
+            <!-- Export Datatable start -->
+            <div class="card-box mb-30">
+                <div class="pd-20">
+                    <h4 class="text-blue h4"></h4>
+                </div>
+                <div class="pb-20">
+                    <table class="table hover multiple-select-row data-table-export nowrap">
+                        <thead>
+                            <tr>
+                                <th class="table-plus datatable-nosort">Mã đăng ký</th>
+                                <th>Tên người bán</th>
+                                <th>Ngày bán</th>
+                                <th>Mô tả</th>
+                                <th>Giá bán</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-plus">Gloria F. Mead</td>
+                                <td>25</td>
+                                <td>Sagittarius</td>
+                                <td>2829 Trainer Avenue Peoria, IL 61602</td>
+                                <td>29-03-2018</td>
+                                <td>$162,700</td>
+                                <td>
+                                    {{-- <a href="{{ url('/car_catalog/detail_inforcar') }}" type="button"
+                                        class="btn btn-primary">Sửa</a>
+                                    <a href="" type="button" class="btn btn-primary">Xóa</a> --}}
+
+                                    <a type="button" class="btn btn-primary" href="{{ url('/car_catalog/detail_inforcar') }}">
+                                        <i class="bi bi-pencil-fill"></i> Sửa
+                                    </a>
+                                    <a type="button" class="btn btn-danger" href="">
+                                        <i class="bi bi-trash3"></i> Xóa
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Export Datatable End -->
+        </div>
+
+    </div>
+</div>
 @endsection
