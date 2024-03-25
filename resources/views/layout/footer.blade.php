@@ -1,5 +1,6 @@
+<section class="footer bg-light">
 <div class="container">
-    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5  border-top">
         <div class="col mb-3">
             <a href="url{{ ('/index') }}" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
                 <img src="{{ asset('Image\Icon\racing.png') }}" alt="Logo" width="60" height="48">
@@ -48,3 +49,4 @@
         </div>
     </footer>
 </div>
+</section>

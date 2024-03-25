@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-xl bg-body-tertiary ">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ url('/')}}">
             <img src="{{ asset('Image\Icon\racing.png') }}" alt="Logo" width="60" height="48"
                 class="d-inline-block align-text-center">
             Xe ToT
@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
+                    <a class="nav-link active" aria-current="page" href="{{ url('/')}}">
                         <img src="{{ asset('Image\Icon\home.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
                         <span class="text-center mx-auto d-block">Trang chủ</span>
@@ -44,19 +44,26 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                    <a class="nav-link active" aria-disabled="true" href="">
-                        <img src="{{ asset('Image\Icon\trade.png') }}" width="30" height="24"
-                            class="img-fluid mx-auto d-block">
-                            <span class="text-center mx-auto d-block">Đăng ký bán xe</span>
-                    </a>
+                <a class="nav-link active" aria-disabled="true" href="{{ url('/selling_item') }}">
+                    <img src="{{ asset('Image\Icon\trade.png') }}" width="30" height="24"
+                        class="img-fluid mx-auto d-block">
+                        <span class="text-center mx-auto d-block">Đăng ký bán xe</span>
+                </a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link active" aria-disabled="true" href="">
-                        <img src="{{ asset('Image\Icon\user.png') }}" width="30" height="24"
-                            class="img-fluid mx-auto d-block">
-                            <span class="text-center mx-auto d-block">Tài khoản</span>
-                    </a>
-                </li>
+                <a class="nav-link active" aria-disabled="true" href="">
+                    <img src="{{ asset('Image\Icon\motorbike.png') }}" width="30" height="24"
+                        class="img-fluid mx-auto d-block">
+                        <span class="text-center mx-auto d-block">Giỏ hàng</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-disabled="true" href="{{ url('/user') }}">
+                    <img src="{{ asset('Image\Icon\user.png') }}" width="30" height="24"
+                        class="img-fluid mx-auto d-block">
+                        <span class="text-center mx-auto d-block">Tài khoản</span>
+                </a>
+            </li>
             </ul>
         </div>
     </div>

@@ -126,7 +126,7 @@
                         <span class="micon bi bi-clipboard"></span><span class="mtext">Danh sách</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('/waiting_list') }}">Đăng ký bán</a></li>
+                        <li><a href="{{ url('/dashboard/waiting_list') }}">Đăng ký bán</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
