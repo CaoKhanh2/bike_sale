@@ -17,6 +17,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
 
+    <!-- DropZone -->
+    <link rel="stylesheet" href="{{ asset('dashboard_src\src\plugins\dropzone\src\dropzone.css') }}"/>
+
 </head>
 
 <body>
@@ -42,6 +45,7 @@
     {{-- End footer --}}
 
 </body>
+
 <script src="{{ asset('bootstrap-tool\js\bootstrap.bundle.min.js') }}"></script>
 
 </html>
