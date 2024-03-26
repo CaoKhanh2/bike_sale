@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="{{ url('/')}}">
             <img src="{{ asset('Image\Icon\racing.png') }}" alt="Logo" width="60" height="48"
                 class="d-inline-block align-text-center">
-            XeToT
+            Xe ToT
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
