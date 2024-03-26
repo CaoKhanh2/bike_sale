@@ -20,9 +20,7 @@
 {{-- End header --}}
 
    <div class="container">
-   {{-- SideBar --}}
-    @include('user.user_sidebar')
-    {{-- End SideBar --}}
+
 
    </div>
   
