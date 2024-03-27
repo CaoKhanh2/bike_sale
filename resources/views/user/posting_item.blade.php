@@ -55,7 +55,7 @@
                         <input type="submit" value="Đăng ký" class="btn-primary btn col-12">
                         </div>  
                         <br>
-                        <a href="Main.html"><input type="button" value="Thoát" class="btn-primary btn col-12"></a>
+                        <a href="{{ asset('/')}}"><input type="button" value="Thoát" class="btn-primary btn col-12"></a>
                     </form>
                 </div>
         </div>

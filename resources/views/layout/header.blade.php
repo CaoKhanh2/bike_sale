@@ -45,12 +45,14 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="nav-link active" aria-disabled="true" href="{{ url('/selling_item') }}">
-                    <img src="{{ asset('Image\Icon\trade.png') }}" width="30" height="24"
+                    <img src="{{ asset('Image\Icon\form.png') }}" width="30" height="24"
                         class="img-fluid mx-auto d-block">
                         <span class="text-center mx-auto d-block">Đăng ký bán xe</span>
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link active" aria-disabled="true" href="#">
+                    <img src="{{ asset('Image\Icon\cart.png') }}" width="30" height="24"
                 <a class="nav-link active" aria-disabled="true" href="">
                     {{-- <img width="30" height="30" src="https://img.icons8.com/ios/50/shopping-cart--v1.png" alt="shopping-cart--v1"  class="img-fluid mx-auto d-block"/> --}}
                     <img src="{{ asset('Image\Icon\icons8-cart-30.png') }}" width="30" height="24"
