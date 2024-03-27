@@ -43,7 +43,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container">
+                                    <div class="container-fluid">
                                         <div class="row justify-content-center align-items-center">
                                             <div class="col col-12 d-grid gap-2 mb-2">
                                                 <h5>Danh mục xe</h5>
@@ -57,11 +57,12 @@
     
                                                 <div class="col-12 mt-2 mb-2">
                                                     <h5>Sắp xếp theo</h5>
-                                                    <div class="container mt-2">
+                                                    <div class="container-fluid mt-3">
                                                         <div class="row">
                                                             <div class="col-auto me-auto">
+                                                                <img width="24" height="24" src="https://img.icons8.com/ios/50/clock--v3.png" alt="clock--v3"/>
                                                                 <label class="form-check-label" for="sx_tinmoi1">
-                                                                    <p class="fs-6">Mới nhất</p>
+                                                                    <p class="align-baseline fs-6">Mới nhất</p>
                                                                 </label>
                                                             </div>
                                                             <div class="col-auto">
@@ -71,8 +72,9 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-auto me-auto">
+                                                                <img width="24" height="24" src="https://img.icons8.com/ios/50/price-tag--v1.png" alt="price-tag--v1"/>
                                                                 <label class="form-check-label" for="sx_giathapnhat1">
-                                                                    <p class="fs-6">Giá thấp nhất</p>
+                                                                    <p class="align-baseline fs-6">Giá thấp nhất</p>
                                                                 </label>
                                                             </div>
                                                             <div class="col-auto">
@@ -221,6 +223,7 @@
                                                     <div class="container mt-3">
                                                         <div class="row">
                                                             <div class="col-auto me-auto">
+                                                                <img width="24" height="24" src="https://img.icons8.com/ios/50/clock--v3.png" alt="clock--v3"/>
                                                                 <label class="form-check-label" for="sx_tinmoi2">
                                                                     <p class="fs-6">Mới nhất</p>
                                                                 </label>
@@ -232,6 +235,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-auto me-auto">
+                                                                <img width="24" height="24" src="https://img.icons8.com/ios/50/price-tag--v1.png" alt="price-tag--v1"/>
                                                                 <label class="form-check-label" for="sx_giathapnhat2">
                                                                     <p class="fs-6">Giá thấp nhất</p>
                                                                 </label>
@@ -313,6 +317,7 @@
                                                     <div class="container mt-3">
                                                         <div class="row">
                                                             <div class="col-auto me-auto">
+                                                                <img width="24" height="24" src="https://img.icons8.com/ios/50/clock--v3.png" alt="clock--v3"/>
                                                                 <label class="form-check-label" for="sx_tinmoi2">
                                                                     <p class="fs-6">Mới nhất</p>
                                                                 </label>
@@ -324,6 +329,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-auto me-auto">
+                                                                <img width="24" height="24" src="https://img.icons8.com/ios/50/price-tag--v1.png" alt="price-tag--v1"/>
                                                                 <label class="form-check-label" for="sx_giathapnhat2">
                                                                     <p class="fs-6">Giá thấp nhất</p>
                                                                 </label>

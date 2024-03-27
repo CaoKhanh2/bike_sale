@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HangXeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KhachHangController;
 
@@ -58,3 +59,5 @@ Route::get('/user', function(){
 Route::get('/selling_item', function(){
     return view('/user.selling_item');
 });
+
+Route::get('/data', [HangXeController::class,'index']);

@@ -8,7 +8,7 @@
     <div id="banner-1" class="full-width-image" style="background-image: url('{{ asset('Image/Banner/bn-1.jpg') }}');"></div>
     {{-- End --}}
 
-    <div class="container mt-4">
+    <div class="container mt-4 mb-5">
         {{-- Mục Tìm kiếm --}}
             <div class="row justify-content-md-center">
                 <div class="col-xl">
