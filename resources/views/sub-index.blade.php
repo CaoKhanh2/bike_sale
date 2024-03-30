@@ -27,11 +27,15 @@
         </div>
 
         <div class="row mt-4 mb-4">
-            
+            {{-- Ảnh qc --}}
         </div>
 
         <div class="row mt-4 mb-4">
             @include('sub-page.list-archive-item')
+        </div>
+
+        <div class="row mt-4 mb-4">
+            @include('sub-page.introduce')
         </div>
 
     </div>
