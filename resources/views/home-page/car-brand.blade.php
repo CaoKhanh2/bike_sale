@@ -1,6 +1,14 @@
+<style>
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 50px; 
+        height: 248px;
+        align-self: center;    
+    }
+</style>
 <div id="car-brand">
     <h3 class="mt-4 mb-4">Tìm nhanh theo hãng xe</h3>
-    <div id="carouselExample" class="carousel slide">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="card-group d-flex justify-content-center align-items-center mt-3 mb-3">
@@ -64,11 +72,11 @@
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
