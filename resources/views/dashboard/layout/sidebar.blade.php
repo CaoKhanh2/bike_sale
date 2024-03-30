@@ -128,6 +128,9 @@
                     <ul class="submenu">
                         <li><a href="{{ url('/dashboard/waiting_list') }}">Đăng ký bán</a></li>
                     </ul>
+                    <ul class="submenu">
+                        <li><a href="{{ url('/dashboard/transaction/selling') }}">Quản lý bán</a></li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">

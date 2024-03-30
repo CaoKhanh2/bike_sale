@@ -60,4 +60,8 @@ Route::get('/selling_item', function(){
     return view('/user.selling_item');
 });
 
+Route::get('/dashboard/transaction/selling', function () {
+    return view('dashboard.transaction.selling.sell_manage');
+});
+
 Route::get('/data', [HangXeController::class,'index']);
