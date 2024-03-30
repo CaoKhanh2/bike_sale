@@ -53,8 +53,8 @@ Route::get('/dashboard/staff', function () {
     return view('dashboard.category.sales_agent.staff_infor');
 });
 
-Route::get('/dashboard/waiting_list', function () {
-    return view('dashboard.waiting_list.waiting_list_info');
+Route::get('/dashboard/transaction/purchasing_manage', function () {
+    return view('dashboard.transaction.purchasing.purchasing_manage');
 });
 
 Route::get('/user', function(){
