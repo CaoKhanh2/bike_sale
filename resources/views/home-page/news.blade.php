@@ -59,7 +59,7 @@
                 <div class="card mb-1" >
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="{{ asset('Image\415570954_906272230687061_5629026059600303103_n1.png') }}" class="img-fluid rounded-start" alt="">
+                        <img src="{{ asset('Image\415570954_906272230687061_5629026059600303103_n.png') }}" class="img-fluid rounded-start" alt="">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">

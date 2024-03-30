@@ -17,13 +17,13 @@
                     <input type="text" class="form-control" placeholder="Tìm tên, hãng, dòng xe, ..." aria-label="">
                 </div>
                 <div class="col">
-                    <select id="inputState" class="form-select">
+                    <select id="inputState1" class="form-select">
                         <option selected>Tỉnh, thành phố</option>
                         <option>...</option>
                     </select>
                 </div>
                 <div class="col">
-                    <select id="inputState" class="form-select">
+                    <select id="inputState2" class="form-select">
                         <option selected>Loại xe</option>
                         <option>...</option>
                     </select>
@@ -122,30 +122,30 @@
                                                         </label>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <input class="form-check" type="radio" name="exampleRadios"
+                                                        <input class="form-check" type="radio" name="exampleRadios1"
                                                             id="exampleRadios1" value="option1" data-bs-toggle="modal" data-bs-target="#parentPopup">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-auto me-auto">
-                                                        <label class="form-check-label" for="exampleRadios1">
+                                                        <label class="form-check-label" for="exampleRadios2">
                                                             <p class="fs-6">Xe máy</p>
                                                         </label>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <input class="form-check" type="radio" name="exampleRadios"
-                                                            id="exampleRadios1" value="option1" data-bs-toggle="modal" data-bs-target="#childPopup1">
+                                                        <input class="form-check" type="radio" name="exampleRadios2"
+                                                            id="exampleRadios2" value="option1" data-bs-toggle="modal" data-bs-target="#childPopup1">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-auto me-auto">
-                                                        <label class="form-check-label" for="exampleRadios2">
+                                                        <label class="form-check-label" for="exampleRadios3">
                                                             <p class="fs-6">Xe đạp điện</p>
                                                         </label>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <input class="form-check" type="radio" name="exampleRadios"
-                                                            id="exampleRadios2" value="option2" data-bs-toggle="modal" data-bs-target="#childPopup2">
+                                                        <input class="form-check" type="radio" name="exampleRadios3"
+                                                            id="exampleRadios3" value="option2" data-bs-toggle="modal" data-bs-target="#childPopup2">
                                                     </div>
                                                 </div>
                                             </div>
@@ -186,7 +186,7 @@
 
                                                 <div class="col-12 mt-3 mb-3">
                                                     <h5>Hãng xe</h5>
-                                                    <select id="inputState" class="form-select" name="">
+                                                    <select id="inputState3" class="form-select" name="">
                                                         <option selected>Tất cả</option>
                                                         <option>...</option>
                                                     </select>
@@ -204,7 +204,7 @@
 
                                                 <div class="col-12 mt-3 mb-3">
                                                     <h5>Loại xe</h5>
-                                                    <select id="inputState" class="form-select" name="">
+                                                    <select id="inputState4" class="form-select" name="">
                                                         <option selected>Tất cả</option>
                                                         <option>...</option>
                                                     </select>
@@ -212,7 +212,7 @@
 
                                                 <div class="col-12 mt-3 mb-3">
                                                     <h5>Dung tích</h5>
-                                                    <select id="inputState" class="form-select" name="">
+                                                    <select id="inputState5" class="form-select" name="">
                                                         <option selected>Tất cả</option>
                                                         <option>...</option>
                                                     </select>
@@ -288,7 +288,7 @@
 
                                                 <div class="col-12 mt-3 mb-3">
                                                     <h5>Hãng xe</h5>
-                                                    <select id="inputState" class="form-select" name="">
+                                                    <select id="inputState6" class="form-select" name="">
                                                         <option selected>Tất cả</option>
                                                         <option>...</option>
                                                     </select>
@@ -306,7 +306,7 @@
 
                                                 <div class="col-12 mt-3 mb-3">
                                                     <h5>Loại xe</h5>
-                                                    <select id="inputState" class="form-select" name="">
+                                                    <select id="inputState7" class="form-select" name="">
                                                         <option selected>Tất cả</option>
                                                         <option>...</option>
                                                     </select>

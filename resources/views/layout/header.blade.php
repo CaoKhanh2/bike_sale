@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-xl bg-body-tertiary ">
+<nav class="navbar navbar-expand-xl bg-body-tertiary fixed-top">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/')}}">
             <img src="{{ asset('Image\Icon\racing.png') }}" alt="Logo" width="60" height="48"

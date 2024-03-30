@@ -3,62 +3,63 @@
     <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="card-group d-flex justify-content-center align-items-center">
-                    <div class="card border-0">
-                        <a href=""><img src="{{ asset('Image\logo_xe\Honda_Logo.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100"></a>
+                <div class="card-group d-flex justify-content-center align-items-center mt-3 mb-3">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Honda_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\Yamaha_Logo.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Yamaha_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\suzuki.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Suzuki_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\kawasaki.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Kawasaki_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
                 </div>
-                <div class="card-group d-flex justify-content-center align-items-center">
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\Piaggio.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                <div class="card-group d-flex justify-content-center align-items-center mt-3 mb-3">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Piaggio_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\dibao.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Dibao_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\sym.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Sym_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\vespa.png') }}" class="img-fluid mx-auto d-block " alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Vespa_Logo.png') }}" class="object-fit-contain border rounded " alt="..." width="125" height="100"></a>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item active">
-                <div class="card-group d-flex justify-content-center align-items-center">
-                    <div class="card border-0">
-                        <a href=""><img src="{{ asset('Image\logo_xe\Honda_Logo.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100"></a>
+
+            <div class="carousel-item">
+                <div class="card-group d-flex justify-content-center align-items-center mt-3 mb-3">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Honda_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\Yamaha_Logo.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Yamaha_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\suzuki.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Suzuki_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\kawasaki.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Kawasaki_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
                 </div>
-                <div class="card-group d-flex justify-content-center align-items-center">
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\Piaggio.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                <div class="card-group d-flex justify-content-center align-items-center mt-3 mb-3">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Piaggio_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\dibao.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Dibao_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\sym.png') }}" class="img-fluid mx-auto d-block" alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Sym_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
-                    <div class="card border-0">
-                        <img src="{{ asset('Image\logo_xe\vespa.png') }}" class="img-fluid mx-auto d-block " alt="..." width="125" height="100">
+                    <div class="card border-0 text-center">
+                        <a href=""><img src="{{ asset('Image\logo_xe\Vespa_Logo.png') }}" class="object-fit-contain border rounded " alt="..." width="125" height="100"></a>
                     </div>
                 </div>
             </div>

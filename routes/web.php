@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/xe', function () {
+    return view('sub-index');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
@@ -38,6 +42,7 @@ Route::get('/dashboard/customer', function () {
 // Route::get('/customer/detail_customer_info', function () {
 //     return view('dashboard.category.customer.detail_customer_info');
 // });
+
 Route::get('/dashboard/customer',[KhachHangController::class,'index']);
 
 Route::get('/dashboard/shipping', function () {
