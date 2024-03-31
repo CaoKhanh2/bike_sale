@@ -225,7 +225,7 @@
 .dropzone {
 	min-height: 324px;
 	border: 2px dashed #0099ff;
-	background: white;
+	background: #f8f9fa;
 	padding: 20px 20px;
 }
 .dropzone.dz-clickable {
