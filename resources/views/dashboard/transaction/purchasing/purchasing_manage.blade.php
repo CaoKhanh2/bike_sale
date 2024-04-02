@@ -71,7 +71,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="profile2" role="tabpanel">
@@ -97,8 +96,6 @@
                                                 <td>29-03-2018</td>
                                                 <td>$162,700</td>
                                                 <td>
-
-
                                                     <a type="button" class="btn btn-primary"
                                                         href="{{ url('/car_catalog/detail_inforcar') }}">
                                                         <i class="bi bi-pencil-fill"></i> Sửa
@@ -135,8 +132,6 @@
                                                 <td>29-03-2018</td>
                                                 <td>$162,700</td>
                                                 <td>
-
-
                                                     <a type="button" class="btn btn-primary"
                                                         href="{{ url('/car_catalog/detail_inforcar') }}">
                                                         <i class="bi bi-pencil-fill"></i> Sửa
