@@ -23,6 +23,10 @@ Route::get('/xe', function () {
     return view('sub-index');
 });
 
+Route::get('/ban-xe', function () {
+    return view('sale-page');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 });

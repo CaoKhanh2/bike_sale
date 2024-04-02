@@ -19,9 +19,7 @@ return new class extends Migration
             $table->string('ttxedapdien_id',15)->nullable();
             $table->string('khachhang_id',10);
             $table->date('namdk');
-            $table->string('dungtichxe',10);
             $table->string('xuatxu',25);
-            $table->float('sokmdadi',6,2);
             $table->decimal('giaban',10,2);
             $table->text('motachitiet')->nullable();
             $table->tinyInteger('trangthai');
