@@ -1,14 +1,15 @@
 <div class="container bg-light">
-    <form action="">
+    <form action="" class="border border-primary">
         <div class="clearfix">
             <div class="pull-left">
-                <h1 class="text-primary text-center">Đăng ký bán xe</h1>
+                <h1 class="text-primary text-center py-4">Đăng ký bán xe</h1>
             </div>
         </div>
-
-        <div class="row">
+        <div class="row justify-content-around">
             <div class="col-4">
-                <label for="my-awesome-dropzone">Hình ảnh của xe</label>
+                <label for="my-awesome-dropzone">
+                    <h3>Hình ảnh của xe</h3>
+                </label>
                 <div class="dropzone mb-3" action="#" id="my-awesome-dropzone">
                     <div class="fallback">
                         <input type="file" name="file" />
@@ -18,7 +19,9 @@
             <div class="col-6">
                 <div class="row">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Loại xe</label>
+                        <label for="exampleFormControlInput1" class="form-label">
+                            <h3>Loại xe</h3>
+                        </label>
                         <select class="form-select form-select-lg" aria-label="Loại xe" id="loaixe">
                             <option value="Xemay">Xe máy</option>
                             <option value="Xedapdien">Xe đạp điện</option>
@@ -28,19 +31,19 @@
                         <h2>Thông tin chi tiết</h2>
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="Tên hãng xe" id="Hangxe" class="form-control form-control-lg"
+                        <input type="text" name="Tên hãng xe" id="Hangxe" class="form-control form-control-lg border border-primary"
                             placeholder="Hãng xe">
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="Năm đăng ký" id="Namdangky" class="form-control form-control-lg"
+                        <input type="text" name="Năm đăng ký" id="Namdangky" class="form-control form-control-lg border border-primary"
                             placeholder="Năm đăng ký">
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="Tên hãng xe" id="Xuatxu" class="form-control form-control-lg"
+                        <input type="text" name="Tên hãng xe" id="Xuatxu" class="form-control form-control-lg border border-primary"
                             placeholder="Xuất xứ">
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="Tên hãng xe" id="Giaban" class="form-control form-control-lg"
+                        <input type="text" name="Tên hãng xe" id="Giaban" class="form-control form-control-lg border border-primary"
                             placeholder="Giá bán">
                     </div>
 
@@ -48,11 +51,11 @@
                         <h2>Thông tin chi tiết</h2>
                     </div>
                     <div class="mb-3">
-                        <input type="text" name="Tên hãng xe" id="Hangxe" class="form-control form-control-lg"
+                        <input type="text" name="Tên hãng xe" id="Hangxe" class="form-control form-control-lg border border-primary"
                             placeholder="Tiêu đề">
                     </div>
                     <div class="mb-3">
-                        <textarea class="form-control" style="height: 200px"></textarea>
+                        <textarea class="form-control border border-primary" style="height: 200px"></textarea>
                     </div>
                     <div class="mb-3">
                         <input type="submit" value="Đăng ký" class="btn-primary btn col-12">
@@ -61,5 +64,11 @@
             </div>
         </div>
 
-    </form>
+</div>
+<div>
+
+</div>
+</div>
+
+</form>
 </div>
