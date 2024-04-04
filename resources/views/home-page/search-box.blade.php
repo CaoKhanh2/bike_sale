@@ -5,8 +5,8 @@
         height: 1.2em;
     }
     .modal-body {
-      max-height: 450px; /* Đặt chiều cao tối đa cho nội dung modal */
-      overflow-y: auto; /* Kích hoạt thanh cuộn khi nội dung vượt quá kích thước */
+      /* max-height: 450px; 
+      overflow-y: auto;  */
     }
 </style>
 <div class="card bg-light display-center" id="search-box">
@@ -36,7 +36,7 @@
                     <!-- Main Search Popup -->
                     <div class="modal fade" id="parentPopup" tabindex="-1" aria-labelledby="parentPopupLabel"
                         aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="parentPopupLabel" aria-label="Close">Lọc kết quả</h5>
@@ -104,7 +104,7 @@
                     <!-- Category Popup -->
                     <div class="modal fade" id="childPopup" tabindex="-1" aria-labelledby="childPopupLabel"
                         aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     {{-- <h5 class="modal-title" id="childPopupLabel">Child Popup</h5> --}}
@@ -164,7 +164,7 @@
                     <div class="modal fade" id="childPopup1" tabindex="-1" aria-labelledby="childPopupLabel"
                     aria-hidden="true">
 
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="childPopupLabel">Lọc kết quả</h5>
@@ -266,7 +266,7 @@
                     <div class="modal fade" id="childPopup2" tabindex="-1" aria-labelledby="childPopupLabel"
                     aria-hidden="true">
 
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="childPopupLabel">Lọc kết quả</h5>

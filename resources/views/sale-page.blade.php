@@ -1,16 +1,16 @@
 @extends('layout.content')
-@section('title','')
+@section('title', '')
 
 @section('main')
     <div class="container">
         <div class="row justify-content-md-center mt-4 mb-4">
-              <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Library</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data</li>
                 </ol>
-              </nav>
+            </nav>
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
@@ -18,7 +18,23 @@
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-          
+            @include('sale-page.info-product')
+        </div>
+
+        <div class="row justify-content-md-center mt-4 mb-4">
+            @include('sale-page.product-description')
+        </div>
+
+        <div class="row justify-content-md-center mt-4 mb-4">
+            @include('sale-page.social-share')
+        </div>
+
+        <div class="row justify-content-md-center mt-4 mb-4">
+            @include('sale-page.report-group')
+        </div>
+
+        <div class="row justify-content-md-center mt-5 mb-5">
+          @include('sale-page.related-product')
         </div>
     </div>
     <script src="{{ asset('home_src\js\show-product.js') }}"></script>
