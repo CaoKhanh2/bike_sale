@@ -587,7 +587,8 @@ var chart = new ApexCharts(document.querySelector("#chart7"), options7);
 chart.render();
 
 var options8 = {
-	series: [44, 55, 41, 17, 15],
+	series: [44, 55, 13, 33],
+    labels: ['Apple', 'Mango', 'Orange', 'Watermelon'],
 	chart: {
 		type: 'donut',
 	},
@@ -603,6 +604,7 @@ var options8 = {
 		}
 	}]
 };
+
 var chart = new ApexCharts(document.querySelector("#chart8"), options8);
 chart.render();
 

@@ -73,4 +73,10 @@ Route::get('/dashboard/transaction/selling', function () {
     return view('dashboard.transaction.selling.sell_manage');
 });
 
+Route::get('/dashboard/report/best-selling-items', function () {
+    return view('dashboard.report.best-selling-items');
+});
+
+
+// Add data
 Route::get('/data', [HangXeController::class,'index']);

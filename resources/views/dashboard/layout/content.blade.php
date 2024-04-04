@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link href="{{ url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap') }}"
         rel="stylesheet" />
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/vendors/styles/core.css') }}" />
@@ -61,6 +61,7 @@
     </script>
     <!-- End Google Tag Manager -->
 
+    <script src="https://kit.fontawesome.com/09dc0ea4f4.js" crossorigin="anonymous"></script>
 </head>
 
 <body>

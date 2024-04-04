@@ -35,7 +35,7 @@
                             <div class="tab-pane fade show active" id="home2" role="tabpanel">
                                 <div class="pd-20">
 
-                                    <table class="table hover multiple-select-row data-table-export nowrap">
+                                    <table class="table hover multiple-select-row">
                                         <thead>
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>

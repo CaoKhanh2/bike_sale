@@ -41,7 +41,7 @@
                                         class="btn btn-primary">Sửa</a>
                                     <a href="" type="button" class="btn btn-primary">Xóa</a> --}}
 
-                                    <a type="button" class="btn btn-primary" href="{{ url('/car_catalog/detail_inforcar') }}">
+                                    <a type="button" class="btn btn-primary" href="{{ url('/dashboard/shipping/') }}">
                                         <i class="bi bi-pencil-fill"></i> Sửa
                                     </a>
                                     <a type="button" class="btn btn-danger" href="">

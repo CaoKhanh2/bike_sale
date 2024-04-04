@@ -39,7 +39,7 @@
                                     <td>29-03-2018</td>
                                     <td>$162,700</td>
                                     <td>
-                                        <a type="button" class="btn btn-primary" href="{{ url('/car_catalog/detail_inforcar') }}">
+                                        <a type="button" class="btn btn-primary" href="{{ url('/dashboard/car_catalog/detail_inforcar') }}">
                                             <i class="bi bi-pencil-fill"></i> Sửa
                                         </a>
                                         <a type="button" class="btn btn-danger" href="">
