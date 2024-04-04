@@ -1,7 +1,19 @@
 @extends('layout.content')
 @section('title', 'Đăng ký bán xe')
+@section('pg-hd-2', 'Đăng ký bán xe')
 <link rel="stylesheet" href="{{ asset('home_src\css\main.css') }}">
 @section('main')
+
+    {{-- breadcrum --}}
+    {{-- <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-xl">
+                @include('layout.header_breadcrum')
+            </div>
+        </div>
+    </div> --}}
+
+    {{-- endbreadcrum --}}
 
     {{-- Content --}}
     <div class="row justify-content-center">
