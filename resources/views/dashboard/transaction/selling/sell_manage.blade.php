@@ -16,31 +16,31 @@
                     <div class="pd-20">
                         <h4 class="text-blue h4"></h4>
                     </div>
-                    <div class="sell-manage">
-                        <ul class="nav nav-pills" role="tablist">
+                    <div class="tab">
+                        <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="pill" href="#confirmation">CHỜ XÁC NHẬN</a>
+                                <a class="nav-link active text-blue" data-toggle="pill" href="#confirmation">CHỜ XÁC
+                                    NHẬN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#processing">ĐANG XỬ LÝ</a>
+                                <a class="nav-link text-blue" data-toggle="pill" href="#processing">ĐANG XỬ LÝ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#delivery">ĐANG GIAO</a>
+                                <a class="nav-link text-blue" data-toggle="pill" href="#delivery">ĐANG GIAO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#delivered">ĐÃ GIAO</a>
+                                <a class="nav-link text-blue" data-toggle="pill" href="#delivered">ĐÃ GIAO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="pill" href="#canceled">ĐÃ HỦY</a>
+                                <a class="nav-link text-blue" data-toggle="pill" href="#canceled">ĐÃ HỦY</a>
                             </li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div id="confirmation" class="container tab-pane active"><br>
+                            <div id="confirmation" class="tab-pane fade show active" role="tabpanel"><br>
                                 {{-- <table class="table hover data-table-export"> --}}
-                                <table style="width:100%">
+                                <table class="table hover multiple-select-row nowrap" style="width:100%">
                                     <thead>
-                                        <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Loại xe</th>
@@ -71,8 +71,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="processing" class="container tab-pane fade"><br>
-                                <table style="width:100%">
+
+                            <div id="processing" class="tab-pane fade"><br>
+                                <table class="table hover multiple-select-row nowrap">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -90,15 +91,15 @@
                                             <td>Yamaha</td>
                                             <td>Hải Phòng</td>
                                             <td>Sirius</td>
-                                            <td>$162,700</td>
+                                            <td>$10000,700</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="delivery" class="container tab-pane fade"><br>
-                                <table style="width:100%">
+
+                            <div id="delivery" class="tab-pane fade"><br>
+                                <table class="table hover multiple-select-row nowrap" style="width: 100%">
                                     <thead>
-                                        <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Loại xe</th>
@@ -111,8 +112,8 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Xe máy</td>
-                                            <td>suziki</td>
+                                            <td>Xe đạp điện</td>
+                                            <td>Yamaha</td>
                                             <td>Hải Phòng</td>
                                             <td>Sirius</td>
                                             <td>$162,700</td>
@@ -120,10 +121,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="delivered" class="container tab-pane fade"><br>
-                                <table style="width:100%">
+
+                            <div id="delivered" class="tab-pane fade"><br>
+                                <table class="table hover multiple-select-row nowrap" style="width:100%">
                                     <thead>
-                                        <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Loại xe</th>
@@ -138,17 +139,17 @@
                                             <td>1</td>
                                             <td>Xe máy</td>
                                             <td>Yamaha</td>
-                                            <td>Hà Nội</td>
+                                            <td>hà nội</td>
                                             <td>Sirius</td>
                                             <td>$162,700</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="canceled" class="container tab-pane fade"><br>
-                                <table style="width:100%">
+                            
+                            <div id="canceled" class="tab-pane fade"><br>
+                                <table class="table hover multiple-select-row nowrap" style="width:100%">
                                     <thead>
-                                        <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Loại xe</th>
@@ -162,21 +163,19 @@
                                         <tr>
                                             <td>1</td>
                                             <td>Xe máy</td>
-                                            <td>Yamaha</td>
+                                            <td>suzuki</td>
                                             <td>Hải Phòng</td>
                                             <td>Sirius</td>
-                                            <td>$5000</td>
+                                            <td>$162,700</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- Export Datatable End -->
             </div>
-
         </div>
     </div>
 
