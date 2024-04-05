@@ -64,10 +64,13 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-block text-center">Nhận thông tin khuyễn mãi từ cửa hàng</div>
-                                <form class="d-flex mt-2" role="search">
-                                    <input class="form-control me-2" type="search" placeholder="Search"
-                                        aria-label="Search">
-                                    <button class="btn btn-danger" type="submit">Search</button>
+                                <form class="d-flex justify-content-end mt-2" role="search">
+                                    <div class="col-9">
+                                        <input class="form-control" type="search" placeholder="Đăng ký" aria-label="Search">
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-danger" type="submit">Đăng ký</button>
+                                    </div>
                                 </form>
                             </div>
                             <div class="col-12 ">
