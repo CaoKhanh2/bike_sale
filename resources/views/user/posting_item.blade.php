@@ -10,7 +10,7 @@
                 <label for="my-awesome-dropzone">
                     <h3>Hình ảnh của xe</h3>
                 </label>
-                <div class="dropzone mb-3" action="#" id="my-awesome-dropzone">
+                <div class="dropzone mb-3 border border-3 border-primary" action="#" id="my-awesome-dropzone">
                     <div class="fallback">
                         <input type="file" name="file" />
                     </div>
@@ -28,7 +28,7 @@
                         </select>
                     </div>
                     <div class="mb-2">
-                        <h2>Thông tin chi tiết</h2>
+                        <h3>Thông tin xe chi tiết</h3>
                     </div>
                     <div class="mb-3">
                         <input type="text" name="Tên hãng xe" id="Hangxe" class="form-control form-control-lg border border-3 border-primary"
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="mb-2">
-                        <h2>Thông tin chi tiết</h2>
+                        <h3>Tiêu đề & Nội dung</h3>
                     </div>
                     <div class="mb-3">
                         <input type="text" name="Tên hãng xe" id="Hangxe" class="form-control form-control-lg border border-3 border-primary"
