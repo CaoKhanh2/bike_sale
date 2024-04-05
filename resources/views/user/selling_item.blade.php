@@ -4,15 +4,14 @@
 <link rel="stylesheet" href="{{ asset('home_src\css\main.css') }}">
 @section('main')
 
-    {{-- breadcrum --}}
-    {{-- <div class="container">
-        <div class="row justify-content-around">
-            <div class="col-xl">
-                @include('layout.header_breadcrum')
+       {{-- breadcrum --}}
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-xl">
+                    @include('layout.header_breadcrum')
+                </div>
             </div>
         </div>
-    </div> --}}
-
     {{-- endbreadcrum --}}
 
     {{-- Content --}}

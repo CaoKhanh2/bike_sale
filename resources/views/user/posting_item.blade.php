@@ -55,7 +55,7 @@
                             placeholder="Tiêu đề">
                     </div>
                     <div class="mb-3">
-                        <textarea class="form-control border border-3 border-primary" style="height: 200px"></textarea>
+                        <textarea class="form-control border border-3 border-primary" style="height: 200px" placeholder="Mô tả sản phẩm"></textarea>
                     </div>
                     <div class="mb-3">
                         <input type="submit" value="Đăng ký" class="btn-primary btn col-12">
