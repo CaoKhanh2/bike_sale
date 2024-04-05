@@ -6,10 +6,10 @@
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
+                    <li class="breadcrumb-item fs-5">
                         <a class="link-underline link-underline-opacity-0" href="{{ url('/') }}">Trang chủ</a>
                     </li>
-                    <li class="breadcrumb-item activ" aria-current="page">
+                    <li class="breadcrumb-item activ fs-5" aria-current="page">
                         @yield('pg-hd-2')
                     </li>
                 </ol>
