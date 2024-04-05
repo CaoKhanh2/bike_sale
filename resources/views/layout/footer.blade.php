@@ -52,3 +52,47 @@
                     <div class="col-md-4 my-3">
                         <a href="url{{ '/index' }}"
                             class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+                            <img src="{{ asset('Image\Icon\racing.png') }}" alt="Logo" width="60"
+                                height="48">
+                        </a>
+                        <p class="text-body-secondary">© 2024</p>
+                        <p>Đại học Hàng Hải Việt Nam, Ngô Quyền, Hải Phòng</p>
+                        <p>Thứ 2 - Chủ nhật: 9:00 - 18:00</p>
+                        <p>Điện thoại: 1900 6750 - Email: support@st.vimaru.ed.vn</p>
+                    </div>
+                    <div class="col-md-8 my-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-block text-center">Nhận thông tin khuyễn mãi từ cửa hàng</div>
+                                <form class="d-flex justify-content-end mt-2" role="search">
+                                    <div class="col-9">
+                                        <input class="form-control" type="search" placeholder="Đăng ký" aria-label="Search">
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-danger" type="submit">Đăng ký</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 ">
+                                <div class="hstack gap-3 justify-content-end">
+                                    <div class="p-1">
+                                        <a href=""><img src="{{ asset('Image\Icon\icons8-facebook-48.png') }}"
+                                                alt="" srcset=""></a>
+                                    </div>
+                                    <div class="p-1">
+                                        <a href=""><img src="{{ asset('Image\Icon\icons8-messenger-48.png') }}"
+                                                alt="" srcset=""></a>
+                                    </div>
+                                    <div class="p-1">
+                                        <a href=""><img src="{{ asset('Image\Icon\icons8-zalo-48.png') }}"
+                                                alt="" srcset=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</section>
