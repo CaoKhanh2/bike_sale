@@ -4,7 +4,7 @@
         <div class="col">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{ asset('Image\Xe\XeDien\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
+                    <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
                         class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
@@ -45,7 +45,7 @@
         <div class="col">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{ asset('Image\Xe\XeDien\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
+                    <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
                         class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
@@ -86,7 +86,7 @@
         <div class="col">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{ asset('Image\Xe\XeDien\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
+                    <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
                         class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
@@ -126,7 +126,7 @@
         <div class="col">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{ asset('Image\Xe\XeDien\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
+                    <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
                         class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">

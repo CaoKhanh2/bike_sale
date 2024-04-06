@@ -118,14 +118,14 @@
                             <a href="javascript:;" class="dropdown-toggle"><span
                                     class="micon"><i class="fa-solid fa-user-tie"></i></span><span class="mtext">Quản lý tài khoản</span></a>
                             <ul class="submenu child">
-                                <li><a href="{{ url('/dashboard') }}">Tài khoản khách hàng</a>
+                                <li><a href="{{ url('#') }}">Tài khoản khách hàng</a>
                                 </li>
-                                <li><a href="{{ url('/dashboard') }}">Tài khoản nhân viên</a></li>
+                                <li><a href="{{ url('#') }}">Tài khoản nhân viên</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('/dashboard/customer') }}">Quản lý phân quyền người dùng</a></li>
-                        <li><a href="{{ url('/dashboard/shipping') }}">Sao lưu dữ liệu</a></li>
-                        <li><a href="{{ url('/dashboard/staff') }}">Phục hồi dữ liệu</a></li>
+                        <li><a href="{{ url('/dashboard/sys') }}">Quản lý phân quyền người dùng</a></li>
+                        <li><a href="{{ url('#') }}">Sao lưu dữ liệu</a></li>
+                        <li><a href="{{ url('#') }}">Phục hồi dữ liệu</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -134,7 +134,16 @@
                             mục</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('/dashboard/car_catalog') }}">Quản lý danh mục xe</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle"><span
+                                    class="micon"><i class="fa-solid fa-motorcycle"></i></span><span class="mtext">Quản lý danh mục xe</span></a>
+                            <ul class="submenu child">
+                                <li><a href="{{ url('/dashboard/category/vehicle/automaker_info') }}">Thông tin hãng xe</a>
+                                </li>
+                                <li><a href="{{ url('/dashboard/category/vehicle/type_vehicle_infor') }}">Thông tin loại xe</a></li>
+                                <li><a href="{{ url('/dashboard/category/vehicle/vehicle_infor') }}">Thông tin xe</a></li>
+                            </ul>
+                        </li>
                         <li><a href="{{ url('/dashboard/customer') }}">Quản lý khách hàng</a></li>
                         <li><a href="{{ url('/dashboard/shipping') }}">Quản lý vận chuyển hàng</a></li>
                         <li><a href="{{ url('/dashboard/staff') }}">Quản lý nhân viên bán hàng</a></li>
@@ -148,7 +157,7 @@
                     <ul class="submenu">
                         <li class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon fa fa-plug"></span><span class="mtext">Danh sách</span>
+                                <span class="micon"></span><span class="mtext">Danh sách</span>
                             </a>
                             <ul class="submenu child">
                                 <li><a href="{{ url('/dashboard/transaction/purchasing_manage') }}">Đăng ký bán</a>

@@ -25,7 +25,7 @@ function getPageList(totalPages, page, maxLength){
   $(function(){
   
     var numberOfItems = $(".item-list .item").length;
-    var limitPerPage = 2; // So tin trong 1 tab
+    var limitPerPage = 5; // So tin trong 1 tab
     var totalPages = Math.ceil(numberOfItems/limitPerPage);
     var paginationSize = 7;
     var currentPage;

@@ -12,6 +12,7 @@
 
     <link rel="shortcut icon" href="{{ asset('Image\Icon\racing.png') }}" type="image/x-icon">
 
+    <!-- Link icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Range Slider with Two Values -->

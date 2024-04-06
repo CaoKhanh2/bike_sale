@@ -9,9 +9,15 @@
                     <li class="breadcrumb-item">
                         <a href="{{ url('/dashboard') }}">Trang chủ</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">
+                    <li class="breadcrumb-item" aria-current="page">
                         @yield('pg-hd-2')
                     </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        @yield('pg-hd-3')
+                    </li>
+                    {{-- <li class="breadcrumb-item active" aria-current="page">
+                        @yield('pg-hd-4')
+                    </li> --}}
                 </ol>
             </nav>
         </div>

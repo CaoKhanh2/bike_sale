@@ -39,8 +39,7 @@
                                         <td>{{ $i->gioitinh }}</td>
                                         <td>{{ $i->sodienthoai }}</td>
                                         <td>{{ $i->email }}</td>
-                                        <td>
-                                            
+                                        <td> 
                                             @php
                                                 $rs = strval($i->tinhtrang);
                                                 if ($rs == '1') {

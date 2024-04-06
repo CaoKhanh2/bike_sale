@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HangXe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HangXeController extends Controller
 {
@@ -14,16 +15,19 @@ class HangXeController extends Controller
      */
     public function index()
     {
-        $data = [
-            ['mahx' => 'HX01', 'tenhang' => 'Honda', 'logo' => 'Image\logo_xe\Honda_Logo.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
-            ['mahx' => 'HX02', 'tenhang' => 'Yamaha', 'logo' => 'Image\logo_xe\Yamaha_Logo.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
-            ['mahx' => 'HX03', 'tenhang' => 'Suzuki', 'logo' => 'Image\logo_xe\suzuki.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
-            ['mahx' => 'HX04', 'tenhang' => 'Sym', 'logo' => 'public\Image\logo_xe\Sym_Logo.png', 'xuatxu' => 'Đài Loan', 'trangthai' => 1],
-            ['mahx' => 'HX05', 'tenhang' => 'Honda', 'logo' => 'Image\logo_xe\Honda_Logo.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
+        // $data = [
+        //     ['mahx' => 'HX01', 'tenhang' => 'Honda', 'logo' => 'Image\logo_xe\Honda_Logo.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
+        //     ['mahx' => 'HX02', 'tenhang' => 'Yamaha', 'logo' => 'Image\logo_xe\Yamaha_Logo.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
+        //     ['mahx' => 'HX03', 'tenhang' => 'Suzuki', 'logo' => 'Image\logo_xe\suzuki.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
+        //     ['mahx' => 'HX04', 'tenhang' => 'Sym', 'logo' => 'public\Image\logo_xe\Sym_Logo.png', 'xuatxu' => 'Đài Loan', 'trangthai' => 1],
+        //     ['mahx' => 'HX05', 'tenhang' => 'Honda', 'logo' => 'Image\logo_xe\Honda_Logo.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
            
-        ];
+        // ];
         
-        HangXe::insert($data);
+        // HangXe::insert($data);
+
+        $hx = DB::table('hangxe')->get();
+        return view('dashboard.category.vehicle.automaker_info',['hangxe'=>$hx]);
     }
 
     /**

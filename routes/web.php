@@ -31,23 +31,44 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
 
-Route::get('/dashboard/car_catalog', function () {
-    return view('dashboard.category.car.car_catalog');
+Route::get('/dashboard/sys', function () {
+    return view('dashboard.sys.user-authorization');
 });
 
-Route::get('/dashboard/car_catalog/detail_inforcar', function () {
-    return view('dashboard.category.car.detail_inforcar');
+// Danh muc xe
+Route::get('/dashboard/category/vehicle/automaker_info', function () {
+    return view('dashboard.category.vehicle.automaker_info');
 });
 
+Route::get('/dashboard/category/vehicle/automaker_info',[HangXeController::class,'index']);
+
+Route::get('/dashboard/category/vehicle/vehicle_infor', function () {
+    return view('dashboard.category.vehicle.vehicle_infor');
+});
+
+
+Route::get('/dashboard/category/vehicle/type_vehicle_infor', function () {
+    return view('dashboard.category.vehicle.type_vehicle_infor');
+});
+
+
+Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
+    return view('dashboard.category.vehicle.detail_vehicle_infor');
+});
+
+// 
+
+// Danh muc khach hang
 Route::get('/dashboard/customer', function () {
     return view('dashboard.category.customer.customer_info');
 });
-
-// Route::get('/customer/detail_customer_info', function () {
-//     return view('dashboard.category.customer.detail_customer_info');
-// });
-
 Route::get('/dashboard/customer',[KhachHangController::class,'index']);
+
+Route::get('/customer/detail_customer_info', function () {
+    return view('dashboard.category.customer.detail_customer_info');
+});
+// 
+
 
 Route::get('/dashboard/shipping', function () {
     return view('dashboard.category.shipping.ship_infor');

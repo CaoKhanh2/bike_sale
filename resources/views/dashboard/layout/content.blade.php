@@ -22,17 +22,17 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/vendors/styles/core.css') }}" />
     <link rel="stylesheet" type="text/css" href=" {{ asset('dashboard_src/vendors/styles/icon-font.min.css') }}" />
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('dashboard_src/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
-    <link rel="stylesheet" type="text/css"
-        href=" {{ asset('dashboard_src/src/plugins/datatables/css/responsive.bootstrap4.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/vendors/styles/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
+
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src=" {{ url('https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85') }} "></script>
-    <script async
-        src=" {{ url('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258') }} "
-        crossorigin="anonymous"></script>
+    <script async src=" {{ url('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258') }} "crossorigin="anonymous"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -61,6 +61,7 @@
     </script>
     <!-- End Google Tag Manager -->
 
+    <!-- Link icon fontawesome -->
     <script src="https://kit.fontawesome.com/09dc0ea4f4.js" crossorigin="anonymous"></script>
 </head>
 
@@ -86,6 +87,8 @@
     {{-- End Footer --}}
 
     <!-- js -->
+    <!-- switchery js -->
+
     <script src="{{ asset('dashboard_src/vendors/scripts/core.js') }} "></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/process.js') }}"></script>
@@ -96,6 +99,11 @@
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/dashboard.js') }}"></script>
+
+    <!-- switchery js -->
+    <script src="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.js') }}"></script>
+    <script src="{{ asset('dashboard_src/vendors/scripts/advanced-components.js') }}"></script>
+
     <!-- buttons for Export datatable -->
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/buttons.bootstrap4.min.js') }}"></script>

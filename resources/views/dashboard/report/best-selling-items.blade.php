@@ -1,8 +1,8 @@
 @extends('dashboard.layout.content')
 
 @section('title_ds', 'Báo cáo mặt hàng bán chạy')
-@section('pg-hd-1', 'Danh mục xe')
-@section('pg-hd-2', 'Thông tin xe')
+{{-- @section('pg-hd-1', '') --}}
+@section('pg-hd-2', 'Báo cáo mặt hàng bán chạy')
 
 @section('main')
 
@@ -11,22 +11,9 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <div class="page-header">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                            <nav aria-label="breadcrumb" role="navigation">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="{{ url('/dashboard') }}">Trang chủ</a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        Báo cáo thống kê
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+                {{-- Page Header --}}
+                @include('dashboard.layout.page-header')
+                {{-- End Page Header--}}
                 <div class="row">
                     <div class="col-md-6 mb-30">
                         <div class="pd-20 card-box height-100-p">
@@ -41,13 +28,13 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
                                         <label for="example-datetime-local-input" class="">Từ ngày</label>
-                                        <input class="form-control datetimepicker" placeholder="Chọn thời gian"
+                                        <input class="form-control" type="date" placeholder="Chọn thời gian"
                                             type="text">
 
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <label for="example-datetime-local-input" class="">Đến ngày</label>
-                                        <input class="form-control datetimepicker" placeholder="Chọn thời gian"
+                                        <input class="form-control" type="date" placeholder="Chọn thời gian"
                                             type="text">
 
                                     </div>

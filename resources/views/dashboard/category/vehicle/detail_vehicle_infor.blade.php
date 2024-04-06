@@ -1,8 +1,9 @@
 @extends('dashboard.layout.content')
 
 @section('title_ds','Thông tin xe')
-@section('pg-hd-1','Danh mục xe')
-@section('pg-hd-2','Thông tin xe')
+@section('pg-hd-1','Chi tiết thông tin xe')
+@section('pg-hd-2','Danh mục xe')
+@section('pg-hd-3','Thông tin xe')
 
 @section('main')
 
@@ -19,7 +20,7 @@
                     
                 </div>
             </div>
-            <form>
+            <form action="">
                 <div class="form-group row">
                     <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
                     <div class="col-sm-12 col-md-10">
