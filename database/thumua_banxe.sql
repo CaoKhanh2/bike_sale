@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 07, 2024 lúc 11:38 AM
+-- Thời gian đã tạo: Th4 07, 2024 lúc 05:46 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -73,6 +73,34 @@ CREATE TABLE `ctkhohang` (
   `ngaynhapkho` date NOT NULL,
   `soluong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `dongxe`
+--
+
+CREATE TABLE `dongxe` (
+  `madx` varchar(10) NOT NULL,
+  `tendongxe` varchar(50) NOT NULL,
+  `mota` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `dongxe`
+--
+
+INSERT INTO `dongxe` (`madx`, `tendongxe`, `mota`) VALUES
+('DX01', 'Honda Vision', ''),
+('DX02', 'Honda Lead', ''),
+('DX03', 'Honda Air Blade', ''),
+('DX04', 'Honda Wade', ''),
+('DX05', 'Honda Winner', ''),
+('DX06', 'Yamaha Grande', ''),
+('DX07', 'Yamaha Janus', ''),
+('DX08', 'Yamaha Exciter', ''),
+('DX09', 'Suzuki Raider', ''),
+('DX10', 'Yamaha Exciter', '');
 
 -- --------------------------------------------------------
 
@@ -222,34 +250,6 @@ CREATE TABLE `khuyenmai` (
   `thoigianbatdau` datetime NOT NULL,
   `thoigianketthuc` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `loaixe`
---
-
-CREATE TABLE `loaixe` (
-  `malx` varchar(10) NOT NULL,
-  `tenloaixe` varchar(50) NOT NULL,
-  `mota` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `loaixe`
---
-
-INSERT INTO `loaixe` (`malx`, `tenloaixe`, `mota`) VALUES
-('LX01', 'Honda Vision', ''),
-('LX02', 'Honda Lead', ''),
-('LX03', 'Honda Air Blade', ''),
-('LX04', 'Honda Wade', ''),
-('LX05', 'Honda Winner', ''),
-('LX06', 'Yamaha Grande', ''),
-('LX07', 'Yamaha Janus', ''),
-('LX08', 'Yamaha Exciter', ''),
-('LX09', 'Suzuki Raider', ''),
-('LX10', 'Yamaha Exciter', '');
 
 -- --------------------------------------------------------
 
@@ -434,9 +434,9 @@ CREATE TABLE `thanhtoan` (
 
 CREATE TABLE `thongtinxedapdien` (
   `maxedapdien` varchar(15) NOT NULL,
-  `loaixe_id` varchar(10) NOT NULL,
+  `dongxe_id` varchar(10) NOT NULL,
   `hangxe_id` varchar(5) NOT NULL,
-  `dongxe` varchar(15) DEFAULT NULL,
+  `tenxe` varchar(15) DEFAULT NULL,
   `trongluong` double(3,2) DEFAULT NULL,
   `loaipin` varchar(15) DEFAULT NULL,
   `phamvisudung` double(3,2) DEFAULT NULL,
@@ -453,9 +453,9 @@ CREATE TABLE `thongtinxedapdien` (
 
 CREATE TABLE `thongtinxemay` (
   `maxemay` varchar(15) NOT NULL,
-  `loaixe_id` varchar(10) NOT NULL,
+  `dongxe_id` varchar(10) NOT NULL,
   `hangxe_id` varchar(5) NOT NULL,
-  `dongxe` varchar(15) DEFAULT NULL,
+  `tenxe` varchar(15) DEFAULT NULL,
   `dungtichxe` varchar(5) DEFAULT NULL,
   `sokmdadi` double(6,2) DEFAULT NULL,
   `namdk` int(11) DEFAULT NULL,
@@ -578,6 +578,12 @@ ALTER TABLE `ctkhohang`
   ADD KEY `ctkhohang_ttxedapdien_id_foreign` (`ttxedapdien_id`);
 
 --
+-- Chỉ mục cho bảng `dongxe`
+--
+ALTER TABLE `dongxe`
+  ADD PRIMARY KEY (`madx`);
+
+--
 -- Chỉ mục cho bảng `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -626,12 +632,6 @@ ALTER TABLE `khohang`
 --
 ALTER TABLE `khuyenmai`
   ADD PRIMARY KEY (`makhuyenmai`);
-
---
--- Chỉ mục cho bảng `loaixe`
---
-ALTER TABLE `loaixe`
-  ADD PRIMARY KEY (`malx`);
 
 --
 -- Chỉ mục cho bảng `migrations`
@@ -700,7 +700,7 @@ ALTER TABLE `thanhtoan`
 ALTER TABLE `thongtinxedapdien`
   ADD PRIMARY KEY (`maxedapdien`),
   ADD KEY `thongtinxedapdien_hangxe_id_foreign` (`hangxe_id`),
-  ADD KEY `loaixe_id` (`loaixe_id`);
+  ADD KEY `loaixe_id` (`dongxe_id`);
 
 --
 -- Chỉ mục cho bảng `thongtinxemay`
@@ -708,7 +708,7 @@ ALTER TABLE `thongtinxedapdien`
 ALTER TABLE `thongtinxemay`
   ADD PRIMARY KEY (`maxemay`),
   ADD KEY `thongtinxemay_hangxe_id_foreign` (`hangxe_id`),
-  ADD KEY `loaixe_id` (`loaixe_id`);
+  ADD KEY `loaixe_id` (`dongxe_id`);
 
 --
 -- Chỉ mục cho bảng `users`
@@ -829,14 +829,14 @@ ALTER TABLE `ruiro`
 --
 ALTER TABLE `thongtinxedapdien`
   ADD CONSTRAINT `thongtinxedapdien_hangxe_id_foreign` FOREIGN KEY (`hangxe_id`) REFERENCES `hangxe` (`mahx`) ON DELETE CASCADE,
-  ADD CONSTRAINT `thongtinxedapdien_ibfk_1` FOREIGN KEY (`loaixe_id`) REFERENCES `loaixe` (`malx`);
+  ADD CONSTRAINT `thongtinxedapdien_ibfk_1` FOREIGN KEY (`dongxe_id`) REFERENCES `dongxe` (`madx`);
 
 --
 -- Các ràng buộc cho bảng `thongtinxemay`
 --
 ALTER TABLE `thongtinxemay`
   ADD CONSTRAINT `thongtinxemay_hangxe_id_foreign` FOREIGN KEY (`hangxe_id`) REFERENCES `hangxe` (`mahx`) ON DELETE CASCADE,
-  ADD CONSTRAINT `thongtinxemay_ibfk_1` FOREIGN KEY (`loaixe_id`) REFERENCES `loaixe` (`malx`);
+  ADD CONSTRAINT `thongtinxemay_ibfk_1` FOREIGN KEY (`dongxe_id`) REFERENCES `dongxe` (`madx`);
 
 --
 -- Các ràng buộc cho bảng `users`
