@@ -6,12 +6,17 @@
             </div>
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item fs-5">
+                    <li class="breadcrumb-item">
                         <a class="link-underline link-underline-opacity-0" href="{{ url('/') }}">Trang chủ</a>
                     </li>
-                    <li class="breadcrumb-item activ fs-5" aria-current="page">
+                    <li class="breadcrumb-item activ" aria-current="page">
                         @yield('pg-hd-2')
                     </li>
+                    @if ($__env->yieldContent('st3') == "true")
+                        <li class="breadcrumb-item @yield('act3')" aria-current="page">
+                            @yield('pg-hd-3')
+                        </li>
+                    @endif
                 </ol>
             </nav>
         </div> 

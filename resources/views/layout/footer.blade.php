@@ -64,16 +64,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-block text-center">Nhận thông tin khuyễn mãi từ cửa hàng</div>
-                                <form class="d-flex justify-content-end mt-2" role="search">
-                                    <div class="col-9">
-                                        <input class="form-control" type="search" placeholder="Đăng ký" aria-label="Search">
-                                    </div>
-                                    <div class="col-3">
-                                        <button class="btn btn-danger" type="submit">Đăng ký</button>
-                                    </div>
-                                </form>
+                                <form class="d-flex mt-2" role="search">
+                                    <input class="form-control me-2 col" type="text" placeholder="Đăng ký" aria-label="Dangky">
+                                    <button class="btn btn-danger col-3p" type="submit">Đăng ký</button>
+                                  </form> 
                             </div>
-                            <div class="col-12 ">
+                            <div class="col-12 mt-2">
                                 <div class="hstack gap-3 justify-content-end">
                                     <div class="p-1">
                                         <a href=""><img src="{{ asset('Image\Icon\icons8-facebook-48.png') }}"
