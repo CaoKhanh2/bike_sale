@@ -3,6 +3,9 @@
 use App\Http\Controllers\HangXeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KhachHangController;
+use App\Http\Controllers\LoaiXeController;
+use App\Http\Controllers\NhanVienController;
+use App\Http\Controllers\VanChuyenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +45,7 @@ Route::get('/dashboard/category/vehicle/automaker_info', function () {
 
 Route::get('/dashboard/category/vehicle/automaker_info',[HangXeController::class,'index']);
 
+
 Route::get('/dashboard/category/vehicle/vehicle_infor', function () {
     return view('dashboard.category.vehicle.vehicle_infor');
 });
@@ -51,6 +55,7 @@ Route::get('/dashboard/category/vehicle/type_vehicle_infor', function () {
     return view('dashboard.category.vehicle.type_vehicle_infor');
 });
 
+Route::get('/dashboard/category/vehicle/type_vehicle_infor',[LoaiXeController::class,'index']);
 
 Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
     return view('dashboard.category.vehicle.detail_vehicle_infor');
@@ -59,9 +64,33 @@ Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
 // 
 
 // Danh muc khach hang
-Route::get('/dashboard/customer', function () {
+Route::get('/dashboard/category/customer/customer_info', function () {
     return view('dashboard.category.customer.customer_info');
 });
+Route::get('/dashboard/category/customer/customer_info',[KhachHangController::class,'index']);
+
+Route::get('/customer/detail_customer_info', function () {
+    return view('dashboard.category.customer.detail_customer_info');
+});
+//
+
+// Danh muc van chuyen
+Route::get('/dashboard/category/shipping/ship_infor', function () {
+    return view('dashboard.category.shipping.ship_infor');
+});
+
+Route::get('/dashboard/category/shipping/ship_infor',[VanChuyenController::class,'index']);
+// 
+
+// Danh muc nhan vien
+Route::get('/dashboard/category/sales_agent/staff_infor', function () {
+    return view('dashboard.category.sales_agent.staff_infor');
+});
+
+Route::get('/dashboard/category/sales_agent/staff_infor',[NhanVienController::class,'index']);
+//
+
+// Danh muc khach hang
 Route::get('/dashboard/customer',[KhachHangController::class,'index']);
 
 Route::get('/customer/detail_customer_info', function () {
@@ -70,13 +99,8 @@ Route::get('/customer/detail_customer_info', function () {
 // 
 
 
-Route::get('/dashboard/shipping', function () {
-    return view('dashboard.category.shipping.ship_infor');
-});
 
-Route::get('/dashboard/staff', function () {
-    return view('dashboard.category.sales_agent.staff_infor');
-});
+
 
 Route::get('/dashboard/transaction/purchasing_manage', function () {
     return view('dashboard.transaction.purchasing.purchasing_manage');
@@ -100,4 +124,5 @@ Route::get('/dashboard/report/best-selling-items', function () {
 
 
 // Add data
-Route::get('/data', [HangXeController::class,'index']);
+Route::get('/data1', [HangXeController::class,'index']);
+Route::get('/data2', [LoaiXeController::class,'index']);

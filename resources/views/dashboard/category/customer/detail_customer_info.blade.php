@@ -1,7 +1,11 @@
 @extends('dashboard.layout.content')
-@section('title_ds','Thông tin khách hàng')
-@section('pg-hd-1','Danh mục khách hàng')
-@section('pg-hd-2','Thông tin khách hàng')
+
+@section('title_ds', 'Thông tin khách hàng')
+@section('pg-card-title', 'Chi tiết thông khách hàng')
+@section('pg-hd-2', 'Danh mục')
+@section('pg-hd-3', 'Thông tin khách hàng') @section('act3','active')
+@section('st4','false')
+
 @section('main')
 
 <div class="main-container">

@@ -1,9 +1,10 @@
 @extends('dashboard.layout.content')
 
-@section('title_ds','Danh mục xe')
-@section('pg-hd-1', 'Thông tin xe')
-@section('pg-hd-2','Danh mục xe')
-@section('pg-hd-3','Thông tin xe')
+@section('title_ds', 'Thông tin xe')
+@section('pg-card-title', 'Thông tin xe')
+@section('pg-hd-2', 'Danh mục')
+@section('pg-hd-3', 'Thông tin xe') @section('act3','active')
+@section('st4','false')
 
 @section('main')
     

@@ -144,9 +144,9 @@
                                 <li><a href="{{ url('/dashboard/category/vehicle/vehicle_infor') }}">Thông tin xe</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('/dashboard/customer') }}">Quản lý khách hàng</a></li>
-                        <li><a href="{{ url('/dashboard/shipping') }}">Quản lý vận chuyển hàng</a></li>
-                        <li><a href="{{ url('/dashboard/staff') }}">Quản lý nhân viên bán hàng</a></li>
+                        <li><a href="{{ url('dashboard/category/customer/customer_info') }}">Quản lý khách hàng</a></li>
+                        <li><a href="{{ url('dashboard/category/shipping/ship_infor') }}">Quản lý vận chuyển hàng</a></li>
+                        <li><a href="{{ url('dashboard/category/sales_agent/staff_infor') }}">Quản lý nhân viên bán hàng</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

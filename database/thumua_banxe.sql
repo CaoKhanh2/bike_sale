@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 24, 2024 lúc 10:14 AM
+-- Thời gian đã tạo: Th4 07, 2024 lúc 11:38 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -32,6 +32,14 @@ CREATE TABLE `chucvu` (
   `tencv` varchar(20) NOT NULL,
   `mota` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chucvu`
+--
+
+INSERT INTO `chucvu` (`macv`, `tencv`, `mota`) VALUES
+('CV-01', 'Nhân viên bán hàng', NULL),
+('CV-02', 'Quản lý', NULL);
 
 -- --------------------------------------------------------
 
@@ -112,6 +120,17 @@ CREATE TABLE `hangxe` (
   `trangthai` bit(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `hangxe`
+--
+
+INSERT INTO `hangxe` (`mahx`, `tenhang`, `logo`, `xuatxu`, `trangthai`) VALUES
+('HX01', 'Honda', 'Image\\logo_xe\\Honda_Logo.png', 'Nhật Bản', b'01'),
+('HX02', 'Yamaha', 'Image\\logo_xe\\Yamaha_Logo.png', 'Nhật Bản', b'01'),
+('HX03', 'Suzuki', 'Image\\logo_xe\\suzuki.png', 'Nhật Bản', b'01'),
+('HX04', 'Sym', 'public\\Image\\logo_xe\\Sym_Logo.png', 'Đài Loan', b'01'),
+('HX05', 'Honda', 'Image\\logo_xe\\Honda_Logo.png', 'Nhật Bản', b'01');
+
 -- --------------------------------------------------------
 
 --
@@ -150,6 +169,32 @@ CREATE TABLE `khachhang` (
   `tinhtrang` bit(2) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `khachhang`
+--
+
+INSERT INTO `khachhang` (`makh`, `hovaten`, `ngaysinh`, `gioitinh`, `sodienthoai`, `email`, `diachi`, `tentk`, `password`, `tinhtrang`) VALUES
+('MKH-0024', 'Alison Powlowski', '2011-05-15', 'Other', '08953744246', 'nrunolfsson@example.com', '628 Johnny Mews Apt. 354', NULL, NULL, b'00'),
+('MKH-0136', 'Mr. Gregory Macejkovic', '1980-10-11', 'Other', '05733703618', 'xlarkin@example.org', '96390 Lora Cove Suite 195', NULL, NULL, b'00'),
+('MKH-0256', 'Abigale Gerhold', '2023-06-25', 'Nam', '02373874734', 'rlabadie@example.org', '109 Douglas Villages', NULL, NULL, b'00'),
+('MKH-0851', 'Miss Loren Morar', '1990-08-11', 'Nam', '09798637053', 'morar.keely@example.com', '5512 Sedrick Knolls Suite 471', NULL, NULL, b'01'),
+('MKH-1017', 'Ms. Aimee Deckow', '2015-08-17', 'Nữ', '04756442184', 'tgoyette@example.net', '13884 Batz Lake Apt. 156', NULL, NULL, b'00'),
+('MKH-1306', 'Aniyah Bode', '2001-12-05', 'Nữ', '04357675778', 'roconnell@example.com', '3766 Ariane Village', NULL, NULL, b'01'),
+('MKH-2697', 'Bessie Nolan', '1991-05-14', 'Other', '03148225197', 'damore.russel@example.net', '70206 Lon Summit Suite 781', NULL, NULL, b'01'),
+('MKH-3212', 'Prof. Ayana Reynolds III', '2008-10-29', 'Nam', '02439967588', 'hoeger.gerard@example.com', '96283 O\'Keefe Village Apt. 513', NULL, NULL, b'00'),
+('MKH-3300', 'Roslyn Herman', '1971-01-23', 'Nữ', '01495490975', 'kristoffer.metz@example.com', '75074 Harber Hills Suite 257', NULL, NULL, b'00'),
+('MKH-3559', 'Lelah Pagac', '2017-09-05', 'Nam', '00934376296', 'prudence.romaguera@example.org', '58097 Elmore Hills Apt. 254', NULL, NULL, b'00'),
+('MKH-3940', 'Dr. Hilma Hartmann I', '1974-12-15', 'Other', '09245910270', 'xcorkery@example.com', '8161 Nienow View Apt. 776', NULL, NULL, b'00'),
+('MKH-4061', 'Pasquale Nitzsche', '1991-11-01', 'Nữ', '09825419758', 'yundt.markus@example.com', '571 Camille Mountain', NULL, NULL, b'00'),
+('MKH-4346', 'Russel Gerlach', '1979-04-16', 'Nam', '08333945179', 'peyton.botsford@example.net', '589 Cullen Parkways', NULL, NULL, b'01'),
+('MKH-4558', 'Felipa Vandervort', '2001-05-15', 'Nam', '02150877487', 'drunolfsdottir@example.org', '3628 Sawayn Groves Apt. 374', NULL, NULL, b'01'),
+('MKH-4636', 'Deborah Doyle', '2019-01-27', 'Nam', '06235669474', 'gregg69@example.net', '117 Bartell Forest', NULL, NULL, b'01'),
+('MKH-4793', 'Ramon Stanton', '2002-01-19', 'Nữ', '08456526795', 'utremblay@example.com', '89965 Alda Forges Apt. 269', NULL, NULL, b'01'),
+('MKH-7191', 'Edwardo Lemke', '1996-10-26', 'Nữ', '09384580685', 'zack.strosin@example.com', '31086 Jonatan Road', NULL, NULL, b'00'),
+('MKH-8547', 'Mr. Ibrahim Wehner PhD', '1988-07-31', 'Other', '00247832170', 'laury00@example.com', '65730 Olson Forks Suite 542', NULL, NULL, b'01'),
+('MKH-9902', 'Prof. Rozella Koepp V', '1987-04-13', 'Nam', '09221946329', 'konopelski.keegan@example.net', '160 Kamille Land Apt. 534', NULL, NULL, b'01'),
+('MKH-9958', 'Mr. Zakary Rolfson', '2005-04-28', 'Nam', '04370866960', 'haylie.streich@example.org', '780 Thompson Estate Suite 899', NULL, NULL, b'00');
+
 -- --------------------------------------------------------
 
 --
@@ -185,10 +230,26 @@ CREATE TABLE `khuyenmai` (
 --
 
 CREATE TABLE `loaixe` (
-  `malx` varchar(15) NOT NULL,
+  `malx` varchar(10) NOT NULL,
   `tenloaixe` varchar(50) NOT NULL,
   `mota` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `loaixe`
+--
+
+INSERT INTO `loaixe` (`malx`, `tenloaixe`, `mota`) VALUES
+('LX01', 'Honda Vision', ''),
+('LX02', 'Honda Lead', ''),
+('LX03', 'Honda Air Blade', ''),
+('LX04', 'Honda Wade', ''),
+('LX05', 'Honda Winner', ''),
+('LX06', 'Yamaha Grande', ''),
+('LX07', 'Yamaha Janus', ''),
+('LX08', 'Yamaha Exciter', ''),
+('LX09', 'Suzuki Raider', ''),
+('LX10', 'Yamaha Exciter', '');
 
 -- --------------------------------------------------------
 
@@ -248,6 +309,22 @@ CREATE TABLE `nhanvien` (
   `diachi` varchar(255) NOT NULL,
   `ghichu` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `nhanvien`
+--
+
+INSERT INTO `nhanvien` (`manv`, `chucvu_id`, `hovaten`, `ngaysinh`, `gioitinh`, `sodienthoai`, `email`, `diachi`, `ghichu`) VALUES
+('MNV-280', 'CV-01', 'Cleora Bergstrom I', '1971-02-20', 'Other', '08751728679', 'rbode@example.com', '578 Thiel Turnpike Apt. 365', 'Blanditiis impedit totam rerum eaque.'),
+('MNV-398', 'CV-01', 'Brook Halvorson MD', '1999-10-29', 'Other', '00149987204', 'watsica.rodolfo@example.org', '9234 Schaden Ways', 'Quo praesentium enim earum consequuntur ut.'),
+('MNV-473', 'CV-02', 'Prof. Ryder West', '1997-04-15', 'Nữ', '07486853582', 'odickens@example.net', '86284 Ella Park Apt. 515', 'Natus ipsam porro sed sed.'),
+('MNV-522', 'CV-01', 'Rebeca Lemke', '2000-10-13', 'Other', '02032439299', 'osinski.muhammad@example.net', '64511 Connelly Mission Suite 975', 'Non adipisci nam eveniet sunt nobis.'),
+('MNV-612', 'CV-01', 'Daron Bergnaum MD', '1983-12-25', 'Nữ', '07090800279', 'jay28@example.net', '57262 Bosco Flat', 'Dolores deserunt labore delectus consequuntur assumenda.'),
+('MNV-617', 'CV-01', 'Adrianna Mante', '1995-05-03', 'Nữ', '05657535773', 'nwiza@example.org', '2782 Wintheiser Forges Apt. 154', 'Illo corporis assumenda odio optio.'),
+('MNV-651', 'CV-01', 'Lionel Walter', '1994-02-08', 'Other', '02669449833', 'knolan@example.net', '701 Kreiger Park Apt. 261', 'Optio aut distinctio tempore qui.'),
+('MNV-758', 'CV-01', 'Palma Hammes DVM', '2000-10-28', 'Nam', '01902217640', 'veda.bradtke@example.org', '1151 Paolo Ville Apt. 196', 'Commodi porro sint pariatur.'),
+('MNV-839', 'CV-01', 'Lulu Reinger', '1998-06-04', 'Other', '07504618610', 'handerson@example.net', '223 Davis Pass Apt. 593', 'Fugit earum nesciunt iure.'),
+('MNV-977', 'CV-02', 'Hector Gutmann', '2001-12-30', 'Other', '04389397436', 'nicolas.ricardo@example.org', '381 Hammes Manor Apt. 992', 'Sequi quas dolores eos.');
 
 -- --------------------------------------------------------
 
@@ -357,7 +434,7 @@ CREATE TABLE `thanhtoan` (
 
 CREATE TABLE `thongtinxedapdien` (
   `maxedapdien` varchar(15) NOT NULL,
-  `loaixe_id` varchar(15) NOT NULL,
+  `loaixe_id` varchar(10) NOT NULL,
   `hangxe_id` varchar(5) NOT NULL,
   `dongxe` varchar(15) DEFAULT NULL,
   `trongluong` double(3,2) DEFAULT NULL,
@@ -376,7 +453,7 @@ CREATE TABLE `thongtinxedapdien` (
 
 CREATE TABLE `thongtinxemay` (
   `maxemay` varchar(15) NOT NULL,
-  `loaixe_id` varchar(15) NOT NULL,
+  `loaixe_id` varchar(10) NOT NULL,
   `hangxe_id` varchar(5) NOT NULL,
   `dongxe` varchar(15) DEFAULT NULL,
   `dungtichxe` varchar(5) DEFAULT NULL,
@@ -422,6 +499,37 @@ CREATE TABLE `vanchuyen` (
   `ghichu` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `vanchuyen`
+--
+
+INSERT INTO `vanchuyen` (`mavanchuyen`, `khachhang_id`, `trangthaivanchuyen`, `ngaygui`, `ngaynhan`, `diachigiaohang`, `ghichu`) VALUES
+('DVC-00766', 'MKH-0136', 'Đã giao', '2024-03-26', '2024-03-18', '752 Tad View Suite 051\nWest Cierra, WY 88730-0171', 'Voluptatum vel voluptatem tenetur ipsam porro debitis quia ipsum.'),
+('DVC-03679', 'MKH-4558', 'Đã giao', '2024-03-11', '2024-03-22', '7782 Hayes Circles\nErlingtown, WA 00436', 'Nostrum in et sed cumque odio.'),
+('DVC-06799', 'MKH-3300', 'Đã giao', '2024-03-30', '2024-03-22', '52200 Demarco Cliffs\nBrycenberg, NM 37692', 'Debitis amet eveniet sed deserunt ullam rerum.'),
+('DVC-07177', 'MKH-4793', 'Chưa được giao', '2024-03-25', '2024-03-12', '33299 Billy Club\nNew Kody, NC 70318-5228', 'Quam recusandae necessitatibus doloremque quia.'),
+('DVC-08127', 'MKH-0256', 'Chưa được giao', '2024-03-09', '2024-04-17', '513 Botsford Oval\nHagenesmouth, MN 14152', 'Voluptatem aut eius rerum officiis officiis eos exercitationem.'),
+('DVC-09643', 'MKH-1017', 'Chưa được giao', '2024-03-27', '2024-04-01', '8463 Teagan Motorway Apt. 894\nNorth Joanne, FL 68177', 'Vero sit est dolores quas natus.'),
+('DVC-10090', 'MKH-2697', 'Đang giao', '2024-04-03', '2024-04-10', '3696 Brown Brook\nRowanborough, OK 44550-8705', 'Dolorem sequi cumque qui quidem minima quo similique et.'),
+('DVC-12384', 'MKH-1017', 'Đang giao', '2024-03-16', '2024-04-13', '2709 Leland Fields\nWest Kimberly, AZ 26661-4787', 'Voluptate dicta in architecto amet et dolorum.'),
+('DVC-21026', 'MKH-4793', 'Đang giao', '2024-03-12', '2024-04-17', '920 Mayert Vista\nPort Pansyside, OR 45290', 'Sit sunt ullam nobis vel voluptates est.'),
+('DVC-21053', 'MKH-3212', 'Đã giao', '2024-03-26', '2024-04-16', '95541 Dietrich Drive\nMarilyneside, AZ 49167-9467', 'Molestiae neque at vel quibusdam.'),
+('DVC-26437', 'MKH-4346', 'Đã giao', '2024-04-01', '2024-04-03', '733 Rippin Parkway Apt. 682\nKautzerburgh, NM 14968-9931', 'Nesciunt est voluptatem assumenda cumque.'),
+('DVC-26986', 'MKH-3300', 'Đang giao', '2024-03-12', '2024-03-14', '3478 Mortimer Greens\nTrantowton, TN 28929', 'Veniam id impedit placeat sint similique consequatur.'),
+('DVC-28891', 'MKH-9902', 'Chưa được giao', '2024-04-01', '2024-03-26', '98789 Margot Parkways Apt. 127\nGibsonshire, MA 25690', 'Nemo dolor qui explicabo sapiente omnis.'),
+('DVC-31891', 'MKH-9958', 'Đang giao', '2024-03-24', '2024-04-18', '4170 Johnston Port Apt. 437\nWisozkfurt, TX 40989', 'Voluptatem similique illum a accusantium.'),
+('DVC-34016', 'MKH-9902', 'Đang giao', '2024-04-06', '2024-04-08', '701 Earnestine Brook Apt. 063\nNorth Isai, CA 91846', 'Minus saepe aliquam corporis et.'),
+('DVC-36729', 'MKH-0136', 'Đang giao', '2024-04-04', '2024-03-20', '91546 Berge Rapid Apt. 182\nPort Peggie, MN 80808-9922', 'Vero quos dignissimos atque et.'),
+('DVC-37210', 'MKH-9958', 'Đang giao', '2024-03-19', '2024-03-26', '102 Harris Lodge Suite 959\nPort Annabelle, VA 27239', 'Quis maiores consectetur et in.'),
+('DVC-42418', 'MKH-0851', 'Đã giao', '2024-03-25', '2024-03-15', '3591 Romaguera Crescent\nSilasberg, WA 46849-3983', 'Ullam vel vel maxime rem.'),
+('DVC-42578', 'MKH-1017', 'Chưa được giao', '2024-04-02', '2024-03-28', '3703 Bayer Hollow Apt. 166\nLindfort, MO 53704', 'Ut quia sequi eius sed et consequatur ducimus.'),
+('DVC-56682', 'MKH-0256', 'Chưa được giao', '2024-04-01', '2024-03-21', '13470 Marks Corner\nAlvaside, ND 45570', 'Autem similique omnis aut id ab est qui.'),
+('DVC-64850', 'MKH-8547', 'Chưa được giao', '2024-03-20', '2024-04-02', '703 Wuckert River\nNew Elinore, RI 58385-3996', 'Dolores corrupti qui quibusdam aliquam facere.'),
+('DVC-68007', 'MKH-1017', 'Đã giao', '2024-03-16', '2024-03-25', '71582 Evalyn Villages\nSouth Kattieberg, VT 79928', 'Nulla impedit qui nostrum tenetur voluptatem.'),
+('DVC-75523', 'MKH-3212', 'Đang giao', '2024-03-09', '2024-03-22', '33753 Blanda Fields Apt. 958\nWest Raquelshire, WI 58894', 'Explicabo aut velit et sunt in fuga.'),
+('DVC-76884', 'MKH-4636', 'Đang giao', '2024-04-01', '2024-04-15', '7903 Tatum Oval Suite 611\nFritzland, OR 78946-7837', 'Enim est est enim eaque quo quidem voluptas.'),
+('DVC-93563', 'MKH-1017', 'Chưa được giao', '2024-03-20', '2024-04-18', '73253 Crooks Land\nWest Ramiro, WA 62498', 'Repellendus ipsam qui excepturi fuga.');
+
 -- --------------------------------------------------------
 
 --
@@ -434,9 +542,7 @@ CREATE TABLE `xedangkyban` (
   `ttxedapdien_id` varchar(15) DEFAULT NULL,
   `khachhang_id` varchar(10) NOT NULL,
   `namdk` date NOT NULL,
-  `dungtichxe` varchar(10) NOT NULL,
   `xuatxu` varchar(25) NOT NULL,
-  `sokmdadi` double(6,2) NOT NULL,
   `giaban` decimal(10,2) NOT NULL,
   `motachitiet` text DEFAULT NULL,
   `trangthai` bit(2) NOT NULL
@@ -593,16 +699,16 @@ ALTER TABLE `thanhtoan`
 --
 ALTER TABLE `thongtinxedapdien`
   ADD PRIMARY KEY (`maxedapdien`),
-  ADD KEY `thongtinxedapdien_loaixe_id_foreign` (`loaixe_id`),
-  ADD KEY `thongtinxedapdien_hangxe_id_foreign` (`hangxe_id`);
+  ADD KEY `thongtinxedapdien_hangxe_id_foreign` (`hangxe_id`),
+  ADD KEY `loaixe_id` (`loaixe_id`);
 
 --
 -- Chỉ mục cho bảng `thongtinxemay`
 --
 ALTER TABLE `thongtinxemay`
   ADD PRIMARY KEY (`maxemay`),
-  ADD KEY `thongtinxemay_loaixe_id_foreign` (`loaixe_id`),
-  ADD KEY `thongtinxemay_hangxe_id_foreign` (`hangxe_id`);
+  ADD KEY `thongtinxemay_hangxe_id_foreign` (`hangxe_id`),
+  ADD KEY `loaixe_id` (`loaixe_id`);
 
 --
 -- Chỉ mục cho bảng `users`
@@ -723,14 +829,14 @@ ALTER TABLE `ruiro`
 --
 ALTER TABLE `thongtinxedapdien`
   ADD CONSTRAINT `thongtinxedapdien_hangxe_id_foreign` FOREIGN KEY (`hangxe_id`) REFERENCES `hangxe` (`mahx`) ON DELETE CASCADE,
-  ADD CONSTRAINT `thongtinxedapdien_loaixe_id_foreign` FOREIGN KEY (`loaixe_id`) REFERENCES `loaixe` (`malx`) ON DELETE CASCADE;
+  ADD CONSTRAINT `thongtinxedapdien_ibfk_1` FOREIGN KEY (`loaixe_id`) REFERENCES `loaixe` (`malx`);
 
 --
 -- Các ràng buộc cho bảng `thongtinxemay`
 --
 ALTER TABLE `thongtinxemay`
   ADD CONSTRAINT `thongtinxemay_hangxe_id_foreign` FOREIGN KEY (`hangxe_id`) REFERENCES `hangxe` (`mahx`) ON DELETE CASCADE,
-  ADD CONSTRAINT `thongtinxemay_loaixe_id_foreign` FOREIGN KEY (`loaixe_id`) REFERENCES `loaixe` (`malx`) ON DELETE CASCADE;
+  ADD CONSTRAINT `thongtinxemay_ibfk_1` FOREIGN KEY (`loaixe_id`) REFERENCES `loaixe` (`malx`);
 
 --
 -- Các ràng buộc cho bảng `users`

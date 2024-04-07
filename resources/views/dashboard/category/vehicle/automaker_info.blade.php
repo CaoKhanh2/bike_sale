@@ -1,9 +1,11 @@
 @extends('dashboard.layout.content')
 
 @section('title_ds', 'Thông tin hãng xe')
-@section('pg-hd-1', 'Thông tin hãng xe')
-@section('pg-hd-2', 'Danh mục xe')
-@section('pg-hd-3', 'Thông tin hãng xe')
+@section('pg-card-title', 'Thông tin hãng xe')
+@section('pg-hd-2', 'Danh mục')
+@section('pg-hd-3', 'Danh mục xe')
+@section('st4','true')
+@section('pg-hd-4', 'Thông tin hãng xe') @section('act4','active')
 
 @section('main')
 
@@ -21,7 +23,7 @@
                     </div>
 
                     <div class="tab">
-                        <ul class="nav nav-pills" role="tablist">
+                        <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active text-blue" data-toggle="tab" href="#table" role="tab"
                                     aria-selected="true">Thông tin bảng</a>
