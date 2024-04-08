@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('hangxe_id',5);
             $table->string('dongxe',15)->nullable();
             $table->float('trongluong',3,2)->nullable();
-            $table->string('loaipin',15)->nullable();
+            $table->string('acquy',10)->nullable();
+            $table->string('sacdien',10)->nullable();
             $table->float('phamvisudung',3,2)->nullable();
             $table->string('hinhanh');
             $table->decimal('giaban',10,2);

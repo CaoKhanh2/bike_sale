@@ -5,9 +5,7 @@
 @section('pg-hd-2', 'Danh mục')
 @section('pg-hd-3', 'Thông tin xe') @section('act3', 'active')
 @section('st4', 'false')
-
 @section('main')
-
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
@@ -15,7 +13,6 @@
                 @include('dashboard.layout.page-header')
                 {{-- End Page Header --}}
 
-                <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4"></h4>
@@ -75,6 +72,24 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-12 col-md-2 col-form-label">Phương tiện</label>
                                                 <div class="col-sm-12 col-md-10">
+                                                    <select class="custom-select col-12" id="vehicle">
+                                                        <option selected="">Choose...</option>
+                                                        <option value="1">Xe máy</option>
+                                                        <option value="2">Xe đạp điện</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form action="">
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <input class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
+                                                <div class="col-sm-12 col-md-10">
                                                     <select class="custom-select col-12">
                                                         <option selected="">Choose...</option>
                                                         <option value="1">One</option>
@@ -82,45 +97,100 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </form>
-                                        <form action="">
-                                            <div class="my-4 border border-top border-4 border-primary"></div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <select class="custom-select col-12">
+                                                        <option selected="">Choose...</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <input class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div id="form1" style="display: none;">
+                                                <div class="my-4 border border-top border-4 border-primary"></div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Dung tích xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <input class="form-control" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Loại xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <select class="custom-select col-12">
-                                                            <option selected="">Choose...</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                        </select>
+                                                        <input class="form-control" type="number" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Năm đăng ký</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <select class="custom-select col-12">
-                                                            <option selected="">Choose...</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                        </select>
+                                                        <input class="form-control" type="number" name="year" min="2000"
+                                                            max="2024">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <div class="custom-file ">
+                                                            <input type="file" class="custom-file-input" />
+                                                            <label class="custom-file-label">Chọn ảnh</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <input class="form-control" type="number" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div id="form2" style="display: none;">
+                                                <div class="my-4 border border-top border-4 border-primary"></div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Trọng lượng</label>
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <input class="form-control" type="number"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Loại pin</label>
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <input class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Phạm vi sử dụng</label>
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <input class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <div class="custom-file ">
+                                                            <input type="file" class="custom-file-input" />
+                                                            <label class="custom-file-label">Chọn ảnh</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <input class="form-control" type="number" />
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
-                                                    <div class="col-sm-12 col-md-10">
-                                                        <input
-                                                            class="form-control"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            
+                                            </div>
+
                                         </form>
                                     </div>
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -132,10 +202,28 @@
 
                     </div>
                 </div>
-                <!-- Export Datatable End -->
+
             </div>
 
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#vehicle').change(function() {
+                var selectedValue = $(this).val();
+                if (selectedValue == 1) {
+                    $('#form1').show();
+                    $('#form2').hide();
+                } else if (selectedValue == 2) {
+                    $('#form1').hide();
+                    $('#form2').show();
+                } else {
+                    $('#form1').hide();
+                    $('#form2').hide();
+                }
+            });
+        });
+    </script>
 
 @endsection

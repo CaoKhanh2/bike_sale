@@ -3,7 +3,7 @@
 @section('title_ds', 'Thông tin xe')
 @section('pg-card-title', 'Chi tiết thông tin xe')
 @section('pg-hd-2', 'Danh mục')
-@section('pg-hd-3', 'Thông tin xe') @section('act3','active')
+@section('pg-hd-3', 'Danh mục xe') @section('act3','active')
 @section('st4','false')
 
 @section('main')

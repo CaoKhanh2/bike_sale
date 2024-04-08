@@ -30,6 +30,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" />
 
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src=" {{ url('https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85') }} "></script>
     <script async src=" {{ url('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258') }} "crossorigin="anonymous"></script>
@@ -43,6 +46,7 @@
 
         gtag("config", "G-GBZ3SGGX85");
     </script>
+    
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
@@ -87,7 +91,6 @@
     {{-- End Footer --}}
 
     <!-- js -->
-    <!-- switchery js -->
 
     <script src="{{ asset('dashboard_src/vendors/scripts/core.js') }} "></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/script.min.js') }}"></script>

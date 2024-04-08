@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\LoaiXe;
+use App\Models\DongXe;
 use Illuminate\Support\Facades\DB;
 
-class LoaiXeController extends Controller
+class DongXeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,8 +30,8 @@ class LoaiXeController extends Controller
         // ];
         
         // LoaiXe::insert($data);
-        $lx = DB::table('loaixe')->get();
-        return view('dashboard.category.vehicle.type_vehicle_infor',['loaixe'=>$lx]);
+        $lx = DB::table('dongxe')->get();
+        return view('dashboard.category.vehicle.type_vehicle_infor',['dongxe'=>$lx]);
     }
 
     /**

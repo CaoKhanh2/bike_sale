@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\DongXeController;
 use App\Http\Controllers\HangXeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KhachHangController;
-use App\Http\Controllers\LoaiXeController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\VanChuyenController;
 
@@ -45,6 +45,10 @@ Route::get('/dashboard/category/vehicle/automaker_info', function () {
 
 Route::get('/dashboard/category/vehicle/automaker_info',[HangXeController::class,'index']);
 
+Route::get('/dashboard/category/vehicle/detail_automaker_info', function () {
+    return view('dashboard.category.vehicle.detail_automaker_info');
+});
+
 
 Route::get('/dashboard/category/vehicle/vehicle_infor', function () {
     return view('dashboard.category.vehicle.vehicle_infor');
@@ -55,7 +59,12 @@ Route::get('/dashboard/category/vehicle/type_vehicle_infor', function () {
     return view('dashboard.category.vehicle.type_vehicle_infor');
 });
 
-Route::get('/dashboard/category/vehicle/type_vehicle_infor',[LoaiXeController::class,'index']);
+Route::get('/dashboard/category/vehicle/type_vehicle_infor',[DongXeController::class,'index']);
+
+Route::get('/dashboard/category/vehicle/detail_type_vehicle_infor', function () {
+    return view('dashboard.category.vehicle.detail_type_vehicle_infor');
+});
+
 
 Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
     return view('dashboard.category.vehicle.detail_vehicle_infor');
@@ -125,4 +134,4 @@ Route::get('/dashboard/report/best-selling-items', function () {
 
 // Add data
 Route::get('/data1', [HangXeController::class,'index']);
-Route::get('/data2', [LoaiXeController::class,'index']);
+// Route::get('/data2', [LoaiXeController::class,'index']);

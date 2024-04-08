@@ -1,11 +1,11 @@
 @extends('dashboard.layout.content')
 
-@section('title_ds', 'Thông tin loại xe')
-@section('pg-card-title', 'Thông tin loại xe')
+@section('title_ds', 'Thông tin dòng xe')
+@section('pg-card-title', 'Thông tin dòng xe')
 @section('pg-hd-2', 'Danh mục')
 @section('pg-hd-3', 'Danh mục xe')
 @section('st4','true')
-@section('pg-hd-4', 'Thông tin loại xe') @section('act4','active')
+@section('pg-hd-4', 'Thông tin dòng xe') @section('act4','active')
 
 @section('main')
 
@@ -39,21 +39,21 @@
                                         <table class="table hover data-table-export">
                                             <thead>
                                                 <tr>
-                                                    <th>Mã loại xe</th>
-                                                    <th>Tên loại xe</th>
+                                                    <th>Mã dòng xe</th>
+                                                    <th>Tên dòng xe</th>
                                                     <th>Mô tả</th>
                                                     <th>Hành động</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($loaixe as $i)
+                                                @foreach ($dongxe as $i)
                                                     <tr>
-                                                        <td>{{ $i->malx }}</td>
-                                                        <td>{{ $i->tenloaixe }}</td>
+                                                        <td>{{ $i->madx }}</td>
+                                                        <td>{{ $i->tendongxe }}</td>
                                                         <td>{{ $i->mota }}</td>
                                                         <td>
                                                             <a type="button" class="btn btn-primary"
-                                                                href="{{ url('/dashboard/category/vehicle/detail_vehicle_infor') }}">
+                                                                href="{{ url('/dashboard/category/vehicle/detail_type_vehicle_infor') }}">
                                                                 <i class="bi bi-pencil-fill"></i> Sửa
                                                             </a>
                                                             <a type="button" class="btn btn-danger" href="">
@@ -70,13 +70,13 @@
                                     <div class="pd-20">
                                         <form action="" class="form mt-2">
                                             <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Mã loại xe</label>
+                                                <label class="col-sm-12 col-md-2 col-form-label">Mã dòng xe</label>
                                                 <div class="col-sm-12 col-md-10">
                                                     <input class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Tên loại xe</label>
+                                                <label class="col-sm-12 col-md-2 col-form-label">Tên dòng xe</label>
                                                 <div class="col-sm-12 col-md-10">
                                                     <input class="form-control" />
                                                 </div>
@@ -84,7 +84,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-12 col-md-2 col-form-label">Mô tả</label>
                                                 <div class="col-sm-12 col-md-10">
-                                                    <textarea class="form-control"></textarea>
+                                                    <textarea class="form-control" rows="3"></textarea>
                                                 </div>
                                             </div>
                                         </form>

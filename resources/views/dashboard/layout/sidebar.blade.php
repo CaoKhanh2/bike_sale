@@ -140,7 +140,7 @@
                             <ul class="submenu child">
                                 <li><a href="{{ url('/dashboard/category/vehicle/automaker_info') }}">Thông tin hãng xe</a>
                                 </li>
-                                <li><a href="{{ url('/dashboard/category/vehicle/type_vehicle_infor') }}">Thông tin loại xe</a></li>
+                                <li><a href="{{ url('/dashboard/category/vehicle/type_vehicle_infor') }}">Thông tin dòng xe</a></li>
                                 <li><a href="{{ url('/dashboard/category/vehicle/vehicle_infor') }}">Thông tin xe</a></li>
                             </ul>
                         </li>

@@ -4,8 +4,8 @@
 @section('pg-card-title', 'Thông tin hãng xe')
 @section('pg-hd-2', 'Danh mục')
 @section('pg-hd-3', 'Danh mục xe')
-@section('st4','true')
-@section('pg-hd-4', 'Thông tin hãng xe') @section('act4','active')
+@section('st4', 'true')
+@section('pg-hd-4', 'Thông tin hãng xe') @section('act4', 'active')
 
 @section('main')
 
@@ -41,6 +41,7 @@
                                             <tr>
                                                 <th>Mã hãng xe</th>
                                                 <th>Tên hãng</th>
+                                                <th>Logo</th>
                                                 <th>Xuất xứ</th>
                                                 <th>Trạng thái</th>
                                                 <th>Hành động</th>
@@ -51,6 +52,9 @@
                                                 <tr>
                                                     <td>{{ $i->mahx }}</td>
                                                     <td>{{ $i->tenhang }}</td>
+                                                    <td><img src="{{ asset($i->logo) }}"
+                                                            class="object-fit-sm-cover border rounded" alt=""
+                                                            srcset="" width="50" height="50"></td>
                                                     <td>{{ $i->xuatxu }}</td>
                                                     <td>
                                                         @php
@@ -68,7 +72,7 @@
                                                         @endphp
                                                     </td>
                                                     <td><a type="button" class="btn btn-primary"
-                                                            href="{{ url('/dashboard/category/vehicle/detail_vehicle_infor') }}">
+                                                            href="{{ url('/dashboard/category/vehicle/detail_automaker_info') }}">
                                                             <i class="bi bi-pencil-fill"></i> Sửa
                                                         </a>
                                                         <a type="button" class="btn btn-danger" href="">

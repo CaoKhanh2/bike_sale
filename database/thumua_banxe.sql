@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 07, 2024 lúc 05:46 PM
+-- Thời gian đã tạo: Th4 08, 2024 lúc 05:39 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -155,8 +155,8 @@ CREATE TABLE `hangxe` (
 INSERT INTO `hangxe` (`mahx`, `tenhang`, `logo`, `xuatxu`, `trangthai`) VALUES
 ('HX01', 'Honda', 'Image\\logo_xe\\Honda_Logo.png', 'Nhật Bản', b'01'),
 ('HX02', 'Yamaha', 'Image\\logo_xe\\Yamaha_Logo.png', 'Nhật Bản', b'01'),
-('HX03', 'Suzuki', 'Image\\logo_xe\\suzuki.png', 'Nhật Bản', b'01'),
-('HX04', 'Sym', 'public\\Image\\logo_xe\\Sym_Logo.png', 'Đài Loan', b'01'),
+('HX03', 'Suzuki', 'Image\\logo_xe\\Suzuki_Logo.png', 'Nhật Bản', b'01'),
+('HX04', 'Sym', 'Image\\logo_xe\\Sym_Logo.png', 'Đài Loan', b'01'),
 ('HX05', 'Honda', 'Image\\logo_xe\\Honda_Logo.png', 'Nhật Bản', b'01');
 
 -- --------------------------------------------------------
