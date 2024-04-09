@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 08, 2024 lúc 05:39 PM
+-- Thời gian đã tạo: Th4 09, 2024 lúc 06:01 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -202,6 +202,7 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`makh`, `hovaten`, `ngaysinh`, `gioitinh`, `sodienthoai`, `email`, `diachi`, `tentk`, `password`, `tinhtrang`) VALUES
+('MKH-0001', 'Cố Trung Kiên', '2002-10-30', 'Nam', '0973951289', 'kien87637@st.vimaru.edu.vn', NULL, NULL, NULL, b'00'),
 ('MKH-0024', 'Alison Powlowski', '2011-05-15', 'Other', '08953744246', 'nrunolfsson@example.com', '628 Johnny Mews Apt. 354', NULL, NULL, b'00'),
 ('MKH-0136', 'Mr. Gregory Macejkovic', '1980-10-11', 'Other', '05733703618', 'xlarkin@example.org', '96390 Lora Cove Suite 195', NULL, NULL, b'00'),
 ('MKH-0256', 'Abigale Gerhold', '2023-06-25', 'Nam', '02373874734', 'rlabadie@example.org', '109 Douglas Villages', NULL, NULL, b'00'),
@@ -434,16 +435,34 @@ CREATE TABLE `thanhtoan` (
 
 CREATE TABLE `thongtinxedapdien` (
   `maxedapdien` varchar(15) NOT NULL,
-  `dongxe_id` varchar(10) NOT NULL,
-  `hangxe_id` varchar(5) NOT NULL,
+  `dongxe_id` varchar(10) DEFAULT NULL,
+  `hangxe_id` varchar(5) DEFAULT NULL,
   `tenxe` varchar(15) DEFAULT NULL,
-  `trongluong` double(3,2) DEFAULT NULL,
-  `loaipin` varchar(15) DEFAULT NULL,
-  `phamvisudung` double(3,2) DEFAULT NULL,
-  `hinhanh` varchar(255) NOT NULL,
+  `trongluong` double(4,2) DEFAULT NULL,
+  `acquy` varchar(10) NOT NULL,
+  `dongcodien` varchar(10) NOT NULL,
+  `sacdien` varchar(15) NOT NULL,
+  `phamvisudung` double(4,2) DEFAULT NULL,
+  `hinhanh` varchar(255) DEFAULT NULL,
   `giaban` decimal(10,2) NOT NULL,
-  `tinhtrang` bit(2) NOT NULL
+  `tinhtrang` bit(2) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thongtinxedapdien`
+--
+
+INSERT INTO `thongtinxedapdien` (`maxedapdien`, `dongxe_id`, `hangxe_id`, `tenxe`, `trongluong`, `acquy`, `dongcodien`, `sacdien`, `phamvisudung`, `hinhanh`, `giaban`, `tinhtrang`) VALUES
+('XD-0001', NULL, NULL, NULL, 72.80, '60v - 20Ah', 'Điện 3 pha', '8-10 tiếng', 99.00, NULL, 14852330.55, b'01'),
+('XD-00010', NULL, NULL, NULL, 67.60, '48V – 20Ah', 'Điện 3 pha', '8-10 tiếng', 53.00, NULL, 19338806.69, b'01'),
+('XD-0002', NULL, NULL, NULL, 68.40, '60v - 20Ah', 'Điện 3 pha', '8-10 tiếng', 55.00, NULL, 12405003.57, b'01'),
+('XD-0003', NULL, NULL, NULL, 55.40, '48v - 20a', 'Điện 3 pha', '8-10 tiếng', 68.00, NULL, 16474789.28, b'01'),
+('XD-0004', NULL, NULL, NULL, 87.70, '48V – 20Ah', 'Điện 3 pha', '8-10 tiếng', 67.00, NULL, 11528590.55, b'01'),
+('XD-0005', NULL, NULL, NULL, 58.00, '48V – 20Ah', 'Điện 3 pha', '8-10 tiếng', 66.00, NULL, 11052226.25, b'01'),
+('XD-0006', NULL, NULL, NULL, 63.00, '48v - 20a', 'Điện 3 pha', '8-10 tiếng', 91.00, NULL, 14867882.52, b'01'),
+('XD-0007', NULL, NULL, NULL, 86.30, '60v - 20Ah', 'Điện 3 pha', '8-10 tiếng', 97.00, NULL, 18778238.34, b'01'),
+('XD-0008', NULL, NULL, NULL, 56.20, '60v - 20Ah', 'Điện 3 pha', '8-10 tiếng', 50.00, NULL, 14639560.54, b'01'),
+('XD-0009', NULL, NULL, NULL, 85.70, '48V – 20Ah', 'Điện 3 pha', '8-10 tiếng', 82.00, NULL, 13956102.72, b'01');
 
 -- --------------------------------------------------------
 
@@ -453,15 +472,15 @@ CREATE TABLE `thongtinxedapdien` (
 
 CREATE TABLE `thongtinxemay` (
   `maxemay` varchar(15) NOT NULL,
-  `dongxe_id` varchar(10) NOT NULL,
-  `hangxe_id` varchar(5) NOT NULL,
+  `dongxe_id` varchar(10) DEFAULT NULL,
+  `hangxe_id` varchar(5) DEFAULT NULL,
   `tenxe` varchar(15) DEFAULT NULL,
   `dungtichxe` varchar(5) DEFAULT NULL,
   `sokmdadi` double(6,2) DEFAULT NULL,
   `namdk` int(11) DEFAULT NULL,
   `hinhanh` varchar(255) NOT NULL,
   `giaban` decimal(10,2) NOT NULL,
-  `tinhtrang` bit(2) NOT NULL
+  `tinhtrang` bit(2) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------

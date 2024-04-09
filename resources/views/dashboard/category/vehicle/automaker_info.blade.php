@@ -15,7 +15,7 @@
                 {{-- Page Header --}}
                 @include('dashboard.layout.page-header')
                 {{-- End Page Header --}}
-                <!-- Export Datatable start -->
+
                 <div class="card-box mb-30">
 
                     <div class="col-12 pd-20">
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Export Datatable End -->
+            
         </div>
 
     </div>

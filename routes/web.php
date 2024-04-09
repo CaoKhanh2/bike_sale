@@ -81,6 +81,9 @@ Route::get('/dashboard/category/customer/customer_info',[KhachHangController::cl
 Route::get('/customer/detail_customer_info', function () {
     return view('dashboard.category.customer.detail_customer_info');
 });
+
+Route::post('/dashboard/category/customer/customer_info/data', [KhachHangController::class, 'store'])->name('data.store');
+
 //
 
 // Danh muc van chuyen

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KhachHang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -36,7 +37,25 @@ class KhachHangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'makh' => 'required',
+            'hoten' => 'required',
+            'gt' => 'required',
+            'ngsinh' => 'required',
+            'sdt' => 'required',
+            'email' => 'required'
+        ]);
+
+        $post = new KhachHang();
+        $post->makh = $validatedData['makh'];
+        $post->hovaten = $validatedData['hoten'];
+        $post->gioitinh = $validatedData['gt'];
+        $post->ngaysinh = $validatedData['ngsinh'];
+        $post->sodienthoai = $validatedData['sdt'];
+        $post->email = $validatedData['email'];
+        $post->save();
+
+        return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
     }
 
     /**
