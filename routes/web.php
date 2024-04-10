@@ -18,6 +18,11 @@ use App\Http\Controllers\VanChuyenController;
 |
 */
 
+Route::get('/success', function () {
+    return view('dashboard.modal.success');
+});
+
+
 Route::get('/', function () {
     return view('index');
 });
@@ -73,6 +78,7 @@ Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
 // 
 
 // Danh muc khach hang
+
 Route::get('/dashboard/category/customer/customer_info', function () {
     return view('dashboard.category.customer.customer_info');
 });
@@ -82,7 +88,10 @@ Route::get('/customer/detail_customer_info', function () {
     return view('dashboard.category.customer.detail_customer_info');
 });
 
-Route::post('/dashboard/category/customer/customer_info/data', [KhachHangController::class, 'store'])->name('data.store');
+Route::post('/dashboard/category/customer/customer_info/data', [KhachHangController::class, 'store'])->name('themthongtinkhachhang');
+Route::get('/dashboard/category/customer/customer_info/{id}',[KhachHangController::class,'destroy'])->name('xoathongtinkhachhang');
+Route::get('/dashboard/category/customer/detail_customer_info/{makh}',[KhachHangController::class,'edit'])->name('ctthongtinkhachhang');
+Route::patch('/dashboard/category/customer/detail_customer_info/{makh}',[KhachHangController::class,'update']);
 
 //
 
@@ -101,14 +110,6 @@ Route::get('/dashboard/category/sales_agent/staff_infor', function () {
 
 Route::get('/dashboard/category/sales_agent/staff_infor',[NhanVienController::class,'index']);
 //
-
-// Danh muc khach hang
-Route::get('/dashboard/customer',[KhachHangController::class,'index']);
-
-Route::get('/customer/detail_customer_info', function () {
-    return view('dashboard.category.customer.detail_customer_info');
-});
-// 
 
 
 

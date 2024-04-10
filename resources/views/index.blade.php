@@ -35,9 +35,9 @@
         {{-- End --}}
 
         {{-- Tin tức --}}
-        <div class="row justify-content-md-center mt-4">
+        {{-- <div class="row justify-content-md-center mt-4">
             @include('home-page.news')
-        </div>
+        </div> --}}
         {{-- End --}}
         
     </div>

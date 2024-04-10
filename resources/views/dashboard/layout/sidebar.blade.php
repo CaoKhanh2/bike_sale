@@ -186,7 +186,7 @@
                     </ul>
                 </li>
 
-                <li>
+                {{-- <li>
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
@@ -213,7 +213,7 @@
                             <img src="dashboard_src/vendors/images/coming-soon.png" alt=""
                                 width="25" /></span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

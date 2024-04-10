@@ -9,5 +9,6 @@ class KhachHang extends Model
 {
     use HasFactory;
     protected $table = 'khachhang';
+    protected $primaryKey = 'makh';
     public $timestamps = false;
 }

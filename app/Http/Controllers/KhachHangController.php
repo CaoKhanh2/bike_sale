@@ -16,7 +16,7 @@ class KhachHangController extends Controller
     public function index()
     {
         $kh = DB::table('khachhang')->get();
-        return view('dashboard.category.customer.customer_info',['khachhang'=>$kh]);
+        return view('dashboard.category.customer.customer_info', ['khachhang' => $kh]);
     }
 
     /**
@@ -37,25 +37,39 @@ class KhachHangController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'makh' => 'required',
-            'hoten' => 'required',
-            'gt' => 'required',
-            'ngsinh' => 'required',
-            'sdt' => 'required',
-            'email' => 'required'
+        // $validatedData = $request->validate([
+        //     'makh' => 'required',
+        //     'hoten' => 'required',
+        //     'gt' => 'required',
+        //     'ngsinh' => 'required',
+        //     'sdt' => 'required',
+        //     'email' => 'required',
+        // ]);
+
+        // $post = new KhachHang();
+        // $post->makh = $validatedData['makh'];
+        // $post->hovaten = $validatedData['hoten'];
+        // $post->gioitinh = $validatedData['gt'];
+        // $post->ngaysinh = $validatedData['ngsinh'];
+        // $post->sodienthoai = $validatedData['sdt'];
+        // $post->email = $validatedData['email'];
+        // $post->save();
+
+        // return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+
+        DB::table('khachhang')
+        ->insert([
+            'makh' => $request->makh,
+            'hovaten' => $request->hoten,
+            'ngaysinh' => $request->ngsinh,
+            'gioitinh' => $request->gt,
+            'sodienthoai' => $request->sdt,
+            'email' => $request->email,
+            'diachi' => $request->dc
+            // 'tinhtrang' => $request->tt
         ]);
 
-        $post = new KhachHang();
-        $post->makh = $validatedData['makh'];
-        $post->hovaten = $validatedData['hoten'];
-        $post->gioitinh = $validatedData['gt'];
-        $post->ngaysinh = $validatedData['ngsinh'];
-        $post->sodienthoai = $validatedData['sdt'];
-        $post->email = $validatedData['email'];
-        $post->save();
-
-        return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+    return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -77,7 +91,8 @@ class KhachHangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kh = DB::table('khachhang')->where('makh', $id)->first();
+        return view('/dashboard/category/customer/detail_customer_info', ['kh' => $kh]);
     }
 
     /**
@@ -89,7 +104,31 @@ class KhachHangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $kh = KhachHang::find($id);
+        // $kh->hovaten = $request->hoten;
+        // $kh->ngaysinh = $request->ngsinh;
+        // $kh->gioitinh = $request->gt;
+        // $kh->sodienthoai = $request->sdt;
+        // $kh->email = $request->email;
+        // $kh->diachi = $request->dc;
+        // $kh->tinhtrang = $request->tt;
+
+        // $kh->save();
+        // return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+
+        DB::table('khachhang')
+            ->where('makh', $id)
+            ->update([
+                'hovaten' => $request->hoten,
+                'ngaysinh' => $request->ngsinh,
+                'gioitinh' => $request->gt,
+                'sodienthoai' => $request->sdt,
+                'email' => $request->email,
+                'diachi' => $request->dc,
+                'tinhtrang' => $request->tt ? 1 : 0
+            ]);
+
+        return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -100,6 +139,9 @@ class KhachHangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Sử dụng Query Builder:
+        $kh = DB::table('khachhang')->where('makh', $id)->delete();
+
+        return redirect('/dashboard/category/customer/customer_info');
     }
 }
