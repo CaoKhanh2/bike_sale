@@ -23,12 +23,7 @@
     <!-- DropZone -->
     <link rel="stylesheet" href="{{ asset('dashboard_src\src\plugins\dropzone\src\dropzone.css') }}"/>
 
-    <style>
-        
-        body {
-          margin-top: 90px;
-        }
-      </style>
+  
 
 </head>
 
