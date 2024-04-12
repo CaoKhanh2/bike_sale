@@ -52,8 +52,8 @@
                     <div class="col-md-4 my-3">
                         <a href="url{{ '/index' }}"
                             class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
-                            <img src="{{ asset('Image\Icon\racing.png') }}" alt="Logo" width="60"
-                                height="48">
+                            <img src="{{ asset('Image\Logo\logo.png') }}" alt="Logo" width="120"
+                                height="70">
                         </a>
                         <p class="text-body-secondary">© 2024</p>
                         <p>Đại học Hàng Hải Việt Nam, Ngô Quyền, Hải Phòng</p>
