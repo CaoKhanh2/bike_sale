@@ -3,8 +3,8 @@
         <nav class="navbar navbar-expand-xl border-bottom">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/')}}">
-                    <img src="{{ asset('Image\Logo\logo.png') }}" alt="Logo" width="120" height="70"
-                        class="d-inline-block align-text-center">
+                    <img src="{{ asset('Image\Logo\logo.png') }}" alt="Logo" width="80" height="70"
+                        class="d-inline-block align-text-center rounded-circle">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

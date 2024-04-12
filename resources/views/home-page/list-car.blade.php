@@ -2,7 +2,7 @@
     <h3 class="mt-4 mb-5">Thông tin xe</h3>
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
-            <div class="row g-0">
+            <div class="shadow rounded row g-0">
                 <div class="col-md-4">
                     <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
                         class="img-fluid rounded-start" alt="...">
@@ -29,7 +29,7 @@
                             <div class="col mt-3">
                                 <h4><span><p class="d-inline">16.900.000 ₫</p></span></h4>
                             </div>
-                            <div class="col mt-3">
+                            <div class="col mt-3 mx-3">
                                 <div class="d-grid col mx-auto">
                                     <a name="" id="" class="btn btn-primary btn-block"
                                         href="#" role="button">Đặt mua</a>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="col">
-            <div class="row g-0">
+            <div class="shadow rounded row g-0">
                 <div class="col-md-4">
                     <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
                         class="img-fluid rounded-start" alt="...">
@@ -70,7 +70,7 @@
                             <div class="col mt-3">
                                 <h4><span><p class="d-inline">16.900.000 ₫</p></span></h4>
                             </div>
-                            <div class="col mt-3">
+                            <div class="col mt-3 mx-3">
                                 <div class="d-grid col mx-auto">
                                     <a name="" id="" class="btn btn-primary btn-block"
                                         href="#" role="button">Đặt mua</a>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="col">
-            <div class="row g-0">
+            <div class="shadow rounded row g-0">
                 <div class="col-md-4">
                     <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
                         class="img-fluid rounded-start" alt="...">
@@ -111,7 +111,7 @@
                             <div class="col mt-3">
                                 <h4><span><p class="d-inline">16.900.000 ₫</p></span></h4>
                             </div>
-                            <div class="col mt-3">
+                            <div class="col mt-3 mx-3">
                                 <div class="d-grid col mx-auto">
                                     <a name="" id="" class="btn btn-primary btn-block"
                                         href="#" role="button">Đặt mua</a>
@@ -124,7 +124,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="row g-0">
+            <div class="shadow rounded row g-0">
                 <div class="col-md-4">
                     <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
                         class="img-fluid rounded-start" alt="...">
@@ -151,7 +151,7 @@
                             <div class="col mt-3">
                                 <h4><span><p class="d-inline">16.900.000 ₫</p></span></h4>
                             </div>
-                            <div class="col mt-3">
+                            <div class="col mt-3 mx-3">
                                 <div class="d-grid col mx-auto">
                                     <a name="" id="" class="btn btn-primary btn-block"
                                         href="#" role="button">Đặt mua</a>

@@ -10,9 +10,9 @@
 
     <div class="container mt-4 mb-5">
         {{-- Mục Tìm kiếm --}}
-            <div class="row justify-content-md-center">
-                @include('home-page.search-box') 
-            </div>
+
+        @include('home-page.search-box') 
+
         {{-- End --}}
 
         {{-- Danh sách xe bán --}}
