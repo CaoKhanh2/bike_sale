@@ -82,7 +82,8 @@
                                                                 href="{{ route('ctthongtinkhachhang', ['makh' => $i->makh]) }}">
                                                                 <i class="bi bi-pencil-fill"></i> Sửa
                                                             </a>
-                                                            <a type="button" class="btn btn-danger" href="{{ route('xoathongtinkhachhang', ['id' => $i->makh]) }}">
+                                                            <a type="button" class="btn btn-danger"
+                                                                href="{{ route('xoathongtinkhachhang', ['id' => $i->makh]) }}">
                                                                 <i class="bi bi-trash3"></i> Xóa
                                                             </a>
                                                         </td>
@@ -94,7 +95,8 @@
                                 </div>
                                 <div class="tab-pane fade" id="form-add" role="tabpanel">
                                     <div class="pd-20">
-                                        <form method="POST" action="{{ route('themthongtinkhachhang') }}" class="form mt-2">
+                                        <form method="POST" action="{{ route('themthongtinkhachhang') }}"
+                                            class="form mt-2">
                                             @csrf
                                             <div class="form-group row" id="row1">
                                                 <label class="col-sm-12 col-md-2 col-form-label">Mã khách hàng</label>

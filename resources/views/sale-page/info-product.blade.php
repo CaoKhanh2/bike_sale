@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row g-0">
+    <div class="row g-5">
         <div class="col-sm-6 col-md-8 ms-4">
 
             <div class="row">
