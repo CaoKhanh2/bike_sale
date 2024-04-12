@@ -1,11 +1,10 @@
-<section class="bg-primary">
+<section style="background-color:#4a90e2">
     <div class="container">
-        <nav class="navbar navbar-expand-xl bg-primary border-bottom">
+        <nav class="navbar navbar-expand-xl border-bottom">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/')}}">
-                    <img src="{{ asset('Image\Icon\racing.png') }}" alt="Logo" width="60" height="48"
+                    <img src="{{ asset('Image\Logo\logo.png') }}" alt="Logo" width="120" height="70"
                         class="d-inline-block align-text-center">
-                    Xe ToT
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +70,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container py-2 bg-primary">
+        <div class="container py-2 bg-blue">
             <div class="row justify-content-center">
                 <div class="col-md-9">
                     <div class="row">
