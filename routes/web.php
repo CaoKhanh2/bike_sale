@@ -114,14 +114,14 @@ Route::get('/dashboard/category/sales_agent/staff_infor',[NhanVienController::cl
 
 
 
-
+// Quan ly giao dich
 Route::get('/dashboard/transaction/purchasing_manage', function () {
     return view('dashboard.transaction.purchasing.purchasing_manage');
 });
 
-Route::get('/user', function(){
-    return view('/user.index');
-});
+// Route::get('/user', function(){
+//     return view('/user.index');
+// });
 
 Route::get('/selling_item', function(){
     return view('/user.selling_item');
@@ -131,6 +131,12 @@ Route::get('/dashboard/transaction/selling', function () {
     return view('dashboard.transaction.selling.sell_manage');
 });
 
+ Route::get('/cart_index', function(){
+    return view('/cart_index');
+ });
+
+
+// Bao cao thong ke
 Route::get('/dashboard/report/best-selling-items', function () {
     return view('dashboard.report.best-selling-items');
 });
