@@ -4,7 +4,7 @@
 @section('main')
 
     {{-- Banner 1 --}}
-    <div id="banner-1" class="full-width-image" style="background-image: url('{{ asset('Image/Banner/bn-1.jpg') }}');"></div>
+    <div id="banner-1" class="full-width-image mt-3" style="background-image: url('{{ asset('Image/Banner/bn-1.jpg') }}');"></div>
     {{-- End --}}
 
     <div class="container mt-4 mb-5">

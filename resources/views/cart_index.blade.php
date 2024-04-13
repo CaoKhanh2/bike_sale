@@ -1,5 +1,6 @@
 @extends('layout.content')
 @section('title', 'Giỏ hàng')
+@section('pg-hd-2', 'Giỏ hàng')
 @section('main')
   {{-- breadcrum --}}
   <div class="container">
