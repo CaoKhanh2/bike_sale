@@ -75,7 +75,7 @@
                             </div>
                             <div class="tab-pane fade" id="profile2" role="tabpanel">
                                 <div class="pd-20">
-                                    <table class="table hover multiple-select-row data-table-export nowrap">
+                                    <table class="table hover multiple-select-row nowrap">
                                         <thead>
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
@@ -111,7 +111,7 @@
                             </div>
                             <div class="tab-pane fade" id="contact2" role="tabpanel">
                                 <div class="pd-20">
-                                    <table class="table hover multiple-select-row data-table-export nowrap">
+                                    <table class="table hover multiple-select-row nowrap">
                                         <thead>
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>

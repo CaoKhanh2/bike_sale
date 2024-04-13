@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-disabled="true" href="">
+                        <a class="nav-link active" aria-disabled="true" href="{{ url('/cart_index') }}">
                             {{-- <img width="30" height="30" src="https://img.icons8.com/ios/50/shopping-cart--v1.png" alt="shopping-cart--v1"  class="img-fluid mx-auto d-block"/> --}}
                             <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30" height="24"
                                 class="img-fluid mx-auto d-block">
@@ -76,7 +76,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="row">
-                                <div class="col-3 py-3">
+                                <div class="col-3 py-3 d-flex align-items-center">
                                     <div class="fs-3 text-warning mx-3">
                                         <i class="fa-solid fa-phone"></i>
                                     </div>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col">
                             <div class="row">
-                                <div class="col-3 py-3">
+                                <div class="col-3 py-3 d-flex align-items-center">
                                     <div class="fs-3 text-warning mx-3">
                                         <i class="fa-solid fa-truck"></i>
                                     </div>
@@ -100,7 +100,7 @@
                         </div>
                         <div class="col">
                             <div class="row">
-                                <div class="col-3 py-3">
+                                <div class="col-3 py-3 d-flex align-items-center">
                                     <div class="fs-3 text-warning mx-4">
                                         <i class="fa-regular fa-clock"></i>
                                     </div>
