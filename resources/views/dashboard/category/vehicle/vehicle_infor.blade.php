@@ -46,22 +46,27 @@
                                 </div>
                                 <div class="tab-pane fade" id="form-add" role="tabpanel">
                                     <div class="pd-20">
-                                        <form action="{{ route('themthongtinxe') }}" method="POST">
-                                            <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Phương tiện</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <select class="custom-select col-12" id="vehicle" name="xe">
-                                                        <option selected="">Choose...</option>
-                                                        <option value="1">Xe máy</option>
-                                                        <option value="2">Xe đạp điện</option>
-                                                    </select>
-                                                </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-12 col-md-2 col-form-label">Phương tiện</label>
+                                            <div class="col-sm-12 col-md-10">
+                                                <select class="custom-select col-12" id="vehicle" name="xe">
+                                                    <option>Choose...</option>
+                                                    <option value="1">Xe máy</option>
+                                                    <option value="2">Xe đạp điện</option>
+                                                </select>
                                             </div>
-                                        </form>
+                                        </div>
+
                                         {{-- Thong tin xe may --}}
                                         <form action="{{ route('themthongtinxe') }}" class="form mt-2" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
+                                            <div class="form-group row" hidden>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <input type="text" value="1" name="xe">
+                                                </div>
+                                            </div>
                                             <div id="form1" style="display: none;">
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
@@ -122,8 +127,8 @@
                                                     <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="images"
-                                                                name="anh[]" multiple>
+                                                            <input type="file" class="custom-file-input"
+                                                                id="images" name="anh[]" multiple>
                                                             <label class="custom-file-label">Chọn ảnh</label>
                                                         </div>
                                                     </div>
@@ -144,8 +149,13 @@
                                         {{-- Het --}}
                                         {{-- Thong tin xe dap dien --}}
                                         <form action="{{ route('themthongtinxe') }}" class="form mt-2" method="POST"
-                                        enctype="multipart/form-data">
+                                            enctype="multipart/form-data">
                                             @csrf
+                                            <div class="form-group row" hidden>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <input type="text" value="2" name="xe">
+                                                </div>
+                                            </div>
                                             <div id="form2" style="display: none;">
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
@@ -189,40 +199,40 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Trọng lượng</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" type="number" name="trlg"/>
+                                                        <input class="form-control" type="number" name="trlg" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Ác quy</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="ac"/>
+                                                        <input class="form-control" name="ac" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Động cơ điện</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="dcd"/>
+                                                        <input class="form-control" name="dcd" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Sạc điện</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="sd"/>
+                                                        <input class="form-control" name="sd" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Phạm vi sử
                                                         dụng</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="pvsd"/>
+                                                        <input class="form-control" name="pvsd" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="images"
-                                                                name="anh[]" multiple>
+                                                            <input type="file" class="custom-file-input"
+                                                                id="images" name="anh[]" multiple>
                                                             <label class="custom-file-label">Chọn ảnh</label>
                                                         </div>
                                                     </div>
@@ -230,7 +240,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" type="number" name="giaban"/>
+                                                        <input class="form-control" type="number" name="giaban" />
                                                     </div>
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -290,22 +300,22 @@
         });
     </script>
 
-<script>
-    document.getElementById('hangxe').addEventListener('change', function() {
-        var selectedHangXe = this.value;
-        var dongXeSelect = document.getElementById('dongxedapien');
-        dongXeSelect.innerHTML = '';
+    <script>
+        document.getElementById('hangxe').addEventListener('change', function() {
+            var selectedHangXe = this.value;
+            var dongXeSelect = document.getElementById('dongxedapien');
+            dongXeSelect.innerHTML = '';
 
 
-        @foreach ($dongxedapdien as $i)
-            if ("{{ $i->mahx }}" === selectedHangXe) {
-                var option = document.createElement('option');
-                option.value = "{{ $i->madx }}";
-                option.textContent = "{{ $i->tendongxe }}";
-                dongXeSelect.appendChild(option);
-            }
-        @endforeach
-    });
-</script>
+            @foreach ($dongxedapdien as $i)
+                if ("{{ $i->mahx }}" === selectedHangXe) {
+                    var option = document.createElement('option');
+                    option.value = "{{ $i->madx }}";
+                    option.textContent = "{{ $i->tendongxe }}";
+                    dongXeSelect.appendChild(option);
+                }
+            @endforeach
+        });
+    </script>
 
 @endsection

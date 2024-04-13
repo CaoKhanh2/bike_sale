@@ -56,7 +56,8 @@ class XeController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->xe == "1"){
+        
+        if($request->xe == 1){
             $imagePathsString = '';
             $imagePaths = [];
 
