@@ -69,7 +69,7 @@ class KhachHangController extends Controller
             // 'tinhtrang' => $request->tt
         ]);
 
-    return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+        return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -140,8 +140,7 @@ class KhachHangController extends Controller
     public function destroy($id)
     {
         //Sử dụng Query Builder:
-        $kh = DB::table('khachhang')->where('makh', $id)->delete();
-
-        return redirect('/dashboard/category/customer/customer_info');
+        DB::table('khachhang')->where('makh', $id)->delete();
+        return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
     }
 }

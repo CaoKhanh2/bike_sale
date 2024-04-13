@@ -21,13 +21,13 @@ class HangXeController extends Controller
         //     ['mahx' => 'HX03', 'tenhang' => 'Suzuki', 'logo' => 'Image\logo_xe\suzuki.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
         //     ['mahx' => 'HX04', 'tenhang' => 'Sym', 'logo' => 'public\Image\logo_xe\Sym_Logo.png', 'xuatxu' => 'Đài Loan', 'trangthai' => 1],
         //     ['mahx' => 'HX05', 'tenhang' => 'Honda', 'logo' => 'Image\logo_xe\Honda_Logo.png', 'xuatxu' => 'Nhật Bản', 'trangthai' => 1],
-           
+
         // ];
-        
+
         // HangXe::insert($data);
 
         $hx = DB::table('hangxe')->get();
-        return view('dashboard.category.vehicle.automaker_info',['hangxe'=>$hx]);
+        return view('dashboard.category.vehicle.automaker.automaker_info', ['hangxe' => $hx]);
     }
 
     /**
@@ -48,7 +48,18 @@ class HangXeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $logo = $request->file('logo');
+        $path = $logo->store('logo','public');
+
+        // Sau đó, chèn đường dẫn của từng tập tin vào cơ sở dữ liệu
+        DB::table('hangxe')->insert([
+            'mahx' => $request->mahx,
+            'tenhang' => $request->tenhang,
+            'logo' => $path,
+            'xuatxu' => $request->xs,
+        ]);
+
+        return redirect('dashboard/category/vehicle/automaker_info')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -93,6 +104,8 @@ class HangXeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('hangxe')->where('mahx', $id)->delete();
+        return redirect('dashboard/category/vehicle/automaker_info')->with('success', 'Post created successfully!');
+
     }
 }

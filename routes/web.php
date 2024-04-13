@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\VanChuyenController;
+use App\Http\Controllers\XeController;
+use App\Http\Controllers\XeDapDienController;
+use App\Http\Controllers\XeMayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,36 +47,40 @@ Route::get('/dashboard/sys', function () {
 });
 
 // Danh muc xe
-Route::get('/dashboard/category/vehicle/automaker_info', function () {
-    return view('dashboard.category.vehicle.automaker_info');
-});
 
 Route::get('/dashboard/category/vehicle/automaker_info',[HangXeController::class,'index']);
+Route::post('/dashboard/category/vehicle/automaker_info', [HangXeController::class, 'store'])->name('themhangxe');
+Route::get('/dashboard/category/vehicle/automaker_info/{id}',[HangXeController::class,'destroy'])->name('xoahangxe');
 
 Route::get('/dashboard/category/vehicle/detail_automaker_info', function () {
-    return view('dashboard.category.vehicle.detail_automaker_info');
+    return view('dashboard.category.automaker.vehicle.detail_automaker_info');
 });
+
+
+
+Route::get('/dashboard/category/vehicle/vehicle_line_infor', function () {
+    return view('dashboard.category.vehicle.vehicle_line.vehicle_line_infor');
+});
+
+Route::get('/dashboard/category/vehicle/vehicle_line_infor',[DongXeController::class,'index']);
+Route::post('/dashboard/category/vehicle/vehicle_line_infor', [DongXeController::class, 'store'])->name('themdongxe');
+Route::get('/dashboard/category/vehicle/vehicle_line_infor/{id}',[DongXeController::class,'destroy'])->name('xoadongxe');
 
 
 Route::get('/dashboard/category/vehicle/vehicle_infor', function () {
     return view('dashboard.category.vehicle.vehicle_infor');
 });
 
-
-Route::get('/dashboard/category/vehicle/type_vehicle_infor', function () {
-    return view('dashboard.category.vehicle.type_vehicle_infor');
-});
-
-Route::get('/dashboard/category/vehicle/type_vehicle_infor',[DongXeController::class,'index']);
-
-Route::get('/dashboard/category/vehicle/detail_type_vehicle_infor', function () {
-    return view('dashboard.category.vehicle.detail_type_vehicle_infor');
-});
-
-
 Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
     return view('dashboard.category.vehicle.detail_vehicle_infor');
 });
+
+
+Route::get('/dashboard/category/vehicle/vehicle_infor', [XeController::class, 'index']);
+
+Route::post('/dashboard/category/vehicle/vehicle_infor', [XeController::class, 'store'])->name('themthongtinxe');
+// Route::post('/dashboard/category/vehicle/vehicle_infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
+//Route::post('/dashboard/category/customer/customer_info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
 
 // 
 
@@ -88,7 +95,7 @@ Route::get('/customer/detail_customer_info', function () {
     return view('dashboard.category.customer.detail_customer_info');
 });
 
-Route::post('/dashboard/category/customer/customer_info/data', [KhachHangController::class, 'store'])->name('themthongtinkhachhang');
+Route::post('/dashboard/category/customer/customer_info', [KhachHangController::class, 'store'])->name('themthongtinkhachhang');
 Route::get('/dashboard/category/customer/customer_info/{id}',[KhachHangController::class,'destroy'])->name('xoathongtinkhachhang');
 Route::get('/dashboard/category/customer/detail_customer_info/{makh}',[KhachHangController::class,'edit'])->name('ctthongtinkhachhang');
 Route::patch('/dashboard/category/customer/detail_customer_info/{makh}',[KhachHangController::class,'update']);

@@ -44,7 +44,6 @@
                                                     <th>Số điện thoại</th>
                                                     <th>Email</th>
                                                     <th>Địa chỉ</th>
-                                                    <th>Ghi chú</th>
                                                     <th>Hành động</th>
                                                 </tr>
                                             </thead>
@@ -64,7 +63,6 @@
                                                         <td>{{ $i->sodienthoai }}</td>
                                                         <td>{{ $i->email }}</td>
                                                         <td>{{ $i->diachi }}</td>
-                                                        <td>{{ $i->ghichu }}</td>
                                                         <td>
                                                             <a type="button" class="btn btn-primary"
                                                                 href="{{ url('/car_catalog/detail_inforcar') }}">

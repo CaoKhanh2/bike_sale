@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\VanChuyen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class VanChuyenController extends Controller
+class XeMayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,12 @@ class VanChuyenController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $vc = DB::select('SELECT vanchuyen.*,khachhang.hovaten FROM vanchuyen INNER JOIN khachhang ON vanchuyen.makh = khachhang.makh');
-        return view('dashboard.category.shipping.ship_infor', ['vanchuyen'=>$vc]);
+    {
+        // $hx = DB::table('hangxe')->get();
+        // $dx = DB::select('SELECT dongxe.*,hangxe.tenhang FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+        $ttxm = DB::table('thongtinxemay')->get();
+
+        return view('dashboard.category.vehicle.vehicle_infor', ['thongtinxemay' => $ttxm ]);
     }
 
     /**
@@ -37,7 +39,8 @@ class VanChuyenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
     }
 
     /**

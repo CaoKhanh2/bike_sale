@@ -52,9 +52,12 @@
                                                 <tr>
                                                     <td>{{ $i->mahx }}</td>
                                                     <td>{{ $i->tenhang }}</td>
-                                                    <td><img src="{{ asset($i->logo) }}"
-                                                            class="object-fit-sm-cover border rounded" alt=""
-                                                            srcset="" width="50" height="50"></td>
+                                                    <td>
+                                                        @foreach (explode(',', $i->logo) as $path)
+                                                            <img src="{{ asset('storage/' . $path) }}" alt="Ảnh"
+                                                                width="50" height="50">
+                                                        @endforeach
+                                                    </td>
                                                     <td>{{ $i->xuatxu }}</td>
                                                     <td>
                                                         @php
@@ -75,8 +78,10 @@
                                                             href="{{ url('/dashboard/category/vehicle/detail_automaker_info') }}">
                                                             <i class="bi bi-pencil-fill"></i> Sửa
                                                         </a>
-                                                        <a type="button" class="btn btn-danger" href="">
+                                                        <a type="button" class="btn btn-danger"
+                                                            href="{{ route('xoahangxe', ['id' => $i->mahx]) }}">
                                                             <i class="bi bi-trash3"></i> Xóa
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -86,48 +91,73 @@
                             </div>
                             <div class="tab-pane fade" id="form-add" role="tabpanel">
                                 <div class="pd-20">
-                                    <form action="" class="form mt-2">
+                                    <form action="{{ route('themhangxe') }}" class="form mt-2" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-md-2 col-form-label">Mã hãng xe</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <input class="form-control" />
+                                                <input class="form-control" name="mahx" id="mahx" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-md-2 col-form-label">Tên hãng xe</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <input class="form-control" />
+                                                <input class="form-control" name="tenhang" id="tenhang" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-md-2 col-form-label">Ảnh logo</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <div class="custom-file ">
-                                                    <input type="file" class="custom-file-input" />
-                                                    <label class="custom-file-label">Chọn ảnh</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="form-control" id="logos" name="logo"
+                                                        required>
+
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-md-2 col-form-label">Xuất xứ</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <input class="form-control" />
+                                                <input class="form-control" name="xs" id="xs" />
                                             </div>
+                                        </div>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                            <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
     </div>
     </div>
+
+    <script>
+        // Kiểm tra dữ liệu trước khi gửi form
+        document.getElementById('form-add').addEventListener('submit', function(event) {
+            var mahxInput = document.getElementById('mahx');
+            var tenhangInput = document.getElementById('tenhang');
+            var xsInput = document.getElementById('xs');
+            var isValid = true;
+
+            !mahxInput.value.trim() ? (mahxInput.classList.add('is-invalid'), isValid = false) : mahxInput.classList
+                .remove('is-invalid');
+            !tenhangInput.value.trim() ? (tenhangInput.classList.add('is-invalid'), isValid = false) : tenhangInput
+                .classList.remove('is-invalid');
+            !xsInput.value.trim() ? (xsInput.classList.add('is-invalid'), isValid = false) : xsInput.classList
+                .remove('is-invalid');
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
 
 @endsection

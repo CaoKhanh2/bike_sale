@@ -26,12 +26,12 @@ class DongXeController extends Controller
         //     ['malx' => 'LX08', 'tenloaixe' => 'Yamaha Exciter', 'mota' => ''],
         //     ['malx' => 'LX09', 'tenloaixe' => 'Suzuki Raider', 'mota' => ''],
         //     ['malx' => 'LX10', 'tenloaixe' => 'Yamaha Exciter', 'mota' => ''],
-           
         // ];
-        
         // LoaiXe::insert($data);
-        $lx = DB::table('dongxe')->get();
-        return view('dashboard.category.vehicle.type_vehicle_infor',['dongxe'=>$lx]);
+
+        $dx = DB::select('SELECT dongxe.*,hangxe.tenhang FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+        $hx = DB::table('hangxe')->get();
+        return view('dashboard.category.vehicle.vehicle_line.vehicle_line_infor',['dongxe'=>$dx, 'hangxe'=>$hx]);
     }
 
     /**
@@ -52,7 +52,15 @@ class DongXeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('dongxe')->insert([
+            'madx' => $request->mdx,
+            'mahx' => $request->hx,
+            'loaixe' => $request->lx,
+            'tendongxe' => $request->tdx,
+            'mota' => $request->mt,
+        ]);
+
+        return redirect('dashboard/category/vehicle/vehicle_line_infor')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -97,6 +105,7 @@ class DongXeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('dongxe')->where('madx', $id)->delete();
+        return redirect('dashboard/category/vehicle/vehicle_line_infor')->with('success', 'Post created successfully!');
     }
 }

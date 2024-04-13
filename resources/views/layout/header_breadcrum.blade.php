@@ -5,7 +5,7 @@
                 <h4>@yield('pg-hd-1')</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
-                <ol class="breadcrumb">
+                <ol class="breadcrumb fs-5">
                     <li class="breadcrumb-item">
                         <a class="link-underline link-underline-opacity-0" href="{{ url('/') }}">Trang chủ</a>
                     </li>
