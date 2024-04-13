@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 09, 2024 lúc 06:01 PM
+-- Thời gian đã tạo: Th4 13, 2024 lúc 05:06 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -49,10 +49,10 @@ INSERT INTO `chucvu` (`macv`, `tencv`, `mota`) VALUES
 
 CREATE TABLE `ctgiohang` (
   `mactgh` varchar(15) NOT NULL,
-  `giohang_id` varchar(10) NOT NULL,
-  `ttxemay_id` varchar(15) DEFAULT NULL,
-  `ttxedapdien_id` varchar(15) DEFAULT NULL,
-  `khuyenmai_id` varchar(5) DEFAULT NULL,
+  `magh` varchar(10) NOT NULL,
+  `maxemay` varchar(15) DEFAULT NULL,
+  `maxedapdien` varchar(15) DEFAULT NULL,
+  `makhuyemai` varchar(5) DEFAULT NULL,
   `soluong` int(11) NOT NULL,
   `dongia` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -65,9 +65,9 @@ CREATE TABLE `ctgiohang` (
 
 CREATE TABLE `ctkhohang` (
   `id` varchar(10) NOT NULL,
-  `khohang_id` varchar(5) NOT NULL,
-  `ttxemay_id` varchar(15) DEFAULT NULL,
-  `ttxedapdien_id` varchar(15) DEFAULT NULL,
+  `makho` varchar(5) NOT NULL,
+  `maxemay` varchar(15) DEFAULT NULL,
+  `maxedapdien` varchar(15) DEFAULT NULL,
   `tinhtrangxe` varchar(25) NOT NULL,
   `gianhapkho` decimal(12,2) DEFAULT NULL,
   `ngaynhapkho` date NOT NULL,
@@ -82,6 +82,8 @@ CREATE TABLE `ctkhohang` (
 
 CREATE TABLE `dongxe` (
   `madx` varchar(10) NOT NULL,
+  `mahx` varchar(5) NOT NULL,
+  `loaixe` varchar(15) NOT NULL,
   `tendongxe` varchar(50) NOT NULL,
   `mota` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -90,17 +92,17 @@ CREATE TABLE `dongxe` (
 -- Đang đổ dữ liệu cho bảng `dongxe`
 --
 
-INSERT INTO `dongxe` (`madx`, `tendongxe`, `mota`) VALUES
-('DX01', 'Honda Vision', ''),
-('DX02', 'Honda Lead', ''),
-('DX03', 'Honda Air Blade', ''),
-('DX04', 'Honda Wade', ''),
-('DX05', 'Honda Winner', ''),
-('DX06', 'Yamaha Grande', ''),
-('DX07', 'Yamaha Janus', ''),
-('DX08', 'Yamaha Exciter', ''),
-('DX09', 'Suzuki Raider', ''),
-('DX10', 'Yamaha Exciter', '');
+INSERT INTO `dongxe` (`madx`, `mahx`, `loaixe`, `tendongxe`, `mota`) VALUES
+('DX01', 'HX01', 'Xe máy', 'Honda Vision', ''),
+('DX02', 'HX01', 'Xe máy', 'Honda Lead', ''),
+('DX03', 'HX01', 'Xe máy', 'Honda Air Blade', ''),
+('DX04', 'HX01', 'Xe máy', 'Honda Wade', ''),
+('DX05', 'HX01', 'Xe máy', 'Honda Winner', ''),
+('DX06', 'HX02', 'Xe máy', 'Yamaha Grande', ''),
+('DX07', 'HX02', 'Xe máy', 'Yamaha Janus', ''),
+('DX08', 'HX02', 'Xe máy', 'Yamaha Exciter', ''),
+('DX09', 'HX03', 'Xe máy', 'Suzuki Raider', ''),
+('DX10', 'HX06', 'Xe đạp điện', 'Dibao Ninja', NULL);
 
 -- --------------------------------------------------------
 
@@ -126,9 +128,9 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `giohang` (
   `magh` varchar(10) NOT NULL,
-  `khachhang_id` varchar(10) NOT NULL,
-  `vanchuyen_id` varchar(10) NOT NULL,
-  `thanhtoan_id` varchar(15) NOT NULL,
+  `makh` varchar(10) NOT NULL,
+  `mavanchuyen` varchar(10) NOT NULL,
+  `mathanhtoan` varchar(15) NOT NULL,
   `ngaytao` datetime NOT NULL,
   `tonggiatien` decimal(12,2) NOT NULL,
   `ghichu` text DEFAULT NULL
@@ -145,7 +147,7 @@ CREATE TABLE `hangxe` (
   `tenhang` varchar(50) NOT NULL,
   `logo` varchar(255) NOT NULL,
   `xuatxu` varchar(20) DEFAULT NULL,
-  `trangthai` bit(2) NOT NULL
+  `trangthai` bit(2) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -153,11 +155,13 @@ CREATE TABLE `hangxe` (
 --
 
 INSERT INTO `hangxe` (`mahx`, `tenhang`, `logo`, `xuatxu`, `trangthai`) VALUES
-('HX01', 'Honda', 'Image\\logo_xe\\Honda_Logo.png', 'Nhật Bản', b'01'),
-('HX02', 'Yamaha', 'Image\\logo_xe\\Yamaha_Logo.png', 'Nhật Bản', b'01'),
-('HX03', 'Suzuki', 'Image\\logo_xe\\Suzuki_Logo.png', 'Nhật Bản', b'01'),
-('HX04', 'Sym', 'Image\\logo_xe\\Sym_Logo.png', 'Đài Loan', b'01'),
-('HX05', 'Honda', 'Image\\logo_xe\\Honda_Logo.png', 'Nhật Bản', b'01');
+('HX01', 'Honda', 'logo/1tn9ItyGxFkqfopG9xgLYpBvJajxhc2T5Z0uKPvA.png', 'Nhật Bản', b'01'),
+('HX02', 'Yamaha', 'logo/41tPs6nxGdpgGmip6lcOKXKPiPmQU6hwVhEXuMZt.png', 'Nhật Bản', b'01'),
+('HX03', 'Suzuki', 'logo/dVfOI7O8B2gIt7Xn6KRCDGLb2bat4C5cN0IXiLMI.png', 'Nhật Bản', b'01'),
+('HX04', 'Sym', 'logo/AhzP3gLYlGsHV9oVrqdWWWVvYwghD6D7BBGvTpvP.png', 'Đài Loan', b'01'),
+('HX05', 'Dibao', 'logo/27GeenWeyTUOM0D5wheneR2kIjweWNRetGiwP9bM.png', 'Đài Loan', b'01'),
+('HX06', 'Asama', 'logo/OqqpDaoiNbyS1CD0IrcFESENN9uLQLIPkSJaVukl.png', 'Đài Loan', b'01'),
+('HX07', 'vidu', 'logo/jzDtZEe1zg1UNjFDYMHbaDDreaCpofZaTRsEj8fr.png', 'Đài Loan', b'01');
 
 -- --------------------------------------------------------
 
@@ -167,10 +171,10 @@ INSERT INTO `hangxe` (`mahx`, `tenhang`, `logo`, `xuatxu`, `trangthai`) VALUES
 
 CREATE TABLE `hoadon` (
   `mahoadon` varchar(25) NOT NULL,
-  `nhanvien_id` varchar(10) NOT NULL,
-  `khachhang_id` varchar(10) NOT NULL,
-  `ttxemay_id` varchar(15) DEFAULT NULL,
-  `ttxedapdien_id` varchar(15) DEFAULT NULL,
+  `manv` varchar(10) NOT NULL,
+  `makh` varchar(10) NOT NULL,
+  `maxemay` varchar(15) DEFAULT NULL,
+  `maxedapdien` varchar(15) DEFAULT NULL,
   `ngaytaohoadon` datetime NOT NULL,
   `dongia` decimal(10,2) NOT NULL,
   `thuegt` decimal(10,2) DEFAULT NULL,
@@ -194,7 +198,7 @@ CREATE TABLE `khachhang` (
   `diachi` varchar(100) DEFAULT NULL,
   `tentk` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
-  `tinhtrang` bit(2) NOT NULL DEFAULT b'0'
+  `tinhtrang` bit(2) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -202,13 +206,9 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`makh`, `hovaten`, `ngaysinh`, `gioitinh`, `sodienthoai`, `email`, `diachi`, `tentk`, `password`, `tinhtrang`) VALUES
-('MKH-0001', 'Cố Trung Kiên', '2002-10-30', 'Nam', '0973951289', 'kien87637@st.vimaru.edu.vn', NULL, NULL, NULL, b'00'),
-('MKH-0024', 'Alison Powlowski', '2011-05-15', 'Other', '08953744246', 'nrunolfsson@example.com', '628 Johnny Mews Apt. 354', NULL, NULL, b'00'),
-('MKH-0136', 'Mr. Gregory Macejkovic', '1980-10-11', 'Other', '05733703618', 'xlarkin@example.org', '96390 Lora Cove Suite 195', NULL, NULL, b'00'),
-('MKH-0256', 'Abigale Gerhold', '2023-06-25', 'Nam', '02373874734', 'rlabadie@example.org', '109 Douglas Villages', NULL, NULL, b'00'),
+('MKH-0001', 'Cố Trung Kiên', '2002-10-30', 'Nam', '0973951289', 'kien87637@st.vimaru.edu.vn', '160 Kamille Land Apt. 534', NULL, NULL, b'01'),
 ('MKH-0851', 'Miss Loren Morar', '1990-08-11', 'Nam', '09798637053', 'morar.keely@example.com', '5512 Sedrick Knolls Suite 471', NULL, NULL, b'01'),
 ('MKH-1017', 'Ms. Aimee Deckow', '2015-08-17', 'Nữ', '04756442184', 'tgoyette@example.net', '13884 Batz Lake Apt. 156', NULL, NULL, b'00'),
-('MKH-1306', 'Aniyah Bode', '2001-12-05', 'Nữ', '04357675778', 'roconnell@example.com', '3766 Ariane Village', NULL, NULL, b'01'),
 ('MKH-2697', 'Bessie Nolan', '1991-05-14', 'Other', '03148225197', 'damore.russel@example.net', '70206 Lon Summit Suite 781', NULL, NULL, b'01'),
 ('MKH-3212', 'Prof. Ayana Reynolds III', '2008-10-29', 'Nam', '02439967588', 'hoeger.gerard@example.com', '96283 O\'Keefe Village Apt. 513', NULL, NULL, b'00'),
 ('MKH-3300', 'Roslyn Herman', '1971-01-23', 'Nữ', '01495490975', 'kristoffer.metz@example.com', '75074 Harber Hills Suite 257', NULL, NULL, b'00'),
@@ -301,7 +301,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `nhanvien` (
   `manv` varchar(10) NOT NULL,
-  `chucvu_id` varchar(5) NOT NULL,
+  `macv` varchar(5) NOT NULL,
   `hovaten` varchar(50) NOT NULL,
   `ngaysinh` date NOT NULL,
   `gioitinh` enum('Nam','Nữ','Other') NOT NULL,
@@ -315,7 +315,7 @@ CREATE TABLE `nhanvien` (
 -- Đang đổ dữ liệu cho bảng `nhanvien`
 --
 
-INSERT INTO `nhanvien` (`manv`, `chucvu_id`, `hovaten`, `ngaysinh`, `gioitinh`, `sodienthoai`, `email`, `diachi`, `ghichu`) VALUES
+INSERT INTO `nhanvien` (`manv`, `macv`, `hovaten`, `ngaysinh`, `gioitinh`, `sodienthoai`, `email`, `diachi`, `ghichu`) VALUES
 ('MNV-280', 'CV-01', 'Cleora Bergstrom I', '1971-02-20', 'Other', '08751728679', 'rbode@example.com', '578 Thiel Turnpike Apt. 365', 'Blanditiis impedit totam rerum eaque.'),
 ('MNV-398', 'CV-01', 'Brook Halvorson MD', '1999-10-29', 'Other', '00149987204', 'watsica.rodolfo@example.org', '9234 Schaden Ways', 'Quo praesentium enim earum consequuntur ut.'),
 ('MNV-473', 'CV-02', 'Prof. Ryder West', '1997-04-15', 'Nữ', '07486853582', 'odickens@example.net', '86284 Ella Park Apt. 515', 'Natus ipsam porro sed sed.'),
@@ -366,10 +366,10 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `phieunhap` (
   `maphieunhap` varchar(20) NOT NULL,
-  `khohang_id` varchar(10) NOT NULL,
-  `ttxemay_id` varchar(15) DEFAULT NULL,
-  `ttxedapdien_id` varchar(15) DEFAULT NULL,
-  `nhanvien_id` varchar(10) NOT NULL,
+  `makho` varchar(10) NOT NULL,
+  `maxemay` varchar(15) DEFAULT NULL,
+  `maxedapdien` varchar(15) DEFAULT NULL,
+  `manv` varchar(10) NOT NULL,
   `ngaynhap` datetime NOT NULL,
   `dvt` varchar(10) DEFAULT NULL,
   `soluong` int(11) NOT NULL,
@@ -384,8 +384,8 @@ CREATE TABLE `phieunhap` (
 
 CREATE TABLE `phieuxuat` (
   `maphieuxuat` varchar(20) NOT NULL,
-  `khohang_id` varchar(10) NOT NULL,
-  `nhanvien_id` varchar(10) NOT NULL,
+  `makho` varchar(10) NOT NULL,
+  `manv` varchar(10) NOT NULL,
   `ngayxuat` date NOT NULL,
   `dvt` varchar(10) DEFAULT NULL,
   `soluong` int(11) NOT NULL,
@@ -400,10 +400,10 @@ CREATE TABLE `phieuxuat` (
 
 CREATE TABLE `ruiro` (
   `id` varchar(10) NOT NULL,
-  `nhanvien_id` varchar(10) NOT NULL,
-  `ttxemay_id` varchar(15) DEFAULT NULL,
-  `ttxedapdien_id` varchar(15) DEFAULT NULL,
-  `khachhang_id` varchar(20) NOT NULL,
+  `manv` varchar(10) NOT NULL,
+  `maxemay` varchar(15) DEFAULT NULL,
+  `maxedapdien` varchar(15) DEFAULT NULL,
+  `makh` varchar(20) NOT NULL,
   `ngaynhan` datetime NOT NULL,
   `ngaygiaiquyet` datetime DEFAULT NULL,
   `thongtinruiro` varchar(100) DEFAULT NULL,
@@ -435,14 +435,14 @@ CREATE TABLE `thanhtoan` (
 
 CREATE TABLE `thongtinxedapdien` (
   `maxedapdien` varchar(15) NOT NULL,
-  `dongxe_id` varchar(10) DEFAULT NULL,
-  `hangxe_id` varchar(5) DEFAULT NULL,
+  `madx` varchar(10) DEFAULT NULL,
+  `mahx` varchar(5) DEFAULT NULL,
   `tenxe` varchar(15) DEFAULT NULL,
   `trongluong` double(4,2) DEFAULT NULL,
-  `acquy` varchar(10) NOT NULL,
+  `acquy` varchar(25) NOT NULL,
   `dongcodien` varchar(10) NOT NULL,
   `sacdien` varchar(15) NOT NULL,
-  `phamvisudung` double(4,2) DEFAULT NULL,
+  `phamvisudung` varchar(35) DEFAULT NULL,
   `hinhanh` varchar(255) DEFAULT NULL,
   `giaban` decimal(10,2) NOT NULL,
   `tinhtrang` bit(2) NOT NULL DEFAULT b'1'
@@ -452,17 +452,8 @@ CREATE TABLE `thongtinxedapdien` (
 -- Đang đổ dữ liệu cho bảng `thongtinxedapdien`
 --
 
-INSERT INTO `thongtinxedapdien` (`maxedapdien`, `dongxe_id`, `hangxe_id`, `tenxe`, `trongluong`, `acquy`, `dongcodien`, `sacdien`, `phamvisudung`, `hinhanh`, `giaban`, `tinhtrang`) VALUES
-('XD-0001', NULL, NULL, NULL, 72.80, '60v - 20Ah', 'Điện 3 pha', '8-10 tiếng', 99.00, NULL, 14852330.55, b'01'),
-('XD-00010', NULL, NULL, NULL, 67.60, '48V – 20Ah', 'Điện 3 pha', '8-10 tiếng', 53.00, NULL, 19338806.69, b'01'),
-('XD-0002', NULL, NULL, NULL, 68.40, '60v - 20Ah', 'Điện 3 pha', '8-10 tiếng', 55.00, NULL, 12405003.57, b'01'),
-('XD-0003', NULL, NULL, NULL, 55.40, '48v - 20a', 'Điện 3 pha', '8-10 tiếng', 68.00, NULL, 16474789.28, b'01'),
-('XD-0004', NULL, NULL, NULL, 87.70, '48V – 20Ah', 'Điện 3 pha', '8-10 tiếng', 67.00, NULL, 11528590.55, b'01'),
-('XD-0005', NULL, NULL, NULL, 58.00, '48V – 20Ah', 'Điện 3 pha', '8-10 tiếng', 66.00, NULL, 11052226.25, b'01'),
-('XD-0006', NULL, NULL, NULL, 63.00, '48v - 20a', 'Điện 3 pha', '8-10 tiếng', 91.00, NULL, 14867882.52, b'01'),
-('XD-0007', NULL, NULL, NULL, 86.30, '60v - 20Ah', 'Điện 3 pha', '8-10 tiếng', 97.00, NULL, 18778238.34, b'01'),
-('XD-0008', NULL, NULL, NULL, 56.20, '60v - 20Ah', 'Điện 3 pha', '8-10 tiếng', 50.00, NULL, 14639560.54, b'01'),
-('XD-0009', NULL, NULL, NULL, 85.70, '48V – 20Ah', 'Điện 3 pha', '8-10 tiếng', 82.00, NULL, 13956102.72, b'01');
+INSERT INTO `thongtinxedapdien` (`maxedapdien`, `madx`, `mahx`, `tenxe`, `trongluong`, `acquy`, `dongcodien`, `sacdien`, `phamvisudung`, `hinhanh`, `giaban`, `tinhtrang`) VALUES
+('XE-0003', 'DX10', 'HX05', 'Dibao Ninja', 25.00, '4 acquy 12A', '500w', '8-10h', '45 - 50km/ 1 lần sạc đầy pin', 'images/hQDUy8L7gVRokOOUaiYhICA3X6NASDF9CjaPEUQm.jpg,images/SFA2OyizYzTRUporhQ2s9oUrpMWS6AN7G0ibmXNC.jpg', 8800000.00, b'01');
 
 -- --------------------------------------------------------
 
@@ -472,16 +463,24 @@ INSERT INTO `thongtinxedapdien` (`maxedapdien`, `dongxe_id`, `hangxe_id`, `tenxe
 
 CREATE TABLE `thongtinxemay` (
   `maxemay` varchar(15) NOT NULL,
-  `dongxe_id` varchar(10) DEFAULT NULL,
-  `hangxe_id` varchar(5) DEFAULT NULL,
-  `tenxe` varchar(15) DEFAULT NULL,
-  `dungtichxe` varchar(5) DEFAULT NULL,
+  `madx` varchar(10) DEFAULT NULL,
+  `mahx` varchar(5) DEFAULT NULL,
+  `tenxe` varchar(35) DEFAULT NULL,
+  `dungtichxe` varchar(15) DEFAULT NULL,
   `sokmdadi` double(6,2) DEFAULT NULL,
   `namdk` int(11) DEFAULT NULL,
   `hinhanh` varchar(255) NOT NULL,
   `giaban` decimal(10,2) NOT NULL,
   `tinhtrang` bit(2) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thongtinxemay`
+--
+
+INSERT INTO `thongtinxemay` (`maxemay`, `madx`, `mahx`, `tenxe`, `dungtichxe`, `sokmdadi`, `namdk`, `hinhanh`, `giaban`, `tinhtrang`) VALUES
+('XE-0001', 'DX01', 'HX01', 'Honda Vision 110cc', '109,5 cm3', 200.00, 2023, 'images/YhUKYdIJ2BS6aWorlYF6vcU0Dh8e9Cab7kmx6imr.jpg,images/TDhZlorRXWfFPBT0hMAtip7adNPfx3S74YinDcr3.jpg,images/9TQXhzX3xGStguwDYzFnRoMF7o0zqOflMpDhIYkm.jpg,images/zKQc1YhkW3w2qE5CLKpl8yPGS7JK8QbfmGQHo3lQ.jpg', 21000000.00, b'01'),
+('XE-0002', 'DX05', 'HX01', 'Honda Winner X 2023', '149,1 cm3', 210.00, 2023, 'images/Fk2OIboxOb0CXn7Mb0tqFeaEmWIei6LvE6XeNWzX.webp,images/AWCgNvitDVWeSvHKzvqJrOhsVLpneMT4OSk1lIQA.webp,images/wbV3biGXwRCbpmRvuOgE1uFpsQjYEiVcmU5m59Fe.webp,images/iRvqqYIShsC5JPENqnRAGBvgvwYuoza1PniWKCav.webp', 30000000.00, b'01');
 
 -- --------------------------------------------------------
 
@@ -491,7 +490,7 @@ CREATE TABLE `thongtinxemay` (
 
 CREATE TABLE `users` (
   `matk` varchar(12) NOT NULL,
-  `nhanvien_id` varchar(10) NOT NULL,
+  `manv` varchar(10) NOT NULL,
   `tentk` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `email` varchar(35) NOT NULL,
@@ -510,7 +509,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `vanchuyen` (
   `mavanchuyen` varchar(10) NOT NULL,
-  `khachhang_id` varchar(10) NOT NULL,
+  `makh` varchar(10) NOT NULL,
   `trangthaivanchuyen` enum('Đã giao','Đang giao','Chưa được giao') NOT NULL,
   `ngaygui` date NOT NULL,
   `ngaynhan` date NOT NULL,
@@ -522,12 +521,10 @@ CREATE TABLE `vanchuyen` (
 -- Đang đổ dữ liệu cho bảng `vanchuyen`
 --
 
-INSERT INTO `vanchuyen` (`mavanchuyen`, `khachhang_id`, `trangthaivanchuyen`, `ngaygui`, `ngaynhan`, `diachigiaohang`, `ghichu`) VALUES
-('DVC-00766', 'MKH-0136', 'Đã giao', '2024-03-26', '2024-03-18', '752 Tad View Suite 051\nWest Cierra, WY 88730-0171', 'Voluptatum vel voluptatem tenetur ipsam porro debitis quia ipsum.'),
+INSERT INTO `vanchuyen` (`mavanchuyen`, `makh`, `trangthaivanchuyen`, `ngaygui`, `ngaynhan`, `diachigiaohang`, `ghichu`) VALUES
 ('DVC-03679', 'MKH-4558', 'Đã giao', '2024-03-11', '2024-03-22', '7782 Hayes Circles\nErlingtown, WA 00436', 'Nostrum in et sed cumque odio.'),
 ('DVC-06799', 'MKH-3300', 'Đã giao', '2024-03-30', '2024-03-22', '52200 Demarco Cliffs\nBrycenberg, NM 37692', 'Debitis amet eveniet sed deserunt ullam rerum.'),
 ('DVC-07177', 'MKH-4793', 'Chưa được giao', '2024-03-25', '2024-03-12', '33299 Billy Club\nNew Kody, NC 70318-5228', 'Quam recusandae necessitatibus doloremque quia.'),
-('DVC-08127', 'MKH-0256', 'Chưa được giao', '2024-03-09', '2024-04-17', '513 Botsford Oval\nHagenesmouth, MN 14152', 'Voluptatem aut eius rerum officiis officiis eos exercitationem.'),
 ('DVC-09643', 'MKH-1017', 'Chưa được giao', '2024-03-27', '2024-04-01', '8463 Teagan Motorway Apt. 894\nNorth Joanne, FL 68177', 'Vero sit est dolores quas natus.'),
 ('DVC-10090', 'MKH-2697', 'Đang giao', '2024-04-03', '2024-04-10', '3696 Brown Brook\nRowanborough, OK 44550-8705', 'Dolorem sequi cumque qui quidem minima quo similique et.'),
 ('DVC-12384', 'MKH-1017', 'Đang giao', '2024-03-16', '2024-04-13', '2709 Leland Fields\nWest Kimberly, AZ 26661-4787', 'Voluptate dicta in architecto amet et dolorum.'),
@@ -538,11 +535,9 @@ INSERT INTO `vanchuyen` (`mavanchuyen`, `khachhang_id`, `trangthaivanchuyen`, `n
 ('DVC-28891', 'MKH-9902', 'Chưa được giao', '2024-04-01', '2024-03-26', '98789 Margot Parkways Apt. 127\nGibsonshire, MA 25690', 'Nemo dolor qui explicabo sapiente omnis.'),
 ('DVC-31891', 'MKH-9958', 'Đang giao', '2024-03-24', '2024-04-18', '4170 Johnston Port Apt. 437\nWisozkfurt, TX 40989', 'Voluptatem similique illum a accusantium.'),
 ('DVC-34016', 'MKH-9902', 'Đang giao', '2024-04-06', '2024-04-08', '701 Earnestine Brook Apt. 063\nNorth Isai, CA 91846', 'Minus saepe aliquam corporis et.'),
-('DVC-36729', 'MKH-0136', 'Đang giao', '2024-04-04', '2024-03-20', '91546 Berge Rapid Apt. 182\nPort Peggie, MN 80808-9922', 'Vero quos dignissimos atque et.'),
 ('DVC-37210', 'MKH-9958', 'Đang giao', '2024-03-19', '2024-03-26', '102 Harris Lodge Suite 959\nPort Annabelle, VA 27239', 'Quis maiores consectetur et in.'),
 ('DVC-42418', 'MKH-0851', 'Đã giao', '2024-03-25', '2024-03-15', '3591 Romaguera Crescent\nSilasberg, WA 46849-3983', 'Ullam vel vel maxime rem.'),
 ('DVC-42578', 'MKH-1017', 'Chưa được giao', '2024-04-02', '2024-03-28', '3703 Bayer Hollow Apt. 166\nLindfort, MO 53704', 'Ut quia sequi eius sed et consequatur ducimus.'),
-('DVC-56682', 'MKH-0256', 'Chưa được giao', '2024-04-01', '2024-03-21', '13470 Marks Corner\nAlvaside, ND 45570', 'Autem similique omnis aut id ab est qui.'),
 ('DVC-64850', 'MKH-8547', 'Chưa được giao', '2024-03-20', '2024-04-02', '703 Wuckert River\nNew Elinore, RI 58385-3996', 'Dolores corrupti qui quibusdam aliquam facere.'),
 ('DVC-68007', 'MKH-1017', 'Đã giao', '2024-03-16', '2024-03-25', '71582 Evalyn Villages\nSouth Kattieberg, VT 79928', 'Nulla impedit qui nostrum tenetur voluptatem.'),
 ('DVC-75523', 'MKH-3212', 'Đang giao', '2024-03-09', '2024-03-22', '33753 Blanda Fields Apt. 958\nWest Raquelshire, WI 58894', 'Explicabo aut velit et sunt in fuga.'),
@@ -582,25 +577,26 @@ ALTER TABLE `chucvu`
 --
 ALTER TABLE `ctgiohang`
   ADD PRIMARY KEY (`mactgh`),
-  ADD KEY `ctgiohang_giohang_id_foreign` (`giohang_id`),
-  ADD KEY `ctgiohang_ttxemay_id_foreign` (`ttxemay_id`),
-  ADD KEY `ctgiohang_ttxedapdien_id_foreign` (`ttxedapdien_id`),
-  ADD KEY `ctgiohang_khuyenmai_id_foreign` (`khuyenmai_id`);
+  ADD KEY `ctgiohang_giohang_id_foreign` (`magh`),
+  ADD KEY `ctgiohang_ttxemay_id_foreign` (`maxemay`),
+  ADD KEY `ctgiohang_ttxedapdien_id_foreign` (`maxedapdien`),
+  ADD KEY `ctgiohang_khuyenmai_id_foreign` (`makhuyemai`);
 
 --
 -- Chỉ mục cho bảng `ctkhohang`
 --
 ALTER TABLE `ctkhohang`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `ctkhohang_khohang_id_foreign` (`khohang_id`),
-  ADD KEY `ctkhohang_ttxemay_id_foreign` (`ttxemay_id`),
-  ADD KEY `ctkhohang_ttxedapdien_id_foreign` (`ttxedapdien_id`);
+  ADD KEY `ctkhohang_khohang_id_foreign` (`makho`),
+  ADD KEY `ctkhohang_ttxemay_id_foreign` (`maxemay`),
+  ADD KEY `ctkhohang_ttxedapdien_id_foreign` (`maxedapdien`);
 
 --
 -- Chỉ mục cho bảng `dongxe`
 --
 ALTER TABLE `dongxe`
-  ADD PRIMARY KEY (`madx`);
+  ADD PRIMARY KEY (`madx`),
+  ADD KEY `dongxe_ibfk_1` (`mahx`);
 
 --
 -- Chỉ mục cho bảng `failed_jobs`
@@ -614,9 +610,9 @@ ALTER TABLE `failed_jobs`
 --
 ALTER TABLE `giohang`
   ADD PRIMARY KEY (`magh`),
-  ADD KEY `giohang_khachhang_id_foreign` (`khachhang_id`),
-  ADD KEY `giohang_vanchuyen_id_foreign` (`vanchuyen_id`),
-  ADD KEY `giohang_thanhtoan_id_foreign` (`thanhtoan_id`);
+  ADD KEY `giohang_khachhang_id_foreign` (`makh`),
+  ADD KEY `giohang_vanchuyen_id_foreign` (`mavanchuyen`),
+  ADD KEY `giohang_thanhtoan_id_foreign` (`mathanhtoan`);
 
 --
 -- Chỉ mục cho bảng `hangxe`
@@ -629,10 +625,10 @@ ALTER TABLE `hangxe`
 --
 ALTER TABLE `hoadon`
   ADD PRIMARY KEY (`mahoadon`),
-  ADD KEY `hoadon_nhanvien_id_foreign` (`nhanvien_id`),
-  ADD KEY `hoadon_khachhang_id_foreign` (`khachhang_id`),
-  ADD KEY `hoadon_ttxemay_id_foreign` (`ttxemay_id`),
-  ADD KEY `hoadon_ttxedapdien_id_foreign` (`ttxedapdien_id`);
+  ADD KEY `hoadon_nhanvien_id_foreign` (`manv`),
+  ADD KEY `hoadon_khachhang_id_foreign` (`makh`),
+  ADD KEY `hoadon_ttxemay_id_foreign` (`maxemay`),
+  ADD KEY `hoadon_ttxedapdien_id_foreign` (`maxedapdien`);
 
 --
 -- Chỉ mục cho bảng `khachhang`
@@ -663,7 +659,7 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`manv`),
-  ADD KEY `nhanvien_chucvu_id_foreign` (`chucvu_id`);
+  ADD KEY `macv` (`macv`);
 
 --
 -- Chỉ mục cho bảng `password_resets`
@@ -684,28 +680,28 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `phieunhap`
   ADD PRIMARY KEY (`maphieunhap`),
-  ADD KEY `phieunhap_khohang_id_foreign` (`khohang_id`),
-  ADD KEY `phieunhap_ttxemay_id_foreign` (`ttxemay_id`),
-  ADD KEY `phieunhap_ttxedapdien_id_foreign` (`ttxedapdien_id`),
-  ADD KEY `phieunhap_nhanvien_id_foreign` (`nhanvien_id`);
+  ADD KEY `phieunhap_ttxemay_id_foreign` (`maxemay`),
+  ADD KEY `phieunhap_ttxedapdien_id_foreign` (`maxedapdien`),
+  ADD KEY `phieunhap_nhanvien_id_foreign` (`manv`),
+  ADD KEY `makho` (`makho`);
 
 --
 -- Chỉ mục cho bảng `phieuxuat`
 --
 ALTER TABLE `phieuxuat`
   ADD PRIMARY KEY (`maphieuxuat`),
-  ADD KEY `phieuxuat_khohang_id_foreign` (`khohang_id`),
-  ADD KEY `phieuxuat_nhanvien_id_foreign` (`nhanvien_id`);
+  ADD KEY `phieuxuat_khohang_id_foreign` (`makho`),
+  ADD KEY `phieuxuat_nhanvien_id_foreign` (`manv`);
 
 --
 -- Chỉ mục cho bảng `ruiro`
 --
 ALTER TABLE `ruiro`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `ruiro_nhanvien_id_foreign` (`nhanvien_id`),
-  ADD KEY `ruiro_khachhang_id_foreign` (`khachhang_id`),
-  ADD KEY `ruiro_ttxemay_id_foreign` (`ttxemay_id`),
-  ADD KEY `ruiro_ttxedapdien_id_foreign` (`ttxedapdien_id`);
+  ADD KEY `ruiro_nhanvien_id_foreign` (`manv`),
+  ADD KEY `ruiro_khachhang_id_foreign` (`makh`),
+  ADD KEY `ruiro_ttxemay_id_foreign` (`maxemay`),
+  ADD KEY `ruiro_ttxedapdien_id_foreign` (`maxedapdien`);
 
 --
 -- Chỉ mục cho bảng `thanhtoan`
@@ -718,30 +714,30 @@ ALTER TABLE `thanhtoan`
 --
 ALTER TABLE `thongtinxedapdien`
   ADD PRIMARY KEY (`maxedapdien`),
-  ADD KEY `thongtinxedapdien_hangxe_id_foreign` (`hangxe_id`),
-  ADD KEY `loaixe_id` (`dongxe_id`);
+  ADD KEY `thongtinxedapdien_hangxe_id_foreign` (`mahx`),
+  ADD KEY `loaixe_id` (`madx`);
 
 --
 -- Chỉ mục cho bảng `thongtinxemay`
 --
 ALTER TABLE `thongtinxemay`
   ADD PRIMARY KEY (`maxemay`),
-  ADD KEY `thongtinxemay_hangxe_id_foreign` (`hangxe_id`),
-  ADD KEY `loaixe_id` (`dongxe_id`);
+  ADD KEY `thongtinxemay_hangxe_id_foreign` (`mahx`),
+  ADD KEY `loaixe_id` (`madx`);
 
 --
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`matk`),
-  ADD KEY `users_nhanvien_id_foreign` (`nhanvien_id`);
+  ADD KEY `users_nhanvien_id_foreign` (`manv`);
 
 --
 -- Chỉ mục cho bảng `vanchuyen`
 --
 ALTER TABLE `vanchuyen`
   ADD PRIMARY KEY (`mavanchuyen`),
-  ADD KEY `vanchuyen_khachhang_id_foreign` (`khachhang_id`);
+  ADD KEY `vanchuyen_khachhang_id_foreign` (`makh`);
 
 --
 -- Chỉ mục cho bảng `xedangkyban`
@@ -782,92 +778,99 @@ ALTER TABLE `personal_access_tokens`
 -- Các ràng buộc cho bảng `ctgiohang`
 --
 ALTER TABLE `ctgiohang`
-  ADD CONSTRAINT `ctgiohang_giohang_id_foreign` FOREIGN KEY (`giohang_id`) REFERENCES `giohang` (`magh`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ctgiohang_khuyenmai_id_foreign` FOREIGN KEY (`khuyenmai_id`) REFERENCES `khuyenmai` (`makhuyenmai`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ctgiohang_ttxedapdien_id_foreign` FOREIGN KEY (`ttxedapdien_id`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ctgiohang_ttxemay_id_foreign` FOREIGN KEY (`ttxemay_id`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
+  ADD CONSTRAINT `ctgiohang_giohang_id_foreign` FOREIGN KEY (`magh`) REFERENCES `giohang` (`magh`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ctgiohang_khuyenmai_id_foreign` FOREIGN KEY (`makhuyemai`) REFERENCES `khuyenmai` (`makhuyenmai`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ctgiohang_ttxedapdien_id_foreign` FOREIGN KEY (`maxedapdien`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ctgiohang_ttxemay_id_foreign` FOREIGN KEY (`maxemay`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `ctkhohang`
 --
 ALTER TABLE `ctkhohang`
-  ADD CONSTRAINT `ctkhohang_khohang_id_foreign` FOREIGN KEY (`khohang_id`) REFERENCES `khohang` (`makho`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ctkhohang_ttxedapdien_id_foreign` FOREIGN KEY (`ttxedapdien_id`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ctkhohang_ttxemay_id_foreign` FOREIGN KEY (`ttxemay_id`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
+  ADD CONSTRAINT `ctkhohang_khohang_id_foreign` FOREIGN KEY (`makho`) REFERENCES `khohang` (`makho`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ctkhohang_ttxedapdien_id_foreign` FOREIGN KEY (`maxedapdien`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ctkhohang_ttxemay_id_foreign` FOREIGN KEY (`maxemay`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `dongxe`
+--
+ALTER TABLE `dongxe`
+  ADD CONSTRAINT `dongxe_ibfk_1` FOREIGN KEY (`mahx`) REFERENCES `hangxe` (`mahx`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  ADD CONSTRAINT `giohang_khachhang_id_foreign` FOREIGN KEY (`khachhang_id`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE,
-  ADD CONSTRAINT `giohang_thanhtoan_id_foreign` FOREIGN KEY (`thanhtoan_id`) REFERENCES `thanhtoan` (`mathanhtoan`) ON DELETE CASCADE,
-  ADD CONSTRAINT `giohang_vanchuyen_id_foreign` FOREIGN KEY (`vanchuyen_id`) REFERENCES `vanchuyen` (`mavanchuyen`) ON DELETE CASCADE;
+  ADD CONSTRAINT `giohang_khachhang_id_foreign` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE,
+  ADD CONSTRAINT `giohang_thanhtoan_id_foreign` FOREIGN KEY (`mathanhtoan`) REFERENCES `thanhtoan` (`mathanhtoan`) ON DELETE CASCADE,
+  ADD CONSTRAINT `giohang_vanchuyen_id_foreign` FOREIGN KEY (`mavanchuyen`) REFERENCES `vanchuyen` (`mavanchuyen`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
-  ADD CONSTRAINT `hoadon_khachhang_id_foreign` FOREIGN KEY (`khachhang_id`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE,
-  ADD CONSTRAINT `hoadon_nhanvien_id_foreign` FOREIGN KEY (`nhanvien_id`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE,
-  ADD CONSTRAINT `hoadon_ttxedapdien_id_foreign` FOREIGN KEY (`ttxedapdien_id`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
-  ADD CONSTRAINT `hoadon_ttxemay_id_foreign` FOREIGN KEY (`ttxemay_id`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
+  ADD CONSTRAINT `hoadon_khachhang_id_foreign` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE,
+  ADD CONSTRAINT `hoadon_nhanvien_id_foreign` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE,
+  ADD CONSTRAINT `hoadon_ttxedapdien_id_foreign` FOREIGN KEY (`maxedapdien`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
+  ADD CONSTRAINT `hoadon_ttxemay_id_foreign` FOREIGN KEY (`maxemay`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
-  ADD CONSTRAINT `nhanvien_chucvu_id_foreign` FOREIGN KEY (`chucvu_id`) REFERENCES `chucvu` (`macv`) ON DELETE CASCADE;
+  ADD CONSTRAINT `nhanvien_ibfk_1` FOREIGN KEY (`macv`) REFERENCES `chucvu` (`macv`);
 
 --
 -- Các ràng buộc cho bảng `phieunhap`
 --
 ALTER TABLE `phieunhap`
-  ADD CONSTRAINT `phieunhap_khohang_id_foreign` FOREIGN KEY (`khohang_id`) REFERENCES `khohang` (`makho`) ON DELETE CASCADE,
-  ADD CONSTRAINT `phieunhap_nhanvien_id_foreign` FOREIGN KEY (`nhanvien_id`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE,
-  ADD CONSTRAINT `phieunhap_ttxedapdien_id_foreign` FOREIGN KEY (`ttxedapdien_id`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
-  ADD CONSTRAINT `phieunhap_ttxemay_id_foreign` FOREIGN KEY (`ttxemay_id`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
+  ADD CONSTRAINT `phieunhap_ibfk_1` FOREIGN KEY (`makho`) REFERENCES `khohang` (`makho`),
+  ADD CONSTRAINT `phieunhap_khohang_id_foreign` FOREIGN KEY (`makho`) REFERENCES `khohang` (`makho`) ON DELETE CASCADE,
+  ADD CONSTRAINT `phieunhap_nhanvien_id_foreign` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE,
+  ADD CONSTRAINT `phieunhap_ttxedapdien_id_foreign` FOREIGN KEY (`maxedapdien`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
+  ADD CONSTRAINT `phieunhap_ttxemay_id_foreign` FOREIGN KEY (`maxemay`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `phieuxuat`
 --
 ALTER TABLE `phieuxuat`
-  ADD CONSTRAINT `phieuxuat_khohang_id_foreign` FOREIGN KEY (`khohang_id`) REFERENCES `khohang` (`makho`) ON DELETE CASCADE,
-  ADD CONSTRAINT `phieuxuat_nhanvien_id_foreign` FOREIGN KEY (`nhanvien_id`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE;
+  ADD CONSTRAINT `phieuxuat_khohang_id_foreign` FOREIGN KEY (`makho`) REFERENCES `khohang` (`makho`) ON DELETE CASCADE,
+  ADD CONSTRAINT `phieuxuat_nhanvien_id_foreign` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `ruiro`
 --
 ALTER TABLE `ruiro`
-  ADD CONSTRAINT `ruiro_khachhang_id_foreign` FOREIGN KEY (`khachhang_id`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ruiro_nhanvien_id_foreign` FOREIGN KEY (`nhanvien_id`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ruiro_ttxedapdien_id_foreign` FOREIGN KEY (`ttxedapdien_id`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ruiro_ttxemay_id_foreign` FOREIGN KEY (`ttxemay_id`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
+  ADD CONSTRAINT `ruiro_khachhang_id_foreign` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ruiro_nhanvien_id_foreign` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ruiro_ttxedapdien_id_foreign` FOREIGN KEY (`maxedapdien`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
+  ADD CONSTRAINT `ruiro_ttxemay_id_foreign` FOREIGN KEY (`maxemay`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `thongtinxedapdien`
 --
 ALTER TABLE `thongtinxedapdien`
-  ADD CONSTRAINT `thongtinxedapdien_hangxe_id_foreign` FOREIGN KEY (`hangxe_id`) REFERENCES `hangxe` (`mahx`) ON DELETE CASCADE,
-  ADD CONSTRAINT `thongtinxedapdien_ibfk_1` FOREIGN KEY (`dongxe_id`) REFERENCES `dongxe` (`madx`);
+  ADD CONSTRAINT `thongtinxedapdien_hangxe_id_foreign` FOREIGN KEY (`mahx`) REFERENCES `hangxe` (`mahx`) ON DELETE CASCADE,
+  ADD CONSTRAINT `thongtinxedapdien_ibfk_1` FOREIGN KEY (`madx`) REFERENCES `dongxe` (`madx`);
 
 --
 -- Các ràng buộc cho bảng `thongtinxemay`
 --
 ALTER TABLE `thongtinxemay`
-  ADD CONSTRAINT `thongtinxemay_hangxe_id_foreign` FOREIGN KEY (`hangxe_id`) REFERENCES `hangxe` (`mahx`) ON DELETE CASCADE,
-  ADD CONSTRAINT `thongtinxemay_ibfk_1` FOREIGN KEY (`dongxe_id`) REFERENCES `dongxe` (`madx`);
+  ADD CONSTRAINT `thongtinxemay_hangxe_id_foreign` FOREIGN KEY (`mahx`) REFERENCES `hangxe` (`mahx`) ON DELETE CASCADE,
+  ADD CONSTRAINT `thongtinxemay_ibfk_1` FOREIGN KEY (`madx`) REFERENCES `dongxe` (`madx`);
 
 --
 -- Các ràng buộc cho bảng `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_nhanvien_id_foreign` FOREIGN KEY (`nhanvien_id`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE;
+  ADD CONSTRAINT `users_nhanvien_id_foreign` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`manv`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `vanchuyen`
 --
 ALTER TABLE `vanchuyen`
-  ADD CONSTRAINT `vanchuyen_khachhang_id_foreign` FOREIGN KEY (`khachhang_id`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE;
+  ADD CONSTRAINT `vanchuyen_khachhang_id_foreign` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `xedangkyban`
