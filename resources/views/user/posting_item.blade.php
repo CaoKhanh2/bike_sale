@@ -10,8 +10,11 @@
                         <input type="file" name="file" />
                     </div>
                 </div>
+                <div>
+                    <a href="#"><i class="bi bi-exclamation-circle-fill"></i> Chính sách của chúng tôi</a>
+                </div>
             </div>
-            <div class="col-6 mt-3">
+            <div class="col-7 mt-3">
                 <div class="row">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">
@@ -57,14 +60,17 @@
                     </div>
                     <div class="mb-4">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">Cá nhân</label>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              Cá nhân
+                            </label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2">Bán chuyên</label>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              Bán chuyên
+                            </label>
                           </div>
-                        
                     </div>
                     <div class="mb-4">
                         <input type="text" name="Địa chỉ" id="Hangxe" class="form-control form-control-lg border border-3 border-primary"
