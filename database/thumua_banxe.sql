@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 13, 2024 lúc 05:06 PM
+-- Thời gian đã tạo: Th4 14, 2024 lúc 04:48 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -102,7 +102,9 @@ INSERT INTO `dongxe` (`madx`, `mahx`, `loaixe`, `tendongxe`, `mota`) VALUES
 ('DX07', 'HX02', 'Xe máy', 'Yamaha Janus', ''),
 ('DX08', 'HX02', 'Xe máy', 'Yamaha Exciter', ''),
 ('DX09', 'HX03', 'Xe máy', 'Suzuki Raider', ''),
-('DX10', 'HX06', 'Xe đạp điện', 'Dibao Ninja', NULL);
+('DX10', 'HX06', 'Xe đạp điện', 'Dibao Ninja', NULL),
+('DX11', 'HX06', 'Xe đạp điện', 'Asama bk', NULL),
+('DX12', 'HX05', 'Xe đạp điện', 'DIBAO CREER E', NULL);
 
 -- --------------------------------------------------------
 
@@ -453,7 +455,9 @@ CREATE TABLE `thongtinxedapdien` (
 --
 
 INSERT INTO `thongtinxedapdien` (`maxedapdien`, `madx`, `mahx`, `tenxe`, `trongluong`, `acquy`, `dongcodien`, `sacdien`, `phamvisudung`, `hinhanh`, `giaban`, `tinhtrang`) VALUES
-('XE-0003', 'DX10', 'HX05', 'Dibao Ninja', 25.00, '4 acquy 12A', '500w', '8-10h', '45 - 50km/ 1 lần sạc đầy pin', 'images/hQDUy8L7gVRokOOUaiYhICA3X6NASDF9CjaPEUQm.jpg,images/SFA2OyizYzTRUporhQ2s9oUrpMWS6AN7G0ibmXNC.jpg', 8800000.00, b'01');
+('XE-0003', 'DX10', 'HX05', 'Dibao Ninja', 25.00, '4 acquy 12A', '500w', '8-10h', '45 - 50km/ 1 lần sạc đầy pin', 'images/hQDUy8L7gVRokOOUaiYhICA3X6NASDF9CjaPEUQm.jpg,images/SFA2OyizYzTRUporhQ2s9oUrpMWS6AN7G0ibmXNC.jpg', 8800000.00, b'01'),
+('XE-0004', 'DX11', 'HX06', 'Asama A48', 20.00, '12V-12A', '350W', '6-8h', '40-50km/ lần sạc đầy pin', 'images/oCn7jK9N1BJf5bB2zOp9yV0WAgeur9QNw5qn9vtv.jpg,images/KuF8UVU4VB2PlE39TjXZn9I32bQKxv6rn9g3D5ec.jpg', 5000000.00, b'01'),
+('XE-0005', 'DX12', 'HX05', 'Dibao Creer E', 93.00, '60V(5x12V)23Ah', '1.400W', '10- 13h', '60-90km/lần sạc', 'images/mfxP6eBd7KLb6y9yA7Tux4bXoeuclwahdBkJ2rD1.jpg,images/lf5haxca3audcwGrij7LyHoMFdDLS3N24BKeoiOZ.jpg', 20690000.00, b'01');
 
 -- --------------------------------------------------------
 
@@ -479,8 +483,15 @@ CREATE TABLE `thongtinxemay` (
 --
 
 INSERT INTO `thongtinxemay` (`maxemay`, `madx`, `mahx`, `tenxe`, `dungtichxe`, `sokmdadi`, `namdk`, `hinhanh`, `giaban`, `tinhtrang`) VALUES
+('F-001', 'DX03', 'HX01', 'Air Blade 160', '156,9 cc', 200.00, 2022, 'images/ZY8Si7yDKrWwJ8H16Qi22eyZMscum7QPU90X1T1w.jpg,images/vO0n1YLbK9mbzlxuUTzg1shUEQavj5glP2zmgu44.jpg', 52000000.00, b'01'),
+('F-002', 'DX04', 'HX01', 'Wave Alpha 110', '109,2 cm3', 50.00, 2023, 'images/U3qTkbYh0CErpwXZuYk3nCH1mKuR0tlunJxDaaMT.jpg,images/mVsoJGQQqPzGVIFwONEzAo7ShfmFG8hoYqmZUnaU.jpg', 17859273.00, b'01'),
+('F-003', 'DX06', 'HX02', 'Yamaha Grande', '124.9 cc', 23.00, 2023, 'images/R5BDKHSOAp3SqL43jdHKybxXjYJuFZOvC65lUaGk.jpg,images/fHBMBQ8mPhHhDe90SkITpgNQdUDSN5zuP3zJ52oz.jpg', 50000000.00, b'01'),
+('F-004', 'DX07', 'HX02', 'Yamaha Janus', '124.9 cc', 32.00, 2023, 'images/4tgc2SzMV90cytOPgamDPodt8ARYk5ong5M6OXPL.jpg,images/Q2rJMzgorC6y5Yic7YtAu1EVqiOXF4PzqixVRc2d.jpg', 30000000.00, b'01'),
+('F-005', 'DX08', 'HX02', 'Exciter 155 VVA', '155.1 cc', 0.00, 2023, 'images/vO25Ve9Kor7JrB8uK66unSdNPdisJG6NqBAlegkI.jpg,images/WevZB1vH5d8BpIMdLGPlivYiWyFczzkX9Q1cy7d3.jpg', 48000000.00, b'01'),
+('F-006', 'DX09', 'HX03', 'Suzuki Raider R150 2023', '147,3 cc', 0.00, 2023, 'images/eoW3hhfqpDY58IuvJFtGXXBa46YZUKt4EGsk6hfK.jpg,images/3e9bVSJ8YYuQMeHIXURRutszPm3GnrAmvPHRitid.jpg', 52000000.00, b'01'),
 ('XE-0001', 'DX01', 'HX01', 'Honda Vision 110cc', '109,5 cm3', 200.00, 2023, 'images/YhUKYdIJ2BS6aWorlYF6vcU0Dh8e9Cab7kmx6imr.jpg,images/TDhZlorRXWfFPBT0hMAtip7adNPfx3S74YinDcr3.jpg,images/9TQXhzX3xGStguwDYzFnRoMF7o0zqOflMpDhIYkm.jpg,images/zKQc1YhkW3w2qE5CLKpl8yPGS7JK8QbfmGQHo3lQ.jpg', 21000000.00, b'01'),
-('XE-0002', 'DX05', 'HX01', 'Honda Winner X 2023', '149,1 cm3', 210.00, 2023, 'images/Fk2OIboxOb0CXn7Mb0tqFeaEmWIei6LvE6XeNWzX.webp,images/AWCgNvitDVWeSvHKzvqJrOhsVLpneMT4OSk1lIQA.webp,images/wbV3biGXwRCbpmRvuOgE1uFpsQjYEiVcmU5m59Fe.webp,images/iRvqqYIShsC5JPENqnRAGBvgvwYuoza1PniWKCav.webp', 30000000.00, b'01');
+('XE-0002', 'DX05', 'HX01', 'Honda Winner X 2023', '149,1 cm3', 210.00, 2023, 'images/Fk2OIboxOb0CXn7Mb0tqFeaEmWIei6LvE6XeNWzX.webp,images/AWCgNvitDVWeSvHKzvqJrOhsVLpneMT4OSk1lIQA.webp,images/wbV3biGXwRCbpmRvuOgE1uFpsQjYEiVcmU5m59Fe.webp,images/iRvqqYIShsC5JPENqnRAGBvgvwYuoza1PniWKCav.webp', 30000000.00, b'01'),
+('XE-0006', 'DX01', 'HX01', 'Honda Lead 2021', '124,8 cm3', 323.00, 2023, 'images/gYDIK9nmAFMnmrhR4opXEUScNiUBDhE6KdckJuME.jpg,images/n4T9Xev5CrH3mQa0oEzD6xlAErfAYsOuyK375j4d.jpg', 23000000.00, b'01');
 
 -- --------------------------------------------------------
 
