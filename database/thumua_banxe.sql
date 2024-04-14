@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 14, 2024 lúc 04:48 AM
+-- Thời gian đã tạo: Th4 14, 2024 lúc 08:58 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -162,8 +162,7 @@ INSERT INTO `hangxe` (`mahx`, `tenhang`, `logo`, `xuatxu`, `trangthai`) VALUES
 ('HX03', 'Suzuki', 'logo/dVfOI7O8B2gIt7Xn6KRCDGLb2bat4C5cN0IXiLMI.png', 'Nhật Bản', b'01'),
 ('HX04', 'Sym', 'logo/AhzP3gLYlGsHV9oVrqdWWWVvYwghD6D7BBGvTpvP.png', 'Đài Loan', b'01'),
 ('HX05', 'Dibao', 'logo/27GeenWeyTUOM0D5wheneR2kIjweWNRetGiwP9bM.png', 'Đài Loan', b'01'),
-('HX06', 'Asama', 'logo/OqqpDaoiNbyS1CD0IrcFESENN9uLQLIPkSJaVukl.png', 'Đài Loan', b'01'),
-('HX07', 'vidu', 'logo/jzDtZEe1zg1UNjFDYMHbaDDreaCpofZaTRsEj8fr.png', 'Đài Loan', b'01');
+('HX06', 'Asama', 'logo/OqqpDaoiNbyS1CD0IrcFESENN9uLQLIPkSJaVukl.png', 'Đài Loan', b'01');
 
 -- --------------------------------------------------------
 
@@ -439,7 +438,7 @@ CREATE TABLE `thongtinxedapdien` (
   `maxedapdien` varchar(15) NOT NULL,
   `madx` varchar(10) DEFAULT NULL,
   `mahx` varchar(5) DEFAULT NULL,
-  `tenxe` varchar(15) DEFAULT NULL,
+  `tenxe` varchar(35) DEFAULT NULL,
   `trongluong` double(4,2) DEFAULT NULL,
   `acquy` varchar(25) NOT NULL,
   `dongcodien` varchar(10) NOT NULL,
@@ -455,9 +454,9 @@ CREATE TABLE `thongtinxedapdien` (
 --
 
 INSERT INTO `thongtinxedapdien` (`maxedapdien`, `madx`, `mahx`, `tenxe`, `trongluong`, `acquy`, `dongcodien`, `sacdien`, `phamvisudung`, `hinhanh`, `giaban`, `tinhtrang`) VALUES
-('XE-0003', 'DX10', 'HX05', 'Dibao Ninja', 25.00, '4 acquy 12A', '500w', '8-10h', '45 - 50km/ 1 lần sạc đầy pin', 'images/hQDUy8L7gVRokOOUaiYhICA3X6NASDF9CjaPEUQm.jpg,images/SFA2OyizYzTRUporhQ2s9oUrpMWS6AN7G0ibmXNC.jpg', 8800000.00, b'01'),
-('XE-0004', 'DX11', 'HX06', 'Asama A48', 20.00, '12V-12A', '350W', '6-8h', '40-50km/ lần sạc đầy pin', 'images/oCn7jK9N1BJf5bB2zOp9yV0WAgeur9QNw5qn9vtv.jpg,images/KuF8UVU4VB2PlE39TjXZn9I32bQKxv6rn9g3D5ec.jpg', 5000000.00, b'01'),
-('XE-0005', 'DX12', 'HX05', 'Dibao Creer E', 93.00, '60V(5x12V)23Ah', '1.400W', '10- 13h', '60-90km/lần sạc', 'images/mfxP6eBd7KLb6y9yA7Tux4bXoeuclwahdBkJ2rD1.jpg,images/lf5haxca3audcwGrij7LyHoMFdDLS3N24BKeoiOZ.jpg', 20690000.00, b'01');
+('XE-003', 'DX10', 'HX05', 'Dibao Ninja', 25.00, '4 acquy 12A', '500w', '8-10h', '45 - 50km/ 1 lần sạc đầy pin', 'images/hQDUy8L7gVRokOOUaiYhICA3X6NASDF9CjaPEUQm.jpg,images/SFA2OyizYzTRUporhQ2s9oUrpMWS6AN7G0ibmXNC.jpg', 8800000.00, b'01'),
+('XE-004', 'DX11', 'HX06', 'Asama A48', 20.00, '12V-12A', '350W', '6-8h', '40-50km/ lần sạc đầy pin', 'images/oCn7jK9N1BJf5bB2zOp9yV0WAgeur9QNw5qn9vtv.jpg,images/KuF8UVU4VB2PlE39TjXZn9I32bQKxv6rn9g3D5ec.jpg', 5000000.00, b'01'),
+('XE-005', 'DX12', 'HX05', 'Dibao Creer E', 93.00, '60V(5x12V)23Ah', '1.400W', '10- 13h', '60-90km/lần sạc', 'images/mfxP6eBd7KLb6y9yA7Tux4bXoeuclwahdBkJ2rD1.jpg,images/lf5haxca3audcwGrij7LyHoMFdDLS3N24BKeoiOZ.jpg', 20690000.00, b'01');
 
 -- --------------------------------------------------------
 
@@ -489,9 +488,9 @@ INSERT INTO `thongtinxemay` (`maxemay`, `madx`, `mahx`, `tenxe`, `dungtichxe`, `
 ('F-004', 'DX07', 'HX02', 'Yamaha Janus', '124.9 cc', 32.00, 2023, 'images/4tgc2SzMV90cytOPgamDPodt8ARYk5ong5M6OXPL.jpg,images/Q2rJMzgorC6y5Yic7YtAu1EVqiOXF4PzqixVRc2d.jpg', 30000000.00, b'01'),
 ('F-005', 'DX08', 'HX02', 'Exciter 155 VVA', '155.1 cc', 0.00, 2023, 'images/vO25Ve9Kor7JrB8uK66unSdNPdisJG6NqBAlegkI.jpg,images/WevZB1vH5d8BpIMdLGPlivYiWyFczzkX9Q1cy7d3.jpg', 48000000.00, b'01'),
 ('F-006', 'DX09', 'HX03', 'Suzuki Raider R150 2023', '147,3 cc', 0.00, 2023, 'images/eoW3hhfqpDY58IuvJFtGXXBa46YZUKt4EGsk6hfK.jpg,images/3e9bVSJ8YYuQMeHIXURRutszPm3GnrAmvPHRitid.jpg', 52000000.00, b'01'),
-('XE-0001', 'DX01', 'HX01', 'Honda Vision 110cc', '109,5 cm3', 200.00, 2023, 'images/YhUKYdIJ2BS6aWorlYF6vcU0Dh8e9Cab7kmx6imr.jpg,images/TDhZlorRXWfFPBT0hMAtip7adNPfx3S74YinDcr3.jpg,images/9TQXhzX3xGStguwDYzFnRoMF7o0zqOflMpDhIYkm.jpg,images/zKQc1YhkW3w2qE5CLKpl8yPGS7JK8QbfmGQHo3lQ.jpg', 21000000.00, b'01'),
-('XE-0002', 'DX05', 'HX01', 'Honda Winner X 2023', '149,1 cm3', 210.00, 2023, 'images/Fk2OIboxOb0CXn7Mb0tqFeaEmWIei6LvE6XeNWzX.webp,images/AWCgNvitDVWeSvHKzvqJrOhsVLpneMT4OSk1lIQA.webp,images/wbV3biGXwRCbpmRvuOgE1uFpsQjYEiVcmU5m59Fe.webp,images/iRvqqYIShsC5JPENqnRAGBvgvwYuoza1PniWKCav.webp', 30000000.00, b'01'),
-('XE-0006', 'DX01', 'HX01', 'Honda Lead 2021', '124,8 cm3', 323.00, 2023, 'images/gYDIK9nmAFMnmrhR4opXEUScNiUBDhE6KdckJuME.jpg,images/n4T9Xev5CrH3mQa0oEzD6xlAErfAYsOuyK375j4d.jpg', 23000000.00, b'01');
+('F-007', 'DX01', 'HX01', 'Honda Vision 110cc', '109,5 cm3', 200.00, 2023, 'images/YhUKYdIJ2BS6aWorlYF6vcU0Dh8e9Cab7kmx6imr.jpg,images/TDhZlorRXWfFPBT0hMAtip7adNPfx3S74YinDcr3.jpg,images/9TQXhzX3xGStguwDYzFnRoMF7o0zqOflMpDhIYkm.jpg,images/zKQc1YhkW3w2qE5CLKpl8yPGS7JK8QbfmGQHo3lQ.jpg', 21000000.00, b'01'),
+('F-008', 'DX05', 'HX01', 'Honda Winner X 2023', '149,1 cm3', 210.00, 2023, 'images/Fk2OIboxOb0CXn7Mb0tqFeaEmWIei6LvE6XeNWzX.webp,images/AWCgNvitDVWeSvHKzvqJrOhsVLpneMT4OSk1lIQA.webp,images/wbV3biGXwRCbpmRvuOgE1uFpsQjYEiVcmU5m59Fe.webp,images/iRvqqYIShsC5JPENqnRAGBvgvwYuoza1PniWKCav.webp', 30000000.00, b'01'),
+('F-009', 'DX01', 'HX01', 'Honda Lead 2021', '124,8 cm3', 323.00, 2023, 'images/gYDIK9nmAFMnmrhR4opXEUScNiUBDhE6KdckJuME.jpg,images/n4T9Xev5CrH3mQa0oEzD6xlAErfAYsOuyK375j4d.jpg', 23000000.00, b'01');
 
 -- --------------------------------------------------------
 
@@ -563,15 +562,32 @@ INSERT INTO `vanchuyen` (`mavanchuyen`, `makh`, `trangthaivanchuyen`, `ngaygui`,
 
 CREATE TABLE `xedangkyban` (
   `madkbanxe` varchar(30) NOT NULL,
-  `ttxemay_id` varchar(15) DEFAULT NULL,
-  `ttxedapdien_id` varchar(15) DEFAULT NULL,
-  `khachhang_id` varchar(10) NOT NULL,
-  `namdk` date NOT NULL,
+  `maxemay` varchar(15) DEFAULT NULL,
+  `maxedapdien` varchar(15) DEFAULT NULL,
+  `makh` varchar(10) NOT NULL,
+  `ngayban` datetime DEFAULT NULL,
+  `namdk` varchar(4) NOT NULL,
   `xuatxu` varchar(25) NOT NULL,
   `giaban` decimal(10,2) NOT NULL,
   `motachitiet` text DEFAULT NULL,
-  `trangthai` bit(2) NOT NULL
+  `trangthai` bit(2) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `xedangkyban`
+--
+
+INSERT INTO `xedangkyban` (`madkbanxe`, `maxemay`, `maxedapdien`, `makh`, `ngayban`, `namdk`, `xuatxu`, `giaban`, `motachitiet`, `trangthai`) VALUES
+('MDKBX-021814', 'F-006', NULL, 'MKH-3212', '2024-04-14 13:48:59', '2023', 'Nhật Bản', 20000000.00, NULL, b'01'),
+('MDKBX-027922', 'F-006', NULL, 'MKH-0001', '2024-04-14 13:48:59', '2023', 'Nhật Bản', 20000000.00, NULL, b'01'),
+('MDKBX-133383', NULL, 'XE-005', 'MKH-1017', '2024-04-14 13:48:59', '2020', 'Đài Loan', 18000000.00, NULL, b'01'),
+('MDKBX-245412', NULL, 'XE-005', 'MKH-2697', '2024-04-14 13:48:59', '2020', 'Đài Loan', 18000000.00, NULL, b'01'),
+('MDKBX-405732', 'F-008', NULL, 'MKH-0001', '2024-04-14 13:48:59', '2023', 'Nhật Bản', 20000000.00, NULL, b'01'),
+('MDKBX-512422', NULL, 'XE-005', 'MKH-3212', '2024-04-14 13:48:59', '2020', 'Đài Loan', 18000000.00, NULL, b'01'),
+('MDKBX-616763', NULL, 'XE-003', 'MKH-1017', '2024-04-14 13:48:59', '2020', 'Đài Loan', 18000000.00, NULL, b'01'),
+('MDKBX-797415', NULL, 'XE-004', 'MKH-3212', '2024-04-14 13:48:59', '2020', 'Đài Loan', 18000000.00, NULL, b'01'),
+('MDKBX-827233', 'F-001', NULL, 'MKH-0851', '2024-04-14 13:48:59', '2023', 'Nhật Bản', 20000000.00, NULL, b'01'),
+('MDKBX-920684', 'F-001', NULL, 'MKH-0001', '2024-04-14 13:48:59', '2023', 'Nhật Bản', 20000000.00, NULL, b'01');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -755,9 +771,9 @@ ALTER TABLE `vanchuyen`
 --
 ALTER TABLE `xedangkyban`
   ADD PRIMARY KEY (`madkbanxe`),
-  ADD KEY `xedangkyban_khachhang_id_foreign` (`khachhang_id`),
-  ADD KEY `xedangkyban_ttxemay_id_foreign` (`ttxemay_id`),
-  ADD KEY `xedangkyban_ttxedapdien_id_foreign` (`ttxedapdien_id`);
+  ADD KEY `xedangkyban_khachhang_id_foreign` (`makh`),
+  ADD KEY `xedangkyban_ttxemay_id_foreign` (`maxemay`),
+  ADD KEY `xedangkyban_ttxedapdien_id_foreign` (`maxedapdien`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -887,9 +903,9 @@ ALTER TABLE `vanchuyen`
 -- Các ràng buộc cho bảng `xedangkyban`
 --
 ALTER TABLE `xedangkyban`
-  ADD CONSTRAINT `xedangkyban_khachhang_id_foreign` FOREIGN KEY (`khachhang_id`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE,
-  ADD CONSTRAINT `xedangkyban_ttxedapdien_id_foreign` FOREIGN KEY (`ttxedapdien_id`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
-  ADD CONSTRAINT `xedangkyban_ttxemay_id_foreign` FOREIGN KEY (`ttxemay_id`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
+  ADD CONSTRAINT `xedangkyban_khachhang_id_foreign` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE,
+  ADD CONSTRAINT `xedangkyban_ttxedapdien_id_foreign` FOREIGN KEY (`maxedapdien`) REFERENCES `thongtinxedapdien` (`maxedapdien`) ON DELETE CASCADE,
+  ADD CONSTRAINT `xedangkyban_ttxemay_id_foreign` FOREIGN KEY (`maxemay`) REFERENCES `thongtinxemay` (`maxemay`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

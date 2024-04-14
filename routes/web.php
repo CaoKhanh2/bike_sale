@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DkBanXeController;
 use App\Http\Controllers\DongXeController;
 use App\Http\Controllers\HangXeController;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,7 @@ use App\Http\Controllers\VanChuyenController;
 use App\Http\Controllers\XeController;
 use App\Http\Controllers\XeDapDienController;
 use App\Http\Controllers\XeMayController;
+use Database\Seeders\DkBanXeSeeder;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +48,7 @@ Route::get('/dashboard/sys', function () {
     return view('dashboard.sys.user-authorization');
 });
 
-// Danh muc xe
+// Danh muc xe ----------
 
 Route::get('/dashboard/category/vehicle/automaker_info',[HangXeController::class,'index']);
 Route::post('/dashboard/category/vehicle/automaker_info', [HangXeController::class, 'store'])->name('themhangxe');
@@ -55,7 +57,6 @@ Route::get('/dashboard/category/vehicle/automaker_info/{id}',[HangXeController::
 Route::get('/dashboard/category/vehicle/detail_automaker_info', function () {
     return view('dashboard.category.automaker.vehicle.detail_automaker_info');
 });
-
 
 
 Route::get('/dashboard/category/vehicle/vehicle_line_infor', function () {
@@ -82,9 +83,9 @@ Route::post('/dashboard/category/vehicle/vehicle_infor', [XeController::class, '
 // Route::post('/dashboard/category/vehicle/vehicle_infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
 //Route::post('/dashboard/category/customer/customer_info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
 
-// 
+// ----------
 
-// Danh muc khach hang
+// Danh muc khach hang ----------
 
 Route::get('/dashboard/category/customer/customer_info', function () {
     return view('dashboard.category.customer.customer_info');
@@ -100,35 +101,36 @@ Route::get('/dashboard/category/customer/customer_info/{id}',[KhachHangControlle
 Route::get('/dashboard/category/customer/detail_customer_info/{makh}',[KhachHangController::class,'edit'])->name('ctthongtinkhachhang');
 Route::patch('/dashboard/category/customer/detail_customer_info/{makh}',[KhachHangController::class,'update']);
 
-//
+//----------
 
-// Danh muc van chuyen
+// Danh muc van chuyen ----------
 Route::get('/dashboard/category/shipping/ship_infor', function () {
     return view('dashboard.category.shipping.ship_infor');
 });
 
 Route::get('/dashboard/category/shipping/ship_infor',[VanChuyenController::class,'index']);
-// 
+//  ----------
 
-// Danh muc nhan vien
+// Danh muc nhan vien ----------
 Route::get('/dashboard/category/sales_agent/staff_infor', function () {
     return view('dashboard.category.sales_agent.staff_infor');
 });
 
 Route::get('/dashboard/category/sales_agent/staff_infor',[NhanVienController::class,'index']);
-//
+
+// ----------
 
 
 
 
-// Quan ly giao dich
-Route::get('/dashboard/transaction/purchasing_manage', function () {
-    return view('dashboard.transaction.purchasing.purchasing_manage');
-});
+// Quan ly giao dich ----------
 
-// Route::get('/user', function(){
-//     return view('/user.index');
+// Route::get('/dashboard/transaction/purchasing_manage', function () {
+//     return view('dashboard.transaction.purchasing.purchasing_manage');
 // });
+
+Route::get('/dashboard/transaction/purchasing_manage',[DkBanXeController::class,'index']);
+
 
 Route::get('/selling_item', function(){
     return view('/user.selling_item');
@@ -142,11 +144,14 @@ Route::get('/dashboard/transaction/selling', function () {
     return view('/cart_index');
  });
 
+//  ----------
 
-// Bao cao thong ke
+// Bao cao thong ke ----------
 Route::get('/dashboard/report/best-selling-items', function () {
     return view('dashboard.report.best-selling-items');
 });
+
+// ----------
 
 
 // Add data
