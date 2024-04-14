@@ -588,7 +588,7 @@ chart.render();
 
 var options8 = {
 	series: [44, 55, 13, 33],
-    labels: ['Apple', 'Mango', 'Orange', 'Watermelon'],
+    labels: ['Honda Vision', 'Yamaha Janus', 'Honda Lead', 'Suzuki Raider'],
 	chart: {
 		type: 'donut',
 	},

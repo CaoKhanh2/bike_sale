@@ -1,8 +1,10 @@
 @extends('dashboard.layout.content')
 
 @section('title_ds', 'Báo cáo mặt hàng bán chạy')
-{{-- @section('pg-hd-1', '') --}}
-@section('pg-hd-2', 'Báo cáo mặt hàng bán chạy')
+@section('pg-card-title', 'Báo cáo mặt hàng bán chạy')
+@section('pg-hd-2', 'Báo cáo thống kê')
+@section('pg-hd-3', 'Báo cáo mặt hàng bán chạy')
+@section('st4', 'false')
 
 @section('main')
 
@@ -25,6 +27,16 @@
                         <div class="pd-20 card-box height-100-p">
                             {{-- <h4 class="h4 text-blue"></h4> --}}
                             <form action="">
+                                <div class="row mt-3">
+                                    <div class="col-md-12 col-sm-12">
+                                        <label class="">Chọn loại xe</label>
+                                        <select class="custom-select">
+                                            <option selected="">Choose...</option>
+                                            <option value="1">Xe máy</option>
+                                            <option value="2">Xe đạp điện</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
                                         <label for="example-datetime-local-input" class="">Từ ngày</label>
@@ -53,9 +65,7 @@
                             </form>
 
                             <div class="pull-right">
-
                                 <input class="btn btn-lg btn-primary mt-3" type="submit" value="Áp dụng">
-
                             </div>
                         </div>
                     </div>
@@ -63,9 +73,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card-box mb-30">
-                            <div class="pd-20">
-                                <h4 class="text-blue h4">Data Table with Export Buttons</h4>
-                            </div>
+                            {{-- <div class="pd-20">
+                                <h4 class="text-blue h4"></h4>
+                            </div> --}}
                             <div class="pb-20">
                                 <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                     <table
