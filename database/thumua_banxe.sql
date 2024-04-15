@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 14, 2024 lúc 08:58 AM
+-- Thời gian đã tạo: Th4 15, 2024 lúc 08:37 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.0.30
 
@@ -131,12 +131,27 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `giohang` (
   `magh` varchar(10) NOT NULL,
   `makh` varchar(10) NOT NULL,
-  `mavanchuyen` varchar(10) NOT NULL,
-  `mathanhtoan` varchar(15) NOT NULL,
+  `mavanchuyen` varchar(10) DEFAULT NULL,
+  `mathanhtoan` varchar(15) DEFAULT NULL,
   `ngaytao` datetime NOT NULL,
   `tonggiatien` decimal(12,2) NOT NULL,
   `ghichu` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `giohang`
+--
+
+INSERT INTO `giohang` (`magh`, `makh`, `mavanchuyen`, `mathanhtoan`, `ngaytao`, `tonggiatien`, `ghichu`) VALUES
+('MGH-0001', 'MKH-4636', 'DVC-0002', NULL, '2024-04-15 06:31:52', 15000000.00, NULL),
+('MGH-0002', 'MKH-4558', 'DVC-0008', NULL, '2024-04-15 06:31:52', 20000000.00, NULL),
+('MGH-0003', 'MKH-4636', 'DVC-0002', NULL, '2024-04-15 06:31:52', 15000000.00, NULL),
+('MGH-0004', 'MKH-8547', 'DVC-0009', NULL, '2024-04-15 06:31:52', 25000000.00, NULL),
+('MGH-0005', 'MKH-4061', 'DVC-0001', NULL, '2024-04-15 06:31:52', 20000000.00, NULL),
+('MGH-0006', 'MKH-4636', 'DVC-0002', NULL, '2024-04-15 06:31:52', 15000000.00, NULL),
+('MGH-0007', 'MKH-4793', 'DVC-0007', NULL, '2024-04-15 06:31:52', 15000000.00, NULL),
+('MGH-0008', 'MKH-4558', 'DVC-0006', NULL, '2024-04-15 06:31:52', 25000000.00, NULL),
+('MGH-0009', 'MKH-8547', 'DVC-0009', NULL, '2024-04-15 06:31:52', 20000000.00, NULL);
 
 -- --------------------------------------------------------
 
@@ -532,27 +547,26 @@ CREATE TABLE `vanchuyen` (
 --
 
 INSERT INTO `vanchuyen` (`mavanchuyen`, `makh`, `trangthaivanchuyen`, `ngaygui`, `ngaynhan`, `diachigiaohang`, `ghichu`) VALUES
-('DVC-03679', 'MKH-4558', 'Đã giao', '2024-03-11', '2024-03-22', '7782 Hayes Circles\nErlingtown, WA 00436', 'Nostrum in et sed cumque odio.'),
-('DVC-06799', 'MKH-3300', 'Đã giao', '2024-03-30', '2024-03-22', '52200 Demarco Cliffs\nBrycenberg, NM 37692', 'Debitis amet eveniet sed deserunt ullam rerum.'),
-('DVC-07177', 'MKH-4793', 'Chưa được giao', '2024-03-25', '2024-03-12', '33299 Billy Club\nNew Kody, NC 70318-5228', 'Quam recusandae necessitatibus doloremque quia.'),
-('DVC-09643', 'MKH-1017', 'Chưa được giao', '2024-03-27', '2024-04-01', '8463 Teagan Motorway Apt. 894\nNorth Joanne, FL 68177', 'Vero sit est dolores quas natus.'),
-('DVC-10090', 'MKH-2697', 'Đang giao', '2024-04-03', '2024-04-10', '3696 Brown Brook\nRowanborough, OK 44550-8705', 'Dolorem sequi cumque qui quidem minima quo similique et.'),
-('DVC-12384', 'MKH-1017', 'Đang giao', '2024-03-16', '2024-04-13', '2709 Leland Fields\nWest Kimberly, AZ 26661-4787', 'Voluptate dicta in architecto amet et dolorum.'),
-('DVC-21026', 'MKH-4793', 'Đang giao', '2024-03-12', '2024-04-17', '920 Mayert Vista\nPort Pansyside, OR 45290', 'Sit sunt ullam nobis vel voluptates est.'),
-('DVC-21053', 'MKH-3212', 'Đã giao', '2024-03-26', '2024-04-16', '95541 Dietrich Drive\nMarilyneside, AZ 49167-9467', 'Molestiae neque at vel quibusdam.'),
-('DVC-26437', 'MKH-4346', 'Đã giao', '2024-04-01', '2024-04-03', '733 Rippin Parkway Apt. 682\nKautzerburgh, NM 14968-9931', 'Nesciunt est voluptatem assumenda cumque.'),
-('DVC-26986', 'MKH-3300', 'Đang giao', '2024-03-12', '2024-03-14', '3478 Mortimer Greens\nTrantowton, TN 28929', 'Veniam id impedit placeat sint similique consequatur.'),
-('DVC-28891', 'MKH-9902', 'Chưa được giao', '2024-04-01', '2024-03-26', '98789 Margot Parkways Apt. 127\nGibsonshire, MA 25690', 'Nemo dolor qui explicabo sapiente omnis.'),
-('DVC-31891', 'MKH-9958', 'Đang giao', '2024-03-24', '2024-04-18', '4170 Johnston Port Apt. 437\nWisozkfurt, TX 40989', 'Voluptatem similique illum a accusantium.'),
-('DVC-34016', 'MKH-9902', 'Đang giao', '2024-04-06', '2024-04-08', '701 Earnestine Brook Apt. 063\nNorth Isai, CA 91846', 'Minus saepe aliquam corporis et.'),
-('DVC-37210', 'MKH-9958', 'Đang giao', '2024-03-19', '2024-03-26', '102 Harris Lodge Suite 959\nPort Annabelle, VA 27239', 'Quis maiores consectetur et in.'),
-('DVC-42418', 'MKH-0851', 'Đã giao', '2024-03-25', '2024-03-15', '3591 Romaguera Crescent\nSilasberg, WA 46849-3983', 'Ullam vel vel maxime rem.'),
-('DVC-42578', 'MKH-1017', 'Chưa được giao', '2024-04-02', '2024-03-28', '3703 Bayer Hollow Apt. 166\nLindfort, MO 53704', 'Ut quia sequi eius sed et consequatur ducimus.'),
-('DVC-64850', 'MKH-8547', 'Chưa được giao', '2024-03-20', '2024-04-02', '703 Wuckert River\nNew Elinore, RI 58385-3996', 'Dolores corrupti qui quibusdam aliquam facere.'),
-('DVC-68007', 'MKH-1017', 'Đã giao', '2024-03-16', '2024-03-25', '71582 Evalyn Villages\nSouth Kattieberg, VT 79928', 'Nulla impedit qui nostrum tenetur voluptatem.'),
-('DVC-75523', 'MKH-3212', 'Đang giao', '2024-03-09', '2024-03-22', '33753 Blanda Fields Apt. 958\nWest Raquelshire, WI 58894', 'Explicabo aut velit et sunt in fuga.'),
-('DVC-76884', 'MKH-4636', 'Đang giao', '2024-04-01', '2024-04-15', '7903 Tatum Oval Suite 611\nFritzland, OR 78946-7837', 'Enim est est enim eaque quo quidem voluptas.'),
-('DVC-93563', 'MKH-1017', 'Chưa được giao', '2024-03-20', '2024-04-18', '73253 Crooks Land\nWest Ramiro, WA 62498', 'Repellendus ipsam qui excepturi fuga.');
+('DVC-0001', 'MKH-4061', 'Đã giao', '2024-03-30', '2024-04-10', '847 Fabian Forks\nJohnathonfort, GA 31050-2528', 'Dolorem iste dolores alias quia.'),
+('DVC-0002', 'MKH-4636', 'Đang giao', '2024-03-24', '2024-04-17', '161 Schuster Highway Apt. 660\nAliaside, LA 58506', 'Qui eius velit praesentium.'),
+('DVC-0003', 'MKH-4793', 'Đã giao', '2024-04-01', '2024-03-28', '820 Denesik Pine\nSouth Bertramburgh, AR 79755-2857', 'In cum corrupti quisquam rerum tempora aperiam.'),
+('DVC-0004', 'MKH-8547', 'Đã giao', '2024-03-17', '2024-04-07', '3915 O\'Kon Course Apt. 584\nNew Chandler, NH 13085-4762', 'Corporis sed et qui laboriosam.'),
+('DVC-0005', 'MKH-4558', 'Đang giao', '2024-03-22', '2024-04-20', '81711 Naomie Forks\nEast Jackson, SC 73051-5676', 'Voluptate inventore et odio voluptates provident.'),
+('DVC-0006', 'MKH-1017', 'Đã giao', '2024-03-15', '2024-03-25', '88950 Aryanna Canyon Apt. 148\nGarfieldland, DC 96058', 'Quia et cumque numquam repellendus qui.'),
+('DVC-0007', 'MKH-4793', 'Chưa được giao', '2024-03-20', '2024-04-14', '598 Homenick Fort\nLake Kareem, ID 04779', 'Ad magnam quod et doloremque accusantium est sint.'),
+('DVC-0008', 'MKH-4558', 'Chưa được giao', '2024-03-20', '2024-04-23', '1991 Grimes Summit\nSouth Dejah, MN 54237', 'Modi beatae soluta assumenda quibusdam.'),
+('DVC-0009', 'MKH-8547', 'Chưa được giao', '2024-03-21', '2024-04-03', '3639 Kaylin Mountain\nJalonfurt, DE 53363', 'Quam et eos id ut sed nesciunt.'),
+('DVC-0010', 'MKH-3940', 'Chưa được giao', '2024-04-02', '2024-04-03', '725 Eileen Turnpike Suite 318\nNoemybury, SD 46761-1434', 'Deserunt facere est dolor repellat dignissimos a at.'),
+('DVC-0011', 'MKH-3300', 'Đang giao', '2024-04-15', '2024-03-23', '461 Morton Lights\nPort Ruthie, DE 80984-5058', 'Itaque possimus ut delectus delectus.'),
+('DVC-0012', 'MKH-4061', 'Đang giao', '2024-03-18', '2024-04-23', '1822 Wehner Villages\nDonavonhaven, FL 68864', 'Ea quas atque voluptatem pariatur et ratione est labore.'),
+('DVC-0013', 'MKH-2697', 'Đang giao', '2024-04-05', '2024-04-24', '51571 Olson Road\nPowlowskimouth, SC 66545-2143', 'Autem ducimus delectus ratione ipsa laudantium quas qui.'),
+('DVC-0014', 'MKH-2697', 'Đang giao', '2024-04-14', '2024-04-22', '95905 Morar Shoals Apt. 911\nWest Brandon, AK 97858-9045', 'Voluptatum eos qui et nemo quidem.'),
+('DVC-0015', 'MKH-4793', 'Đang giao', '2024-04-03', '2024-04-21', '656 Michele Mission\nStarkburgh, OK 15052-6128', 'Repudiandae quia molestiae et officia.'),
+('DVC-0016', 'MKH-9958', 'Chưa được giao', '2024-04-10', '2024-04-07', '8334 Hills Unions\nCarleemouth, AK 12974-0685', 'Molestias unde libero aliquam aspernatur et.'),
+('DVC-0017', 'MKH-9902', 'Đang giao', '2024-03-18', '2024-04-22', '956 Walker Inlet\nLake Bell, AZ 95925', 'Ut dolores qui laborum dolor a voluptatem vel.'),
+('DVC-0018', 'MKH-4793', 'Chưa được giao', '2024-03-27', '2024-04-13', '114 Quigley Heights Suite 682\nWest Ludie, MI 89069', 'Hic qui error aut vel earum rerum.'),
+('DVC-0019', 'MKH-4793', 'Đã giao', '2024-03-28', '2024-04-09', '10392 Antonio Corners Apt. 514\nHyattmouth, OH 36431-9642', 'Modi sint perspiciatis corporis voluptatem error.'),
+('DVC-0020', 'MKH-9958', 'Đã giao', '2024-03-31', '2024-03-23', '510 Delpha Junction Apt. 158\nSmithton, WV 16698-8567', 'Dignissimos aut delectus ipsum.');
 
 -- --------------------------------------------------------
 
@@ -764,7 +778,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `vanchuyen`
   ADD PRIMARY KEY (`mavanchuyen`),
-  ADD KEY `vanchuyen_khachhang_id_foreign` (`makh`);
+  ADD KEY `makh` (`makh`);
 
 --
 -- Chỉ mục cho bảng `xedangkyban`
@@ -897,7 +911,7 @@ ALTER TABLE `users`
 -- Các ràng buộc cho bảng `vanchuyen`
 --
 ALTER TABLE `vanchuyen`
-  ADD CONSTRAINT `vanchuyen_khachhang_id_foreign` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE;
+  ADD CONSTRAINT `vanchuyen_ibfk_1` FOREIGN KEY (`makh`) REFERENCES `khachhang` (`makh`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `xedangkyban`
