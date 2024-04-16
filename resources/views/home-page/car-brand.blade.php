@@ -30,7 +30,7 @@
                         <a href=""><img src="{{ asset('Image\logo_xe\Piaggio_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
                     <div class="card border-0 text-center">
-                        <a href=""><img src="{{ asset('Image\logo_xe\Dibao_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
+                        <a href=""><img src="{{ asset('Image\logo_xe\logo\dibao.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
                     <div class="card border-0 text-center">
                         <a href=""><img src="{{ asset('Image\logo_xe\Sym_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
@@ -61,7 +61,7 @@
                         <a href=""><img src="{{ asset('Image\logo_xe\Piaggio_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
                     <div class="card border-0 text-center">
-                        <a href=""><img src="{{ asset('Image\logo_xe\Dibao_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
+                        <a href=""><img src="{{ asset('Image\logo_xe\logo\dibao.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
                     </div>
                     <div class="card border-0 text-center">
                         <a href=""><img src="{{ asset('Image\logo_xe\Sym_Logo.png') }}" class="object-fit-contain border rounded" alt="..." width="125" height="100"></a>
