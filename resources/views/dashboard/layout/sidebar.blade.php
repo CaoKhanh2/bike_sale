@@ -179,7 +179,7 @@
                     <ul class="submenu">
                         <li><a href="{{ url('/dashboard/report/best-selling-items') }}">Báo cáo mặt hàng bán chạy</a>
                         </li>
-                        <li><a href="login.html">Báo cáo tồn kho</a></li>
+                        <li><a href="{{ url('/dashboard/report/inventory') }}">Báo cáo tồn kho</a></li>
                         <li><a href="forgot-password.html">Báo cáo rủi ro</a></li>
                         <li><a href="reset-password.html">Báo cáo thực hiện khuyến mãi</a></li>
                         <li><a href="reset-password.html">Báo cáo thống kê truy cập </a></li>

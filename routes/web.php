@@ -151,6 +151,10 @@ Route::get('/dashboard/report/best-selling-items', function () {
     return view('dashboard.report.best-selling-items');
 });
 
+Route::get('/dashboard/report/inventory', function () {
+    return view('dashboard.report.inventory');
+});
+
 // ----------
 
 
