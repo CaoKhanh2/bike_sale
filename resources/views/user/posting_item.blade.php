@@ -59,20 +59,6 @@
                         <h3>Thông tin người bán</h3>
                     </div>
                     <div class="mb-4">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Cá nhân
-                            </label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                              Bán chuyên
-                            </label>
-                          </div>
-                    </div>
-                    <div class="mb-4">
                         <input type="text" name="Địa chỉ" id="Hangxe" class="form-control form-control-lg border border-3 border-primary"
                             placeholder="Địa chỉ">
                     </div>

@@ -16,9 +16,9 @@
             <tbody>
                 <tr>
                     <td><img src="{{ asset('Image\Xe\\XeDien\Asama ebk\xe-dap-dien-asama-ebk-do.jpg') }}"
-                        alt="Ảnh" width="120" height="120"> Mark
+                        alt="Ảnh" width="120" height="120"> Asama, ebk
                     </td>
-                    <td>Otto</td>
+                    <td>100000</td>
                     <td>
                         <div class="input-group">
                             <div class="input-group-prepend">
