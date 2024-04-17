@@ -20,7 +20,8 @@
                         <label for="exampleFormControlInput1" class="form-label">
                             <h3>Loại xe</h3>
                         </label>
-                        <select class="form-select form-select-lg border border-3 border-primary" aria-label="Loại xe" id="loaixe">
+                        <select class="form-select form-select-lg border border-3 border-primary" aria-label="Loại xe"
+                            id="loaixe">
                             <option value="Xemay">Xe máy</option>
                             <option value="Xedapdien">Xe đạp điện</option>
                         </select>
@@ -29,28 +30,29 @@
                         <h3>Thông tin xe chi tiết</h3>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="Tên hãng xe" id="Hangxe" class="form-control form-control-lg border border-3 border-primary"
-                            placeholder="Hãng xe">
+                        <input type="text" name="Tên hãng xe" id="Hangxe"
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Hãng xe">
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="Năm đăng ký" id="Namdangky" class="form-control form-control-lg border border-3 border-primary"
+                        <input type="text" name="Năm đăng ký" id="Namdangky"
+                            class="form-control form-control-lg border border-3 border-primary"
                             placeholder="Năm đăng ký">
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="Tên hãng xe" id="Xuatxu" class="form-control form-control-lg border border-3 border-primary"
-                            placeholder="Xuất xứ">
+                        <input type="text" name="Tên hãng xe" id="Xuatxu"
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Xuất xứ">
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="Tên hãng xe" id="Giaban" class="form-control form-control-lg border border-3 border-primary"
-                            placeholder="Giá bán">
+                        <input type="text" name="Tên hãng xe" id="Giaban"
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Giá bán">
                     </div>
 
                     <div class="mb-2">
                         <h3>Tiêu đề & Nội dung</h3>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="Tên hãng xe" id="Hangxe" class="form-control form-control-lg border border-3 border-primary"
-                            placeholder="Tiêu đề">
+                        <input type="text" name="Tên hãng xe" id="Hangxe"
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Tiêu đề">
                     </div>
                     <div class="mb-4">
                         <textarea class="form-control border border-3 border-primary" style="height: 200px" placeholder="Mô tả sản phẩm"></textarea>
@@ -59,8 +61,8 @@
                         <h3>Thông tin người bán</h3>
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="Địa chỉ" id="Hangxe" class="form-control form-control-lg border border-3 border-primary"
-                            placeholder="Địa chỉ">
+                        <input type="text" name="Địa chỉ" id="Hangxe"
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Địa chỉ">
                     </div>
                     <div class="mb-4">
                         <input type="submit" value="Đăng ký" class="btn-primary btn col-12">
@@ -68,12 +70,5 @@
                 </div>
             </div>
         </div>
-
-</div>
-<div>
-
-</div>
-</div>
-
-</form>
+    </form>
 </div>

@@ -4,36 +4,33 @@
     </div>
     <div class="row mx-3">
         <table class="table table-hover border border-2 align-middle">
-            <thead>
-                <tr>
-                    <th>Thông tin sản phẩm</th>
-                    <th style="width:10em">Đơn giá</th>
-                    <th style="width:10em">Số lượng</th>
+            <thead class="text-center table-primary">
+                <tr class="text-light">
+                    <th>Sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
                     <th>Thành tiền</th>
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 <tr>
-                    <td><img src="{{ asset('Image\Xe\\XeDien\Asama ebk\xe-dap-dien-asama-ebk-do.jpg') }}"
-                        alt="Ảnh" width="120" height="120"> Asama, ebk
-                    </td>
-                    <td>100000</td>
                     <td>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary" type="button" id="btn-decrease">-</button>
-                            </div>
-
-                            <input type="text" class="form-control text-center" id="quantity-input" value="1"
-                                aria-label="Quantity">
-
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="btn-increase">+</button>
-                            </div>
+                        <img src="{{ asset('Image\Xe\XeDien\Asama ebk\xe-dap-dien-asama-ebk-do.jpg') }}" alt="Ảnh" class="d-inline-block align-text-center"
+                        width="140" height="120">
+                    </td>
+                    <td>Asama, ebk</td>
+                    <td>1,000,000đ</td>
+                    <td class="col-2">
+                        <div class="input-group mb-3">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon1">-</button>
+                            <input type="text" class="form-control text-center"
+                                value="1" id="label" disabled>
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">+</button>
                         </div>
                     </td>
-                    <td>100000</td>
+                    <td>1,000,000đ</td>
                     <td>
                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                     </td>
@@ -62,6 +59,28 @@
         </div>
     </div>
 </div>
-</div>
 
-</div>
+<script>
+
+    const btn1 = document.getElementById("button-addon1");
+    const btn2 = document.getElementById("button-addon2");
+    const label = document.getElementById("label");
+
+    let count = 1;
+
+    btn1.onclick = function(){
+        count--;
+        if(count >= 0){
+            label.value = count;
+        }
+        
+    }
+
+    btn2.onclick = function(){
+        count++;
+        label.value = count;
+    }
+
+
+
+</script>
