@@ -57,7 +57,7 @@
                                 height="70" class="rounded-circle">
                         </a>
                         <p class="text-body-secondary">© 2024</p>
-                        <p>Đại học Hàng Hải Việt Nam, Ngô Quyền, Hải Phòng</p>
+                        <p>Số 1/115 đường Máng Nước, thôn Cái Tắt, Xã An Đồng, Huyện An Dương, Thành phố Hải Phòng</p>
                         <p>Thứ 2 - Chủ nhật: 9:00 - 18:00</p>
                         <p>Điện thoại: 1900 6750 - Email: support@st.vimaru.ed.vn</p>
                     </div>
