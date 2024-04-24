@@ -13,19 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('khachhang', function (Blueprint $table) {
-            $table->string('makh',10);
+        Schema::create('nguoidung', function (Blueprint $table) {
+            $table->string('mand',10);
             $table->string('hovaten',50);
             $table->date('ngaysinh')->nullable();
+            $table->string('cccd', 12);
             $table->enum('gioitinh',['Nam','Nữ','Other']);
             $table->string('sodienthoai',11);
             $table->string('email',35);
             $table->string('diachi',100)->nullable();
-            $table->string('tentk',20);
-            $table->string('password',20);
+            $table->string('tentk',20)->nullable();
+            $table->string('password',20)->nullable();
             $table->tinyInteger('tinhtrang')->default(0);
             
-            $table->primary('makh');
+            $table->primary('mand');
             
         });
     }
@@ -37,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('khachhang');
+        Schema::dropIfExists('nguoidung');
     }
 };

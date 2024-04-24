@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('hoadon', function (Blueprint $table) {
             $table->string('mahoadon',25);
-            $table->string('nhanvien_id',10);
-            $table->string('khachhang_id',10);
-            $table->string('ttxemay_id',15)->nullable();
-            $table->string('ttxedapdien_id',15)->nullable();
+            $table->string('manv',10);
+            $table->string('mand',10);
+            $table->string('maxe',15)->nullable();
             $table->dateTime('ngaytaohoadon');
             $table->decimal('dongia',10,2);
             $table->decimal('thuegt',10,2)->nullable();
@@ -26,10 +25,10 @@ return new class extends Migration
             $table->text('ghichu')->nullable();
 
             $table->primary('mahoadon');
-            $table->foreign('nhanvien_id')->references('manv')->on('nhanvien')->onDelete('cascade');
-            $table->foreign('khachhang_id')->references('makh')->on('khachhang')->onDelete('cascade');
-            $table->foreign('ttxemay_id')->references('maxemay')->on('thongtinxemay')->onDelete('cascade');
-            $table->foreign('ttxedapdien_id')->references('maxedapdien')->on('thongtinxedapdien')->onDelete('cascade');
+            $table->foreign('manv')->references('manv')->on('nhanvien')->onDelete('cascade');
+            $table->foreign('mand')->references('mand')->on('nguoidung')->onDelete('cascade');
+            $table->foreign('maxe')->references('maxe')->on('thongtinxe')->onDelete('cascade');
+    
         });
     }
 

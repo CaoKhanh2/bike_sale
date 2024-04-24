@@ -41,7 +41,7 @@
                 <td>
                     <a type="button" class="btn btn-primary"
                         href="{{ url('/dashboard/category/vehicle/detail_vehicle_infor') }}">
-                        <i class="bi bi-pencil-fill"></i> Sửa
+                        <i class="bi bi-eye"></i> Xem
                     </a>
                     <a type="button" class="btn btn-danger" href="">
                         <i class="bi bi-trash3"></i> Xóa

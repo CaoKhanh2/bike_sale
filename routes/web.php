@@ -72,9 +72,11 @@ Route::get('/dashboard/category/vehicle/vehicle_infor', function () {
     return view('dashboard.category.vehicle.vehicle_infor');
 });
 
-Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
-    return view('dashboard.category.vehicle.detail_vehicle_infor');
-});
+// Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
+//     return view('dashboard.category.vehicle.detail_vehicle_infor');
+// });
+Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}',[XeMayController::class,'edit'])->name('ctthongtinxemay');
+
 
 
 Route::get('/dashboard/category/vehicle/vehicle_infor', [XeController::class, 'index']);
