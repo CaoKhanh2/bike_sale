@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hangxe', function (Blueprint $table) {
+        Schema::create('dongxe', function (Blueprint $table) {
+            $table->string('madx',15);
             $table->string('mahx',5);
-            $table->string('tenhang',50);
-            $table->string('logo');
-            $table->string('xuatxu',20)->nullable();
-            $table->tinyInteger('trangthai');
+            $table->string('tendongxe',50);
+            $table->string('mota',50)->nullable();
 
-            $table->primary('mahx');
+            $table->primary('madx');
+            $table->foreign('mahx')->references('mahx')->on('hangxe')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hangxe');
+        Schema::dropIfExists('dongxe');
     }
 };

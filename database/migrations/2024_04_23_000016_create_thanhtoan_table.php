@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('thanhtoan', function (Blueprint $table) {
             $table->string('mathanhtoan');
             $table->string('phuongthucthanhtoan',20);
-            $table->tinyInteger('trangthai');
+            $table->enum('trangthai',['Đã thanh toán', 'Chưa thanh toán']);
             $table->dateTime('ngaythanhtoan');
             $table->string('sotaikhoan',15);
             $table->string('tennguoigui',50);

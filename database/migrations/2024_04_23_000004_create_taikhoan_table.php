@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('taikhoan', function (Blueprint $table) {
             $table->string('matk',12);
-            $table->string('nhanvien_id',10);
-            $table->string('tentk',20);
+            $table->string('manv',10);
+            $table->string('taikhoan',20);
             $table->string('password',20);
             $table->string('email',35);
             $table->timestamp('email_verified_at')->nullable();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->rememberToken();
 
             $table->primary('matk');
-            $table->foreign('nhanvien_id')->references('manv')->on('nhanvien')->onDelete('cascade');
+            $table->foreign('manv')->references('manv')->on('nhanvien')->onDelete('cascade');
             
         });
     }
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('taikhoan');
     }
 };

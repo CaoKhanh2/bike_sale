@@ -21,7 +21,7 @@
 
                     </div>
                 </div>
-                <form action="/dashboard/category/customer/detail_customer_info/{{ $kh->makh }}" method="POST" class="mt-4">
+                <form action="{{ url('/dashboard/category/customer/detail_customer_info/$kh->makh') }}" method="POST" class="mt-4">
                     @method('PATCH')
                     @csrf
                     <div class="form-group row">

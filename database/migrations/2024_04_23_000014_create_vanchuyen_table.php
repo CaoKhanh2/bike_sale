@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('vanchuyen', function (Blueprint $table) {
             $table->string('mavanchuyen',10);
-            $table->string('khachhang_id',10);
+            $table->string('mand',10);
             $table->enum('trangthaivanchuyen',['Đã giao','Đang giao','Chưa được giao']);
             $table->date('ngaygui');
             $table->date('ngaynhan');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('ghichu')->nullable();
 
             $table->primary('mavanchuyen');
-            $table->foreign('khachhang_id')->references('makh')->on('khachhang')->onDelete('cascade');
+            $table->foreign('mand')->references('mand')->on('nguoidung')->onDelete('cascade');
         });
     }
 

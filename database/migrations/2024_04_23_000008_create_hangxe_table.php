@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('loaixe', function (Blueprint $table) {
-            $table->string('malx',15);
-            $table->string('tenloaixe',50);
-            $table->string('mota',50)->nullable();
+        Schema::create('hangxe', function (Blueprint $table) {
+            $table->string('mahx',5);
+            $table->string('tenhang',50);
+            $table->string('logo');
+            $table->string('xuatxu',20)->nullable();
 
-            $table->primary('malx');
+            $table->primary('mahx');
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loaixe');
+        Schema::dropIfExists('hangxe');
     }
 };
