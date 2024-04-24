@@ -5,13 +5,19 @@
                 <label for="my-awesome-dropzone">
                     <h3>Hình ảnh của xe</h3>
                 </label>
+                <div class="mb-2">
+                    <a href="#"><i class="bi bi-exclamation-circle-fill"></i> Chính sách của chúng tôi</a>
+                </div>
                 <div class="dropzone mb-3 border border-3 border-primary" action="#" id="my-awesome-dropzone">
                     <div class="fallback">
                         <input type="file" name="file" />
                     </div>
                 </div>
-                <div>
-                    <a href="#"><i class="bi bi-exclamation-circle-fill"></i> Chính sách của chúng tôi</a>
+                <div class="">
+                    <p>Lưu ý khi tải ảnh lên:</p>
+                    <p>-Đảm bảo rằng sản phẩm được hiển thị đầy đủ trong ảnh, bao gồm cả các chi tiết quan trọng.
+                    <br>-Đảm bảo ảnh bạn đăng lên là chất lượng cao và rõ ràng
+                </P>
                 </div>
             </div>
             <div class="col-7 mt-3">
