@@ -49,15 +49,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($khachhang as $i)
+                                                @foreach ($nguoidung as $i)
                                                     <tr>
-                                                        <td class="table-plus">{{ $i->makh }}</td>
+                                                        <td class="table-plus">{{ $i->mand }}</td>
                                                         <td>{{ $i->hovaten }}</td>
                                                         <td>
-                                                            @php
-                                                                $formattedDate = date('d/m/Y', strtotime($i->ngaysinh));
-                                                                echo $formattedDate;
-                                                            @endphp
+                                                            {{ date('d/m/Y', strtotime($i->ngaysinh)) }}
                                                         </td>
                                                         <td>{{ $i->gioitinh }}</td>
                                                         <td>{{ $i->sodienthoai }}</td>
