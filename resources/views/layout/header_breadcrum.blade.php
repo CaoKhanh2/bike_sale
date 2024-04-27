@@ -10,7 +10,7 @@
                         <a class="link-underline link-underline-opacity-0" href="{{ url('/') }}">Trang chủ</a>
                     </li>
                     <li class="breadcrumb-item activ" aria-current="page">
-                        @yield('pg-hd-2')
+                        <a class="link-underline link-underline-opacity-0" href="{{ url('/') }}">@yield('pg-hd-2')</a>
                     </li>
                     @if ($__env->yieldContent('st3') == "true")
                         <li class="breadcrumb-item @yield('act3')" aria-current="page">

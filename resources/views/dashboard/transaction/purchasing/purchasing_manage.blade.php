@@ -47,9 +47,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($xedkban as $i)
+                                            @foreach ($xedangkythumua as $i)
                                                 <tr>
-                                                    <td class="table-plus">{{ $i->madkbanxe }}</td>
+                                                    <td class="table-plus">{{ $i->madkthumua }}</td>
                                                     <td>{{ $i->hovaten }}</td>
                                                     <td>
                                                         @php
@@ -78,10 +78,7 @@
                                                         @endphp
                                                     </td>
                                                     <td>
-                                                        {{-- <a href="{{ url('/car_catalog/detail_inforcar') }}" type="button"
-                                                            class="btn btn-primary">Sửa</a>
-                                                        <a href="" type="button" class="btn btn-primary">Xóa</a> --}}
-
+                                            
                                                         <a type="button" class="btn btn-primary"
                                                             href="{{ url('/car_catalog/detail_inforcar') }}">
                                                             <i class="bi bi-pencil-fill"></i> Sửa
@@ -97,136 +94,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="profile2" role="tabpanel">
-                                <div class="pd-20">
-                                    <table class="table hover multiple-select-row">
-                                        <thead>
-                                            <tr>
-                                                <th class="table-plus datatable-nosort">Mã đăng ký</th>
-                                                <th>Tên người bán</th>
-                                                <th>Ngày bán</th>
-                                                <th>Mô tả</th>
-                                                <th>Giá bán</th>
-                                                <th>Trạng thái</th>
-                                                <th>Hành động</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($xedkban as $i)
-                                                <tr>
-                                                    <td class="table-plus">{{ $i->madkbanxe }}</td>
-                                                    <td>{{ $i->hovaten }}</td>
-                                                    <td>
-                                                        @php
-                                                            $formattedDate = date(
-                                                                'H:m:s-d/m/Y',
-                                                                strtotime($i->ngayban),
-                                                            );
-                                                            echo $formattedDate;
-                                                        @endphp
-                                                    </td>
-                                                    <td>{{ $i->motachitiet }}</td>
-                                                    <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
-                                                    <td>
-                                                        @php
-                                                            $rs = strval($i->trangthai);
-                                                            if ($rs == '1') {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/check.png') .
-                                                                    '" alt="" srcset="" width="25" height=215">';
-                                                            } else {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/remove.png') .
-                                                                    '" alt="" srcset="" width="25" height="25">';
-                                                            }
 
-                                                        @endphp
-                                                    </td>
-                                                    <td>
-                                                        {{-- <a href="{{ url('/car_catalog/detail_inforcar') }}" type="button"
-                                                            class="btn btn-primary">Sửa</a>
-                                                        <a href="" type="button" class="btn btn-primary">Xóa</a> --}}
-
-                                                        <a type="button" class="btn btn-primary"
-                                                            href="{{ url('/car_catalog/detail_inforcar') }}">
-                                                            <i class="bi bi-pencil-fill"></i> Sửa
-                                                        </a>
-                                                        <a type="button" class="btn btn-danger" href="">
-                                                            <i class="bi bi-trash3"></i> Xóa
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="contact2" role="tabpanel">
-                                <div class="pd-20">
-                                    <table class="table hover multiple-select-row">
-                                        <thead>
-                                            <tr>
-                                                <th class="table-plus datatable-nosort">Mã đăng ký</th>
-                                                <th>Tên người bán</th>
-                                                <th>Ngày bán</th>
-                                                <th>Mô tả</th>
-                                                <th>Giá bán</th>
-                                                <th>Trạng thái</th>
-                                                <th>Hành động</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($xedkban as $i)
-                                                <tr>
-                                                    <td class="table-plus">{{ $i->madkbanxe }}</td>
-                                                    <td>{{ $i->hovaten }}</td>
-                                                    <td>
-                                                        @php
-                                                            $formattedDate = date(
-                                                                'H:m:s-d/m/Y',
-                                                                strtotime($i->ngayban),
-                                                            );
-                                                            echo $formattedDate;
-                                                        @endphp
-                                                    </td>
-                                                    <td>{{ $i->motachitiet }}</td>
-                                                    <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
-                                                    <td>
-                                                        @php
-                                                            $rs = strval($i->trangthai);
-                                                            if ($rs == '1') {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/check.png') .
-                                                                    '" alt="" srcset="" width="25" height=215">';
-                                                            } else {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/remove.png') .
-                                                                    '" alt="" srcset="" width="25" height="25">';
-                                                            }
-
-                                                        @endphp
-                                                    </td>
-                                                    <td>
-                                                        {{-- <a href="{{ url('/car_catalog/detail_inforcar') }}" type="button"
-                                                            class="btn btn-primary">Sửa</a>
-                                                        <a href="" type="button" class="btn btn-primary">Xóa</a> --}}
-
-                                                        <a type="button" class="btn btn-primary"
-                                                            href="{{ url('/car_catalog/detail_inforcar') }}">
-                                                            <i class="bi bi-pencil-fill"></i> Sửa
-                                                        </a>
-                                                        <a type="button" class="btn btn-danger" href="">
-                                                            <i class="bi bi-trash3"></i> Xóa
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -11,4 +11,6 @@ class KhachHang extends Model
     protected $table = 'nguoidung';
     protected $primaryKey = 'mand';
     public $timestamps = false;
+
+  
 }

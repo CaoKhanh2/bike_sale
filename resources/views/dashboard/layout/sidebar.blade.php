@@ -91,10 +91,10 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="">
-            <img src="{{ asset('dashboard_src/vendors/images/deskapp-logo.svg') }}" alt=""
-                class="dark-logo" />
-            <img src="{{ asset('dashboard_src/vendors/images/deskapp-logo-white.svg') }}" alt=""
-                class="light-logo" />
+            <img src="{{ asset('Image\Logo\logo.png') }}" alt=""  width="80" height="70"
+                class="rounded-circle dark-logo" />
+            <img src="{{ asset('Image\Logo\logo.png') }}" alt=""  width="80" height="70"
+                class="rounded-circle light-logo" />
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
