@@ -45,7 +45,7 @@
                                         </td>
                                         <td>
                                             <form id="myForm_{{ $i->matk }}"
-                                                action="{{ url('/dashboard/sys/' . $i->matk) }}" method="POST"
+                                                action="{{ url('/dashboard/sys/user_authorization/' . $i->matk) }}" method="POST"
                                                 id="myForm">
                                                 @csrf
                                                 @method('PATCH')
