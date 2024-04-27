@@ -186,7 +186,7 @@
 
 
     <!-- js -->
-    <script src="{{ asset('dashboard_src/src/plugins/apexcharts/apexcharts.min.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard_src/src/plugins/apexcharts/apexcharts.min.js') }}"></script> --}}
     <script src="{{ asset('dashboard_src/vendors/scripts/apexcharts-setting.js') }}"></script>
 
 

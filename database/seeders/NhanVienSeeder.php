@@ -17,10 +17,10 @@ class NhanVienSeeder extends Seeder
     public function run()
     {
         $fake = faker::create();
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=1; $i <= 10; $i++) { 
             NhanVien::create([
-                'manv'=> $fake -> numerify('MNV-###'),
-                'chucvu_id'=> $fake -> randomElement(['CV-01']),
+                'manv'=> $fake -> numerify('MNV-000').$i,
+                'macv'=> $fake -> randomElement(['CV-01']),
                 'hovaten' => $fake -> name(),
                 'ngaysinh' => $fake->date($format = 'Y-m-d', $max = 'now'),
                 'gioitinh' => $fake->randomElement(['Nam', 'Nữ', 'Other']),

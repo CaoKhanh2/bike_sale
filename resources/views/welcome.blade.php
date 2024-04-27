@@ -128,5 +128,6 @@
                 </div>
             </div>
         </div>
+        <h1>{{ Auth::user()->tentaikhoan }}</h1>
     </body>
 </html>

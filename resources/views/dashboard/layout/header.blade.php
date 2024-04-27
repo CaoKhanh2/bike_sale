@@ -59,7 +59,7 @@
                             <li>
                                 <a href="#">
                                     <img src="{{ asset('dashboard_src/vendors/images/img.jpg') }}" alt="" />
-                                    <h3>John Doe</h3>
+                                    <h3></h3>
                                     <p>
                                         Lorem ipsum dolor sit amet, consectetur adipisicing
                                         elit, sed...
@@ -121,21 +121,29 @@
                 </div>
             </div>
         </div>
-        <div class="user-info-dropdown">
-            <div class="dropdown">
-                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                    <span class="user-icon">
-                        <img src="{{ asset('\Image\415570954_906272230687061_5629026059600303103_n1.png') }}" alt="" />
-                    </span>
-                    <span class="user-name">Ross C. Lopez</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+        @if (Auth::check())
+            <div class="user-info-dropdown">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                        <span class="user-icon">
+                            <img src="{{ asset('\Image\415570954_906272230687061_5629026059600303103_n1.png') }}"
+                                alt="" />
+                        </span>
+                        <span class="user-name">
+                            <span class="user-name">{{ Auth::user()->tentaikhoan }}</span>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                        <li><a class="dropdown-item" href="">Thông tin tài khoản</a></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="dropdown-item"type="submit">Đăng xuất</button>
+                            </form>
+                        </li>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 </div>

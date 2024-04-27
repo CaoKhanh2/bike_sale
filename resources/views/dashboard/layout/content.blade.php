@@ -23,19 +23,24 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/vendors/styles/core.css') }}" />
     <link rel="stylesheet" type="text/css" href=" {{ asset('dashboard_src/vendors/styles/icon-font.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/vendors/styles/style.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('dashboard_src/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
 
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" />
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.css') }}" />
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('dashboard_src/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" /> --}}
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src=" {{ url('https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85') }} "></script>
-    <script async src=" {{ url('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258') }} "crossorigin="anonymous"></script>
+    <script async
+        src=" {{ url('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258') }} "
+        crossorigin="anonymous"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -46,7 +51,7 @@
 
         gtag("config", "G-GBZ3SGGX85");
     </script>
-    
+
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
@@ -96,7 +101,7 @@
     <script src="{{ asset('dashboard_src/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/process.js') }}"></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/layout-settings.js') }}"></script>
-    <script src="{{ asset('dashboard_src/src/plugins/apexcharts/apexcharts.min.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard_src/src/plugins/apexcharts/apexcharts.min.js') }}"></script> --}}
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
@@ -105,7 +110,7 @@
 
     <!-- switchery js -->
     <script src="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.js') }}"></script>
-    <script src="{{ asset('dashboard_src/vendors/scripts/advanced-components.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard_src/vendors/scripts/advanced-components.js') }}"></script> --}}
 
     <!-- buttons for Export datatable -->
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
