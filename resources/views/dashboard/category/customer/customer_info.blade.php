@@ -49,7 +49,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($khachhang as $i)
+                                                @foreach ($nguoidung as $i)
                                                     <tr>
                                                         <td class="table-plus">{{ $i->makh }}</td>
                                                         <td>{{ $i->hovaten }}</td>

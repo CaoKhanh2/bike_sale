@@ -15,8 +15,8 @@ class KhachHangController extends Controller
      */
     public function index()
     {
-        $kh = DB::table('khachhang')->get();
-        return view('dashboard.category.customer.customer_info', ['khachhang' => $kh]);
+        $kh = DB::table('nguoidung')->get();
+        return view('dashboard.category.customer.customer_info', ['nguoidung' => $kh]);
     }
 
     /**
@@ -57,7 +57,7 @@ class KhachHangController extends Controller
 
         // return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
 
-        DB::table('khachhang')
+        DB::table('nguoidung')
         ->insert([
             'makh' => $request->makh,
             'hovaten' => $request->hoten,
