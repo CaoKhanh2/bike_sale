@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DkBanXeController;
 use App\Http\Controllers\DongXeController;
 use App\Http\Controllers\HangXeController;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +9,7 @@ use App\Http\Controllers\VanChuyenController;
 use App\Http\Controllers\XeController;
 use App\Http\Controllers\XeDapDienController;
 use App\Http\Controllers\XeMayController;
+use App\Http\Controllers\XeDangKyThuMuaController;
 use Database\Seeders\DkBanXeSeeder;
 
 /*
@@ -127,11 +127,7 @@ Route::get('/dashboard/category/sales_agent/staff_infor',[NhanVienController::cl
 
 // Quan ly giao dich ----------
 
-// Route::get('/dashboard/transaction/purchasing_manage', function () {
-//     return view('dashboard.transaction.purchasing.purchasing_manage');
-// });
-
-Route::get('/dashboard/transaction/purchasing_manage',[DkBanXeController::class,'index']);
+Route::get('/dashboard/transaction/purchasing_manage',[XeDangKyThuMuaController::class,'index']);
 
 
 Route::get('/selling_item', function(){
