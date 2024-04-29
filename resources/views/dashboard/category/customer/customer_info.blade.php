@@ -76,11 +76,11 @@
                                                         </td>
                                                         <td>
                                                             <a type="button" class="btn btn-primary"
-                                                                href="{{ route('ctthongtinkhachhang', ['makh' => $i->makh]) }}">
+                                                                href="{{ route('ctthongtinkhachhang', ['id' => $i->mand]) }}">
                                                                 <i class="bi bi-pencil-fill"></i> Sửa
                                                             </a>
                                                             <a type="button" class="btn btn-danger"
-                                                                href="{{ route('xoathongtinkhachhang', ['id' => $i->makh]) }}">
+                                                                href="{{ route('xoathongtinkhachhang', ['id' => $i->mand]) }}">
                                                                 <i class="bi bi-trash3"></i> Xóa
                                                             </a>
                                                         </td>
@@ -98,7 +98,7 @@
                                             <div class="form-group row" id="row1">
                                                 <label class="col-sm-12 col-md-2 col-form-label">Mã khách hàng</label>
                                                 <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control" name="makh" id="makh" />
+                                                    <input class="form-control" name="mand" id="mnd" />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -115,6 +115,13 @@
                                                         <option value="Nam">Nam</option>
                                                         <option value="Nữ">Nữ</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label">Căn cước công đân</label>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <input class="form-control" type="number" name="cccd"
+                                                        id="cccd" maxlength="11"/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -164,22 +171,25 @@
     <script>
         // Kiểm tra dữ liệu trước khi gửi form
         document.getElementById('form-add').addEventListener('submit', function(event) {
-            var makhInput = document.getElementById('makh');
+            var mandInput = document.getElementById('mand');
             var hotenInput = document.getElementById('hoten');
             var gtInput = document.getElementById('gioitinh');
             var ngsinhInput = document.getElementById('ngsinh');
+            var cccdInput = document.getElementById('cccd');
             var sdtInput = document.getElementById('sdt');
             var emailInput = document.getElementById('email');
             var dcInput = document.getElementById('diachi');
             var isValid = true;
 
-            !makhInput.value.trim() ? (makhInput.classList.add('is-invalid'), isValid = false) : makhInput.classList
+            !mandInput.value.trim() ? (mandInput.classList.add('is-invalid'), isValid = false) : mandInput.classList
                 .remove('is-invalid');
             !hotenInput.value.trim() ? (hotenInput.classList.add('is-invalid'), isValid = false) : hotenInput
                 .classList.remove('is-invalid');
             !gtInput.value.trim() ? (gtInput.classList.add('is-invalid'), isValid = false) : gtInput.classList
                 .remove('is-invalid');
             !ngsinhInput.value.trim() ? (ngsinhInput.classList.add('is-invalid'), isValid = false) : ngsinhInput
+                .classList.remove('is-invalid');
+            !cccdInput.value.trim() ? (cccdInput.classList.add('is-invalid'), isValid = false) : cccdInput
                 .classList.remove('is-invalid');
             !sdtInput.value.trim() ? (sdtInput.classList.add('is-invalid'), isValid = false) : sdtInput.classList
                 .remove('is-invalid');

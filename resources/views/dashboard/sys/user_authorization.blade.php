@@ -45,14 +45,14 @@
                                         </td>
                                         <td>
                                             <form id="myForm_{{ $i->matk }}"
-                                                action="{{ url('/dashboard/sys/' . $i->matk) }}" method="POST"
+                                                action="{{ url('/dashboard/sys/user_authorization/' . $i->matk) }}" method="POST"
                                                 id="myForm">
                                                 @csrf
                                                 @method('PATCH')
                                                 <select name="phanquyen" id="phanquyen_{{ $i->matk }}"
                                                     class="custom-select"
                                                     {{ $i->phanquyen == 'Quản trị viên' ? 'disabled' : '' }}>
-                                                    <option value="Quản trị viên"
+                                                    <option value="Quản trị viên" disabled
                                                         {{ $i->phanquyen == 'Quản trị viên' ? 'selected' : '' }}>Quản trị
                                                         viên</option>
                                                     <option value="Quản lý"

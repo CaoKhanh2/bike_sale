@@ -77,7 +77,7 @@ class TaiKhoanContrller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update1(Request $request, $id)
     {
         if ($id) {
             $currentTime = Carbon::now();
@@ -92,6 +92,24 @@ class TaiKhoanContrller extends Controller
         } else {
             // Xử lý khi $id không tồn tại
             return redirect('/dashboard/sys/user_authorization')->with('error', 'Invalid ID!');
+        }
+    }
+
+    public function update2(Request $request, $id)
+    {
+        if ($id) {
+            $currentTime = Carbon::now();
+            DB::table('taikhoan')
+                ->where('matk', $id)
+                ->update([
+                    'trangthai' => $request->trangthai,
+                    'ngaycapnhat' => $currentTime
+            ]);
+
+            return redirect('/dashboard/sys/acc_management/employee_account')->with('success', 'Post created successfully!');
+        } else {
+            // Xử lý khi $id không tồn tại
+            return redirect('/dashboard/sys/acc_management/employee_account')->with('error', 'Invalid ID!');
         }
     }
 

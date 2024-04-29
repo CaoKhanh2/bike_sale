@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('diachi',100)->nullable();
             $table->string('tentk',20)->nullable();
             $table->string('password',20)->nullable();
-            $table->tinyInteger('tinhtrang')->default(0);
+            $table->tinyInteger('tinhtrang')->default(1);
             
             $table->primary('mand');
             
