@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('dongxe', function (Blueprint $table) {
             $table->string('madx',15);
             $table->string('mahx',5);
+            $table->string('loaixe',15);
             $table->string('tendongxe',50);
             $table->string('mota',50)->nullable();
 

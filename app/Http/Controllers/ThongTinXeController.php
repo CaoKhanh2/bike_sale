@@ -7,7 +7,7 @@ use App\Models\ThongTinXeMay;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class XeController extends Controller
+class ThongTinXeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,11 @@ class XeController extends Controller
     public function index()
     {
         //$xeMayData = ThongTinXeMay::all(); 
-        // $xeDapDienData = ThongTinXeDapDien::all();
+        //$xeDapDienData = ThongTinXeDapDien::all();
 
-        $ttxm = DB::select('SELECT thongtinxemay.*, hangxe.tenhang, dongxe.tendongxe FROM thongtinxemay INNER JOIN dongxe  ON dongxe.madx = thongtinxemay.madx INNER JOIN hangxe ON thongtinxemay.mahx = hangxe.mahx');
+        $ttxm = DB::select('SELECT thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxemay  ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
 
-        $ttxdd = DB::select('SELECT thongtinxedapdien.*, hangxe.tenhang, dongxe.tendongxe FROM thongtinxedapdien INNER JOIN dongxe  ON dongxe.madx = thongtinxedapdien.madx INNER JOIN hangxe ON thongtinxedapdien.mahx = hangxe.mahx');
+        $ttxdd = DB::select('SELECT thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxedapdien  ON thongtinxe.matsxemay = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
 
         $hx = DB::table('hangxe')->get();
 

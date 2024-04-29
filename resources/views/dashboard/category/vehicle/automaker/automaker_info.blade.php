@@ -43,7 +43,6 @@
                                                 <th>Tên hãng</th>
                                                 <th>Logo</th>
                                                 <th>Xuất xứ</th>
-                                                <th>Trạng thái</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
@@ -59,21 +58,6 @@
                                                         @endforeach
                                                     </td>
                                                     <td>{{ $i->xuatxu }}</td>
-                                                    <td>
-                                                        @php
-                                                            $rs = strval($i->trangthai);
-                                                            if ($rs == '1') {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/check.png') .
-                                                                    '" alt="" srcset="" width="25" height=215">';
-                                                            } else {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/remove.png') .
-                                                                    '" alt="" srcset="" width="25" height="25">';
-                                                            }
-
-                                                        @endphp
-                                                    </td>
                                                     <td><a type="button" class="btn btn-primary"
                                                             href="{{ url('/dashboard/category/vehicle/detail_automaker_info') }}">
                                                             <i class="bi bi-pencil-fill"></i> Sửa

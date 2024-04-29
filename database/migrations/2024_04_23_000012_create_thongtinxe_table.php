@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('ghichu');
 
             $table->primary('maxe');
+            $table->foreign('madx')->references('madx')->on('dongxe')->onDelete('cascade');
             $table->foreign('matsxemay')->references('matsxemay')->on('thongsokythuatxemay')->onDelete('cascade');
             $table->foreign('matsxedapdien')->references('matsxedapdien')->on('thongsokythuatxedapdien')->onDelete('cascade');
 

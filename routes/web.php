@@ -4,12 +4,11 @@ use App\Http\Controllers\DkBanXeController;
 use App\Http\Controllers\DongXeController;
 use App\Http\Controllers\HangXeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\nguoidungController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\TaiKhoanContrller;
 use App\Http\Controllers\VanChuyenController;
-use App\Http\Controllers\XeController;
+use App\Http\Controllers\ThongTinXeController;
 use App\Http\Controllers\XeDapDienController;
 use App\Http\Controllers\XeMayController;
 use App\Http\Controllers\XeDangKyThuMuaController;
@@ -46,17 +45,17 @@ Route::get('/ban-xe', function () {
     return view('sale-page');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard.index');
-// });
+Route::get('/index', function () {
+    return view('auth.index');
+});
 
 // ----------
 
-// Add data
-// Route::get('/data1', [HangXeController::class,'index']);
+// Add data ----------
+Route::get('/data1', [HangXeController::class,'data']);
 // Route::get('/data2', [LoaiXeController::class,'index']);
-Route::get('/data3', [TaiKhoanContrller::class, 'data']);
-Route::get('/data4', [ChucVuContrller::class, 'data']);
+// Route::get('/data3', [TaiKhoanContrller::class, 'data']);
+// Route::get('/data4', [ChucVuContrller::class, 'data']);
 // ----------
 
 // Route::post('/login',function(){
@@ -74,6 +73,8 @@ Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
 // Route::get('/dasboard', function () {
 //     return view('dashboard.index');
 // })->middleware(['roleAcc']);
+
+
 
 Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/dashboard', function () {
@@ -124,9 +125,9 @@ Route::middleware(['auth', 'role'])->group(function () {
     // });
     Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}', [XeMayController::class, 'edit'])->name('ctthongtinxemay');
 
-    Route::get('/dashboard/category/vehicle/vehicle_infor', [XeController::class, 'index']);
+    Route::get('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'index']);
 
-    Route::post('/dashboard/category/vehicle/vehicle_infor', [XeController::class, 'store'])->name('themthongtinxe');
+    Route::post('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
     // Route::post('/dashboard/category/vehicle/vehicle_infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
     //Route::post('/dashboard/category/customer/customer_info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
 
