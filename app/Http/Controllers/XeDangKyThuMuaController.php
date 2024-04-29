@@ -14,8 +14,12 @@ class XeDangKyThuMuaController extends Controller
      */
     public function index()
     {
-        $xethumua = DB::table('xedangkythumua')->get();
-        return View('dashboard.transaction.purchasing.purchasing_manage', ['xedangkythumua' => $xethumua]);
+        $dstm_check = DB::table('DS_Thumua')->where('trangthaipheduyet','Duyệt')->get();
+        $dstm_uncheck = DB::table('DS_Thumua')->where('trangthaipheduyet','Không duyệt')->get();
+        return View('dashboard.transaction.purchasing.purchasing_manage', [
+            'xedangkythumua_check' => $dstm_check,
+            'xedangkythumua_uncheck' => $dstm_uncheck
+        ]);
     }
 
     /**
@@ -36,20 +40,35 @@ class XeDangKyThuMuaController extends Controller
      */
     public function store(Request $request)
     {
-        B::table('xedangkythumua')
-        ->insert([
-            'makh' => $request->makh,
-            'hovaten' => $request->hoten,
-            'ngaysinh' => $request->ngsinh,
-            'gioitinh' => $request->gt,
-            'sodienthoai' => $request->sdt,
-            'email' => $request->email,
-            'diachi' => $request->dc
-            // 'tinhtrang' => $request->tt
-        ]);
+        
+        if($request->xe == 1){
+            $imagePathsString = '';
+            $imagePaths = [];
 
-        return redirect('/selling_item')->with('success', 'Post created successfully!');
-    }
+            if ($request->hasFile('anh')) {
+                foreach ($request->file('anh') as $image) {
+                    $path = $image->store('images','public');
+                    $imagePaths[] = $path; 
+                }
+            }
+
+            $imagePathsString = implode(',', $imagePaths);
+
+            DB::table('xedangkythumua')->insert([
+                'maxemay' => $request->mx,
+                'madx' => $request->dx,
+                'mahx' => $request->hx,
+                'tenxe' => $request->tx,
+                'dungtichxe' => $request->dtx,
+                'sokmdadi' => $request->sokmdadi,
+                'namdk' => $request->namdk,
+                'hinhanh' => $imagePathsString,
+                'giaban' => $request->giaban,
+                //'tinhtrang' => $request->tt
+            ]);
+
+            return redirect('/dashboard/category/vehicle/vehicle_infor')->with('success', 'Thông tin đã được gửi đi');
+    }}
 
     /**
      * Display the specified resource.
@@ -81,9 +100,18 @@ class XeDangKyThuMuaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        
     }
+    public function updatedon(Request $request, $id)
+    {   
+        $trangthai = 'Duyệt';
+        DB::table('xedangkythumua')->where('madkthumua', $id)
+        ->update(['trangthaipheduyet' => $trangthai]);
+
+        return redirect()->route('xedkthumua');
+    }
+
 
     /**
      * Remove the specified resource from storage.

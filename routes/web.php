@@ -167,12 +167,8 @@ Route::middleware(['auth', 'role'])->group(function () {
 
     // Quan ly giao dich ----------
 
-// Route::get('/dashboard/transaction/purchasing_manage', function () {
-//     return view('dashboard.transaction.purchasing.purchasing_manage');
-// });
-
-Route::get('/dashboard/transaction/purchasing_manage',[DkBanXeController::class,'index']);
-
+    Route::get('/dashboard/transaction/purchasing_manage',[XeDangKyThuMuaController::class,'index'])->name('xedkthumua');
+    Route::get('/dashboard/tranction/purchasing_manage/{id}',[XeDangKyThuMuaController::class,'updatedon'])->name('duyetdon');
     Route::get('/selling_item', function () {
         return view('/user.selling_item');
     });
