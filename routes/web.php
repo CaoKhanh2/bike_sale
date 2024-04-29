@@ -89,9 +89,11 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::middleware('permission:Quản trị viên')->group(function () {
 
         Route::get('/dashboard/sys/user_authorization', [TaiKhoanContrller::class, 'index1']);
-        Route::patch('/dashboard/sys/user_authorization/{id}', [TaiKhoanContrller::class, 'update'])->name('capnhattrangthai');
+        Route::patch('/dashboard/sys/user_authorization/{id}', [TaiKhoanContrller::class, 'update1'])->name('capnhattrangthai');
 
-        Route::get('dashboard/sys/acc_management/employee_account', [TaiKhoanContrller::class, 'index2']);
+        Route::get('/dashboard/sys/acc_management/employee_account', [TaiKhoanContrller::class, 'index2']);
+        Route::patch('/dashboard/sys/acc_management/employee_account/{id}', [TaiKhoanContrller::class, 'update2']);
+
     });
     // ----------
 
@@ -143,8 +145,8 @@ Route::middleware(['auth', 'role'])->group(function () {
 
     Route::post('/dashboard/category/customer/customer_info', [NguoiDungController::class, 'store'])->name('themthongtinkhachhang');
     Route::get('/dashboard/category/customer/customer_info/{id}', [NguoiDungController::class, 'destroy'])->name('xoathongtinkhachhang');
-    Route::get('/dashboard/category/customer/detail_customer_info/{makh}', [NguoiDungController::class, 'edit'])->name('ctthongtinkhachhang');
-    Route::patch('/dashboard/category/customer/detail_customer_info/{makh}', [NguoiDungController::class, 'update']);
+    Route::get('/dashboard/category/customer/detail_customer_info/{id}', [NguoiDungController::class, 'show'])->name('ctthongtinkhachhang');
+    Route::patch('/dashboard/category/customer/detail_customer_info/{id}', [NguoiDungController::class, 'update'])->name('capnhatthongtinkhachhang');
 
     //----------
 

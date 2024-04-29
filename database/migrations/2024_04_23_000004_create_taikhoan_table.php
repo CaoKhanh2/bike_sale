@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('taikhoan', function (Blueprint $table) {
             $table->string('matk',12);
             $table->string('manv',10);
-            $table->string('taikhoan',20);
-            $table->string('password',20);
+            $table->string('tentaikhoan',20);
+            $table->string('password',255);
             $table->string('email',35);
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('phanquyen',['Quản trị viên','Nhân viên', 'Quản lý']);

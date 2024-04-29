@@ -131,7 +131,7 @@
                     </ul>
                 </li>
                 @endif
-                @if (Auth::User()->phanquyen == 'Nhân viên' || Auth::User()->phanquyen == 'Quản lý')
+                {{-- @if (Auth::User()->phanquyen == 'Nhân viên' || Auth::User()->phanquyen == 'Quản lý') --}}
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon"><i class="fa-solid fa-layer-group"></i></span><span
@@ -161,7 +161,7 @@
                                     bán hàng</a></li>
                         </ul>
                     </li>
-                @endif
+                {{-- @endif --}}
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon"><i class="fa-solid fa-sack-dollar"></i></span><span class="mtext">Giao
@@ -190,8 +190,8 @@
                             kê</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('/dashboard/report/best-selling-items') }}">Báo cáo mặt hàng bán chạy</a>
-                        </li>
+                        <li><a href="{{ url('/dashboard/report/best-selling-items') }}">Báo cáo tình hình bán hàng</a></li>
+                        <li><a href="{{ url('#') }}">Báo cáo tình hình thu mua</a></li>
                         <li><a href="{{ url('/dashboard/report/inventory') }}">Báo cáo tồn kho</a></li>
                         <li><a href="forgot-password.html">Báo cáo rủi ro</a></li>
                         <li><a href="reset-password.html">Báo cáo thực hiện khuyến mãi</a></li>

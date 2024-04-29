@@ -52,7 +52,7 @@
                                                 <select name="phanquyen" id="phanquyen_{{ $i->matk }}"
                                                     class="custom-select"
                                                     {{ $i->phanquyen == 'Quản trị viên' ? 'disabled' : '' }}>
-                                                    <option value="Quản trị viên"
+                                                    <option value="Quản trị viên" disabled
                                                         {{ $i->phanquyen == 'Quản trị viên' ? 'selected' : '' }}>Quản trị
                                                         viên</option>
                                                     <option value="Quản lý"

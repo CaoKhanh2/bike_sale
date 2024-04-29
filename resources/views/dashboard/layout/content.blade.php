@@ -110,7 +110,7 @@
 
     <!-- switchery js -->
     <script src="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.js') }}"></script>
-    {{-- <script src="{{ asset('dashboard_src/vendors/scripts/advanced-components.js') }}"></script> --}}
+    <script src="{{ asset('dashboard_src/vendors/scripts/advanced-components.js') }}"></script>
 
     <!-- buttons for Export datatable -->
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>

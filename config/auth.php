@@ -65,6 +65,11 @@ return [
             'model' => App\Models\TaiKhoan::class,
         ],
 
+        'customer' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\NguoiDung::class,
+        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

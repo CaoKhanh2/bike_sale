@@ -62,6 +62,7 @@ class NguoiDungController extends Controller
             'mand' => $request->mand,
             'hovaten' => $request->hoten,
             'ngaysinh' => $request->ngsinh,
+            'cccd' => $request->cccd,
             'gioitinh' => $request->gt,
             'sodienthoai' => $request->sdt,
             'email' => $request->email,
@@ -80,7 +81,8 @@ class NguoiDungController extends Controller
      */
     public function show($id)
     {
-        //
+        $nd = DB::table('nguoidung')->where('mand', $id)->first();
+        return view('/dashboard/category/customer/detail_customer_info', ['nd' => $nd]);
     }
 
     /**
@@ -91,8 +93,7 @@ class NguoiDungController extends Controller
      */
     public function edit($id)
     {
-        $kh = DB::table('nguoidung')->where('mand', $id)->first();
-        return view('/dashboard/category/customer/detail_customer_info', ['kh' => $kh]);
+       
     }
 
     /**
@@ -116,19 +117,27 @@ class NguoiDungController extends Controller
         // $kh->save();
         // return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
 
-        DB::table('nguoidung')
+        if($id){
+            DB::table('nguoidung')
             ->where('mand', $id)
             ->update([
                 'hovaten' => $request->hoten,
                 'ngaysinh' => $request->ngsinh,
+                'cccd' => $request->cccd,
                 'gioitinh' => $request->gt,
                 'sodienthoai' => $request->sdt,
                 'email' => $request->email,
                 'diachi' => $request->dc,
                 'tinhtrang' => $request->tt ? 1 : 0
             ]);
+            
+            return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
 
-        return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+        }else{
+            
+        }
+
+        
     }
 
     /**

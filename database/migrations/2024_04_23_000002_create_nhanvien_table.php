@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('macv',5);
             $table->string('hovaten',50);
             $table->date('ngaysinh');
-            $table->enum('gioitinh', ['Nam', 'Nữ', 'Other']);
+            $table->enum('gioitinh', ['Nam', 'Nữ']);
             $table->char('sodienthoai',11);
             $table->string('email',35);
             $table->string('diachi',150);
