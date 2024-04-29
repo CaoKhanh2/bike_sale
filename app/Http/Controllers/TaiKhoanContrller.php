@@ -147,10 +147,10 @@ class TaiKhoanContrller extends Controller
     public function data()
     {
         $data = [
-            //['matk' => '1', 'tentaikhoan' => 'nhanvien1', 'password' => bcrypt('12345678'), 'email' => 'nhanvien1@gmail.com', 'phanquyen' => 'Nhân viên', 'trangthai'=>1],
-            //['matk' => '2', 'tentaikhoan' => 'nhanvien2', 'password' => bcrypt('12345678'), 'email' => 'nhanvien2@gmail.com', 'phanquyen' => 'Nhân viên', 'trangthai'=>1],
-            //['matk' => '3', 'tentaikhoan' => 'nhanvien3', 'password' => bcrypt('12345678'), 'email' => 'nhanvien3@gmail.com', 'phanquyen' => 'Nhân viên', 'trangthai'=>1],
-            // ['matk' => '4', 'tentaikhoan' => 'admin', 'password' => bcrypt('12345678'), 'email' => 'admin@gmail.com', 'phanquyen' => 'Quản trị viên', 'trangthai'=>1],
+            ['matk' => '1', 'tentaikhoan' => 'nhanvien1', 'password' => bcrypt('12345678'), 'email' => 'nhanvien1@gmail.com', 'phanquyen' => 'Nhân viên', 'trangthai'=>1],
+            ['matk' => '2', 'tentaikhoan' => 'nhanvien2', 'password' => bcrypt('12345678'), 'email' => 'nhanvien2@gmail.com', 'phanquyen' => 'Nhân viên', 'trangthai'=>1],
+            ['matk' => '3', 'tentaikhoan' => 'nhanvien3', 'password' => bcrypt('12345678'), 'email' => 'nhanvien3@gmail.com', 'phanquyen' => 'Nhân viên', 'trangthai'=>1],
+            ['matk' => '4', 'tentaikhoan' => 'admin', 'password' => bcrypt('12345678'), 'email' => 'admin@gmail.com', 'phanquyen' => 'Quản trị viên', 'trangthai'=>1],
         ];
 
         TaiKhoan::insert($data);

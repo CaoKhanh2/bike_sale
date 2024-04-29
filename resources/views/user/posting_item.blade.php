@@ -1,5 +1,5 @@
 <div class="container bg-light">
-    <form action="">
+    <form method="POST" action="">
         <div class="row justify-content-around">
             <div class="col-4 mt-3">
                 <label for="my-awesome-dropzone">
