@@ -38,30 +38,6 @@ class ThongTinXeController extends Controller
         ]);
     }
 
-    public function index2()
-    {
-        //$xeMayData = ThongTinXeMay::all(); 
-        //$xeDapDienData = ThongTinXeDapDien::all();
-
-        $ttxm = DB::select('SELECT thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxemay  ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
-
-        $ttxdd = DB::select('SELECT thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxedapdien  ON thongtinxe.matsxemay = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
-
-        $hx = DB::table('hangxe')->get();
-
-        $dxm = DB::table('dongxe')->where('loaixe','Xe máy')->get();
-        $dxdd = DB::table('dongxe')->where('loaixe','Xe đạp điện')->get();
-
-        return view('sub-index', [
-            'thongtinxemay' => $ttxm,
-            'thongtinxedapdien' => $ttxdd,
-            'hangxe' => $hx,
-            'dongxemay' => $dxm,
-            'dongxedapdien' => $dxdd
-            
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *

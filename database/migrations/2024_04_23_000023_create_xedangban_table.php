@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('makhuyenmai',5);
             $table->string('manv',10);
             $table->dateTime('ngayban');
+            $table->year('namsx');
             $table->decimal('giaban',10,2);
             $table->text('mota');
             $table->enum('tranghthai',['Đã bán xe','Còn xe']);
