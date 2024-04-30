@@ -51,7 +51,7 @@
                                             <label class="col-sm-12 col-md-2 col-form-label">Phương tiện</label>
                                             <div class="col-sm-12 col-md-10">
                                                 <select class="custom-select col-12" id="vehicle" name="xe">
-                                                    <option>Choose...</option>
+                                                    <option selected hidden>Choose...</option>
                                                     <option value="1">Xe máy</option>
                                                     <option value="2">Xe đạp điện</option>
                                                 </select>
@@ -75,12 +75,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tx" />
+                                                        <select class="custom-select col-12" name="dx" id="dongxemay">
+                                                            <option selected hidden>Choose...</option>
+                                                            @foreach ($dongxemay as $i)
+                                                                <option value="{{ $i->madx }}">{{ $i->tendongxe }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <select class="custom-select col-12" name="hx" id="hangxe">
@@ -91,23 +97,17 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <select class="custom-select col-12" name="dx" id="dongxemay">
-                                                            <option selected="">Choose...</option>
-                                                            @foreach ($dongxemay as $i)
-                                                                <option value="{{ $i->madx }}">{{ $i->tendongxe }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
+                                                        <input class="form-control" name="tx" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Dung tích xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử dụng</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="dtx" />
+                                                        <input class="form-control" name="tgsd" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -117,10 +117,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Năm đăng ký</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" type="number" name="namdk"
+                                                        <input class="form-control" name="tinhtrangxe"
                                                             min="2000" max="2024">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Biển số xe</label>
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <input class="form-control" name="bsx" maxlength="12">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -133,12 +139,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Ghi chú</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" type="number" name="giaban" />
+                                                        <textarea class="form-control" rows="3" name="mt"></textarea>
                                                     </div>
                                                 </div>
+
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                     <button type="submit"
                                                         class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
@@ -163,14 +171,7 @@
                                                         <input class="form-control" name="mx" />
                                                     </div>
                                                 </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
-                                                    <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tx" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <select class="custom-select col-12" name="hx"
@@ -182,7 +183,7 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
                                                     <div class="col-sm-12 col-md-10">
@@ -197,34 +198,28 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Trọng lượng</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" type="number" name="trlg" />
+                                                        <input class="form-control" name="tx" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Ác quy</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử dụng</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="ac" />
+                                                        <input class="form-control" name="tgsd" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Động cơ điện</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="dcd" />
+                                                        <input class="form-control" type="number" name="sokmdadi" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Sạc điện</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="sd" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Phạm vi sử
-                                                        dụng</label>
-                                                    <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="pvsd" />
+                                                        <input class="form-control" name="tinhtrangxe"
+                                                            min="2000" max="2024">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -238,9 +233,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Ghi chú</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" type="number" name="giaban" />
+                                                        <textarea class="form-control" rows="3" name="mt"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">

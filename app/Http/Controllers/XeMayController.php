@@ -51,7 +51,10 @@ class XeMayController extends Controller
      */
     public function show($id)
     {
-        //
+        $xm = DB::table('thongtinxe')->where('maxe', $id)->first();
+        $dx = DB::table('dongxe')->get();
+        $hx = DB::table('hangxe')->get();
+        return view('/dashboard/category/vehicle/detail_vehicle_infor', ['xm' => $xm, 'dx' => $dx, 'hx' => $hx]);
     }
 
     /**
@@ -62,10 +65,7 @@ class XeMayController extends Controller
      */
     public function edit($id)
     {
-        $xm = DB::table('thongtinxemay')->where('maxemay', $id)->first();
-        $dx = DB::table('dongxe')->get();
-        $hx = DB::table('hangxe')->get();
-        return view('/dashboard/category/vehicle/detail_vehicle_infor', ['xm' => $xm, 'dx' => $dx, 'hx' => $hx]);
+        
     }
 
     /**

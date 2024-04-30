@@ -20,14 +20,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" href="{{url('/sub-index/xemay')}}">
                                 <img src="{{ asset('Image\Icon\motorbike.png') }}" width="30" height="24"
                                     class="img-fluid mx-auto d-block">
                                 <span class="text-center mx-auto d-block">Mua xe máy</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-disabled="true" href="">
+                            <a class="nav-link active" aria-disabled="true" href="/sub-index/xedapdien">
                                 <img src="{{ asset('Image\Icon\electric-scooter.png') }}" width="30" height="24"
                                     class="img-fluid mx-auto d-block">
                                     <span class="text-center mx-auto d-block">Mua xe đạp điện</span>

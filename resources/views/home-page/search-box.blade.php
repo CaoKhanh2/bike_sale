@@ -16,16 +16,17 @@
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Tìm tên, hãng, dòng xe, ..." aria-label="">
                 </div>
-                <div class="col">
+                {{-- <div class="col">
                     <select id="inputState1" class="form-select">
                         <option selected>Tỉnh, thành phố</option>
                         <option>...</option>
                     </select>
-                </div>
+                </div> --}}
                 <div class="col">
                     <select id="inputState2" class="form-select">
-                        <option selected>Loại xe</option>
-                        <option>...</option>
+                        <option selected hidden>Loại xe</option>
+                        <option>Xe máy</option>
+                        <option>Xe đạp điện</option>
                     </select>
                 </div>
                 <div class="col">
