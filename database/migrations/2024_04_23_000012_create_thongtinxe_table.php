@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('madx',10);
             $table->string('matsxemay',10);
             $table->string('matsxedapdien',10);
+            $table->string('tenxe', 50);
             $table->string('xuatxu',25);
             $table->string('thoigiandasudung',25);
             $table->string('tinhtrangxe',50);

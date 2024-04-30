@@ -21,7 +21,7 @@ class ThongTinXeController extends Controller
 
         $ttxm = DB::select('SELECT thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxemay  ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
 
-        $ttxdd = DB::select('SELECT thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxedapdien  ON thongtinxe.matsxemay = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+        $ttxdd = DB::select('SELECT thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxedapdien  ON thongtinxe.matsxedapdien = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
 
         $hx = DB::table('hangxe')->get();
 
@@ -29,6 +29,30 @@ class ThongTinXeController extends Controller
         $dxdd = DB::table('dongxe')->where('loaixe','Xe đạp điện')->get();
 
         return view('dashboard.category.vehicle.vehicle_infor', [
+            'thongtinxemay' => $ttxm,
+            'thongtinxedapdien' => $ttxdd,
+            'hangxe' => $hx,
+            'dongxemay' => $dxm,
+            'dongxedapdien' => $dxdd
+            
+        ]);
+    }
+
+    public function index2()
+    {
+        //$xeMayData = ThongTinXeMay::all(); 
+        //$xeDapDienData = ThongTinXeDapDien::all();
+
+        $ttxm = DB::select('SELECT thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxemay  ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+
+        $ttxdd = DB::select('SELECT thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxedapdien  ON thongtinxe.matsxemay = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+
+        $hx = DB::table('hangxe')->get();
+
+        $dxm = DB::table('dongxe')->where('loaixe','Xe máy')->get();
+        $dxdd = DB::table('dongxe')->where('loaixe','Xe đạp điện')->get();
+
+        return view('sub-index', [
             'thongtinxemay' => $ttxm,
             'thongtinxedapdien' => $ttxdd,
             'hangxe' => $hx,
@@ -56,59 +80,57 @@ class ThongTinXeController extends Controller
      */
     public function store(Request $request)
     {
+        $imagePathsString = '';
+        $imagePaths = [];
+
+        if ($request->hasFile('anh')) {
+            foreach ($request->file('anh') as $image) {
+                $path = $image->store('images','public');
+                $imagePaths[] = $path; 
+            }
+        }
         
         if($request->xe == 1){
-            $imagePathsString = '';
-            $imagePaths = [];
 
-            if ($request->hasFile('anh')) {
-                foreach ($request->file('anh') as $image) {
-                    $path = $image->store('images','public');
-                    $imagePaths[] = $path; 
-                }
-            }
+            DB::table('thongsokythuatxemay')->insert([
+                'matsxemay' => ("TS").($request->mx)
+            ]);
 
             $imagePathsString = implode(',', $imagePaths);
 
-            DB::table('thongtinxemay')->insert([
-                'maxemay' => $request->mx,
+            DB::table('thongtinxe')->insert([
+                'maxe' => $request->mx,
+                'matsxemay' =>  ("TS").($request->mx),
                 'madx' => $request->dx,
-                'mahx' => $request->hx,
                 'tenxe' => $request->tx,
-                'dungtichxe' => $request->dtx,
+                'thoigiandasudung' => $request->tgsd,
+                'tinhtrangxe' => $request->tinhtrangxe,
                 'sokmdadi' => $request->sokmdadi,
-                'namdk' => $request->namdk,
+                'biensoxe' => $request->bsx,
                 'hinhanh' => $imagePathsString,
-                'giaban' => $request->giaban,
+                'ghichu' => $request->ghichu
                 //'tinhtrang' => $request->tt
             ]);
 
             return redirect('/dashboard/category/vehicle/vehicle_infor')->with('success', 'Post created successfully!');
         }else{
-            $imagePathsString = '';
-            $imagePaths = [];
 
-            if ($request->hasFile('anh')) {
-                foreach ($request->file('anh') as $image) {
-                    $path = $image->store('images','public');
-                    $imagePaths[] = $path; 
-                }
-            }
+            DB::table('thongsokythuatxedapdien')->insert([
+                'matsxedapdien' => ("TS").($request->mx)
+            ]);
 
             $imagePathsString = implode(',', $imagePaths);
 
-            DB::table('thongtinxedapdien')->insert([
-                'maxedapdien' => $request->mx,
+            DB::table('thongtinxe')->insert([
+                'maxe' => $request->mx,
+                'matsxedapdien' =>  ("TS").($request->mx),
                 'madx' => $request->dx,
-                'mahx' => $request->hx,
                 'tenxe' => $request->tx,
-                'trongluong' => $request->trlg,
-                'acquy' => $request->ac,
-                'dongcodien' => $request->dcd,
-                'sacdien' => $request->sd,
-                'phamvisudung' => $request->pvsd,
+                'thoigiandasudung' => $request->tgsd,
+                'tinhtrangxe' => $request->tinhtrangxe,
+                'sokmdadi' => $request->sokmdadi,
                 'hinhanh' => $imagePathsString,
-                'giaban' => $request->giaban
+                'ghichu' => $request->ghichu
                 //'tinhtrang' => $request->tt
             ]);
 
@@ -156,8 +178,10 @@ class ThongTinXeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy_Xemay($id)
     {
-        //
+        DB::table('thongtinxe')->where('maxe', $id)->delete();
+        DB::table('thongsokythuatxemay')->where('matsxemay', ('TS').$id)->delete();
+        return redirect('dashboard/category/vehicle/vehicle_infor')->with('success', 'Post created successfully!');
     }
 }

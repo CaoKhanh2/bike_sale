@@ -37,11 +37,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/xe', function () {
-    return view('sub-index');
-});
+// Route::get('/sub-index/xemay', function () {
+//     return view('sub-index');
+// });
 
-Route::get('/ban-xe', function () {
+Route::get('/sub-index/xemay', [ThongTinXeController::class, 'index2']);
+Route::get('/sub-index/xedapdien', [ThongTinXeController::class, 'index2']);
+
+
+Route::get('/sale-page', function () {
     return view('sale-page');
 });
 
@@ -123,11 +127,13 @@ Route::middleware(['auth', 'role'])->group(function () {
     // Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
     //     return view('dashboard.category.vehicle.detail_vehicle_infor');
     // });
-    Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}', [XeMayController::class, 'edit'])->name('ctthongtinxemay');
+    Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}', [XeMayController::class, 'show'])->name('ctthongtinxemay');
 
     Route::get('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'index']);
-
     Route::post('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
+    Route::post('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
+    Route::get('/dashboard/category/vehicle/vehicle_infor/{maxemay}', [ThongTinXeController::class, 'destroy_Xemay'])->name('xoathongtinxemay');
+
     // Route::post('/dashboard/category/vehicle/vehicle_infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
     //Route::post('/dashboard/category/customer/customer_info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
 
