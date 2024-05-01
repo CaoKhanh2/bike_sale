@@ -28,7 +28,7 @@
         </div>
 
         <div class="row justify-content-md-center mt-5 mb-5">
-          @include('sale-page.related-product')
+            @include('sale-page.related-product')
         </div>
     </div>
     <script src="{{ asset('home_src\js\show-product.js') }}"></script>

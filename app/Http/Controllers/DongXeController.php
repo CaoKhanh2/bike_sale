@@ -113,7 +113,7 @@ class DongXeController extends Controller
             array('madx' => 'DX014','mahx' => 'HX11','loaixe' => 'Xe đạp điện','tendongxe' => 'Xiaomi Himo','mota' => NULL),
             array('madx' => 'DX015','mahx' => 'HX11','loaixe' => 'Xe đạp điện','tendongxe' => 'Xiaomi Ninebot','mota' => NULL),
             array('madx' => 'DX016','mahx' => 'HX09','loaixe' => 'Xe đạp điện','tendongxe' => 'Espero M133','mota' => NULL)
-          );
+        );
         DongXe::insert($dongxe);
     }
 }

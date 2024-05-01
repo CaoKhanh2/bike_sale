@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ChucVuContrller;
-use App\Http\Controllers\DkBanXeController;
+use App\Http\Controllers\DataContrller;
+use App\Http\Controllers\XeDangBan;
 use App\Http\Controllers\DongXeController;
 use App\Http\Controllers\HangXeController;
 use Illuminate\Support\Facades\Route;
@@ -9,10 +10,9 @@ use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\TaiKhoanContrller;
 use App\Http\Controllers\VanChuyenController;
 use App\Http\Controllers\ThongTinXeController;
-use App\Http\Controllers\XeDapDienController;
+use App\Http\Controllers\XeDangBanController;
 use App\Http\Controllers\XeMayController;
 use App\Http\Controllers\XeDangKyThuMuaController;
-use Database\Seeders\DkBanXeSeeder;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,13 +37,13 @@ Route::get('/', function () {
     return view('index');
 });
 
-// Route::get('/sub-index/xemay', function () {
-//     return view('sub-index');
-// });
+// Trang hiển thị sản phẩm ----------
+Route::get('/sub-index/xemay', [XeDangBanController::class, 'getdata']);
 
-Route::get('/sub-index/xemay', [ThongTinXeController::class, 'index2']);
-Route::get('/sub-index/xedapdien', [ThongTinXeController::class, 'index2']);
 
+Route::get('/sub-index/xedapdien', [XeDangBanController::class, 'getdata']);
+
+// ----------
 
 Route::get('/sale-page', function () {
     return view('sale-page');
@@ -56,10 +56,14 @@ Route::get('/index', function () {
 // ----------
 
 // Add data ----------
-Route::get('/data1', [HangXeController::class,'data']);
-Route::get('/data2', [DongXeController::class,'data']);
-Route::get('/data3', [TaiKhoanContrller::class, 'data']);
-Route::get('/data4', [ChucVuContrller::class, 'data']);
+
+Route::get('/all_data', [DataContrller::class, 'getData'])->name('all_data');
+
+Route::get('/data1', [HangXeController::class, 'data'])->name('data1');
+Route::get('/data2', [DongXeController::class, 'data'])->name('data2');
+Route::get('/data3', [ChucVuContrller::class, 'data'])->name('data3');
+Route::get('/data4', [TaiKhoanContrller::class, 'data'])->name('data4');
+
 // ----------
 
 // Route::post('/login',function(){
@@ -78,8 +82,6 @@ Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
 //     return view('dashboard.index');
 // })->middleware(['roleAcc']);
 
-
-
 Route::middleware(['auth', 'role'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
@@ -92,13 +94,11 @@ Route::middleware(['auth', 'role'])->group(function () {
     // })->middleware('permission:Quản trị viên');
 
     Route::middleware('permission:Quản trị viên')->group(function () {
-
         Route::get('/dashboard/sys/user_authorization', [TaiKhoanContrller::class, 'index1']);
         Route::patch('/dashboard/sys/user_authorization/{id}', [TaiKhoanContrller::class, 'update1'])->name('capnhattrangthai');
 
         Route::get('/dashboard/sys/acc_management/employee_account', [TaiKhoanContrller::class, 'index2']);
         Route::patch('/dashboard/sys/acc_management/employee_account/{id}', [TaiKhoanContrller::class, 'update2']);
-
     });
     // ----------
 
@@ -176,8 +176,8 @@ Route::middleware(['auth', 'role'])->group(function () {
 
     // Quan ly giao dich ----------
 
-    Route::get('/dashboard/transaction/purchasing_manage',[XeDangKyThuMuaController::class,'index'])->name('xedkthumua');
-    Route::get('/dashboard/tranction/purchasing_manage/{id}',[XeDangKyThuMuaController::class,'updatedon'])->name('duyetdon');
+    Route::get('/dashboard/transaction/purchasing_manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
+    Route::get('/dashboard/tranction/purchasing_manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
     Route::get('/selling_item', function () {
         return view('/user.selling_item');
     });

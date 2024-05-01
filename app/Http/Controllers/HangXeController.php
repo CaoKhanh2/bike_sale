@@ -111,7 +111,7 @@ class HangXeController extends Controller
             array('mahx' => 'HX09','tenhang' => 'Espero','logo' => 'logo/40AOE1AbJPidg9zm8edYWI00TRc594FXt6G38D8T.jpg','xuatxu' => 'Việt Nam'),
             array('mahx' => 'HX10','tenhang' => 'Nijia','logo' => 'logo/SwaOxEwSCwTkWTvo5mxPHHArEaQPgOkPHuZPXE6n.png','xuatxu' => 'Đài Loan'),
             array('mahx' => 'HX11','tenhang' => 'Xiaomi','logo' => 'logo/Fuaz8KwifNLknB46q9Pk7wYbHPptME5GwOFSiDAI.png','xuatxu' => 'Trung Quốc')
-          );
+        );
 
         HangXe::insert($hangxe);
     }
