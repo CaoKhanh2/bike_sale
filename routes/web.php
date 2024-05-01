@@ -57,9 +57,9 @@ Route::get('/index', function () {
 
 // Add data ----------
 Route::get('/data1', [HangXeController::class,'data']);
-// Route::get('/data2', [LoaiXeController::class,'index']);
-// Route::get('/data3', [TaiKhoanContrller::class, 'data']);
-// Route::get('/data4', [ChucVuContrller::class, 'data']);
+Route::get('/data2', [DongXeController::class,'data']);
+Route::get('/data3', [TaiKhoanContrller::class, 'data']);
+Route::get('/data4', [ChucVuContrller::class, 'data']);
 // ----------
 
 // Route::post('/login',function(){
@@ -186,7 +186,7 @@ Route::middleware(['auth', 'role'])->group(function () {
         return view('dashboard.transaction.selling.sell_manage');
     });
 
-    Route::get('/cart/cart_index', function () {
+    Route::get('/cart_index', function () {
         return view('cart.cart_index');
     });
 

@@ -22,8 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('phanquyen',['Quản trị viên','Nhân viên', 'Quản lý']);
             $table->tinyInteger('trangthai');
-            $table->timestamp('ngaytao')->current_timestamp();
-            $table->timestamp('ngaycapnhat');
+            $table->timestamps();
             $table->rememberToken();
 
             $table->primary('matk');
