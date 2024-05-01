@@ -75,29 +75,29 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
-                                                    <div class="col-sm-12 col-md-10">
-                                                        <select class="custom-select col-12" name="dx" id="dongxemay">
-                                                            <option selected hidden>Choose...</option>
-                                                            @foreach ($dongxemay as $i)
-                                                                <option value="{{ $i->madx }}">{{ $i->tendongxe }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                {{-- <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <select class="custom-select col-12" name="hx" id="hangxe">
-                                                            <option selected="">Choose...</option>
-                                                            @foreach ($hangxe as $i)
+                                                        <select class="custom-select col-12" name="hx" id="hangxemay">
+                                                            <option selected hidden>Choose...</option>
+                                                            @foreach ($hangxemay as $i)
                                                                 <option value="{{ $i->mahx }}">{{ $i->tenhang }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div> --}}
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                                                    <div class="col-sm-12 col-md-10">
+                                                        <select class="custom-select col-12" name="dx" id="dongxemay">
+                                                            <option selected hidden>Choose...</option>
+                                                            {{-- @foreach ($dongxemay as $i)
+                                                                <option value="{{ $i->madx }}">{{ $i->tendongxe }}
+                                                                </option>
+                                                            @endforeach --}}
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
                                                     <div class="col-sm-12 col-md-10">
@@ -105,7 +105,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử dụng</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
+                                                        dụng</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <input class="form-control" name="tgsd" />
                                                     </div>
@@ -119,8 +120,8 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tinhtrangxe"
-                                                            min="2000" max="2024">
+                                                        <input class="form-control" name="tinhtrangxe" min="2000"
+                                                            max="2024">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -171,29 +172,29 @@
                                                         <input class="form-control" name="mx" />
                                                     </div>
                                                 </div>
-                                                {{-- <div class="form-group row">
+                                                <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <select class="custom-select col-12" name="hx"
-                                                            id="hangxe">
-                                                            <option selected="">Choose...</option>
-                                                            @foreach ($hangxe as $i)
+                                                            id="hangxedapdien">
+                                                            <option selected hidden>Choose...</option>
+                                                            @foreach ($hangxedapdien as $i)
                                                                 <option value="{{ $i->mahx }}">{{ $i->tenhang }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div> --}}
+                                                </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <select class="custom-select col-12" name="dx"
-                                                            id="dongxeđapien">
-                                                            <option selected="">Choose...</option>
-                                                            @foreach ($dongxedapdien as $i)
+                                                            id="dongxedapdien">
+                                                            <option selected hidden>Choose...</option>
+                                                            {{-- @foreach ($dongxedapdien as $i)
                                                                 <option value="{{ $i->madx }}">{{ $i->tendongxe }}
                                                                 </option>
-                                                            @endforeach
+                                                            @endforeach --}}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -204,7 +205,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử dụng</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
+                                                        dụng</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <input class="form-control" name="tgsd" />
                                                     </div>
@@ -218,8 +220,8 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tinhtrangxe"
-                                                            min="2000" max="2024">
+                                                        <input class="form-control" name="tinhtrangxe" min="2000"
+                                                            max="2024">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -260,6 +262,17 @@
     </div>
 
     <script>
+        var uniqueRecords = [];
+        var seen = new Set();
+        dongxemay.forEach(function(record) {
+            if (!seen.has(record.madx)) {
+                uniqueRecords.push(record);
+                seen.add(record.madx);
+            }
+        });
+    </script>
+
+    <script>
         $(document).ready(function() {
             $('#vehicle').change(function() {
                 var selectedValue = $(this).val();
@@ -278,7 +291,7 @@
     </script>
 
     <script>
-        document.getElementById('hangxe').addEventListener('change', function() {
+        document.getElementById('hangxemay').addEventListener('change', function() {
             var selectedHangXe = this.value;
             var dongXeSelect = document.getElementById('dongxemay');
             dongXeSelect.innerHTML = '';
@@ -296,9 +309,9 @@
     </script>
 
     <script>
-        document.getElementById('hangxe').addEventListener('change', function() {
+        document.getElementById('hangxedapdien').addEventListener('change', function() {
             var selectedHangXe = this.value;
-            var dongXeSelect = document.getElementById('dongxedapien');
+            var dongXeSelect = document.getElementById('dongxedapdien');
             dongXeSelect.innerHTML = '';
 
 

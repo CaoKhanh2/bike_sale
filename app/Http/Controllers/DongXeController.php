@@ -106,13 +106,12 @@ class DongXeController extends Controller
             array('madx' => 'DX007','mahx' => 'HX03','loaixe' => 'Xe máy','tendongxe' => 'Suzuki Raider','mota' => NULL),
             array('madx' => 'DX008','mahx' => 'HX02','loaixe' => 'Xe máy','tendongxe' => 'Yamaha Exciter','mota' => NULL),
             array('madx' => 'DX009','mahx' => 'HX02','loaixe' => 'Xe máy','tendongxe' => 'Yamaha Grande','mota' => NULL),
-            array('madx' => 'DX010','mahx' => 'HX02','loaixe' => 'Xe máy','tendongxe' => 'Yamaha Grande','mota' => NULL),
-            array('madx' => 'DX011','mahx' => 'HX07','loaixe' => 'Xe đạp điện','tendongxe' => 'Dibao CREER E','mota' => NULL),
-            array('madx' => 'DX012','mahx' => 'HX07','loaixe' => 'Xe đạp điện','tendongxe' => 'Dibao Ninja','mota' => NULL),
-            array('madx' => 'DX013','mahx' => 'HX10','loaixe' => 'Xe đạp điện','tendongxe' => 'Nijia Cap A','mota' => NULL),
-            array('madx' => 'DX014','mahx' => 'HX11','loaixe' => 'Xe đạp điện','tendongxe' => 'Xiaomi Himo','mota' => NULL),
-            array('madx' => 'DX015','mahx' => 'HX11','loaixe' => 'Xe đạp điện','tendongxe' => 'Xiaomi Ninebot','mota' => NULL),
-            array('madx' => 'DX016','mahx' => 'HX09','loaixe' => 'Xe đạp điện','tendongxe' => 'Espero M133','mota' => NULL)
+            array('madx' => 'DX010','mahx' => 'HX07','loaixe' => 'Xe đạp điện','tendongxe' => 'Dibao CREER E','mota' => NULL),
+            array('madx' => 'DX011','mahx' => 'HX07','loaixe' => 'Xe đạp điện','tendongxe' => 'Dibao Ninja','mota' => NULL),
+            array('madx' => 'DX012','mahx' => 'HX10','loaixe' => 'Xe đạp điện','tendongxe' => 'Nijia Cap A','mota' => NULL),
+            array('madx' => 'DX013','mahx' => 'HX11','loaixe' => 'Xe đạp điện','tendongxe' => 'Xiaomi Himo','mota' => NULL),
+            array('madx' => 'DX014','mahx' => 'HX11','loaixe' => 'Xe đạp điện','tendongxe' => 'Xiaomi Ninebot','mota' => NULL),
+            array('madx' => 'DX015','mahx' => 'HX09','loaixe' => 'Xe đạp điện','tendongxe' => 'Espero M133','mota' => NULL)
         );
         DongXe::insert($dongxe);
     }
