@@ -5,16 +5,16 @@
         height: 1.2em;
     }
     .modal-body {
-      /* max-height: 450px; 
-      overflow-y: auto;  */
+        /* max-height: 450px; 
+        overflow-y: auto;  */
     }
 </style>
 <div class="card bg-light display-center" id="search-box">
     <div class="card-body box-search border-0">
-        <form action="" method="">
+        <form action="{{ route('timkiem') }}" method="GET">
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Tìm tên, hãng, dòng xe, ..." aria-label="">
+                    <input type="text" class="form-control" placeholder="Tìm tên, hãng, dòng xe, ..." name="tenxe">
                 </div>
                 {{-- <div class="col">
                     <select id="inputState1" class="form-select">
@@ -123,7 +123,7 @@
                                                         </label>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <input class="form-check" type="radio" name="exampleRadios1"
+                                                        <input class="form-check" type="radio" name="exampleRadios2"
                                                             id="exampleRadios1" value="option1" data-bs-toggle="modal" data-bs-target="#parentPopup">
                                                     </div>
                                                 </div>
@@ -145,7 +145,7 @@
                                                         </label>
                                                     </div>
                                                     <div class="col-auto">
-                                                        <input class="form-check" type="radio" name="exampleRadios3"
+                                                        <input class="form-check" type="radio" name="exampleRadios2"
                                                             id="exampleRadios3" value="option2" data-bs-toggle="modal" data-bs-target="#childPopup2">
                                                     </div>
                                                 </div>
@@ -262,8 +262,7 @@
                             </div>
                         </div>
                     </div>
-
-                     <!-- XeDapien Popup -->
+                    <!-- XeDapien Popup -->
                     <div class="modal fade" id="childPopup2" tabindex="-1" aria-labelledby="childPopupLabel"
                     aria-hidden="true">
 
@@ -359,8 +358,9 @@
 
                 </div>
                 <div class="d-grid gap-2 col-2 mx-auto">
-                    <a name="" id="" class="btn btn-primary btn-block" href="#"
-                        role="button">Tìm</a>
+                    {{-- <a name="" id="" class="btn btn-primary btn-block" href="#"
+                        role="button">Tìm</a> --}}
+                        <button type="submit" class="btn btn-primary btn-block">Tìm kiếm</button>
                 </div>
             </div>
         </form>
@@ -465,7 +465,7 @@
         });
     </script>
 
-{{-- XeMay --}}
+{{-- XeDapDien --}}
     {{-- GiaTien --}}
     <script>
         $(document).ready(function() {

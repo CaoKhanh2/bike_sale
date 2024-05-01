@@ -42,7 +42,7 @@
         </div>
 
         <div class="row mt-4 mb-4">
-            @include('sub-page.list-archive-item')
+            @include('sub-page.list-archive-item-search')
         </div>
 
         <div class="row mt-4 mb-4">
