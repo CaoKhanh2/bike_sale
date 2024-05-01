@@ -29,7 +29,7 @@ class XeDangKyThuMuaController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.selling_item');
     }
 
     /**
@@ -41,7 +41,6 @@ class XeDangKyThuMuaController extends Controller
     public function store(Request $request)
     {
         
-        if($request->xe == 1){
             $imagePathsString = '';
             $imagePaths = [];
 
@@ -51,24 +50,23 @@ class XeDangKyThuMuaController extends Controller
                     $imagePaths[] = $path; 
                 }
             }
-
+            $id = uniqid();
+           
+            $ngaydk = date("Y-m-d");
+            $mota = $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
             $imagePathsString = implode(',', $imagePaths);
-
+            $mand = "ND-001";
             DB::table('xedangkythumua')->insert([
-                'maxemay' => $request->mx,
-                'madx' => $request->dx,
-                'mahx' => $request->hx,
-                'tenxe' => $request->tx,
-                'dungtichxe' => $request->dtx,
-                'sokmdadi' => $request->sokmdadi,
-                'namdk' => $request->namdk,
+                'madkthumua' => $id,
+                'mand' => $mand,
+                'ngaydk' => $ngaydk,
                 'hinhanh' => $imagePathsString,
                 'giaban' => $request->giaban,
-                //'tinhtrang' => $request->tt
+                'mota' => $mota,
             ]);
 
-            return redirect('/dashboard/category/vehicle/vehicle_infor')->with('success', 'Thông tin đã được gửi đi');
-    }}
+            return redirect('/selling_item')->with('success', 'Thông tin đã được gửi đi');
+    }
 
     /**
      * Display the specified resource.
@@ -89,7 +87,7 @@ class XeDangKyThuMuaController extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**

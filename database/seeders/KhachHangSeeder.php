@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as faker;
-use App\Models\KhachHang;
+use App\Models\NguoiDung;
 
 class KhachHangSeeder extends Seeder
 {
