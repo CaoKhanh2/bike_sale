@@ -23,7 +23,7 @@ class NhanVienSeeder extends Seeder
                 'macv'=> $fake -> randomElement(['CV-01']),
                 'hovaten' => $fake -> name(),
                 'ngaysinh' => $fake->date($format = 'Y-m-d', $max = 'now'),
-                'gioitinh' => $fake->randomElement(['Nam', 'Nữ', 'Other']),
+                'gioitinh' => $fake->randomElement(['Nam', 'Nữ']),
                 'sodienthoai' => $fake->numerify('0##########'),
                 'email' => $fake->unique()->safeEmail,
                 'diachi' => $fake->unique()->streetAddress(),

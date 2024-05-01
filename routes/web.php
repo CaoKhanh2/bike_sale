@@ -202,7 +202,7 @@ Route::middleware(['auth', 'role'])->group(function () {
         return view('dashboard.transaction.selling.sell_manage');
     });
 
-    Route::get('/cart/cart_index', function () {
+    Route::get('/cart_index', function () {
         return view('cart.cart_index');
     });
 
