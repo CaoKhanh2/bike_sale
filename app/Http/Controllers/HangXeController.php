@@ -96,7 +96,6 @@ class HangXeController extends Controller
         DB::table('hangxe')->where('mahx', $id)->delete();
         return redirect('dashboard/category/vehicle/automaker_info')->with('success', 'Post created successfully!');
     }
-
     public function data()
     {
         $hangxe = array(

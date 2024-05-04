@@ -20,11 +20,11 @@ class ThongTinXeController extends Controller
 
         $ttxm = DB::select('SELECT thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxemay  ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
 
-        $ttxdd = DB::select('SELECT DISTINCT thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxedapdien  ON thongtinxe.matsxedapdien = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+        $ttxdd = DB::select('SELECT thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, hangxe.tenhang FROM thongtinxe INNER JOIN thongsokythuatxedapdien  ON thongtinxe.matsxedapdien = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
 
-        $hxm = DB::select('SELECT DISTINCT dongxe.mahx, hangxe.tenhang FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe máy"');
+        $hxm = DB::select('SELECT dongxe.mahx, hangxe.tenhang FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe máy"');
 
-        $hxdd = DB::select('SELECT DISTINCT dongxe.mahx, hangxe.tenhang FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
+        $hxdd = DB::select('SELECT dongxe.mahx, hangxe.tenhang FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
 
         $dxm = DB::select('SELECT dongxe.madx, dongxe.tendongxe, dongxe.loaixe, dongxe.mahx FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe máy"');
 
@@ -160,6 +160,12 @@ class ThongTinXeController extends Controller
         DB::table('thongsokythuatxemay')
             ->where('matsxemay', 'TS' . $id)
             ->delete();
+        return redirect('dashboard/category/vehicle/vehicle_infor')->with('success', 'Post created successfully!');
+    }
+    public function del_image($id, $link)
+    {
+        dd($link);
+        DB::update("UPDATE thongtinxe SET hinhanh = REPLACE(hinhanh, '$link', '') WHERE maxe='$id'");
         return redirect('dashboard/category/vehicle/vehicle_infor')->with('success', 'Post created successfully!');
     }
     public function data()
