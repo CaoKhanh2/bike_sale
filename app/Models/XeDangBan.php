@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class XeDangBan extends Model
 {
     use HasFactory;
+    protected $table = "xedangban";
 }

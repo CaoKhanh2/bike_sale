@@ -77,7 +77,7 @@ Route::get('/data3', [ChucVuContrller::class, 'data']);
 Route::get('/data4', [NhanVienController::class, 'data']);
 Route::get('/data5', [TaiKhoanContrller::class, 'data']);
 Route::get('/data6', [ThongSoKyThuatXeMayContrller::class, 'data']);
-Route::get('/data7', [ThongSoKyThuatXeMayContrller::class, 'data']);
+Route::get('/data7', [ThongSoKyThuatXeDapDienContrller::class, 'data']);
 Route::get('/data8', [ThongTinXeController::class, 'data']);
 Route::get('/data9', [XeDangBanController::class, 'data']);
 

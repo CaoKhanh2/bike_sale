@@ -14,11 +14,11 @@ class XeDangKyThuMuaController extends Controller
      */
     public function index()
     {
-        $dstm_check = DB::table('DS_Thumua')->where('trangthaipheduyet','Duyệt')->get();
-        $dstm_uncheck = DB::table('DS_Thumua')->where('trangthaipheduyet','Không duyệt')->get();
+        $dstm_check = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Duyệt"')->get();
+        $dstm_uncheck = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Không duyệt"')->get();
         return View('dashboard.transaction.purchasing.purchasing_manage', [
             'xedangkythumua_check' => $dstm_check,
-            'xedangkythumua_uncheck' => $dstm_uncheck
+            'xedangkythumua_uncheck' => $dstm_uncheck,
         ]);
     }
 
@@ -40,32 +40,31 @@ class XeDangKyThuMuaController extends Controller
      */
     public function store(Request $request)
     {
-        
-            $imagePathsString = '';
-            $imagePaths = [];
+        $imagePathsString = '';
+        $imagePaths = [];
 
-            if ($request->hasFile('anh')) {
-                foreach ($request->file('anh') as $image) {
-                    $path = $image->store('images','public');
-                    $imagePaths[] = $path; 
-                }
+        if ($request->hasFile('anh')) {
+            foreach ($request->file('anh') as $image) {
+                $path = $image->store('images', 'public');
+                $imagePaths[] = $path;
             }
-            $id = uniqid();
-           
-            $ngaydk = date("Y-m-d");
-            $mota = $request->loaixe . ' ' . $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
-            $imagePathsString = implode(',', $imagePaths);
-            $mand = "ND-001";
-            DB::table('xedangkythumua')->insert([
-                'madkthumua' => $id,
-                'mand' => $mand,
-                'ngaydk' => $ngaydk,
-                'hinhanh' => $imagePathsString,
-                'giaban' => $request->giaban,
-                'mota' => $mota,
-            ]);
+        }
+        $id = uniqid();
 
-            return redirect('/selling_item')->with('success', 'Thông tin đã được gửi đi');
+        $ngaydk = date('Y-m-d');
+        $mota = $request->loaixe . ' ' . $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
+        $imagePathsString = implode(',', $imagePaths);
+        $mand = 'ND-001';
+        DB::table('xedangkythumua')->insert([
+            'madkthumua' => $id,
+            'mand' => $mand,
+            'ngaydk' => $ngaydk,
+            'hinhanh' => $imagePathsString,
+            'giaban' => $request->giaban,
+            'mota' => $mota,
+        ]);
+
+        return redirect('/selling_item')->with('success', 'Thông tin đã được gửi đi');
     }
 
     /**
@@ -87,7 +86,6 @@ class XeDangKyThuMuaController extends Controller
      */
     public function edit($id)
     {
-       
     }
 
     /**
@@ -98,18 +96,17 @@ class XeDangKyThuMuaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
-        
+    {
     }
     public function updatedon(Request $request, $id)
-    {   
+    {
         $trangthai = 'Duyệt';
-        DB::table('xedangkythumua')->where('madkthumua', $id)
-        ->update(['trangthaipheduyet' => $trangthai]);
+        DB::table('xedangkythumua')
+            ->where('madkthumua', $id)
+            ->update(['trangthaipheduyet' => $trangthai]);
 
         return redirect()->route('xedkthumua');
     }
-
 
     /**
      * Remove the specified resource from storage.
