@@ -1,5 +1,5 @@
 <div class="container bg-light">
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('drop_zone') }}">
         <div class="row justify-content-around">
             <div class="col-4 mt-3">
                 <label for="my-awesome-dropzone">
@@ -10,7 +10,7 @@
                 </div>
                 <div class="dropzone mb-3 border border-3 border-primary" action="#" id="my-awesome-dropzone">
                     <div class="fallback">
-                        <input type="file" name="file" />
+                        <input type="file" name="file"/>
                     </div>
                 </div>
                 <div class="">

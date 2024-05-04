@@ -19,7 +19,6 @@
                 <div class="clearfix">
                     <div class="pull-left">
                         <h4 class="text-blue h4">Thông tin xe</h4>
-
                     </div>
                 </div>
                 <form action="{{ url('/dashboard/category/vehicle/detail_vehicle_infor/$xm->maxemay') }}" method="POST">
@@ -71,141 +70,126 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Ảnh</label>
-
                         <div class="col-sm-12 col-md-10">
-                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-
-                                <div class="carousel-inner">
+                            <table class="table">
+                                <tbody>
                                     @foreach (explode(',', $xm->hinhanh) as $path)
-                                        <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
-                                            <img src="{{ asset('storage/' . $path) }}" class="d-block w-100"
-                                                alt="Ảnh">
-                                        </div>
+                                        
+                                        <tr>
+                                            <td>
+                                                <a href="">
+                                                    <img src="{{ asset('storage/' . $path) }}" alt="Ảnh" height="250"
+                                                        width="250">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('xoaanh',['maxemay'=>$xm->maxe ,'link'=>$path]) }}" class="btn btn-primary">Xóa</a>
+                                            </td>
+                                        </tr>
                                     @endforeach
-                                </div>
-
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true" style="width:30px;height:30px;"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon bg-secondary" aria-hidden="true" style="width:30px;height:30px;"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
+                                </tbody>
+                            </table>
+                            <input type="file" class="form-control-file form-control height-auto" id="images"
+                                name="images[]" multiple>
+                        </div>
+                    </div>
+                    @if (substr($xm->maxe, 0, 2) == 'XM')
+                        <div class="clearfix mt-3 mb-3">
+                            <div class="pull-left">
+                                <h4 class="text-blue h4">Thông số kỹ thuật xe máy</h4>
                             </div>
-
                         </div>
-
-                        <div class="col-sm-12 col-md-10">
-                            <input type="file" class="form-control-file form-control height-auto" id="images"
-                                name="images[]" multiple>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Khối lượng</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" />
+                            </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Dung tích xe</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Mức tiêu thụ nhiên liệu</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Dung tích bình xăng</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                    @else
+                        <div class="clearfix mt-3 mb-3">
+                            <div class="pull-left">
+                                <h4 class="text-blue h4">Thông số kỹ thuật xe đạp điện</h4>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Trọng lượng</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Loại pin sử dụng</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Phạm vi sử dụng</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input type="file" class="form-control-file form-control height-auto" id="images"
+                                    name="images[]" multiple>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Giá tiền</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="number" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Tình trạng</label>
+                            <div class="col-sm-12 col-md-10">
+                                <select class="custom-select col-12">
+                                    <option selected="">Choose...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Sửa</button>
                     </div>
+
                 </form>
             </div>
-
-            @if( substr($xm->maxe, 0, 2) == 'XM')
-            <div class="pd-20 card-box mb-30">
-                <div class="clearfix">
-                    <div class="pull-left">
-                        <h4 class="text-blue h4">Thông số kỹ thuật xe</h4>
-
-                    </div>
-                </div>
-                <form>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Khối lượng</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Dung tích xe</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Mức tiêu thụ nhiên liệu</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Dung tích bình xăng</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-            @else
-            <div class="pd-20 card-box mb-30">
-                <div class="clearfix">
-                    <div class="pull-left">
-                        <h4 class="text-blue h4">Chi tiết thông tin xe</h4>
-
-                    </div>
-                </div>
-                <form>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Trọng lượng</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Loại pin sử dụng</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Phạm vi sử dụng</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input type="file" class="form-control-file form-control height-auto" id="images"
-                                name="images[]" multiple>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Giá tiền</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="number" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Tình trạng</label>
-                        <div class="col-sm-12 col-md-10">
-                            <select class="custom-select col-12">
-                                <option selected="">Choose...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            @endif
         </div>
-    </div>
 
-@endsection
+    @endsection

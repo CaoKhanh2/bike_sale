@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\nguoidungController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\SearchContrller;
+use App\Http\Controllers\SubIndexContrller;
 use App\Http\Controllers\TaiKhoanContrller;
 use App\Http\Controllers\ThongSoKyThuatXeDapDienContrller;
 use App\Http\Controllers\ThongSoKyThuatXeMayContrller;
@@ -49,10 +50,10 @@ Route::get('/sub-index',[SearchContrller::class, 'searchData'])->name('timkiem')
 // ----------
 
 // Trang hiển thị sản phẩm ----------
-Route::get('/sub-index/xemay', [XeDangBanController::class, 'getdata']);
+Route::get('/sub-index/xemay', [SubIndexContrller::class, 'getData']);
 
 
-Route::get('/sub-index/xedapdien', [XeDangBanController::class, 'getdata']);
+Route::get('/sub-index/xedapdien', [SubIndexContrller::class, 'getData']);
 
 // ----------
 
@@ -136,19 +137,21 @@ Route::middleware(['auth', 'role'])->group(function () {
     Route::post('/dashboard/category/vehicle/vehicle_line_infor', [DongXeController::class, 'store'])->name('themdongxe');
     Route::get('/dashboard/category/vehicle/vehicle_line_infor/{id}', [DongXeController::class, 'destroy'])->name('xoadongxe');
 
-    Route::get('/dashboard/category/vehicle/vehicle_infor', function () {
-        return view('dashboard.category.vehicle.vehicle_infor');
-    });
-
+    // Route::get('/dashboard/category/vehicle/vehicle_infor', function () {
+    //     return view('dashboard.category.vehicle.vehicle_infor');
+    // });
     // Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
     //     return view('dashboard.category.vehicle.detail_vehicle_infor');
     // });
     Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}', [XeMayController::class, 'show'])->name('ctthongtinxemay');
+    
 
     Route::get('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'index']);
     Route::post('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
     Route::post('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
     Route::get('/dashboard/category/vehicle/vehicle_infor/{maxemay}', [ThongTinXeController::class, 'destroy_Xemay'])->name('xoathongtinxemay');
+    
+    Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}/{link}', [ThongTinXeController::class, 'del_image'])->name('xoaanh');
 
     // Route::post('/dashboard/category/vehicle/vehicle_infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
     //Route::post('/dashboard/category/customer/customer_info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
