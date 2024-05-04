@@ -32,7 +32,7 @@
                             <h3>Loại xe</h3>
                         </label>
                         <select class="form-select form-select-lg border border-3 border-primary" aria-label="Loại xe"
-                            id="loaixe">
+                            id="loaixe" name="loaixe">
                             <option value="Xemay">Xe máy</option>
                             <option value="Xedapdien">Xe đạp điện</option>
                         </select>

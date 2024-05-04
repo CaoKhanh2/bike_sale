@@ -53,7 +53,7 @@ class XeDangKyThuMuaController extends Controller
             $id = uniqid();
            
             $ngaydk = date("Y-m-d");
-            $mota = $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
+            $mota = $request->loaixe . ' ' . $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
             $imagePathsString = implode(',', $imagePaths);
             $mand = "ND-001";
             DB::table('xedangkythumua')->insert([

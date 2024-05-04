@@ -53,7 +53,7 @@
                                                     <td>{{ $i->hovaten }}</td>
                                                     <td>
                                                         @php
-                                                            $formattedDate = date('H:m:s-d/m/Y', strtotime($i->ngaydk));
+                                                            $formattedDate = date('d/m/Y', strtotime($i->ngaydk));
                                                             echo $formattedDate;
                                                         @endphp
                                                     </td>
