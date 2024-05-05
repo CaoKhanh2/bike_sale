@@ -31,165 +31,227 @@ use App\Models\ThongSoKyThuatXeMay;
 |
 */
 
-// Route::get('/success', function () {
-//     return view('dashboard.modal.success');
+
+// Route::get('/welcome', function () {
+//     return view('welcome');
 // });
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 
-Route::get('/', function () {
-    return view('index');
-});
+/**
+ * 
+ * -------------- Website --------------
+ * 
+ */
 
-// Tìm kiếm ----------
+    Route::get('/', function () {
+        return view('index');
+    });
 
-Route::get('/sub-index',[SearchContrller::class, 'searchData'])->name('timkiem');
+    // Tìm kiếm ----------
 
-// ----------
+    Route::get('/sub_index',[SearchContrller::class, 'searchData'])->name('timkiem');
 
-// Trang hiển thị sản phẩm ----------
-Route::get('/sub-index/xemay', [SubIndexContrller::class, 'getData']);
+    // ----------
+
+    // Trang hiển thị sản phẩm ----------
+    Route::get('/sub_index/xemay', [SubIndexContrller::class, 'getData']);
 
 
-Route::get('/sub-index/xedapdien', [SubIndexContrller::class, 'getData']);
+    Route::get('/sub_index/xedapdien', [SubIndexContrller::class, 'getData']);
 
-// ----------
+    // ----------
 
-Route::get('/sale-page', function () {
-    return view('sale-page');
-});
+    Route::get('/sale_page', function () {
+        return view('sale_page');
+    });
 
-// Route::get('/index', function () {
-//     return view('auth.index');
-// });
+    // Route::get('/index', function () {
+    //     return view('auth.index');
+    // });
 
-// ----------
 
-// Add data ----------
+/**
+ * 
+ * -------------- EndWebsite --------------
+ * 
+ */
 
-Route::get('/all_data', [DataContrller::class, 'getData'])->name('all_data');
 
-Route::get('/data1', [HangXeController::class, 'data']);
-Route::get('/data2', [DongXeController::class, 'data']);
-Route::get('/data3', [ChucVuContrller::class, 'data']);
-Route::get('/data4', [NhanVienController::class, 'data']);
-Route::get('/data5', [TaiKhoanContrller::class, 'data']);
-Route::get('/data6', [ThongSoKyThuatXeMayContrller::class, 'data']);
-Route::get('/data7', [ThongSoKyThuatXeDapDienContrller::class, 'data']);
-Route::get('/data8', [ThongTinXeController::class, 'data']);
-Route::get('/data9', [XeDangBanController::class, 'data']);
 
-// ----------
 
-// Route::post('/login',function(){
-//     return view ('dashboard.auth.login');
-// });
+/**
+ * 
+ * -------------- Add data --------------
+ * 
+ */
+    Route::get('/all_data', [DataContrller::class, 'getData'])->name('all_data');
 
-Route::get('/login', function () {
-    return view('dashboard.auth.login');
-})->name('login');
+    Route::get('/data1', [HangXeController::class, 'data']);
+    Route::get('/data2', [DongXeController::class, 'data']);
+    Route::get('/data3', [ChucVuContrller::class, 'data']);
+    Route::get('/data4', [NhanVienController::class, 'data']);
+    Route::get('/data5', [TaiKhoanContrller::class, 'data']);
+    Route::get('/data6', [ThongSoKyThuatXeMayContrller::class, 'data']);
+    Route::get('/data7', [ThongSoKyThuatXeDapDienContrller::class, 'data']);
+    Route::get('/data8', [ThongTinXeController::class, 'data']);
+    Route::get('/data9', [XeDangBanController::class, 'data']);
 
-Route::post('/login', [TaiKhoanContrller::class, 'login']);
+/**
+ * 
+ * -------------- End Add data --------------
+ * 
+ */
 
-Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
 
-// Route::get('/dasboard', function () {
-//     return view('dashboard.index');
-// })->middleware(['roleAcc']);
+/**
+ * 
+ * -------------- LoginDashboard --------------
+ * 
+ */
+    Route::get('/login', function () {
+        return view('dashboard.auth.login');
+    })->name('login');
+
+    Route::post('/login', [TaiKhoanContrller::class, 'login']);
+
+    Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
+
+    // Route::get('/dasboard', function () {
+    //     return view('dashboard.index');
+    // })->middleware(['roleAcc']);
+
+/**
+ * 
+ * -------------- End LoginDashboard --------------
+ * 
+ */
 
 Route::middleware(['auth', 'role'])->group(function () {
+    
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('dash.index');
 
-    // Quản lý hệ thống ----------
+
+    /**
+     * 
+     * ---------- Quản lý hệ thống ----------
+     * 
+     */
 
     // Route::get('/dashboard/sys', function () {
     //     return view('dashboard.sys.user-authorization');
     // })->middleware('permission:Quản trị viên');
 
-    Route::middleware('permission:Quản trị viên')->group(function () {
-        Route::get('/dashboard/sys/user_authorization', [TaiKhoanContrller::class, 'index1']);
-        Route::patch('/dashboard/sys/user_authorization/{id}', [TaiKhoanContrller::class, 'update1'])->name('capnhattrangthai');
+        Route::middleware('permission:Quản trị viên')->group(function () {
+            Route::get('/dashboard/sys/user_authorization', [TaiKhoanContrller::class, 'index1']);
+            Route::patch('/dashboard/sys/user_authorization/{id}', [TaiKhoanContrller::class, 'update1'])->name('capnhattrangthai');
 
-        Route::get('/dashboard/sys/acc_management/employee_account', [TaiKhoanContrller::class, 'index2']);
-        Route::patch('/dashboard/sys/acc_management/employee_account/{id}', [TaiKhoanContrller::class, 'update2']);
-    });
-    // ----------
+            Route::get('/dashboard/sys/acc_management/employee_account', [TaiKhoanContrller::class, 'index2']);
+            Route::patch('/dashboard/sys/acc_management/employee_account/{id}', [TaiKhoanContrller::class, 'update2']);
+        });
 
-    // Danh muc xe ----------
+    /**
+     * 
+     * ---------- **End** ----------
+     *
+     */
 
-    Route::get('/dashboard/category/vehicle/automaker_info', [HangXeController::class, 'index']);
-    Route::post('/dashboard/category/vehicle/automaker_info', [HangXeController::class, 'store'])->name('themhangxe');
-    Route::get('/dashboard/category/vehicle/automaker_info/{id}', [HangXeController::class, 'destroy'])->name('xoahangxe');
-
-    Route::get('/dashboard/category/vehicle/detail_automaker_info', function () {
-        return view('dashboard.category.automaker.vehicle.detail_automaker_info');
-    });
-
-    Route::get('/dashboard/category/vehicle/vehicle_line_infor', function () {
-        return view('dashboard.category.vehicle.vehicle_line.vehicle_line_infor');
-    });
-
-    Route::get('/dashboard/category/vehicle/vehicle_line_infor', [DongXeController::class, 'index']);
-    Route::post('/dashboard/category/vehicle/vehicle_line_infor', [DongXeController::class, 'store'])->name('themdongxe');
-    Route::get('/dashboard/category/vehicle/vehicle_line_infor/{id}', [DongXeController::class, 'destroy'])->name('xoadongxe');
-
-    // Route::get('/dashboard/category/vehicle/vehicle_infor', function () {
-    //     return view('dashboard.category.vehicle.vehicle_infor');
-    // });
-    // Route::get('/dashboard/category/vehicle/detail_vehicle_infor', function () {
-    //     return view('dashboard.category.vehicle.detail_vehicle_infor');
-    // });
-    Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}', [XeMayController::class, 'show'])->name('ctthongtinxemay');
     
 
-    Route::get('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'index']);
-    Route::post('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
-    Route::post('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
-    Route::get('/dashboard/category/vehicle/vehicle_infor/{maxemay}', [ThongTinXeController::class, 'destroy_Xemay'])->name('xoathongtinxemay');
-    
-    Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}/{link}', [ThongTinXeController::class, 'del_image'])->name('xoaanh');
+    /**
+     * 
+     * ---------- Quản lý danh mục ----------
+     * 
+     */
 
-    // Route::post('/dashboard/category/vehicle/vehicle_infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
-    //Route::post('/dashboard/category/customer/customer_info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
+        /**
+         * ---------- Quản lý danh mục xe ----------
+         */
 
-    // ----------
+            // ---------- Hãng xe ----------
+            Route::get('/dashboard/category/vehicle/automaker_info', [HangXeController::class, 'index']);
+            Route::post('/dashboard/category/vehicle/automaker_info', [HangXeController::class, 'store'])->name('themhangxe');
+            Route::get('/dashboard/category/vehicle/automaker_info/{id}', [HangXeController::class, 'destroy'])->name('xoahangxe');
 
-    // Danh muc khach hang ----------
+            Route::get('/dashboard/category/vehicle/detail_automaker_info', function () {
+                return view('dashboard.category.automaker.vehicle.detail_automaker_info');
+            });
 
-    Route::get('/dashboard/category/customer/customer_info', function () {
-        return view('dashboard.category.customer.customer_info');
-    });
-    Route::get('/dashboard/category/customer/customer_info', [NguoiDungController::class, 'index']);
+            // ---------- **** ----------
 
-    Route::get('/customer/detail_customer_info', function () {
-        return view('dashboard.category.customer.detail_customer_info');
-    });
+            // ---------- Dòng xe ----------
+            Route::get('/dashboard/category/vehicle/vehicle_line_infor', function () {
+                return view('dashboard.category.vehicle.vehicle_line.vehicle_line_infor');
+            });
 
-    Route::post('/dashboard/category/customer/customer_info', [NguoiDungController::class, 'store'])->name('themthongtinkhachhang');
-    Route::get('/dashboard/category/customer/customer_info/{id}', [NguoiDungController::class, 'destroy'])->name('xoathongtinkhachhang');
-    Route::get('/dashboard/category/customer/detail_customer_info/{id}', [NguoiDungController::class, 'show'])->name('ctthongtinkhachhang');
-    Route::patch('/dashboard/category/customer/detail_customer_info/{id}', [NguoiDungController::class, 'update'])->name('capnhatthongtinkhachhang');
+            Route::get('/dashboard/category/vehicle/vehicle_line_infor', [DongXeController::class, 'index']);
+            Route::post('/dashboard/category/vehicle/vehicle_line_infor', [DongXeController::class, 'store'])->name('themdongxe');
+            Route::get('/dashboard/category/vehicle/vehicle_line_infor/{id}', [DongXeController::class, 'destroy'])->name('xoadongxe');
 
-    //----------
+            // ---------- **** ----------
 
-    // Danh muc van chuyen ----------
-    Route::get('/dashboard/category/shipping/ship_infor', function () {
-        return view('dashboard.category.shipping.ship_infor');
-    });
+            // ---------- Thông tin xe ----------
+            Route::get('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'index']);
+            Route::post('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
+            Route::get('/dashboard/category/vehicle/vehicle_infor/{maxemay}', [ThongTinXeController::class, 'del_xemay'])->name('xoathongtinxemay');
+            Route::get('/dashboard/category/vehicle/vehicle_infor/{maxedapdien}', [ThongTinXeController::class, 'del_Xedapdien'])->name('xoathongtinxedapdien');
+            
+            Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}', [XeMayController::class, 'show'])->name('ctthongtinxemay');
+            Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxedapdien}', [XeMayController::class, 'show'])->name('ctthongtinxedapdien');
+            Route::get('/dashboard/category/vehicle/detail_vehicle_infor/delete_image/{id}/{index}', [ThongTinXeController::class, 'delete_image'])->name('xoaanh');
 
-    Route::get('/dashboard/category/shipping/ship_infor', [VanChuyenController::class, 'index']);
-    //  ----------
+            // Route::post('/dashboard/category/vehicle/vehicle_infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
+            //Route::post('/dashboard/category/customer/customer_info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
 
-    // Danh muc nhan vien ----------
-    Route::get('/dashboard/category/sales_agent/staff_infor', function () {
-        return view('dashboard.category.sales_agent.staff_infor');
-    });
+            // ---------- **** ----------
 
-    Route::get('/dashboard/category/sales_agent/staff_infor', [NhanVienController::class, 'index']);
+        /**
+         * ---------- **** ----------
+         */
+
+        /**
+         * ---------- Quản lý danh mục khách hàng ----------
+         */
+            Route::get('/dashboard/category/customer/customer_info', function () {
+                return view('dashboard.category.customer.customer_info');
+            });
+            Route::get('/dashboard/category/customer/customer_info', [NguoiDungController::class, 'index']);
+
+            Route::get('/customer/detail_customer_info', function () {
+                return view('dashboard.category.customer.detail_customer_info');
+            });
+
+            Route::post('/dashboard/category/customer/customer_info', [NguoiDungController::class, 'store'])->name('themthongtinkhachhang');
+            Route::get('/dashboard/category/customer/customer_info/{id}', [NguoiDungController::class, 'destroy'])->name('xoathongtinkhachhang');
+            Route::get('/dashboard/category/customer/detail_customer_info/{id}', [NguoiDungController::class, 'show'])->name('ctthongtinkhachhang');
+            Route::patch('/dashboard/category/customer/detail_customer_info/{id}', [NguoiDungController::class, 'update'])->name('capnhatthongtinkhachhang');
+
+        /**
+         * ---------- **** ----------
+         */
+
+        /**
+         * ---------- Quản lý danh mục vận chuyển ----------
+         */
+            Route::get('/dashboard/category/shipping/ship_infor', function () {
+                return view('dashboard.category.shipping.ship_infor');
+            });
+
+            Route::get('/dashboard/category/shipping/ship_infor', [VanChuyenController::class, 'index']);
+
+        /**
+         * ---------- **** ----------
+         */
+
+        /**
+         * ---------- Quản lý danh mục nhân viên ----------
+         */
+            Route::get('/dashboard/category/sales_agent/staff_infor', function () {
+                return view('dashboard.category.sales_agent.staff_infor');
+            });
+
+            Route::get('/dashboard/category/sales_agent/staff_infor', [NhanVienController::class, 'index']);
 
     // ----------
 
@@ -204,23 +266,45 @@ Route::middleware(['auth', 'role'])->group(function () {
         return view('dashboard.transaction.selling.sell_manage');
     });
 
-    Route::get('/cart_index', function () {
-        return view('cart.cart_index');
-    });
+    /**
+     * 
+     * ---------- **End** ----------
+     * 
+     */
 
-    //  ----------
 
-    // Bao cao thong ke ----------
-    Route::middleware('permission:Quản lý')->group(function () {
-        Route::get('/dashboard/report/best-selling-items', function () {
-            return view('dashboard.report.best-selling-items');
+    /**
+     * 
+     * ---------- Báo cáo thống kê ----------
+     * 
+     */
+        Route::middleware('permission:Quản lý')->group(function () {
+            Route::get('/dashboard/report/best-selling-items', function () {
+                return view('dashboard.report.best-selling-items');
+            });
+
+            Route::get('/dashboard/report/inventory', function () {
+                return view('dashboard.report.inventory');
+            });
         });
 
-        Route::get('/dashboard/report/inventory', function () {
-            return view('dashboard.report.inventory');
-        });
-    });
+    /**
+     * 
+     * ---------- **End** ----------
+     *
+     */
 });
+
+
+Route::get('/dashboard/transaction/purchasing_manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
+Route::get('/dashboard/tranction/purchasing_manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
+Route::post('/selling_item',[XeDangKyThuMuaController::class,'store'])->name('dangkythumua');
+Route::get('/selling_item',[XeDangKyThuMuaController::class,'create'])->name('nhapxethumua');
+
+Route::get('/cart_index', function () {
+    return view('cart.cart_index');
+});
+
 
 Route::get('/warning', function () {
     return view('notification.warning');

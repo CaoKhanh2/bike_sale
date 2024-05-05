@@ -41,7 +41,7 @@
                 </td> --}}
                 <td>
                     @foreach (explode(',', $i->hinhanh) as $path)
-                        @if ($loop->first)
+                        @if ($loop->first && $path!="")
                             <img src="{{ asset('storage/' . $path) }}" alt="Ảnh" height="200" width="200">
                         @endif
                     @endforeach

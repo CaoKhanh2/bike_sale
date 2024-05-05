@@ -14,9 +14,9 @@ class XeDangKyThuMuaController extends Controller
      */
     public function index()
     {
-        $dstm_check = DB::select('SELECT xedangkythumua.*, nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Duyệt"');
-        $dstm_uncheck = DB::select('SELECT xedangkythumua.*, nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Không duyệt"');
-        return View('dashboard.transaction.purchasing.purchasing_manage', [
+        $dstm_check = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Duyệt"');
+        $dstm_uncheck = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Không duyệt"');
+        return view('dashboard.transaction.purchasing.purchasing_manage', [
             'xedangkythumua_check' => $dstm_check,
             'xedangkythumua_uncheck' => $dstm_uncheck,
         ]);

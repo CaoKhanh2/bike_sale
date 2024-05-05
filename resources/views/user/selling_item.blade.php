@@ -15,12 +15,14 @@
         </div>
     </div>
     {{-- endbreadcrum --}}
-
+    
     {{-- Content --}}
-    <div class="row justify-content-center">
-        <div class="col-xl">
-            @include('user.posting_item')
+        <div class="row justify-content-center">
+            <div class="col-xl">
+                @include('user.posting_item')
+            </div>
         </div>
+
     </div>
     {{-- End Content --}}
     {{-- <script src="{{ asset('dashboard_src/vendors/scripts/core.js') }}"></script>

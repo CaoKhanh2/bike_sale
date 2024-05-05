@@ -7,6 +7,13 @@
 @section('st4', 'true')
 @section('pg-hd-4', 'Danh mục xe máy') @section('act4', 'active')
 
+<style>
+    .table-container {
+        max-height: 600px;
+        overflow: auto;
+    }
+</style>
+
 @section('main')
 
     <div class="main-container">
@@ -71,24 +78,30 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Ảnh</label>
                         <div class="col-sm-12 col-md-10">
-                            <table class="table">
-                                <tbody>
-                                    @foreach (explode(',', $xm->hinhanh) as $path)
-                                        
-                                        <tr>
-                                            <td>
-                                                <a href="">
-                                                    <img src="{{ asset('storage/' . $path) }}" alt="Ảnh" height="250"
-                                                        width="250">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('xoaanh',['maxemay'=>$xm->maxe ,'link'=>$path]) }}" class="btn btn-primary">Xóa</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <div class="table-container">
+                                <table class="table">
+                                    <tbody>
+                                        @if ($xm->hinhanh != '')
+                                            @foreach (explode(',', $xm->hinhanh) as $path)
+                                                @php $index = array_search($path, explode(',', $xm->hinhanh)) @endphp
+                                                <tr>
+                                                    <td>
+                                                        <a href="">
+                                                            <img src="{{ asset('storage/' . $path) }}" alt="Ảnh"
+                                                                height="250" width="250">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('xoaanh', ['id' => $xm->maxe, 'index' => $index]) }}"
+                                                            class="btn btn-primary">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+
                             <input type="file" class="form-control-file form-control height-auto" id="images"
                                 name="images[]" multiple>
                         </div>
