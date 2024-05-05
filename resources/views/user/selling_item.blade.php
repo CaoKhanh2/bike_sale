@@ -2,6 +2,7 @@
 @section('title', 'Đăng ký bán xe')
 @section('pg-hd-2', 'Đăng ký bán xe')
 <link rel="stylesheet" href="{{ asset('home_src\css\main.css') }}">
+<link rel="stylesheet" href="{{ asset('dashboard_src\src\plugins\dropzone\src\dropzone.css') }}">
 @section('main')
 
        {{-- breadcrum --}}

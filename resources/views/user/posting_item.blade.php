@@ -1,38 +1,38 @@
 <div class="container bg-light">
-    <form method="POST" action="{{ route('dangkythumua') }}">
+    <form method="POST" action="{{ route('dangkythumua')}}" id="my-awesome-dropzone">
         @csrf
         <div class="row justify-content-around">
             <div class="col-4 mt-3">
                 <label for="my-awesome-dropzone">
                     <h3>Hình ảnh của xe</h3>
                 </label>
-                <div class="mb-2">
-                    <a href="#"><i class="bi bi-exclamation-circle-fill"></i> Chính sách của chúng tôi</a>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
-                    <div class="col-sm-12 col-md-10">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="images" name="anh[]" multiple>
-                            <label class="custom-file-label">Chọn ảnh</label>
-                        </div>
+            <div class="mb-2">
+                <a href="#"><i class="bi bi-exclamation-circle-fill"></i> Chính sách của chúng tôi</a>
+            </div>
+            <div class="form-group row">
+                <div class="dropzone mb-3 border border-3 border-primary" >
+                    <div class="fallback">
+                        <input type="file" name="file" name="anh">
                     </div>
                 </div>
                 <div class="">
                     <p>Lưu ý khi tải ảnh lên:</p>
-                    <p>-Đảm bảo rằng sản phẩm được hiển thị đầy đủ trong ảnh, bao gồm cả các chi tiết quan trọng.
+                    <p>-Đảm bảo rằng sản phẩm được hiển thị đầy đủ trong ảnh, bao gồm cả các chi tiết quan
+                        trọng.
                         <br>-Đảm bảo ảnh bạn đăng lên là chất lượng cao và rõ ràng
                     </P>
                 </div>
             </div>
+            </div>
             <div class="col-7 mt-3">
                 <div class="row">
                     <div class="mb-3">
+                        <input type="hidden" class="userid" name="userid" id="mand" value="">
                         <label for="exampleFormControlInput1" class="form-label">
                             <h3>Loại xe</h3>
                         </label>
                         <select class="form-select form-select-lg border border-3 border-primary" aria-label="Loại xe"
-                            id="loaixe">
+                            id="loaixe" name="loaixe">
                             <option value="Xemay">Xe máy</option>
                             <option value="Xedapdien">Xe đạp điện</option>
                         </select>
@@ -85,3 +85,4 @@
         </div>
     </form>
 </div>
+
