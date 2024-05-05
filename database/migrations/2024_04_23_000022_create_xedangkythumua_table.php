@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('xedangkythumua', function (Blueprint $table) {
             $table->string('madkthumua',20);
             $table->string('mand',10)->nullable();
-            $table->string('manv',10);
+            $table->string('manv',10)->nullable();
             $table->datetime('ngaydk');
             $table->string('hinhanh');
             $table->decimal('giaban',10,2);

@@ -16,7 +16,7 @@ class XeDangKyThuMuaController extends Controller
     {
         $dstm_check = DB::table('DS_Thumua')->where('trangthaipheduyet','Duyệt')->get();
         $dstm_uncheck = DB::table('DS_Thumua')->where('trangthaipheduyet','Không duyệt')->get();
-        return View('dashboard.transaction.purchasing.purchasing_manage', [
+        return view('dashboard.transaction.purchasing.purchasing_manage', [
             'xedangkythumua_check' => $dstm_check,
             'xedangkythumua_uncheck' => $dstm_uncheck
         ]);
@@ -55,7 +55,7 @@ class XeDangKyThuMuaController extends Controller
             $ngaydk = date("Y-m-d");
             $mota = $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
             $imagePathsString = implode(',', $imagePaths);
-            $mand = "ND-001";
+            $mand = "MK-0099";
             DB::table('xedangkythumua')->insert([
                 'madkthumua' => $id,
                 'mand' => $mand,

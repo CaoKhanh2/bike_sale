@@ -73,20 +73,22 @@
                         <div class="col-sm-12 col-md-10">
                             <table class="table">
                                 <tbody>
-                                    @foreach (explode(',', $xm->hinhanh) as $path)
-                                        
-                                        <tr>
-                                            <td>
-                                                <a href="">
-                                                    <img src="{{ asset('storage/' . $path) }}" alt="Ảnh" height="250"
-                                                        width="250">
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('xoaanh',['maxemay'=>$xm->maxe ,'link'=>$path]) }}" class="btn btn-primary">Xóa</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    @if ($xm->hinhanh != "")
+                                        @foreach (explode(',', $xm->hinhanh) as $path)
+                                            @php $index = array_search($path, explode(',', $xm->hinhanh)) @endphp
+                                            <tr>
+                                                <td>
+                                                    <a href="">
+                                                        <img src="{{ asset('storage/' . $path) }}" alt="Ảnh" height="250"
+                                                            width="250">
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('xoaanh',['id'=>$xm->maxe, 'index'=>$index]) }}" class="btn btn-primary">Xóa</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                             <input type="file" class="form-control-file form-control height-auto" id="images"
@@ -193,3 +195,5 @@
         </div>
 
     @endsection
+
+

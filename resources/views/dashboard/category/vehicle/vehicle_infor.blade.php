@@ -262,17 +262,6 @@
     </div>
 
     <script>
-        var uniqueRecords = [];
-        var seen = new Set();
-        dongxemay.forEach(function(record) {
-            if (!seen.has(record.madx)) {
-                uniqueRecords.push(record);
-                seen.add(record.madx);
-            }
-        });
-    </script>
-
-    <script>
         $(document).ready(function() {
             $('#vehicle').change(function() {
                 var selectedValue = $(this).val();
@@ -290,13 +279,24 @@
         });
     </script>
 
+    {{-- loại bỏ các bản ghi trùng lặp từ một mảng dongxemay --}}
+    <script>
+        var uniqueRecords = [];
+        var seen = new Set();
+        dongxemay.forEach(function(record) {
+            if (!seen.has(record.madx)) {
+                uniqueRecords.push(record);
+                seen.add(record.madx);
+            }
+        });
+    </script>
+    {{-- het --}}
+
     <script>
         document.getElementById('hangxemay').addEventListener('change', function() {
             var selectedHangXe = this.value;
             var dongXeSelect = document.getElementById('dongxemay');
             dongXeSelect.innerHTML = '';
-
-
             @foreach ($dongxemay as $i)
                 if ("{{ $i->mahx }}" === selectedHangXe) {
                     var option = document.createElement('option');

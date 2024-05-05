@@ -19,7 +19,7 @@ class SubIndexContrller extends Controller
         $hxdd = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
 
 
-        return view('/sub-index',['db_xemay'=>$xedangban_xemay, 'db_xedapdien'=>$xedangban_xedapdien, 'hangxemay'=>$hxm, 'hangxedapdien'=>$hxdd]);
+        return view('/sub_index',['db_xemay'=>$xedangban_xemay, 'db_xedapdien'=>$xedangban_xedapdien, 'hangxemay'=>$hxm, 'hangxedapdien'=>$hxdd]);
     }
 
 }
