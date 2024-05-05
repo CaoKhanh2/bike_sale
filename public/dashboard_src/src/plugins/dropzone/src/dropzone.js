@@ -215,7 +215,7 @@ class Dropzone extends Emitter {
        * the event `maxfilesexceeded` will be called. The dropzone element gets the
        * class `dz-max-files-reached` accordingly so you can provide visual feedback.
        */
-      maxFilesize: 256,
+      maxFilesize: 10,
 
       /**
        * The name of the file param that gets transferred.
@@ -459,7 +459,7 @@ class Dropzone extends Emitter {
       /**
        * If `addRemoveLinks` is true, the text to be used to remove a file.
        */
-      dictRemoveFile: "Remove file",
+      dictRemoveFile: "Xóa ảnh",
 
       /**
        * If this is not null, then the user will be prompted before removing a file.

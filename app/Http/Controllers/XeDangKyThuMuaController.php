@@ -14,8 +14,8 @@ class XeDangKyThuMuaController extends Controller
      */
     public function index()
     {
-        $dstm_check = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Duyệt"')->get();
-        $dstm_uncheck = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Không duyệt"')->get();
+        $dstm_check = DB::select('SELECT xedangkythumua.*, nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Duyệt"');
+        $dstm_uncheck = DB::select('SELECT xedangkythumua.*, nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Không duyệt"');
         return View('dashboard.transaction.purchasing.purchasing_manage', [
             'xedangkythumua_check' => $dstm_check,
             'xedangkythumua_uncheck' => $dstm_uncheck,
@@ -42,13 +42,14 @@ class XeDangKyThuMuaController extends Controller
     {
         $imagePathsString = '';
         $imagePaths = [];
-
         if ($request->hasFile('anh')) {
             foreach ($request->file('anh') as $image) {
+                $fileName = time() . '_' . $$image->getClientOriginalName();
                 $path = $image->store('images', 'public');
                 $imagePaths[] = $path;
             }
         }
+
         $id = uniqid();
 
         $ngaydk = date('Y-m-d');

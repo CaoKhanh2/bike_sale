@@ -197,7 +197,7 @@ Route::middleware(['auth', 'role'])->group(function () {
 
     Route::get('/dashboard/transaction/purchasing_manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
     Route::get('/dashboard/tranction/purchasing_manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
-    Route::post('/selling_item',[XeDangKyThuMuaController::class,'store'])->name('dangkythumua');
+    Route::post('/sending_bike',[XeDangKyThuMuaController::class,'store'])->name('dangkythumua');
     Route::get('/selling_item',[XeDangKyThuMuaController::class,'create'])->name('nhapxethumua');
 
     Route::get('/dashboard/transaction/selling', function () {
