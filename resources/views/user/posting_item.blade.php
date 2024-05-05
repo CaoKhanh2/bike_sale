@@ -12,7 +12,7 @@
             <div class="form-group row">
                 <div class="dropzone mb-3 border border-3 border-primary" >
                     <div class="fallback">
-                        <input type="file" name="file" name="anh">
+                        <input type="file" name="file" name="anh" >
                     </div>
                 </div>
                 <div class="">

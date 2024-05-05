@@ -5,21 +5,22 @@
 <link rel="stylesheet" href="{{ asset('dashboard_src\src\plugins\dropzone\src\dropzone.css') }}">
 @section('main')
 
-       {{-- breadcrum --}}
-        <div class="container">
-            <div class="row justify-content-around">
-                <div class="col-xl">
-                    @include('layout.header_breadcrum')
-                </div>
+    {{-- breadcrum --}}
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-xl">
+                @include('layout.header_breadcrum')
             </div>
         </div>
     {{-- endbreadcrum --}}
-
+    
     {{-- Content --}}
-    <div class="row justify-content-center">
-        <div class="col-xl">
-            @include('user.posting_item')
+        <div class="row justify-content-center">
+            <div class="col-xl">
+                @include('user.posting_item')
+            </div>
         </div>
+
     </div>
     {{-- End Content --}}
     <script src="{{ asset('dashboard_src/vendors/scripts/core.js') }}"></script>
