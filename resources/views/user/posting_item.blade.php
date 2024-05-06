@@ -3,14 +3,14 @@
         @csrf
         <div class="row justify-content-around">
             <div class="col-5 mt-3">
-                <label for="my-awesome-dropzone">
+                <label>
                     <h3>Hình ảnh của xe</h3>
                 </label>
                 <div class="mb-2">
                     <a href="#"><i class="bi bi-exclamation-circle-fill"></i> Chính sách của chúng tôi</a>
                 </div>
                 <div class="form-group">
-                    <div class="dropzone mb-3 border border-3 border-primary" id="mydropzone">
+                    <div class="dropzone mb-3 border border-3 border-primary" action="{{ route('dangkythumua')}}"  id="mydropzone">
                         <div class="fallback">
                          
                         </div>
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="mb-4">
-                <button type="submit" class="btn-primary btn col-12">Đăng ký</button>
+                <button type="submit"  class="btn-primary btn col-12">Đăng ký</button>
             </div>
         </div>
     </form>

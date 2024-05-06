@@ -42,16 +42,14 @@ class XeDangKyThuMuaController extends Controller
     {
         $imagePathsString = '';
         $imagePaths = [];
-        if ($request->hasFile('anh')) {
-            foreach ($request->file('anh') as $image) {
-                $fileName = time() . '_' . $$image->getClientOriginalName();
+        if ($request->hasFile('file')) {
+            foreach ($request->file('file') as $image) {
                 $path = $image->store('images', 'public');
                 $imagePaths[] = $path;
             }
         }
-
+      
         $id = uniqid();
-
         $ngaydk = date('Y-m-d');
         $mota = $request->loaixe . ' ' . $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
         $imagePathsString = implode(',', $imagePaths);
