@@ -271,25 +271,18 @@ Route::middleware(['auth', 'role'])->group(function () {
 
             Route::get('/dashboard/category/sales_agent/staff_infor', [NhanVienController::class, 'index']);
 
-        /**
-         * ---------- **** ----------
-         */
+    // ----------
 
-    /**
-     * 
-     * ---------- **End** ----------
-     *
-     */
+    // Quan ly giao dich ----------
 
-    
-    /**
-     * 
-     * ---------- Quản lý giao dịch ----------
-     * 
-     */
-        Route::get('/dashboard/transaction/selling', function () {
-            return view('dashboard.transaction.selling.sell_manage');
-        });
+    Route::get('/dashboard/transaction/purchasing_manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
+    Route::get('/dashboard/tranction/purchasing_manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
+    Route::post('/sending_bike',[XeDangKyThuMuaController::class,'store'])->name('dangkythumua');
+    Route::get('/selling_item',[XeDangKyThuMuaController::class,'create'])->name('nhapxethumua');
+
+    Route::get('/dashboard/transaction/selling', function () {
+        return view('dashboard.transaction.selling.sell_manage');
+    });
 
     /**
      * 
@@ -323,11 +316,8 @@ Route::middleware(['auth', 'role'])->group(function () {
 
 Route::get('/dashboard/transaction/purchasing_manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
 Route::get('/dashboard/tranction/purchasing_manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
-Route::post('/selling_item',[XeDangKyThuMuaController::class,'store'])->name('dangkythumua');
-
-Route::get('/selling_item', function () {
-    return view('user.selling_item');
-});
+Route::post('/sending_bike',[XeDangKyThuMuaController::class,'store'])->name('dangkythumua');
+Route::get('/selling_item',[XeDangKyThuMuaController::class,'create'])->name('nhapxethumua');
 
 Route::get('/cart_index', function () {
     return view('cart.cart_index');
