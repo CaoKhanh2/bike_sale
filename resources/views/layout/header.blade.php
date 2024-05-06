@@ -53,7 +53,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-disabled="true" href="{{ url('/cart_index') }}">
-                            {{-- <img width="30" height="30" src="https://img.icons8.com/ios/50/shopping-cart--v1.png" alt="shopping-cart--v1"  class="img-fluid mx-auto d-block"/> --}}
                             <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30" height="24"
                                 class="img-fluid mx-auto d-block">
                                 <span class="text-center mx-auto d-block">Giỏ hàng</span>

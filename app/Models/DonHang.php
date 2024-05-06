@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DonHang extends Model
 {
     use HasFactory;
+    protected $table = "donhang";
+    public $timestamps = false;
 }

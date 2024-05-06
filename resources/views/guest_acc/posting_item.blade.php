@@ -11,8 +11,7 @@
                 </div>
                 <div class="form-group">
                     <div class="dropzone mb-3 border border-3 border-primary" action="{{ route('dangkythumua')}}"  id="mydropzone">
-                        <div class="fallback">
-                         
+                        <div class="fallback"> 
                         </div>
                     </div>
                     <div class="">
@@ -23,7 +22,7 @@
                         </P>
                     </div>
                 </div>
-           
+
             </div>
             <div class="col-7 mt-3">
                 <div class="row">

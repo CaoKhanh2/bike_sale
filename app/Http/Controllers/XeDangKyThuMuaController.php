@@ -29,6 +29,7 @@ class XeDangKyThuMuaController extends Controller
      */
     public function create()
     {
+
     }
 
     /**
@@ -45,8 +46,8 @@ class XeDangKyThuMuaController extends Controller
         // Kiểm tra xem đã có tệp hình ảnh được gửi lên không
         if ($request->hasFile('file')) {
             foreach ($request->file('file') as $image) {
-                // Lưu trữ hình ảnh vào thư mục 'public/images' và lấy đường dẫn
-                $path = $image->store('images', 'public');
+                // Lưu trữ hình ảnh vào thư mục 'public/posted' và lấy đường dẫn
+                $path = $image->store('posted', 'public');
                 $imagePaths[] = $path; // Lưu đường dẫn vào mảng
             }
         }
