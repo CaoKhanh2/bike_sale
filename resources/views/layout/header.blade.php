@@ -45,7 +45,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-disabled="true" href="{{route('nhapxethumua')}}">
+                        <a class="nav-link active" aria-disabled="true" href="{{url('/selling_item')}}">
                             <img src="{{ asset('Image\Icon\icons8-sell-48.png') }}" width="30" height="24"
                                 class="img-fluid mx-auto d-block">
                                 <span class="text-center mx-auto d-block">Đăng ký bán xe</span>
