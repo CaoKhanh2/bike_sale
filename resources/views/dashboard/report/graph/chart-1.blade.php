@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-
 <head>
-    <title>Biểu đồ Doanh số bán hàng</title>
     {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
     <script src="{{ asset('dashboard_src/src/plugins/apexcharts/apexcharts.min.js') }}"></script>
 </head>
 
 <body>
-
     <div id="chart">
     </div>
-
     <script>
         options = {
             chart: {
@@ -31,7 +25,7 @@
                 data: {!! json_encode($sales) !!}
             }],
             xaxis: {
-                categories: ['Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8'],
+                categories: {!! json_encode($months) !!},
             }
         };
 
@@ -67,5 +61,3 @@
 
 
 </body>
-
-</html>

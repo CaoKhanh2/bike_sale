@@ -28,7 +28,7 @@
                         <h4 class="text-blue h4">Thông tin xe</h4>
                     </div>
                 </div>
-                <form action="{{ url('/dashboard/category/vehicle/detail_vehicle_infor/$xm->maxemay') }}" method="POST">
+                <form action="{{ url('/dashboard/category/vehicle/detail_vehicle-infor/$xm->maxemay') }}" method="POST">
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
                         <div class="col-sm-12 col-md-10">

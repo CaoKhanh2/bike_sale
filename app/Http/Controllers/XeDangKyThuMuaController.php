@@ -48,7 +48,6 @@ class XeDangKyThuMuaController extends Controller
                 $imagePaths[] = $path;
             }
         }
-      
         $id = uniqid();
         $ngaydk = date('Y-m-d');
         $mota = $request->loaixe . ' ' . $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;

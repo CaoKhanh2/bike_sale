@@ -45,7 +45,7 @@
                     <div class="col-md-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
                             <h4 class="h4 text-blue">Báo cáo sản phẩm bán chạy</h4>
-                            <div id="chart8"></div>
+                            @include('dashboard.report.graph.chart-1')
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,16 @@
                         <div class="pd-20 card-box mb-40">
                             <div class="clearfix mb-20">
                                 <div class="pull-left">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-secondary">Xuất file CSV</button>
+                                        <button type="button" class="btn btn-secondary">Xuất file PDF</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix mb-20">
+                                <div class="pull-left">
                                     <h4 class="text-blue h4">Bordered table</h4>
+                                </div>
                             </div>
                             <table class="table table-bordered">
                                 <thead>

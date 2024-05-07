@@ -20,6 +20,6 @@ class DoThiController extends Controller
             $sales[] = $monthlySale->total_sales;
         }
 
-        return view('dashboard.report.graph.chart_1', compact('months', 'sales'));
+        return view('dashboard.report.sales-situation', compact('months', 'sales'));
     }
 }

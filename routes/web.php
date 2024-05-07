@@ -212,16 +212,16 @@ Route::middleware(['auth', 'role'])->group(function () {
             // ---------- **** ----------
 
             // ---------- Thông tin xe ----------
-            Route::get('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'index']);
-            Route::post('/dashboard/category/vehicle/vehicle_infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
-            Route::get('/dashboard/category/vehicle/vehicle_infor/{maxemay}', [ThongTinXeController::class, 'del_xemay'])->name('xoathongtinxemay');
-            Route::get('/dashboard/category/vehicle/vehicle_infor/{maxedapdien}', [ThongTinXeController::class, 'del_Xedapdien'])->name('xoathongtinxedapdien');
+            Route::get('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'index']);
+            Route::post('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
+            Route::get('/dashboard/category/vehicle/vehicle-infor/{maxemay}', [ThongTinXeController::class, 'del_xemay'])->name('xoathongtinxemay');
+            Route::get('/dashboard/category/vehicle/vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'del_Xedapdien'])->name('xoathongtinxedapdien');
             
-            Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxemay}', [XeMayController::class, 'show'])->name('ctthongtinxemay');
-            Route::get('/dashboard/category/vehicle/detail_vehicle_infor/{maxedapdien}', [XeMayController::class, 'show'])->name('ctthongtinxedapdien');
-            Route::get('/dashboard/category/vehicle/detail_vehicle_infor/delete_image/{id}/{index}', [ThongTinXeController::class, 'delete_image'])->name('xoaanh');
+            Route::get('/dashboard/category/vehicle/detail_vehicle-infor/{maxemay}', [ThongTinXeController::class, 'show'])->name('ctthongtinxemay');
+            Route::get('/dashboard/category/vehicle/detail_vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'show'])->name('ctthongtinxedapdien');
+            Route::get('/dashboard/category/vehicle/detail_vehicle-infor/delete_image/{id}/{index}', [ThongTinXeController::class, 'delete_image'])->name('xoaanh');
 
-            // Route::post('/dashboard/category/vehicle/vehicle_infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
+            // Route::post('/dashboard/category/vehicle/vehicle-infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
             //Route::post('/dashboard/category/customer/customer-info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
 
             // ---------- **** ----------
@@ -302,6 +302,8 @@ Route::middleware(['auth', 'role'])->group(function () {
             Route::get('dashboard/report/sales-situation', function () {
                 return view('dashboard.report.sales-situation');
             });
+
+            Route::get('/dashboard/report/sales-situation', [DoThiController::class, 'salesChart']);
 
             Route::get('/dashboard/report/inventory', function () {
                 return view('dashboard.report.inventory');
