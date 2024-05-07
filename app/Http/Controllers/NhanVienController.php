@@ -17,7 +17,7 @@ class NhanVienController extends Controller
     public function index()
     {
         $nv = DB::select('SELECT nhanvien.*,chucvu.tencv FROM nhanvien INNER JOIN chucvu ON nhanvien.macv = chucvu.macv');
-        return view('dashboard.category.sales_agent.staff_infor', ['nhanvien'=>$nv]);
+        return view('dashboard.category.sales-agent.staff-infor', ['nhanvien'=>$nv]);
     }
 
     /**

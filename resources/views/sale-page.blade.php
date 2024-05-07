@@ -4,31 +4,31 @@
 @section('main')
     <div class="container">
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('layout.header_breadcrum')
+            @include('layout.header-breadcrum')
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub_page.sale_page.image_product')
+            @include('sub-page.sale-page.image_product')
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub_page.sale_page.info_product')
+            @include('sub-page.sale-page.info_product')
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub_page.sale_page.product_description')
+            @include('sub-page.sale-page.product_description')
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub_page.sale_page.social_share')
+            @include('sub-page.sale-page.social_share')
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub_page.sale_page.report_group')
+            @include('sub-page.sale-page.report_group')
         </div>
 
         <div class="row justify-content-md-center mt-5 mb-5">
-            @include('sub_page.sale_page.related_product')
+            @include('sub-page.sale-page.related_product')
         </div>
     </div>
     <script src="{{ asset('home_src\js\show-product.js') }}"></script>

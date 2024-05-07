@@ -59,7 +59,7 @@
                                                     </td>
                                                     <td>{{ $i->xuatxu }}</td>
                                                     <td><a type="button" class="btn btn-primary"
-                                                            href="{{ url('/dashboard/category/vehicle/detail_automaker_info') }}">
+                                                            href="{{ url('/dashboard/category/vehicle/detail_automaker-info') }}">
                                                             <i class="bi bi-pencil-fill"></i> Sửa
                                                         </a>
                                                         <a type="button" class="btn btn-danger"

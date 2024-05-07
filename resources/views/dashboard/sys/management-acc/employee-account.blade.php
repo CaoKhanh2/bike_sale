@@ -45,7 +45,7 @@
                                         <td>{{ $i->sodienthoai }}</td>
                                         <td>
                                             <form
-                                                action="{{ url('/dashboard/sys/acc_management/employee_account/' . $i->matk) }}"
+                                                action="{{ url('/dashboard/sys/management-acc/employee_account/' . $i->matk) }}"
                                                 method="post" id="myForm">
                                                 @csrf
                                                 @method('PATCH')

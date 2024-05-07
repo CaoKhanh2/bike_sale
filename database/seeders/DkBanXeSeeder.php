@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\XeDangKyBan;
+
+use App\Models\XeDangKyThuMua;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as faker;
@@ -19,7 +20,7 @@ class DkBanXeSeeder extends Seeder
     {
         $fake = faker::create();
         for ($i=0; $i < 5; $i++) { 
-            XeDangKyBan::create([
+            XeDangKyThuMua::create([
                 'madkbanxe'=> $fake -> numerify('MDKBX-######'),
                 'maxedapdien'=>$fake -> randomElement(['XE-003', 'XE-004', 'XE-005']),
                 'maxemay' => null,

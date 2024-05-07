@@ -16,7 +16,7 @@ class VanChuyenController extends Controller
     public function index()
     {   
         $vc = DB::select('SELECT vanchuyen.*,khachhang.hovaten FROM vanchuyen INNER JOIN khachhang ON vanchuyen.makh = khachhang.makh');
-        return view('dashboard.category.shipping.ship_infor', ['vanchuyen'=>$vc]);
+        return view('dashboard.category.shipping.ship-infor', ['vanchuyen'=>$vc]);
     }
 
     /**

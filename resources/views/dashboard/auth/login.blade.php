@@ -26,7 +26,7 @@
                         <form method="post" action="">
                             @csrf
                             <div class="input-group custom">
-                                <input type="text" class="form-control form-control-lg" placeholder="Username"
+                                <input type="text" class="form-control form-control-lg" placeholder="Username or Email"
                                     name="username" />
                                 <div class="input-group-append custom">
                                     <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>

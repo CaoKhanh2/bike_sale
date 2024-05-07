@@ -16,7 +16,7 @@ class NguoiDungController extends Controller
     public function index()
     {
         $nd = DB::table('nguoidung')->get();
-        return view('dashboard.category.customer.customer_info', ['nguoidung' => $nd]);
+        return view('dashboard.category.customer.customer-info', ['nguoidung' => $nd]);
     }
 
     /**
@@ -55,7 +55,7 @@ class NguoiDungController extends Controller
         // $post->email = $validatedData['email'];
         // $post->save();
 
-        // return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+        // return redirect('/dashboard/category/customer/customer-info')->with('success', 'Post created successfully!');
 
         DB::table('nguoidung')
         ->insert([
@@ -70,7 +70,7 @@ class NguoiDungController extends Controller
             // 'tinhtrang' => $request->tt
         ]);
 
-        return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+        return redirect('/dashboard/category/customer/customer-info')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -82,7 +82,7 @@ class NguoiDungController extends Controller
     public function show($id)
     {
         $nd = DB::table('nguoidung')->where('mand', $id)->first();
-        return view('/dashboard/category/customer/detail_customer_info', ['nd' => $nd]);
+        return view('/dashboard/category/customer/detail_customer-info', ['nd' => $nd]);
     }
 
     /**
@@ -115,7 +115,7 @@ class NguoiDungController extends Controller
         // $kh->tinhtrang = $request->tt;
 
         // $kh->save();
-        // return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+        // return redirect('/dashboard/category/customer/customer-info')->with('success', 'Post created successfully!');
 
         if($id){
             DB::table('nguoidung')
@@ -131,7 +131,7 @@ class NguoiDungController extends Controller
                 'tinhtrang' => $request->tt ? 1 : 0
             ]);
             
-            return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+            return redirect('/dashboard/category/customer/customer-info')->with('success', 'Post created successfully!');
 
         }else{
             
@@ -150,6 +150,6 @@ class NguoiDungController extends Controller
     {
         //Sử dụng Query Builder:
         DB::table('nguoidung')->where('mand', $id)->delete();
-        return redirect('/dashboard/category/customer/customer_info')->with('success', 'Post created successfully!');
+        return redirect('/dashboard/category/customer/customer-info')->with('success', 'Post created successfully!');
     }
 }

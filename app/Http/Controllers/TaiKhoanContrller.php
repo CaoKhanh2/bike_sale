@@ -19,14 +19,14 @@ class TaiKhoanContrller extends Controller
     public function index1()
     {
         $tk = DB::table('taikhoan')->get();
-        return view('dashboard.sys.user_authorization', ['taikhoan' => $tk]);
+        return view('dashboard.sys.user-authorization', ['taikhoan' => $tk]);
     }
 
     public function index2()
     {
         $tk = DB::select('SELECT nhanvien.*, taikhoan.* FROM nhanvien INNER JOIN taikhoan ON nhanvien.manv = taikhoan.manv');
 
-        return view('dashboard.sys.acc_management.employee_account', ['taikhoan2' => $tk]);
+        return view('dashboard.sys.management-acc.employee_account', ['taikhoan2' => $tk]);
     }
 
     /**
@@ -88,10 +88,10 @@ class TaiKhoanContrller extends Controller
                     'ngaycapnhat' => $currentTime
             ]);
 
-            return redirect('/dashboard/sys/user_authorization')->with('success', 'Post created successfully!');
+            return redirect('/dashboard/sys/user-authorization')->with('success', 'Post created successfully!');
         } else {
             // Xử lý khi $id không tồn tại
-            return redirect('/dashboard/sys/user_authorization')->with('error', 'Invalid ID!');
+            return redirect('/dashboard/sys/user-authorization')->with('error', 'Invalid ID!');
         }
     }
 
@@ -106,10 +106,10 @@ class TaiKhoanContrller extends Controller
                     'ngaycapnhat' => $currentTime
             ]);
 
-            return redirect('/dashboard/sys/acc_management/employee_account')->with('success', 'Post created successfully!');
+            return redirect('/dashboard/sys/management-acc/employee_account')->with('success', 'Post created successfully!');
         } else {
             // Xử lý khi $id không tồn tại
-            return redirect('/dashboard/sys/acc_management/employee_account')->with('error', 'Invalid ID!');
+            return redirect('/dashboard/sys/management-acc/employee_account')->with('error', 'Invalid ID!');
         }
     }
 

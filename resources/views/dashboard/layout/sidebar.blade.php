@@ -122,10 +122,10 @@
                             <ul class="submenu child">
                                 <li><a href="{{ url('#') }}">Tài khoản khách hàng</a>
                                 </li>
-                                <li><a href="{{ url('/dashboard/sys/acc_management/employee_account') }}">Tài khoản nhân viên</a></li>
+                                <li><a href="{{ url('/dashboard/sys/management-acc/employee_account') }}">Tài khoản nhân viên</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('/dashboard/sys/user_authorization') }}">Quản lý phân quyền người dùng</a></li>
+                        <li><a href="{{ url('/dashboard/sys/user-authorization') }}">Quản lý phân quyền người dùng</a></li>
                         <li><a href="{{ url('#') }}">Sao lưu dữ liệu</a></li>
                         <li><a href="{{ url('#') }}">Phục hồi dữ liệu</a></li>
                     </ul>
@@ -144,20 +144,20 @@
                                             class="fa-solid fa-motorcycle"></i></span><span class="mtext">Quản lý
                                         danh mục xe</span></a>
                                 <ul class="submenu child">
-                                    <li><a href="{{ url('/dashboard/category/vehicle/automaker_info') }}">Thông tin
+                                    <li><a href="{{ url('/dashboard/category/vehicle/automaker-info') }}">Thông tin
                                             hãng xe</a>
                                     </li>
-                                    <li><a href="{{ url('/dashboard/category/vehicle/vehicle_line_infor') }}">Thông tin
+                                    <li><a href="{{ url('/dashboard/category/vehicle/vehicle-line_infor') }}">Thông tin
                                             dòng xe</a></li>
                                     <li><a href="{{ url('/dashboard/category/vehicle/vehicle_infor') }}">Thông tin
                                             xe</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{ url('dashboard/category/customer/customer_info') }}">Quản lý khách
+                            <li><a href="{{ url('dashboard/category/customer/customer-info') }}">Quản lý khách
                                     hàng</a></li>
-                            <li><a href="{{ url('dashboard/category/shipping/ship_infor') }}">Quản lý vận chuyển
+                            <li><a href="{{ url('dashboard/category/shipping/ship-infor') }}">Quản lý vận chuyển
                                     hàng</a></li>
-                            <li><a href="{{ url('dashboard/category/sales_agent/staff_infor') }}">Quản lý nhân viên
+                            <li><a href="{{ url('dashboard/category/sales-agent/staff-infor') }}">Quản lý nhân viên
                                     bán hàng</a></li>
                         </ul>
                     </li>
@@ -173,7 +173,7 @@
                                 <span class="micon"></span><span class="mtext">Danh sách</span>
                             </a>
                             <ul class="submenu child">
-                                <li><a href="{{ url('/dashboard/transaction/purchasing_manage') }}">Đăng ký bán</a>
+                                <li><a href="{{ url('/dashboard/transaction/purchasing-manage') }}">Đăng ký bán</a>
                                 </li>
                                 <li><a href="{{ url('/dashboard/transaction/selling') }}">Quản lý bán</a></li>
                             </ul>
@@ -190,7 +190,7 @@
                             kê</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('/dashboard/report/sales_situation') }}">Báo cáo tình hình bán hàng</a></li>
+                        <li><a href="{{ url('/dashboard/report/sales-situation') }}">Báo cáo tình hình bán hàng</a></li>
                         <li><a href="{{ url('#') }}">Báo cáo tình hình thu mua</a></li>
                         <li><a href="{{ url('/dashboard/report/inventory') }}">Báo cáo tồn kho</a></li>
                         <li><a href="forgot-password.html">Báo cáo rủi ro</a></li>

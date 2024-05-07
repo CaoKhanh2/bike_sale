@@ -16,7 +16,7 @@ class HangXeController extends Controller
     public function index()
     {
         $hx = DB::table('hangxe')->get();
-        return view('dashboard.category.vehicle.automaker.automaker_info', ['hangxe' => $hx]);
+        return view('dashboard.category.vehicle.automaker.automaker-info', ['hangxe' => $hx]);
     }
 
     /**
@@ -48,7 +48,7 @@ class HangXeController extends Controller
             'xuatxu' => $request->xs,
         ]);
 
-        return redirect('dashboard/category/vehicle/automaker_info')->with('success', 'Post created successfully!');
+        return redirect('dashboard/category/vehicle/automaker-info')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -94,7 +94,7 @@ class HangXeController extends Controller
     public function destroy($id)
     {
         DB::table('hangxe')->where('mahx', $id)->delete();
-        return redirect('dashboard/category/vehicle/automaker_info')->with('success', 'Post created successfully!');
+        return redirect('dashboard/category/vehicle/automaker-info')->with('success', 'Post created successfully!');
     }
     public function data()
     {

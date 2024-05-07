@@ -10,13 +10,13 @@
     <div class="container mt-4 mb-5">
         {{-- Mục Tìm kiếm --}}
 
-        @include('home_page.search_box') 
+        @include('home-page.search-box') 
 
         {{-- End --}}
 
         {{-- Danh sách xe bán --}}
         <div class="row justify-content-md-center mt-4">
-            @include('home_page.list_car')
+            @include('home-page.list-car')
         </div>
         {{-- End --}}
 
@@ -29,7 +29,7 @@
         
         {{-- Thương hiệu xe --}}
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('home_page.car_brand')
+            @include('home-page.car-brand')
         </div>
         {{-- End --}}
 

@@ -17,7 +17,7 @@
     <div class="container">
 
         <div class="row mt-4 mb-4">
-            @include('sub_page.sub_searchbox')
+            @include('sub-page.sub-searchbox')
         </div>
 
         <div class="row mt-4 mb-4">
@@ -34,7 +34,7 @@
         </div>
 
         <div class="row mt-4 mb-4">
-            @include('sub_page.box_list')
+            @include('sub-page.box-list')
         </div>
 
         <div class="row mt-4 mb-4">
@@ -42,11 +42,11 @@
         </div>
 
         <div class="row mt-4 mb-4">
-            @include('sub_page.list_archive_item_search')
+            @include('sub-page.list-archive-item-search')
         </div>
 
         <div class="row mt-4 mb-4">
-            @include('sub_page.introduce')
+            @include('sub-page.introduce')
         </div>
 
     </div>
