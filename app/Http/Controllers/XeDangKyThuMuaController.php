@@ -29,6 +29,7 @@ class XeDangKyThuMuaController extends Controller
      */
     public function create()
     {
+        return view('user.selling_item');
     }
 
     /**
@@ -41,32 +42,24 @@ class XeDangKyThuMuaController extends Controller
     {
         $imagePathsString = '';
         $imagePaths = [];
-
-        // Kiểm tra xem đã có tệp hình ảnh được gửi lên không
         if ($request->hasFile('file')) {
             foreach ($request->file('file') as $image) {
-                // Lưu trữ hình ảnh vào thư mục 'public/images' và lấy đường dẫn
                 $path = $image->store('images', 'public');
-                $imagePaths[] = $path; // Lưu đường dẫn vào mảng
+                $imagePaths[] = $path;
             }
         }
-
-        // Xử lý thông tin xe và hình ảnh
+      
         $id = uniqid();
-        $ngaydk = now(); // Sử dụng Carbon để lấy ngày giờ hiện tại
+        $ngaydk = date('Y-m-d');
         $mota = $request->loaixe . ' ' . $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
-        $imagePathsString = implode(',', $imagePaths); // Chuyển mảng đường dẫn thành chuỗi
-
-        //dd($imagePathsString);
-    
-        // Lưu thông tin vào cơ sở dữ liệu
-        $mand = 'MK-0099'; // Bạn có thể thay đổi giá trị này tùy theo yêu cầu
-        $rs = DB::table('xedangkythumua')->insert([
+        $imagePathsString = implode(',', $imagePaths);
+        $mand = 'ND-001';
+        DB::table('xedangkythumua')->insert([
             'madkthumua' => $id,
             'mand' => $mand,
             'ngaydk' => $ngaydk,
+            'hinhanh' => $imagePathsString,
             'giaban' => $request->giaban,
-            'hinhanh' => $imagePathsString, // Chuỗi đường dẫn của hình ảnh
             'mota' => $mota,
         ]);
 

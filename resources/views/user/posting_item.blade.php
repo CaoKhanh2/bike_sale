@@ -1,5 +1,5 @@
 <div class="container bg-light">
-    <form method="POST" action="{{ route('dangkythumua')}}" id="formthumua" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('dangkythumua') }}" id="formthumua" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-around">
             <div class="col-5 mt-3">
@@ -10,9 +10,10 @@
                     <a href="#"><i class="bi bi-exclamation-circle-fill"></i> Chính sách của chúng tôi</a>
                 </div>
                 <div class="form-group">
-                    <div class="dropzone mb-3 border border-3 border-primary" action="{{ route('dangkythumua')}}"  id="mydropzone">
+                    <div class="dropzone mb-3 border border-3 border-primary" action="{{ route('dangkythumua') }}"
+                        id="mydropzone">
                         <div class="fallback">
-                         
+
                         </div>
                     </div>
                     <div class="">
@@ -23,7 +24,7 @@
                         </P>
                     </div>
                 </div>
-           
+
             </div>
             <div class="col-7 mt-3">
                 <div class="row">
@@ -81,7 +82,7 @@
                 </div>
             </div>
             <div class="mb-4">
-                <button type="submit"  class="btn-primary btn col-12">Đăng ký</button>
+                <button type="submit" class="btn-primary btn col-12">Đăng ký</button>
             </div>
 
         </div>
