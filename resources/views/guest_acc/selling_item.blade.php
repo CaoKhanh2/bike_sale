@@ -75,7 +75,7 @@
                     // Redirect user or notify of success.
                     myDropzone.removeAllFiles();
                     document.getElementById("formthumua").reset();
-                    window.location.href = '#formthumua';
+                    window.location.href = '/selling_item';
                 });
                 this.on("errormultiple", function(files, response) {
                     console.log("Files are not being sent");
