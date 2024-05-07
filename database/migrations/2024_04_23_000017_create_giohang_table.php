@@ -16,16 +16,13 @@ return new class extends Migration
         Schema::create('giohang', function (Blueprint $table) {
             $table->string('magh',10);
             $table->string('mand',10);
-            $table->string('mavanchuyen',10);
-            $table->string('mathanhtoan',15);
             $table->datetime('ngaytao');
             $table->decimal('tonggiatien',12,2);
             $table->text('ghichu')->nullable();
 
             $table->primary('magh');
             $table->foreign('mand')->references('mand')->on('nguoidung')->onDelete('cascade');
-            $table->foreign('mavanchuyen')->references('mavanchuyen')->on('vanchuyen')->onDelete('cascade');
-            $table->foreign('mathanhtoan')->references('mathanhtoan')->on('thanhtoan')->onDelete('cascade');
+
         });
     }
 

@@ -62,7 +62,7 @@ use App\Models\ThongSoKyThuatXeMay;
 
     // ----------
 
-    Route::get('/sale_page', function () {
+    Route::get('sub_page/sale_page', function () {
         return view('sale_page');
     });
 
@@ -76,7 +76,6 @@ use App\Models\ThongSoKyThuatXeMay;
  * -------------- EndWebsite --------------
  * 
  */
-
 
 
 
@@ -109,9 +108,11 @@ use App\Models\ThongSoKyThuatXeMay;
  * -------------- Clean Image --------------
  * 
  */
-
-    Route::get('/clean_img_logo',[CleanImagesController::class,'cleanImgLogo']);
-    Route::get('/clean_img_vehicle',[CleanImagesController::class,'cleanImgVehicle']);
+    
+    Route::get('/clean',[CleanImagesController::class,'cleanIndex']);
+    Route::get('/clean/clean_img_logo',[CleanImagesController::class,'cleanImgLogo']);
+    Route::get('/clean/clean_img_vehicle',[CleanImagesController::class,'cleanImgVehicle']);
+    Route::get('/clean/clean_img_posted',[CleanImagesController::class,'cleanImgPosted']);
 
 /**
  * 
@@ -316,8 +317,12 @@ Route::middleware(['auth', 'role'])->group(function () {
 
 Route::get('/dashboard/transaction/purchasing_manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
 Route::get('/dashboard/tranction/purchasing_manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
+
+Route::get('/selling_item', function () {
+    return view('guest_acc.selling_item');
+});
 Route::post('/sending_bike',[XeDangKyThuMuaController::class,'store'])->name('dangkythumua');
-Route::get('/selling_item',[XeDangKyThuMuaController::class,'create'])->name('nhapxethumua');
+
 
 Route::get('/cart_index', function () {
     return view('cart.cart_index');
