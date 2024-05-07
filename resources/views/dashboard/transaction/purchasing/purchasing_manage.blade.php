@@ -40,6 +40,7 @@
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
                                                 <th>Tên người bán</th>
                                                 <th>Ngày bán</th>
+                                                <th>Người tạo</th>
                                                 <th>Mô tả</th>
                                                 <th>Giá bán</th>
                                                 <th>Trạng thái</th>
@@ -51,6 +52,7 @@
                                                 <tr>
                                                     <td class="table-plus">{{ $i->madkthumua }}</td>
                                                     <td>{{ $i->hovaten }}</td>
+                                                    <td>{{ Auth::user()->manv }}</td>
                                                     <td>
                                                         @php
                                                             $formattedDate = date('d/m/Y', strtotime($i->ngaydk));

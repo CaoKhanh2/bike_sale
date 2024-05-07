@@ -190,7 +190,7 @@
                             kê</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('/dashboard/report/best-selling-items') }}">Báo cáo tình hình bán hàng</a></li>
+                        <li><a href="{{ url('/dashboard/report/sales_situation') }}">Báo cáo tình hình bán hàng</a></li>
                         <li><a href="{{ url('#') }}">Báo cáo tình hình thu mua</a></li>
                         <li><a href="{{ url('/dashboard/report/inventory') }}">Báo cáo tồn kho</a></li>
                         <li><a href="forgot-password.html">Báo cáo rủi ro</a></li>

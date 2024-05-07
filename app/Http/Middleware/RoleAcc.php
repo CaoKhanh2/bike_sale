@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class RoleAcc
@@ -18,10 +19,11 @@ class RoleAcc
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && (Auth::user()->phanquyen == 'Quản trị viên' || Auth::user()->phanquyen == 'Nhân viên') && Auth::user()->trangthai == 1) {
+        if (Auth::check() && (Auth::user()->phanquyen == 'Quản trị viên' || Auth::user()->phanquyen == 'Nhân viên' || Auth::user()->phanquyen == 'Quản lý') && Auth::user()->trangthai == 1) {
             return $next($request);
         }else{
-            return redirect()->route('login');
+            Session::flash('cross', 'Đăng nhập không thành công !');
+            return redirect('/login')->with('cross', 'Tài khoản của bạn đã bị khóa !');
         }     
     }
 }

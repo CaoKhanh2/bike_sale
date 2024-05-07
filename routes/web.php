@@ -127,11 +127,11 @@ use App\Models\ThongSoKyThuatXeMay;
  * -------------- LoginDashboard --------------
  * 
  */
+
     Route::get('/login', function () {
         return view('dashboard.auth.login');
-    })->name('login');
-
-    Route::post('/login', [TaiKhoanContrller::class, 'login']);
+    });
+    Route::post('/login', [TaiKhoanContrller::class, 'login'])->name('login');
 
     Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
 
@@ -298,8 +298,8 @@ Route::middleware(['auth', 'role'])->group(function () {
      * 
      */
         Route::middleware('permission:Quản lý')->group(function () {
-            Route::get('/dashboard/report/best-selling-items', function () {
-                return view('dashboard.report.best-selling-items');
+            Route::get('dashboard/report/sales_situation', function () {
+                return view('dashboard.report.sales_situation');
             });
 
             Route::get('/dashboard/report/inventory', function () {
