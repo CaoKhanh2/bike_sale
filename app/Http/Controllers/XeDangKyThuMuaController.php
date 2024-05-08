@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class XeDangKyThuMuaController extends Controller
@@ -99,10 +100,12 @@ class XeDangKyThuMuaController extends Controller
     }
     public function updatedon(Request $request, $id)
     {
+        $manv = Auth::user()->manv;
         $trangthai = 'Duyệt';
         DB::table('xedangkythumua')
             ->where('madkthumua', $id)
-            ->update(['trangthaipheduyet' => $trangthai]);
+            ->update(['trangthaipheduyet' => $trangthai,
+                       'manv' => $manv ]);
 
         return redirect()->route('xedkthumua');
     }

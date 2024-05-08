@@ -93,6 +93,7 @@
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
                                                 <th>Tên người bán</th>
+                                                <th>Tên người duyệt</th>
                                                 <th>Ngày bán</th>
                                                 <th>Mô tả</th>
                                                 <th>Giá bán</th>
@@ -105,9 +106,10 @@
                                                 <tr>
                                                     <td class="table-plus">{{ $i->madkthumua }}</td>
                                                     <td>{{ $i->hovaten }}</td>
+                                                    <td>{{Auth::user()->manv}}</td>
                                                     <td>
                                                         @php
-                                                            $formattedDate = date('H:m:s-d/m/Y', strtotime($i->ngaydk));
+                                                            $formattedDate = date('d/m/Y', strtotime($i->ngaydk));
                                                             echo $formattedDate;
                                                         @endphp
                                                     </td>
