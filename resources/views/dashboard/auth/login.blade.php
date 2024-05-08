@@ -6,15 +6,10 @@
     <div class="login-header box-shadow">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
-                <a href="login.html">
+                <a href="{{ url('/login') }}">
                     <img src=" {{ asset('dashboard_src/vendors/images/deskapp-logo.svg') }}" alt="" />
                 </a>
             </div>
-            {{-- <div class="login-menu">
-					<ul>
-						<li><a href="{{ url('/register') }}">Register</a></li>
-					</ul>
-				</div> --}}
         </div>
     </div>
     <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
@@ -30,36 +25,8 @@
                         </div>
                         <form method="post" action="">
                             @csrf
-                            {{-- <div class="select-role">
-									<div class="btn-group btn-group-toggle" data-toggle="buttons">
-										<label class="btn active">
-											<input type="radio" name="options" id="admin" />
-											<div class="icon">
-												<img
-													src="{{ asset('dashboard_src/vendors/images/briefcase.svg') }}"
-													class="svg"
-													alt=""
-												/>
-											</div>
-											<span>I'm</span>
-											Manager
-										</label>
-										<label class="btn">
-											<input type="radio" name="options" id="user" />
-											<div class="icon">
-												<img
-													src="{{ asset('dashboard_src/vendors/images/person.svg') }}"
-													class="svg"
-													alt=""
-												/>
-											</div>
-											<span>I'm</span>
-											Employee
-										</label>
-									</div>
-								</div> --}}
                             <div class="input-group custom">
-                                <input type="text" class="form-control form-control-lg" placeholder="Username"
+                                <input type="text" class="form-control form-control-lg" placeholder="Username or Email"
                                     name="username" />
                                 <div class="input-group-append custom">
                                     <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
@@ -74,10 +41,7 @@
                             </div>
                             <div class="row pb-30">
                                 <div class="col-6">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                                        <label class="custom-control-label" for="customCheck1">Remember</label>
-                                    </div>
+                                    
                                 </div>
                                 <div class="col-6">
                                     <div class="forgot-password">
@@ -88,31 +52,41 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="input-group mb-0">
-                                        <!--  use code for form submit-->
-                                        <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
-
-                                        {{-- <a
-												class="btn btn-primary btn-lg btn-block"
-												href="index.html"
-												>Sign In</a
-											> --}}
+                                        {{-- <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In"> --}}
+                                        <button class="btn btn-primary btn-lg btn-block" type="submit"
+                                            data-target="#modal-cross" data-toggle="modal">Sign In</button>
                                     </div>
-                                    {{-- <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">
-                                        OR
-                                    </div>
-                                    <div class="input-group mb-0">
-                                        <a class="btn btn-outline-primary btn-lg btn-block"
-                                            href="{{ url('register') }}">Register To Create Account</a>
-                                    </div> --}}
                                 </div>
                             </div>
                         </form>
+                        <div class="my-4">
+                            @if (Session::has('cross'))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('cross') }}
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- js -->
+
+    {{-- <script>
+        // Đợi cho trang tải hoàn tất
+        document.addEventListener("DOMContentLoaded", function() {
+            // Lắng nghe sự kiện khi nút "Sign In" được nhấn
+            document.querySelector('form').addEventListener('submit', function(e) {
+                // Ngăn chặn hành động mặc định của biểu mẫu
+                // e.preventDefault();
+                // Hiển thị modal
+                $('#success-modal').modal('show');
+            });
+        });
+    </script> --}}
+
+
     <script src="{{ asset('dashboard_src/vendors/scripts/core.js') }} "></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/script.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/process.js') }}"></script>

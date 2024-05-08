@@ -17,7 +17,7 @@ class XeDangKyThuMuaController extends Controller
     {
         $dstm_check = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Duyệt"');
         $dstm_uncheck = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Không duyệt"');
-        return view('dashboard.transaction.purchasing.purchasing_manage', [
+        return view('dashboard.transaction.purchasing.purchasing-manage', [
             'xedangkythumua_check' => $dstm_check,
             'xedangkythumua_uncheck' => $dstm_uncheck,
         ]);
@@ -30,7 +30,7 @@ class XeDangKyThuMuaController extends Controller
      */
     public function create()
     {
-        return view('user.selling_item');
+
     }
 
     /**
@@ -49,7 +49,6 @@ class XeDangKyThuMuaController extends Controller
                 $imagePaths[] = $path;
             }
         }
-      
         $id = uniqid();
         $ngaydk = date('Y-m-d');
         $mota = $request->loaixe . ' ' . $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
@@ -64,7 +63,7 @@ class XeDangKyThuMuaController extends Controller
             'mota' => $mota,
         ]);
 
-        return redirect('/selling_item')->with('success', 'Thông tin đã được gửi đi');
+        return redirect('/selling-item')->with('success', 'Thông tin đã được gửi đi');
     }
 
     /**

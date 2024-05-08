@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TaiKhoan;
-use Illuminate\Auth\Events\Logout;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -19,14 +19,14 @@ class TaiKhoanContrller extends Controller
     public function index1()
     {
         $tk = DB::table('taikhoan')->get();
-        return view('dashboard.sys.user_authorization', ['taikhoan' => $tk]);
+        return view('dashboard.sys.user-authorization', ['taikhoan' => $tk]);
     }
 
     public function index2()
     {
         $tk = DB::select('SELECT nhanvien.*, taikhoan.* FROM nhanvien INNER JOIN taikhoan ON nhanvien.manv = taikhoan.manv');
 
-        return view('dashboard.sys.acc_management.employee_account', ['taikhoan2' => $tk]);
+        return view('dashboard.sys.management-acc.employee_account', ['taikhoan2' => $tk]);
     }
 
     /**
@@ -88,10 +88,10 @@ class TaiKhoanContrller extends Controller
                     'ngaycapnhat' => $currentTime
             ]);
 
-            return redirect('/dashboard/sys/user_authorization')->with('success', 'Post created successfully!');
+            return redirect('/dashboard/sys/user-authorization')->with('success', 'Post created successfully!');
         } else {
             // Xử lý khi $id không tồn tại
-            return redirect('/dashboard/sys/user_authorization')->with('error', 'Invalid ID!');
+            return redirect('/dashboard/sys/user-authorization')->with('error', 'Invalid ID!');
         }
     }
 
@@ -106,10 +106,10 @@ class TaiKhoanContrller extends Controller
                     'ngaycapnhat' => $currentTime
             ]);
 
-            return redirect('/dashboard/sys/acc_management/employee_account')->with('success', 'Post created successfully!');
+            return redirect('/dashboard/sys/management-acc/employee_account')->with('success', 'Post created successfully!');
         } else {
             // Xử lý khi $id không tồn tại
-            return redirect('/dashboard/sys/acc_management/employee_account')->with('error', 'Invalid ID!');
+            return redirect('/dashboard/sys/management-acc/employee_account')->with('error', 'Invalid ID!');
         }
     }
 
@@ -129,15 +129,19 @@ class TaiKhoanContrller extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
-        if (Auth::attempt(['email' => $username, 'password' => $password])) {
-            $user = TaiKhoan::where('email', '=', $username)->first();
-            //dd($user);
+        if (Auth::attempt(['email' => $username, 'password' => $password]) || Auth::attempt(['tentaikhoan' => $username, 'password' => $password])) {
+            $user = TaiKhoan::where('email', '=', $username)->orWhere('tentaikhoan', '=', $username)->first();
             Auth::login($user,true);
-            return redirect('/dashboard');
+            // Session::flash('success', 'Đăng nhập thành công !');
+            // return redirect('/dashboard');
+            return redirect()->intended('/dashboard')->with('success', 'Đăng nhập thành công!');
         } else {
-            return redirect('/login');
-        }
+            // Session::flash('cross', 'Đăng nhập không thành công !');
+            // return redirect('/login');
+            return redirect()->intended('/login')->with('cross', 'Tài khoản hoặc mặt khẩu không đúng!');
+        } 
     }
+
     public function logout()
     {
         Auth::logout();

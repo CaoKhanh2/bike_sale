@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 class CleanImagesController extends Controller
 {
     public function cleanIndex(){
-        return view('clean_image.index');
+        return view('clean-image.index');
     }
     public function cleanImgLogo()
     {

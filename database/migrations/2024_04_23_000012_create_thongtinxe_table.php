@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('thoigiandasudung',25);
             $table->string('tinhtrangxe',50);
             $table->string('sokmdadi',25);
-            $table->string('hinhanh');
+            $table->text('hinhanh');
             $table->string('biensoxe',15)->nullable();
             $table->text('ghichu')->nullable();
 

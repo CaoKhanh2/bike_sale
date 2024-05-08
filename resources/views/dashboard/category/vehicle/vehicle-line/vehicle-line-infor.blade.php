@@ -57,7 +57,7 @@
                                                         <td>{{ $i->mota }}</td>
                                                         <td>
                                                             <a type="button" class="btn btn-primary"
-                                                                href="{{ url('/dashboard/category/vehicle/detail_vehicle_line_infor') }}">
+                                                                href="{{ url('/dashboard/category/vehicle/detail_vehicle-line_infor') }}">
                                                                 <i class="bi bi-pencil-fill"></i> Sửa
                                                             </a>
                                                             <a type="button" class="btn btn-danger"

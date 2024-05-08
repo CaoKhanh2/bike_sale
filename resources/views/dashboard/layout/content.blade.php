@@ -90,7 +90,6 @@
     </div>
     {{-- End Main --}}
 
-
     {{-- Footer --}}
     @include('dashboard.layout.footer')
     {{-- End Footer --}}

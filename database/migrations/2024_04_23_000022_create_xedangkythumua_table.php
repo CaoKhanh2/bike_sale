@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('mand',10)->nullable();
             $table->string('manv',10)->nullable();
             $table->datetime('ngaydk');
-            $table->string('hinhanh');
+            $table->text('hinhanh');
             $table->decimal('giaban',10,2);
             $table->text('mota')->nullable();
             $table->enum('trangthaipheduyet',['Duyệt','Chờ duyệt','Không duyệt']);

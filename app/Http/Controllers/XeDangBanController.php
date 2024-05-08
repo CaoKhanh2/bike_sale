@@ -17,7 +17,7 @@ class XeDangBanController extends Controller
     {
         // $dk_banxe = DB::select('SELECT xedangkyban.*,khachhang.hovaten FROM xedangkyban INNER JOIN khachhang ON xedangkyban.makh = khachhang.makh');
 
-        // return view('dashboard.transaction.purchasing.purchasing_manage',['xedkban'=>$dk_banxe]);
+        // return view('dashboard.transaction.purchasing.purchasing-manage',['xedkban'=>$dk_banxe]);
     }
     /**
      * Show the form for creating a new resource.

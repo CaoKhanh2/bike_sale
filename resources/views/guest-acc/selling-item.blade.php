@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row justify-content-around">
             <div class="col-xl">
-                @include('layout.header_breadcrum')
+                @include('layout.header-breadcrum')
             </div>
         </div>
         {{-- endbreadcrum --}}
@@ -17,7 +17,7 @@
         {{-- Content --}}
         <div class="row justify-content-center">
             <div class="col-xl">
-                @include('guest_acc.posting_item')
+                @include('guest-acc.posting-item')
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
                     // Redirect user or notify of success.
                     myDropzone.removeAllFiles();
                     document.getElementById("formthumua").reset();
-                    window.location.href = '/selling_item';
+                    window.location.href = '/selling-item';
                 });
                 this.on("errormultiple", function(files, response) {
                     console.log("Files are not being sent");

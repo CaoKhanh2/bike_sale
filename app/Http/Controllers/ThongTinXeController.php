@@ -31,7 +31,7 @@ class ThongTinXeController extends Controller
 
         $dxdd = DB::select('SELECT dongxe.madx, dongxe.tendongxe, dongxe.loaixe, dongxe.mahx FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
 
-        return view('dashboard.category.vehicle.vehicle_infor', [
+        return view('dashboard.category.vehicle.vehicle-infor', [
             'thongtinxemay' => $ttxm,
             'thongtinxedapdien' => $ttxdd,
             'hangxemay' => $hxm,
@@ -90,7 +90,7 @@ class ThongTinXeController extends Controller
                 //'tinhtrang' => $request->tt
             ]);
 
-            return redirect('/dashboard/category/vehicle/vehicle_infor')->with('success', 'Post created successfully!');
+            return redirect('/dashboard/category/vehicle/vehicle-infor')->with('success', 'Post created successfully!');
         } else {
             DB::table('thongsokythuatxedapdien')->insert([
                 'matsxedapdien' => 'TS' . $request->mx,
@@ -111,7 +111,7 @@ class ThongTinXeController extends Controller
                 //'tinhtrang' => $request->tt
             ]);
 
-            return redirect('/dashboard/category/vehicle/vehicle_infor')->with('success', 'Post created successfully!');
+            return redirect('/dashboard/category/vehicle/vehicle-infor')->with('success', 'Post created successfully!');
         }
     }
 
@@ -123,7 +123,10 @@ class ThongTinXeController extends Controller
      */
     public function show($id)
     {
-        //
+        $xm = DB::table('thongtinxe')->where('maxe', $id)->first();
+        $dx = DB::table('dongxe')->get();
+        $hx = DB::table('hangxe')->get();
+        return view('/dashboard/category/vehicle/detail-vehicle-infor', ['xm' => $xm, 'dx' => $dx, 'hx' => $hx]);
     }
 
     /**
@@ -159,17 +162,17 @@ class ThongTinXeController extends Controller
     {
         DB::table('thongtinxe')->where('maxe', $id)->delete();
         DB::table('thongsokythuatxemay')
-            ->where('matsxemay', 'TS'.$id)
+            ->where('matsxemay', 'TS' . $id)
             ->delete();
-        return redirect('dashboard/category/vehicle/vehicle_infor')->with('success', 'Post created successfully!');
+        return redirect('dashboard/category/vehicle/vehicle-infor')->with('success', 'Post created successfully!');
     }
     public function del_xedapdien($id)
     {
         DB::table('thongtinxe')->where('maxe', $id)->delete();
         DB::table('thongsokythuatxedapdien')
-            ->where('matsxedapdien', 'TS'.$id)
+            ->where('matsxedapdien', 'TS' . $id)
             ->delete();
-        return redirect('dashboard/category/vehicle/vehicle_infor')->with('success', 'Post created successfully!');
+        return redirect('dashboard/category/vehicle/vehicle-infor')->with('success', 'Post created successfully!');
     }
     public function delete_image($id, $index)
     {
@@ -184,9 +187,9 @@ class ThongTinXeController extends Controller
         unset($array[$index]);
         $new_array = implode(',', $array);
 
-        DB::update("UPDATE thongtinxe SET hinhanh = ? WHERE maxe = ?", [$new_array, $id]);
+        DB::update('UPDATE thongtinxe SET hinhanh = ? WHERE maxe = ?', [$new_array, $id]);
 
-        return redirect('dashboard/category/vehicle/vehicle_infor/{$id}')->with('success', 'Post created successfully!');
+        return redirect('dashboard/category/vehicle/vehicle-infor/{$id}')->with('success', 'Post created successfully!');
     }
     public function data()
     {

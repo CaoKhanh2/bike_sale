@@ -36,12 +36,12 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="table1" role="tabpanel">
                                     <div class="pt-20">
-                                        @include('dashboard.category.vehicle.vehicle_types.motorbike')
+                                        @include('dashboard.category.vehicle.vehicle-types.motorbike')
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show" id="table2" role="tabpanel">
                                     <div class="pt-20">
-                                        @include('dashboard.category.vehicle.vehicle_types.electric_bicycles')
+                                        @include('dashboard.category.vehicle.vehicle-types.electric-bicycles')
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="form-add" role="tabpanel">

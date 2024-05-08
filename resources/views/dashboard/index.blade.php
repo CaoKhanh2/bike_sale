@@ -1,19 +1,9 @@
 @extends('dashboard.layout.content')
-@section('title_ds','Dashboard')
-{{-- <div class="pre-loader">
-			<div class="pre-loader-box">
-				<div class="loader-logo">
-					<img src="{{ asset('dashboard_src/vendors/images/deskapp-logo.svg') }}" alt="" />
-				</div>
-				<div class="loader-progress" id="progress_div">
-					<div class="bar" id="bar1"></div>
-				</div>
-				<div class="percent" id="percent1">0%</div>
-				<div class="loading-text">Loading...</div>
-			</div>
-		</div> --}}
+@section('title_ds', 'Dashboard')
 
 @section('main')
+
+@include('dashboard.modal.success')
     <div class="main-container">
         <div class="pd-ltr-20">
             <div class="card-box pd-20 height-100-p mb-30">
@@ -26,12 +16,7 @@
                             Welcome back
                             <div class="weight-600 font-30 text-blue">{{ Auth::user()->tentaikhoan }}</div>
                         </h4>
-                        {{-- <p class="font-18 max-width-600">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
-                            hic non repellendus debitis iure, doloremque assumenda. Autem
-                            modi, corrupti, nobis ea iure fugiat, veniam non quaerat
-                            mollitia animi error corporis.
-                        </p> --}}
+
                     </div>
                 </div>
             </div>
@@ -89,8 +74,6 @@
                     </div>
                 </div>
             </div>
-           
-
         </div>
     </div>
 @endsection

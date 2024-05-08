@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('mavanchuyen',10);
             $table->string('mathanhtoan',15);
             $table->string('makhuyenmai',5)->nullable();
+            $table->dateTime('ngaytaodon')->nullable();
             $table->decimal('tongtien',12,2)->nullable();
 
             $table->primary('madh');
