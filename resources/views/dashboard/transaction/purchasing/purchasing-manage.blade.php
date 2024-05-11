@@ -77,11 +77,12 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="dangxuly" role="tabpanel">
+                            <div class="tab-pane fade" id="datuchoi" role="tabpanel">
                                 <div class="pd-20">
                                     <table class="table hover multiple-select-row align-middle">
                                         <thead class="text-center">
@@ -109,7 +110,7 @@
                                                     </td>
                                                     <td>{{ $i->mota }}</td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
-                                                    <td class="d-flex justify-content-center">
+                                                    <td class="text-center">
                                                         @php
                                                             echo '<img src="' .
                                                                 asset('Image/Icon/check.png') .
@@ -144,10 +145,7 @@
                                                     <td>{{ $i->hovaten }}</td>
                                                     <td>{{ Auth::user()->manv }}</td>
                                                     <td>
-                                                        @php
-                                                            $formattedDate = date('d/m/Y', strtotime($i->ngaydk));
-                                                            echo $formattedDate;
-                                                        @endphp
+                                                        {{ date('d/m/Y', strtotime($i->ngaydk)) }}
                                                     </td>
                                                     <td>{{ $i->mota }}</td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>

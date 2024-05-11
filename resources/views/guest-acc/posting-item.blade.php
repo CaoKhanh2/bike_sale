@@ -1,5 +1,5 @@
 <div class="container bg-light">
-    <form method="POST" action="{{ route('dangkythumua')}}" id="formthumua" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('themdldangkythumua')}}" id="formthumua" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-around">
             <div class="col-5 mt-3">
@@ -10,8 +10,9 @@
                     <a href="#"><i class="bi bi-exclamation-circle-fill"></i> Chính sách của chúng tôi</a>
                 </div>
                 <div class="form-group">
-                    <div class="dropzone mb-3 border border-3 border-primary" action="{{ route('dangkythumua')}}"  id="mydropzone">
+                    <div class="dropzone mb-3 border border-3 border-primary" action="{{ route('themdldangkythumua')}}"  id="mydropzone">
                         <div class="fallback"> 
+
                         </div>
                     </div>
                     <div class="">
@@ -22,13 +23,12 @@
                         </P>
                     </div>
                 </div>
-
             </div>
             <div class="col-7 mt-3">
                 <div class="row">
                     <div class="mb-3 form-group">
                         <input type="hidden" class="userid" name="userid" id="mand" value="">
-                        <label for="exampleFormControlInput1" class="form-label">
+                        <label for="loaixe" class="form-label">
                             <h3>Loại xe</h3>
                         </label>
                         <select class="form-select form-select-lg border border-3 border-primary" aria-label="Loại xe"
@@ -57,12 +57,11 @@
                         <input type="text" name="giaban" id="Giaban"
                             class="form-control form-control-lg border border-3 border-primary" placeholder="Giá bán">
                     </div>
-
                     <div class="mb-2">
                         <h3>Tiêu đề & Nội dung</h3>
                     </div>
                     <div class="mb-4 form-group">
-                        <input type="text" name="Tên hãng xe" id="Hangxe"
+                        <input type="text" name="tieude" id="tieude"
                             class="form-control form-control-lg border border-3 border-primary" placeholder="Tiêu đề">
                     </div>
                     <div class="mb-4 form-group">
@@ -73,16 +72,14 @@
                         <h3>Thông tin người bán</h3>
                     </div>
                     <div class="mb-4 form-group">
-                        <input type="text" name="Địa chỉ" id="Hangxe"
+                        <input type="text" name="diachi" id="diachi"
                             class="form-control form-control-lg border border-3 border-primary" placeholder="Địa chỉ">
                     </div>
-
                 </div>
             </div>
             <div class="mb-4">
                 <button type="submit"  class="btn-primary btn col-12">Đăng ký</button>
             </div>
-
         </div>
     </form>
 </div>

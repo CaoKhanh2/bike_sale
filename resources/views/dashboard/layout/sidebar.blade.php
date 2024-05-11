@@ -122,7 +122,7 @@
                             <ul class="submenu child">
                                 <li><a href="{{ url('#') }}">Tài khoản khách hàng</a>
                                 </li>
-                                <li><a href="{{ url('/dashboard/sys/management-acc/employee_account') }}">Tài khoản nhân viên</a></li>
+                                <li><a href="{{ url('/dashboard/sys/management-acc/employee-account') }}">Tài khoản nhân viên</a></li>
                             </ul>
                         </li>
                         <li><a href="{{ url('/dashboard/sys/user-authorization') }}">Quản lý phân quyền người dùng</a></li>
@@ -170,12 +170,12 @@
                     <ul class="submenu">
                         <li class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle">
-                                <span class="micon"></span><span class="mtext">Danh sách</span>
+                                <span class="micon"></span><span class="mtext">Quản lý tiến trình</span>
                             </a>
                             <ul class="submenu child">
-                                <li><a href="{{ url('/dashboard/transaction/purchasing-manage') }}">Đăng ký bán</a>
+                                <li><a href="{{ url('/dashboard/transaction/purchasing-manage') }}">Thu mua xe</a>
                                 </li>
-                                <li><a href="{{ url('/dashboard/transaction/selling') }}">Quản lý bán</a></li>
+                                <li><a href="{{ url('/dashboard/transaction/selling') }}">Đăng bán xe</a></li>
                             </ul>
                         </li>
                         <li><a href="form-pickers.html">Quản lý thanh toán</a></li>

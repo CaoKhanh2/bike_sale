@@ -18,12 +18,13 @@ return new class extends Migration
             $table->string('hovaten',50);
             $table->date('ngaysinh')->nullable();
             $table->string('cccd', 12);
-            $table->enum('gioitinh',['Nam','Nữ','Other']);
+            $table->enum('gioitinh',['Nam','Nữ']);
             $table->string('sodienthoai',11);
             $table->string('email',35);
             $table->string('diachi',100)->nullable();
             $table->string('tentk',20)->nullable();
             $table->string('password',20)->nullable();
+            $table->rememberToken();
             $table->tinyInteger('tinhtrang')->default(1);
             
             $table->primary('mand');

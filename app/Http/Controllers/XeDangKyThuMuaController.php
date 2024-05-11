@@ -28,6 +28,22 @@ class XeDangKyThuMuaController extends Controller
         ]);
     }
 
+    public function index2()
+    {   
+        //dd(Auth::guard('guest')->check());
+        //if (Auth::guard('guest')->check() == false) {
+            return view('guest-acc.selling-item')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
+        //}
+    }
+
+    public function index2()
+    {   
+        //dd(Auth::guard('guest')->check());
+        //if (Auth::guard('guest')->check() == false) {
+            return view('guest-acc.selling-item')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
+        //}
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -50,7 +66,7 @@ class XeDangKyThuMuaController extends Controller
         $imagePaths = [];
         if ($request->hasFile('file')) {
             foreach ($request->file('file') as $image) {
-                $path = $image->store('images', 'public');
+                $path = $image->store('posted', 'public');
                 $imagePaths[] = $path;
             }
         }
@@ -58,7 +74,8 @@ class XeDangKyThuMuaController extends Controller
         $ngaydk = date('Y-m-d');
         $mota = 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $request->tenhang . ', Năm đăng ký: ' . $request->namdangky . ', Xuất xứ:  ' . $request->xuatxu . ', Mô tả: ' . $request->mota;
         $imagePathsString = implode(',', $imagePaths);
-        $mand = 'MK-0001';
+        $mand = Auth::guard('guest')->user()->mand;
+
         DB::table('xedangkythumua')->insert([
             'madkthumua' => $id,
             'mand' => $mand,

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 
-class RoleAcc
+class RoleAccDash
 {
     /**
      * Handle an incoming request.
