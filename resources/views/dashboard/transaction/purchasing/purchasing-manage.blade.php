@@ -110,10 +110,7 @@
                                                     <td>{{ $i->hovaten }}</td>
                                                     <td>{{Auth::user()->manv}}</td>
                                                     <td>
-                                                        @php
-                                                            $formattedDate = date('d/m/Y', strtotime($i->ngaydk));
-                                                            echo $formattedDate;
-                                                        @endphp
+                                                        {{ date('d/m/Y', strtotime($i->ngaydk)) }}
                                                     </td>
                                                     <td>{{ $i->mota }}</td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
