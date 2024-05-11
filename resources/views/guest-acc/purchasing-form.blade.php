@@ -53,7 +53,7 @@
                     // var formData = $('#formthumua').serialize();
                     myDropzone.processQueue();
                 });
-                this.on("sending", function(file, xhr, formData) {
+                myDropzone.on("sending", function(file, xhr, formData) {
                     $('#formthumua').find('input, select').each(function() {
                         if ($(this).is('input')) {
                             formData.append($(this).attr('name'), $(this).val());
@@ -75,7 +75,7 @@
                     // Redirect user or notify of success.
                     myDropzone.removeAllFiles();
                     document.getElementById("formthumua").reset();
-                    window.location.href = '/selling-item';
+                    window.location.href = '/purchasing-form';
                 });
                 this.on("errormultiple", function(files, response) {
                     console.log("Files are not being sent");

@@ -147,7 +147,7 @@
                                     <li><a href="{{ url('/dashboard/category/vehicle/automaker-info') }}">Thông tin
                                             hãng xe</a>
                                     </li>
-                                    <li><a href="{{ url('/dashboard/category/vehicle/vehicle-line_infor') }}">Thông tin
+                                    <li><a href="{{ url('/dashboard/category/vehicle/vehicle-line-infor') }}">Thông tin
                                             dòng xe</a></li>
                                     <li><a href="{{ url('/dashboard/category/vehicle/vehicle-infor') }}">Thông tin
                                             xe</a></li>
