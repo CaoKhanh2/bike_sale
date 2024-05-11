@@ -3,7 +3,7 @@
 
 @section('main')
 
-@include('dashboard.modal.success')
+@include('dashboard.modal-dash.success')
     <div class="main-container">
         <div class="pd-ltr-20">
             <div class="card-box pd-20 height-100-p mb-30">

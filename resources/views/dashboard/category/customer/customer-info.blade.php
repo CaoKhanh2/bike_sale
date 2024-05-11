@@ -27,10 +27,12 @@
                                     <a class="nav-link active text-blue" data-toggle="tab" href="#table" role="tab"
                                         aria-selected="true">Thông tin bảng</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-blue" data-toggle="tab" href="#form-add" role="tab"
-                                        aria-selected="false">Thêm dữ liệu</a>
-                                </li>
+                                @if (Auth::User()->phanquyen == 'Quản trị viên')
+                                    <li class="nav-item">
+                                        <a class="nav-link text-blue" data-toggle="tab" href="#form-add" role="tab"
+                                            aria-selected="false">Thêm dữ liệu</a>
+                                    </li>
+                                @endif
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="table" role="tabpanel">
@@ -44,6 +46,7 @@
                                                     <th>Giới tính</th>
                                                     <th>Số điện thoại</th>
                                                     <th>Email</th>
+                                                    <th>Tên tài khoản</th>
                                                     <th>Tình trạng</th>
                                                     <th>Hành động</th>
                                                 </tr>
@@ -51,7 +54,7 @@
                                             <tbody>
                                                 @foreach ($nguoidung as $i)
                                                     <tr>
-                                                        <td class="table-plus">{{ $i->mand }}</td>
+                                                        <td class="table-plus">{{ 'MKH-'.$i->mand }}</td>
                                                         <td>{{ $i->hovaten }}</td>
                                                         <td>
                                                             {{ date('d/m/Y', strtotime($i->ngaysinh)) }}
@@ -59,6 +62,7 @@
                                                         <td>{{ $i->gioitinh }}</td>
                                                         <td>{{ $i->sodienthoai }}</td>
                                                         <td>{{ $i->email }}</td>
+                                                        <td>{{ $i->tentk }}</td>
                                                         <td>
                                                             @php
                                                                 $rs = strval($i->tinhtrang);
@@ -71,7 +75,6 @@
                                                                         asset('Image/Icon/remove.png') .
                                                                         '" alt="" srcset="" width="25" height="25">';
                                                                 }
-
                                                             @endphp
                                                         </td>
                                                         <td>
@@ -95,60 +98,68 @@
                                         <form method="POST" action="{{ route('themthongtinkhachhang') }}"
                                             class="form mt-2">
                                             @csrf
-                                            <div class="form-group row" id="row1">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Mã khách hàng</label>
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label" for="hoten">Họ và tên</label>
                                                 <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control" name="mand" id="mnd" />
+                                                    <input class="form-control" name="hoten" id="hoten" is-invalid/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Họ và tên</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control" name="hoten" id="hoten" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Giới tính</label>
+                                                <label class="col-sm-12 col-md-2 col-form-label" for="gioitinh">Giới tính</label>
                                                 <div class="col-sm-12 col-md-10">
                                                     <select class="custom-select col-12" id="gioitinh" name="gt">
-                                                        <option selected disabled value="">Choose...</option>
+                                                        <option selected hidden>Choose...</option>
                                                         <option value="Nam">Nam</option>
                                                         <option value="Nữ">Nữ</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Căn cước công đân</label>
+                                                <label class="col-sm-12 col-md-2 col-form-label" for="cccd">Căn cước công đân</label>
                                                 <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control" type="number" name="cccd"
-                                                        id="cccd" maxlength="11"/>
+                                                    <input class="form-control" type="number" name="cccd" id="cccd"
+                                                        maxlength="11" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Ngày sinh</label>
+                                                <label class="col-sm-12 col-md-2 col-form-label" for="ngsinh">Ngày sinh</label>
                                                 <div class="col-sm-12 col-md-10">
                                                     <input class="form-control" type="date" name="ngsinh"
-                                                        id="ngsinh" />
+                                                        id="ngsinh" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Số điện thoại</label>
+                                                <label class="col-sm-12 col-md-2 col-form-label" for="sdt">Số điện thoại</label>
                                                 <div class="col-sm-12 col-md-10">
                                                     <input class="form-control" type="number" name="sdt"
-                                                        id="sdt" />
+                                                        id="sdt" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Email</label>
+                                                <label class="col-sm-12 col-md-2 col-form-label" for="email">Email</label>
                                                 <div class="col-sm-12 col-md-10">
                                                     <input class="form-control" type="email" name="email"
-                                                        id="email" />
+                                                        id="email" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Địa chỉ</label>
+                                                <label class="col-sm-12 col-md-2 col-form-label" for="tentk">Tên tài khoản</label>
                                                 <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control" name="dc" id="diachi" />
+                                                    <input class="form-control" type="text" name="tentk"
+                                                        id="tentk" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label" for="password">Mật khẩu</label>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <input class="form-control" type="password" name="password"
+                                                        id="password" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-md-2 col-form-label" for="diachi">Địa chỉ</label>
+                                                <div class="col-sm-12 col-md-10">
+                                                    <input class="form-control" name="dc" id="diachi" required/>
                                                 </div>
                                             </div>
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -157,7 +168,6 @@
                                             </div>
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -168,40 +178,4 @@
 
         </div>
     </div>
-    <script>
-        // Kiểm tra dữ liệu trước khi gửi form
-        document.getElementById('form-add').addEventListener('submit', function(event) {
-            var mandInput = document.getElementById('mand');
-            var hotenInput = document.getElementById('hoten');
-            var gtInput = document.getElementById('gioitinh');
-            var ngsinhInput = document.getElementById('ngsinh');
-            var cccdInput = document.getElementById('cccd');
-            var sdtInput = document.getElementById('sdt');
-            var emailInput = document.getElementById('email');
-            var dcInput = document.getElementById('diachi');
-            var isValid = true;
-
-            !mandInput.value.trim() ? (mandInput.classList.add('is-invalid'), isValid = false) : mandInput.classList
-                .remove('is-invalid');
-            !hotenInput.value.trim() ? (hotenInput.classList.add('is-invalid'), isValid = false) : hotenInput
-                .classList.remove('is-invalid');
-            !gtInput.value.trim() ? (gtInput.classList.add('is-invalid'), isValid = false) : gtInput.classList
-                .remove('is-invalid');
-            !ngsinhInput.value.trim() ? (ngsinhInput.classList.add('is-invalid'), isValid = false) : ngsinhInput
-                .classList.remove('is-invalid');
-            !cccdInput.value.trim() ? (cccdInput.classList.add('is-invalid'), isValid = false) : cccdInput
-                .classList.remove('is-invalid');
-            !sdtInput.value.trim() ? (sdtInput.classList.add('is-invalid'), isValid = false) : sdtInput.classList
-                .remove('is-invalid');
-            !emailInput.value.trim() ? (emailInput.classList.add('is-invalid'), isValid = false) : emailInput
-                .classList.remove('is-invalid');
-            !dcInput.value.trim() ? (dcInput.classList.add('is-invalid'), isValid = false) : dcInput.classList
-                .remove('is-invalid');
-
-
-            if (!isValid) {
-                event.preventDefault();
-            }
-        });
-    </script>
 @endsection

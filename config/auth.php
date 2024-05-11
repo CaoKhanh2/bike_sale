@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'guest' => [
+            'driver' => 'session',
+            'provider' => 'guests',
+        ]
     ],
 
     /*
@@ -65,7 +69,7 @@ return [
             'model' => App\Models\TaiKhoan::class,
         ],
 
-        'customer' => [
+        'guests' => [
             'driver' => 'eloquent',
             'model' => App\Models\NguoiDung::class,
         ],
@@ -111,6 +115,6 @@ return [
     |
     */
 
-    'password_timeout' => 10800,
+    'password_timeout' => 300,
 
 ];

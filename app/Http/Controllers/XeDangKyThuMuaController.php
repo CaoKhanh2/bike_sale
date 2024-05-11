@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class XeDangKyThuMuaController extends Controller
 {
@@ -18,8 +19,16 @@ class XeDangKyThuMuaController extends Controller
         $dstm_uncheck = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Không duyệt"');
         return view('dashboard.transaction.purchasing.purchasing-manage', [
             'xedangkythumua_check' => $dstm_check,
-            'xedangkythumua_uncheck' => $dstm_uncheck,
+            'xedangkythumua_uncheck' => $dstm_uncheck
         ]);
+    }
+
+    public function index2()
+    {   
+        //dd(Auth::guard('guest')->check());
+        //if (Auth::guard('guest')->check() == false) {
+            return view('guest-acc.selling-item')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
+        //}
     }
 
     /**
@@ -29,7 +38,7 @@ class XeDangKyThuMuaController extends Controller
      */
     public function create()
     {
-
+        
     }
 
     /**
@@ -44,7 +53,7 @@ class XeDangKyThuMuaController extends Controller
         $imagePaths = [];
         if ($request->hasFile('file')) {
             foreach ($request->file('file') as $image) {
-                $path = $image->store('images', 'public');
+                $path = $image->store('posted', 'public');
                 $imagePaths[] = $path;
             }
         }
@@ -52,7 +61,8 @@ class XeDangKyThuMuaController extends Controller
         $ngaydk = date('Y-m-d');
         $mota = $request->loaixe . ' ' . $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
         $imagePathsString = implode(',', $imagePaths);
-        $mand = 'ND-001';
+        $mand = Auth::guard('guest')->user()->mand;
+
         DB::table('xedangkythumua')->insert([
             'madkthumua' => $id,
             'mand' => $mand,
@@ -62,7 +72,7 @@ class XeDangKyThuMuaController extends Controller
             'mota' => $mota,
         ]);
 
-        return redirect('/selling-item')->with('success', 'Thông tin đã được gửi đi');
+        return redirect('/selling-item')->with('success', 'Thông tin đã được gửi đi !');
     }
 
     /**
@@ -73,7 +83,7 @@ class XeDangKyThuMuaController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

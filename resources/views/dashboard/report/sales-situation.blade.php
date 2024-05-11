@@ -20,31 +20,35 @@
                     <div class="col-md-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
                             {{-- <h4 class="h4 text-blue"></h4> --}}
-                            <form action="">
+                            <form action="{{ route('dulieudothi') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
                                         <label for="example-datetime-local-input" class="">Từ ngày</label>
                                         <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text">
+                                            type="text" name="tungay">
 
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <label for="example-datetime-local-input" class="">Đến ngày</label>
                                         <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text">
+                                            type="text" name="denngay">
 
                                     </div>
                                 </div>
+                                <div class="pull-right my-3 px-1">
+                                    <a class="btn btn-lg btn-primary mt-3" href="{{ url('dashboard/report/sales-situation') }}"> Xóa </a>
+                                </div>
+                                <div class="pull-right my-3">
+                                    <input class="btn btn-lg btn-primary mt-3" type="submit" value="Áp dụng">
+                                </div>
                             </form>
 
-                            <div class="pull-right my-3">
-                                <input class="btn btn-lg btn-primary mt-3" type="submit" value="Áp dụng">
-                            </div>
                         </div>
                     </div>
                     <div class="col-md-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
-                            <h4 class="h4 text-blue">Báo cáo sản phẩm bán chạy</h4>
+                            <h4 class="h4 text-blue">Từ ngày đến ngày</h4>
                             @include('dashboard.report.graph.chart-1')
                         </div>
                     </div>
@@ -62,7 +66,7 @@
                             </div>
                             <div class="clearfix mb-20">
                                 <div class="pull-left">
-                                    <h4 class="text-blue h4">Bordered table</h4>
+                                    <h4 class="text-blue h4">Báo cáo sản phẩm bán chạy</h4>
                                 </div>
                             </div>
                             <table class="table table-bordered">
