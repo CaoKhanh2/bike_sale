@@ -98,7 +98,7 @@
         </nav>
         <div class="container-fluid py-2 bg-blue">
             <div class="row justify-content-center">
-                <div class="col-md-9">
+                <div class="col-md-9 col-xs-9">
                     <div class="row">
                         <div class="col">
                             <div class="row">

@@ -27,7 +27,7 @@
                                     aria-selected="false">Đang xử lý</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-blue" data-toggle="tab" href="#contact2" role="tab"
+                                <a class="nav-link text-blue" data-toggle="tab" href="#datuchoi" role="tab"
                                     aria-selected="false">Đã mua</a>
                             </li>
                         </ul>
@@ -35,20 +35,69 @@
                             <div class="tab-pane fade show active" id="choxacnhan" role="tabpanel">
                                 <div class="pd-20">
                                     <table class="table hover multiple-select-row align-middle">
-                                        <thead>
+                                        <thead class="text-center">
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
                                                 <th>Tên người bán</th>
                                                 <th>Ngày bán</th>
-                                                <th>Người tạo</th>
                                                 <th>Mô tả</th>
                                                 <th>Giá bán</th>
-                                                <th>Trạng thái</th>
+                                                <th>Chi tiết</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($xedangkythumua_uncheck as $i)
+                                            @foreach ($xedangkythumua_waiting as $i)
+                                                <tr>
+                                                    <td class="table-plus">{{ $i->madkthumua }}</td>
+                                                    <td>{{ $i->hovaten }}</td>
+                                                    <td>
+                                                        @php
+                                                            $formattedDate = date('d/m/Y', strtotime($i->ngaydk));
+                                                            echo $formattedDate;
+                                                        @endphp
+                                                    </td>
+                                                    <td>{{ $i->mota }}</td>
+                                                    <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
+                                                    <td class="d-flex justify-content-center">
+                                                        <a href="{{ route('ctthongtinmua',['id' => $i->madkthumua]) }}">
+                                                            <img src={{ asset('Image\Icon\eye.png') }} width="30px"
+                                                                height="30px">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a type="button" class="btn btn-outline-primary col"
+                                                            href="{{ route('duyetdonthumua', ['id' => $i->madkthumua]) }}">
+                                                            <i class="bi bi-pencil-fill"></i> Duyệt
+                                                        </a>
+                                                        <a type="button" class="btn btn-danger col mt-2"
+                                                            href="{{ route('huydonthumua', ['id' => $i->madkthumua]) }}">
+                                                            <i class="bi bi-pencil-fill"></i> Không duyệt
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="datuchoi" role="tabpanel">
+                                <div class="pd-20">
+                                    <table class="table hover multiple-select-row align-middle">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th class="table-plus datatable-nosort">Mã đăng ký</th>
+                                                <th>Tên người bán</th>
+                                                <th>Tên người duyệt</th>
+                                                <th>Ngày bán</th>
+                                                <th>Mô tả</th>
+                                                <th>Giá bán</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                            @foreach ($xedangkythumua_check as $i)
                                                 <tr>
                                                     <td class="table-plus">{{ $i->madkthumua }}</td>
                                                     <td>{{ $i->hovaten }}</td>
@@ -61,34 +110,21 @@
                                                     </td>
                                                     <td>{{ $i->mota }}</td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
-                                                    <td class="d-flex justify-content-center">
+                                                    <td class="text-center">
                                                         @php
-                                                            $rs = strval($i->trangthaipheduyet);
-                                                            $kq = strcmp($rs, 'Duyệt');
-                                                            if ($kq == '0') {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/check.png') .
-                                                                    '" alt="" srcset="" width="25" height=215">';
-                                                            } else {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/remove.png') .
-                                                                    '" alt="" srcset="" width="25" height="25">';
-                                                            }
+                                                            echo '<img src="' .
+                                                                asset('Image/Icon/check.png') .
+                                                                '" alt="" srcset="" width="25" height=215">';
                                                         @endphp
-                                                    </td>
-                                                    <td>
-                                                        <a type="button" class="btn btn-primary"
-                                                            href="{{ route('duyetdon',['id'=> $i->madkthumua]) }}">
-                                                            <i class="bi bi-pencil-fill"></i> Duyệt
-                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="dangxuly" role="tabpanel">
+                            <div class="tab-pane fade" id="datuchoi" role="tabpanel">
                                 <div class="pd-20">
                                     <table class="table hover multiple-select-row align-middle">
                                         <thead>
@@ -100,37 +136,26 @@
                                                 <th>Mô tả</th>
                                                 <th>Giá bán</th>
                                                 <th>Trạng thái</th>
-                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($xedangkythumua_check as $i)
+                                            @foreach ($xedangkythumua_uncheck as $i)
                                                 <tr>
                                                     <td class="table-plus">{{ $i->madkthumua }}</td>
                                                     <td>{{ $i->hovaten }}</td>
-                                                    <td>{{Auth::user()->manv}}</td>
+                                                    <td>{{ Auth::user()->manv }}</td>
                                                     <td>
                                                         {{ date('d/m/Y', strtotime($i->ngaydk)) }}
                                                     </td>
                                                     <td>{{ $i->mota }}</td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
-                                                    <td class="d-flex justify-content-center">
+                                                    <td class="text-center">
                                                         @php
-                                                            $rs = strval($i->trangthaipheduyet);
-                                                            $kq = strcmp($rs, 'Duyệt');
-                                                            if ($kq == '0') {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/check.png') .
-                                                                    '" alt="" srcset="" width="25" height=215">';
-                                                            } else {
-                                                                echo '<img src="' .
-                                                                    asset('Image/Icon/remove.png') .
-                                                                    '" alt="" srcset="" width="25" height="25">';
-                                                            }
-
+                                                            echo '<img src="' .
+                                                                asset('Image/Icon/remove.png') .
+                                                                '" alt="" srcset="" width="25" height="25">';
                                                         @endphp
                                                     </td>
-
                                                 </tr>
                                             @endforeach
 

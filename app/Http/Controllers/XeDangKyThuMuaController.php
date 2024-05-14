@@ -15,8 +15,12 @@ class XeDangKyThuMuaController extends Controller
      */
     public function index()
     {
-        $dstm_check = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Duyệt"');
-        $dstm_uncheck = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Không duyệt"');
+        $dstm_waiting = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('trangthaipheduyet', 'Chờ duyệt')->get();
+        //
+        $dstm_check = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('trangthaipheduyet', 'Duyệt')->get();
+        //
+        $dstm_uncheck = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('trangthaipheduyet', 'Không duyệt')->get();
+        //
         return view('dashboard.transaction.purchasing.purchasing-manage', [
             'xedangkythumua_check' => $dstm_check,
             'xedangkythumua_uncheck' => $dstm_uncheck,
@@ -56,9 +60,9 @@ class XeDangKyThuMuaController extends Controller
                 $imagePaths[] = $path;
             }
         }
-        $id = uniqid();
+        $id = 'MDK' . '-' . uniqid();
         $ngaydk = date('Y-m-d');
-        $mota = $request->loaixe . ' ' . $request->tenhang . ' ' . $request->namdangky . ' ' . $request->xuatxu . ' ' . $request->mota;
+        $mota = 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $request->tenhang . ', Năm đăng ký: ' . $request->namdangky . ', Xuất xứ:  ' . $request->xuatxu . ', Mô tả: ' . $request->mota;
         $imagePathsString = implode(',', $imagePaths);
         $mand = Auth::guard('guest')->user()->mand;
 
@@ -71,7 +75,13 @@ class XeDangKyThuMuaController extends Controller
             'mota' => $mota,
         ]);
 
-        return redirect('/selling-item')->with('success', 'Thông tin đã được gửi đi !');
+        return redirect('/purchasing-form')->with('success', 'Thông tin đã được gửi đi');
+    }
+
+    public function show($id)
+    {
+        $dtm = $dstm_uncheck = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('madkthumua', $id)->first();
+        return view('dashboard.transaction.purchasing.purchasing-bike-detail', ['dtm' => $dtm]);
     }
 
     /**
@@ -104,7 +114,7 @@ class XeDangKyThuMuaController extends Controller
     public function update(Request $request, $id)
     {
     }
-    public function updatedon(Request $request, $id)
+    public function duyetdon(Request $request, $id)
     {
         $manv = Auth::user()->manv;
         $trangthai = 'Duyệt';
