@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\BaoCaoThongKeController;
 use App\Http\Controllers\ChucVuContrller;
 use App\Http\Controllers\CleanImagesController;
 use App\Http\Controllers\DataContrller;
@@ -32,53 +34,73 @@ use App\Models\ThongSoKyThuatXeMay;
 |
 */
 
-// Route::get('/welcome', function () {
-//     return view('welcome');
-// });
 
 /**
  *
- * -------------- Login --------------
+ * -------------- Acount --------------
  *
  */
 
-Route::get('/guest/login', function () {
-    return view('guest-acc.auth.login');
-});
+    Route::group(['prefix' => 'account'], function () {
 
-Route::post('/guest/login', [NguoiDungController::class, 'loginGuest'])->name('login-Guest');
+        Route::get('/guest/login', function () {
+            return view('guest-acc.auth.login');
+        })->name('dangnhap-Guest');
+    
+        Route::post('/guest/login', [NguoiDungController::class, 'loginGuest'])->name('thuchien-dangnhap-Guest');
+    
+        Route::post('/guest/logout', [NguoiDungController::class, 'logoutGuest'])->name('thuchien-dangxuat-Guest');
+    
+        Route::get('/guest/register', function () {
+            return view('guest-acc.auth.register');
+        })->name('dangky-Guest');
+    
+        Route::post('/guest/register', [NguoiDungController::class, 'store2'])->name('thuchien-dangky-Guest');
 
+        //Xác thực email tài khoản
 
-Route::post('/guest/logout', [NguoiDungController::class, 'logoutGuest'])->name('logout-Guest');
+            Route::get('/guest/verify-acc/{id}', [NguoiDungController::class, 'verify_acc'])->name('thuchien-xacnhan-mail-Guest');
+        
+        // ----------
+        
+        //Xử lý quên mật khẩu
+            //? Hiển thị trang cấp email khôi phục
+            Route::get('/guest/forgot-password', function () {
+                return view('guest-acc.auth.forgot-password');
+            })->name('quen-matkhau-Guest');
+            //? Gửi yêu cầu thực hiện việc đặt lại mật khẩu
+            Route::post('/guest/forgot-password', [NguoiDungController::class, 'forgot_password'])->name('yeucau-datlai-matkhau-Guest');
+            //? Hiển thị trang đặt lại mật khẩu mới
+            Route::get('/guest/reset-password/{token}', [NguoiDungController::class, 'reset_password'])->name('datlai-matkhau-Guest');
+            //? Gửi yêu cầu thực hiện việc đặt lại mật khẩu mới
+            Route::post('/guest/reset-password/{token}', [NguoiDungController::class, 'check_reset_password'])->name('thuchien-datlai-matkhau-Guest');
+
+        // ----------
+
+        //Thông tin tài khoản khách hàng người dùng     
+            Route::get('/profile', function () {
+                return view('guest-acc.auth.profile-acc');
+            })->middleware(['roleGuest'])->name('thongtin-Guest');
+        // ----------
+
+    });
+
+    // Route::get('/success', function() {
+    //     return view('modal-webs.inform-success-login');
+    // });
+
+    Route::get('/mail', function () {
+        return view('mail.forgot-password-mail');
+    });
+    
+    // Route::get('/mail', [NguoiDungController::class, 'sendmail']);
+
 
 /**
  *
- * -------------- End Login --------------
+ * -------------- End Account --------------
  *
  */
-
-
-
-/**
- *
- * -------------- Register --------------
- *
- */
-
-Route::get('/guest/register', function () {
-    return view('guest-acc.auth.register');
-});
-
-Route::post('/guest/register', [NguoiDungController::class, 'store2'])->name('register-Guest');
-
-/**
- *
- * -------------- End Register --------------
- *
- */
-
-
-
 
 /**
  *
@@ -90,32 +112,20 @@ Route::post('/guest/register', [NguoiDungController::class, 'store2'])->name('re
         return view('index');
     })->name('indexWeb');
 
-    Route::get('/dashboard/transaction/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
-    Route::get('/dashboard/tranction/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
-
-    // Route::get('/selling-item', function () {
-    //     return view('guest-acc.selling-item');
-    // });
-
     Route::get('/selling-item', [XeDangKyThuMuaController::class, 'index2']);
-    
-    Route::middleware(['roleGuest'])->group(function () {
 
-        Route::get('/profile', function () {
-            return view('guest-acc.auth.profile');
-        })->name('profile-Guest');
+    Route::middleware(['roleGuest'])->group(function () {
 
         Route::post('/selling-item/sending-item', [XeDangKyThuMuaController::class, 'store'])->name('themdldangkythumua');
 
         Route::get('/cart-index', function () {
-            return view('cart.cart-index');
+            return view('guest-acc.cart.cart-index');
         });
-
     });
 
     // Tìm kiếm ----------
 
-        Route::get('/sub-index', [SearchContrller::class, 'searchData'])->name('timkiem');
+    Route::get('/sub-index', [SearchContrller::class, 'searchData'])->name('timkiem');
 
     // ----------
 
@@ -140,28 +150,39 @@ Route::post('/guest/register', [NguoiDungController::class, 'store2'])->name('re
  *
  */
 
+
+
 /**
  *
  * -------------- LoginDashboard --------------
  *
  */
 
-Route::get('/login', function () {
-    return view('dashboard.auth.login');
-});
-Route::post('/login', [TaiKhoanContrller::class, 'login'])->name('login');
+    Route::get('/login', function () {
+        return view('dashboard.auth.login');
+    });
+    Route::post('/login', [TaiKhoanContrller::class, 'login'])->name('login');
 
-Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
+    Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
 
-// Route::get('/dasboard', function () {
-//     return view('dashboard.index');
-// })->middleware(['roleAcc']);
+    // Route::get('/dasboard', function () {
+    //     return view('dashboard.index');
+    // })->middleware(['roleAcc']);
 
 /**
  *
  * -------------- End LoginDashboard --------------
  *
  */
+
+
+
+/**
+ *
+ * -------------- Dashboard --------------
+ *
+ */
+
 
 Route::middleware(['auth', 'roleDash'])->group(function () {
     Route::get('/dashboard', function () {
@@ -178,8 +199,8 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
         Route::get('/dashboard/sys/user-authorization', [TaiKhoanContrller::class, 'index1']);
         Route::patch('/dashboard/sys/user-authorization/{id}', [TaiKhoanContrller::class, 'update1'])->name('capnhattrangthai');
 
-        Route::get('/dashboard/sys/management-acc/employee_account', [TaiKhoanContrller::class, 'index2']);
-        Route::patch('/dashboard/sys/management-acc/employee_account/{id}', [TaiKhoanContrller::class, 'update2']);
+        Route::get('/dashboard/sys/management-acc/employee-account', [TaiKhoanContrller::class, 'index2'])->name('thongtintaikhoannhanvien');
+        Route::patch('/dashboard/sys/management-acc/employee-account/{id}', [TaiKhoanContrller::class, 'update2']);
     });
 
     /**
@@ -226,6 +247,8 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     Route::get('/dashboard/category/vehicle/vehicle-infor/{maxemay}', [ThongTinXeController::class, 'del_xemay'])->name('xoathongtinxemay');
     Route::get('/dashboard/category/vehicle/vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'del_Xedapdien'])->name('xoathongtinxedapdien');
 
+    Route::post('/dashboard/category/vehicle/vehicle-infor/export', [ThongTinXeController::class, 'exporrt_excel_report_infor_motorbike'])->name('xuatfile-excel-thongtinxemay');
+
     Route::get('/dashboard/category/vehicle/detail-vehicle-infor/{maxemay}', [ThongTinXeController::class, 'show'])->name('ctthongtinxemay');
     Route::get('/dashboard/category/vehicle/detail-vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'show'])->name('ctthongtinxedapdien');
     Route::get('/dashboard/category/vehicle/detail-vehicle-infor/delete_image/{id}/{index}', [ThongTinXeController::class, 'delete_image'])->name('xoaanh');
@@ -242,9 +265,9 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     /**
      * ---------- Quản lý danh mục khách hàng ----------
      */
-    Route::get('/dashboard/category/customer/customer-info', function () {
-        return view('dashboard.category.customer.customer-info');
-    });
+    // Route::get('/dashboard/category/customer/customer-info', function () {
+    //     return view('dashboard.category.customer.customer-info');
+    // });
     Route::get('/dashboard/category/customer/customer-info', [NguoiDungController::class, 'index']);
 
     Route::get('/customer/detail_customer-info', function () {
@@ -304,12 +327,25 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
      * ---------- Báo cáo thống kê ----------
      *
      */
-    Route::middleware('permission:Quản lý')->group(function () {
-        Route::get('dashboard/report/sales-situation', function () {
-            return view('dashboard.report.sales-situation');
-        });
-        Route::get('/dashboard/report/sales-situation', [DoThiController::class, 'salesChart']);
-        Route::post('/dashboard/report/sales-situation', [DoThiController::class, 'salesChart'])->name('dulieudothi');
+    Route::middleware('permission:Quản trị viên|Quản lý')->group(function () {
+    
+    /**
+     * ---------- Báo cáo tình hình bán hàng ----------
+     */
+
+        // Route::get('/dashboard/report/sales-situation', function () {
+        //     return view('dashboard.report.sales-situation');
+        // })->name('baocaothongke');
+
+        Route::get('/dashboard/report/sales-situation', [BaoCaoThongKeController::class, 'data_sales_situation'])->name('hienthithongtinbanhang');
+        
+        Route::post('/dashboard/report/sales-situation', [BaoCaoThongKeController::class, 'data_sales_situation'])->name('bieudo-tinhhinhbanhang');
+
+        Route::post('/dashboard/report/sales-situation/export', [BaoCaoThongKeController::class, 'exporrt_report_sales_situation'])->name('xuatfile-excel-thongtintinhhinhbanhang');
+        
+    /**
+     * ---------- **** ----------
+     */
 
         Route::get('/dashboard/report/inventory', function () {
             return view('dashboard.report.inventory');
@@ -323,14 +359,22 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
      */
 });
 
-Route::get('/chart', [DoThiController::class, 'salesChart']);
+
+/**
+ *
+ * -------------- End Dashboard --------------
+ *
+ */
+
+
+// Route::get('/chart', [DoThiController::class, 'salesChart']);
 
 /**
  *
  * -------------- Add data --------------
  *
  */
-Route::get('/all_data', [DataContrller::class, 'getData'])->name('all_data');
+Route::get('/all-data', [DataContrller::class, 'getData'])->name('all-data');
 
 Route::get('/data1', [HangXeController::class, 'data']);
 Route::get('/data2', [DongXeController::class, 'data']);

@@ -3,8 +3,8 @@
 
 @section('main')
 
-@include('dashboard.modal-dash.success')
     <div class="main-container">
+        @include('dashboard.modal-dash.success-login')
         <div class="pd-ltr-20">
             <div class="card-box pd-20 height-100-p mb-30">
                 <div class="row align-items-center">
@@ -16,7 +16,6 @@
                             Welcome back
                             <div class="weight-600 font-30 text-blue">{{ Auth::user()->tentaikhoan }}</div>
                         </h4>
-
                     </div>
                 </div>
             </div>
@@ -76,4 +75,5 @@
             </div>
         </div>
     </div>
+    
 @endsection

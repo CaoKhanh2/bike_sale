@@ -19,15 +19,15 @@ class XeDangKyThuMuaController extends Controller
         $dstm_uncheck = DB::select('SELECT xedangkythumua.*,nguoidung.hovaten FROM xedangkythumua INNER JOIN nguoidung ON xedangkythumua.mand = nguoidung.mand WHERE trangthaipheduyet = "Không duyệt"');
         return view('dashboard.transaction.purchasing.purchasing-manage', [
             'xedangkythumua_check' => $dstm_check,
-            'xedangkythumua_uncheck' => $dstm_uncheck
+            'xedangkythumua_uncheck' => $dstm_uncheck,
         ]);
     }
 
     public function index2()
-    {   
+    {
         //dd(Auth::guard('guest')->check());
         //if (Auth::guard('guest')->check() == false) {
-            return view('guest-acc.selling-item')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
+        return view('guest-acc.selling-item')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
         //}
     }
 
@@ -38,7 +38,6 @@ class XeDangKyThuMuaController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -83,7 +82,6 @@ class XeDangKyThuMuaController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
@@ -112,8 +110,7 @@ class XeDangKyThuMuaController extends Controller
         $trangthai = 'Duyệt';
         DB::table('xedangkythumua')
             ->where('madkthumua', $id)
-            ->update(['trangthaipheduyet' => $trangthai,
-                       'manv' => $manv ]);
+            ->update(['trangthaipheduyet' => $trangthai, 'manv' => $manv]);
 
         return redirect()->route('xedkthumua');
     }

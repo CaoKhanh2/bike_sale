@@ -99,7 +99,13 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
-            'expire' => 60,
+            'expire' => 3,
+            'throttle' => 60,
+        ],
+        'guests' => [
+            'provider' => 'guests',
+            'table' => 'password_resets',
+            'expire' => 3,
             'throttle' => 60,
         ],
     ],

@@ -18,7 +18,7 @@ class DonHangSeeder extends Seeder
     public function run()
     {
         $fake = faker::create();
-        for ($i=4; $i < 10; $i++) { 
+        for ($i=1; $i < 20; $i++) { 
             DonHang::create([
                 'madh'=> $fake -> numerify('DH-0000').$i,
                 'ngaytaodon'=> $fake->dateTimeThisMonth('+12 days'),

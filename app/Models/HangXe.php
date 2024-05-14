@@ -9,4 +9,11 @@ class HangXe extends Model
 {
     use HasFactory;
     protected $table = "hangxe";
+    protected $primaryKey = 'mahx';
+
+
+    public function dongXe()
+    {
+        return $this->hasMany(DongXe::class, 'mahx', 'mahx');
+    }
 }

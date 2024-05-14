@@ -2,7 +2,6 @@
     <style>
         .custom-size {
             font-size: 4rem;
-            /* Thay đổi kích thước tùy ý tại đây */
         }
     </style>
     <div class="modal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
@@ -19,17 +18,19 @@
                     </span>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-primary" href="{{ route('login-Guest') }}">Đăng nhập</a>
+                    <a class="btn btn-primary" href="{{ route('dangnhap-Guest') }}">Đăng nhập</a>
                     <a class="btn btn-secondary" href="{{ route('indexWeb') }}">Quay lại</a>
                 </div>
             </div>
         </div>
     </div>
     <script src="{{ asset('bootstrap-tool\js\bootstrap.bundle.min.js') }}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            $('#modal').modal('show');
+        });
+    </script>
 @endif
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        $('#modal').modal('show');
-    });
-</script>
+

@@ -9,4 +9,16 @@ class DongXe extends Model
 {
     use HasFactory;
     protected $table = "dongxe";
+    protected $primaryKey = 'madx';
+
+
+    public function thongTinXe()
+    {
+        return $this->hasMany(ThongTinXe::class, 'madx', 'madx');
+    }
+
+    public function hangXe()
+    {
+        return $this->belongsTo(HangXe::class, 'mahx', 'mahx');
+    }
 }

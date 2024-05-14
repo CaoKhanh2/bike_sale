@@ -22,10 +22,10 @@
             },
             series: [{
                 label: 'Doanh số bán hàng',
-                data: {!! json_encode($sales) !!}
+                data: {!! json_encode($giatien) !!}
             }],
             xaxis: {
-                categories: {!! json_encode($months) !!},
+                categories: {!! json_encode($thang) !!},
             }
         };
 

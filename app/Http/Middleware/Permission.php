@@ -18,7 +18,8 @@ class Permission
     public function handle(Request $request, Closure $next, $roles)
     {   
         // dd($roles);
-        if (Auth::user()->phanquyen == $roles) {
+        $allow_role = explode('|', $roles);
+        if (in_array(Auth::user()->phanquyen, $allow_role)) {
             return $next($request);
         }
         return redirect()->route('dash.index');

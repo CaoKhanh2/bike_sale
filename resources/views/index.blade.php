@@ -1,6 +1,8 @@
 @extends('layout.content')
 @section('title', 'Trang chủ')
 <link rel="stylesheet" href="{{ asset('home_src\css\main.css') }}">
+@include('modal-webs.inform-success-login')
+
 @section('main')
 
     {{-- Banner 1 --}}
@@ -10,7 +12,7 @@
     <div class="container mt-4 mb-5">
         {{-- Mục Tìm kiếm --}}
 
-        @include('home-page.search-box') 
+        @include('home-page.search-box')
 
         {{-- End --}}
 
@@ -21,12 +23,12 @@
         {{-- End --}}
 
         {{-- Banner-2 --}}
-        <div class="row justify-content-md-center mt-4" id="banner-2">      
+        <div class="row justify-content-md-center mt-4" id="banner-2">
             {{-- <div class="full-image" style="background-image: url('{{ asset('Image/Banner/63e1d192789c7.jpg') }}');"> --}}
-            <img src="{{ asset('Image/Banner/63e1d192789c7.jpg') }}" alt="" class="img-fluid mx-auto d-block"> 
+            <img src="{{ asset('Image/Banner/63e1d192789c7.jpg') }}" alt="" class="img-fluid mx-auto d-block">
         </div>
         {{-- End --}}
-        
+
         {{-- Thương hiệu xe --}}
         <div class="row justify-content-md-center mt-4 mb-4">
             @include('home-page.car-brand')
@@ -38,9 +40,9 @@
             @include('home-page.news')
         </div> --}}
         {{-- End --}}
-        
+
     </div>
 
-    
+
 
 @endsection

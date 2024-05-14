@@ -1,4 +1,4 @@
-@extends('guest-acc.auth.layout.content')
+@extends('guest-acc.layout.content')
 
 
 @section('auth-content')
@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <h4 class="fw-bold mb-5">Đăng ký tài khoản</h4>
-                <form action="{{ route('register-Guest') }}" method="POST" id="form-register">
+                <form action="{{ route('thuchien-dangky-Guest') }}" method="POST" id="form-register">
                     @csrf
                     <!-- Name input -->
                     <div data-mdb-input-init class="form-outline mb-4">
@@ -41,7 +41,7 @@
                         <label class="form-label" for="email">Email</label>
                     </div>
                     <div class="col-auto mb-4">
-                        @if (Session::has('cross-register-guest'))
+                        @if (Session::has('cross-dangky-Guest'))
                             <span id="emailHelpInline" class="form-text">
                                 <div class="row">
                                     <div class="col-6">
@@ -158,7 +158,7 @@
                     passwordInput.value) && uppercaseCharacters.test(passwordInput.value)) {
                 setTimeout(function() {
                     passwordHelpInline.hidden = true;
-                }, 1000);
+                }, 500);
             }
         });
 
