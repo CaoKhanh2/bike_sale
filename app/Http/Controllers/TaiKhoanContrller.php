@@ -26,7 +26,7 @@ class TaiKhoanContrller extends Controller
     {
         $tk = DB::select('SELECT nhanvien.*, taikhoan.* FROM nhanvien INNER JOIN taikhoan ON nhanvien.manv = taikhoan.manv');
 
-        return view('dashboard.sys.management-acc.employee_account', ['taikhoan2' => $tk]);
+        return view('dashboard.sys.management-acc.employee-account', ['taikhoan2' => $tk]);
     }
 
     /**
@@ -106,10 +106,10 @@ class TaiKhoanContrller extends Controller
                     'ngaycapnhat' => $currentTime
             ]);
 
-            return redirect('/dashboard/sys/management-acc/employee_account')->with('success', 'Post created successfully!');
+            return redirect()->route('thongtintaikhoannhanvien')->with('success', 'Post created successfully!');
         } else {
             // Xử lý khi $id không tồn tại
-            return redirect('/dashboard/sys/management-acc/employee_account')->with('error', 'Invalid ID!');
+            return redirect()->route('thongtintaikhoannhanvien')->with('error', 'Invalid ID!');
         }
     }
 

@@ -9,4 +9,10 @@ class ThongSoKyThuatXeMay extends Model
 {
     use HasFactory;
     protected $table = 'thongsokythuatxemay';
+    protected $primaryKey = 'matsxemay';
+
+    public function thongTinXe()
+    {
+        return $this->belongsTo(ThongTinXe::class, 'matsxemay', 'matsxemay');
+    }
 }

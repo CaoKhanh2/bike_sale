@@ -10,4 +10,9 @@ class GioHang extends Model
     use HasFactory;
     protected $table = "giohang";
     public $timestamps = false;
+
+    public function Giohang()
+    {
+        return $this->belongsTo(XeDangBan::class,'prod_id','id');
+    }
 }

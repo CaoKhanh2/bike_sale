@@ -35,13 +35,13 @@
                             </a>
                         </li>
                         @if (Auth::guard('guest')->check())
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link active" aria-disabled="true" href="">
                                     <img src="{{ asset('Image\Icon\notification.png') }}" width="30" height="24"
                                         class="img-fluid mx-auto d-block">
                                     <span class="text-center mx-auto d-block">Thông báo</span>
                                 </a>
-                            </li>
+                            </li> --}}
                         @endif
                     </ul>
                 </div>
@@ -72,9 +72,11 @@
                                     <span class="text-center mx-auto d-block">Tài khoản</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('profile-Guest') }}">Thông tin tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('thongtin-Guest') }}">Thông tin tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="">Thông báo</a></li>
+                                    <li><a class="dropdown-item" href="">Lịch sử đơn hàng</a></li>
                                     <li>
-                                        <form method="POST" action="{{ route('logout-Guest') }}" class="mb-0">
+                                        <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}" class="mb-0">
                                             @csrf
                                             <input class="dropdown-item" type="submit" value="Đăng xuất">
                                         </form>
@@ -83,7 +85,7 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link active" aria-disabled="true" href="{{ url('/guest/login') }}">
+                                <a class="nav-link active" aria-disabled="true" href="{{ route('dangnhap-Guest') }}">
                                     <img src="{{ asset('Image\Icon\user.png') }}" width="30" height="24"
                                         class="img-fluid mx-auto d-block">
                                     <span class="text-center mx-auto d-block">Đăng nhập</span>

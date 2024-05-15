@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('nguoidung', function (Blueprint $table) {
-            $table->rememberToken();
+            // $table->rememberToken();
+            // $table->timestamp('email_verified_at')->nullable();
+            // $table->timestamps();
         });
     }
 
@@ -26,7 +28,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('nguoidung', function (Blueprint $table) {
-            $table->dropColumn('remember_token');
+            // $table->dropColumn('remember_token');
+            // $table->dropColumn('email_verified_at');
+            // $table->dropTimestamps();
         });
     }
 };

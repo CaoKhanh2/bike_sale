@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ThongTinXeMayExport;
 use App\Models\ThongTinXe;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ThongTinXeController extends Controller
 {
@@ -200,5 +202,11 @@ class ThongTinXeController extends Controller
             ['maxe' => 'XM-0004', 'madx' => 'DX009', 'matsxemay' => 'TSXM-0004', 'matsxedapdien' => null, 'tenxe' => 'Yamaha Grande 2022', 'thoigiandasudung' => '2 năm', 'tinhtrangxe' => 'đã sử dụng 30%', 'sokmdadi' => '250', 'hinhanh' => 'vehicles/Rw4prS0LyXUn6igkU74S1mbDIX1oVs4A5mzeMJz7.jpg,vehicles/wtEoo3PB2gZ1nQethKRVYyyGStdMM8myxl8dUf7k.png', 'biensoxe' => '15-B1592.86', 'ghichu' => null],
         ];
         ThongTinXe::insert($thongtinxe);
+    }
+
+    public function exporrt_excel_report_infor_motorbike()
+    {
+        return Excel::download(new ThongTinXeMayExport, 'thong_tin_xe_may.xlsx');
+        
     }
 }

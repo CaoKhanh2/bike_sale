@@ -37,7 +37,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="table" role="tabpanel">
                                     <div class="pt-20">
-                                        <table class="table hover multiple-select-row data-table-export nowrap">
+                                        <table class="table hover multiple-select-row">
                                             <thead>
                                                 <tr>
                                                     <th class="table-plus datatable-nosort">Mã khách hàng</th>

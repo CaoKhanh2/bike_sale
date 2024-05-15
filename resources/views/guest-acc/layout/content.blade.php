@@ -22,9 +22,11 @@
     </header>
     {{-- End Header --}}
 
+    {{-- Main --}}
     <div id="container">
         @yield('auth-content')
     </div>
+    {{-- End Main --}}
 
 </body>
 

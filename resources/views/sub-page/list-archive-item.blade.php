@@ -1,5 +1,4 @@
 <div class="container">
-
     @php
         $url = url()->current();
         $arr = explode('/', $url);
@@ -25,7 +24,6 @@
                                         @endif
                                     @endforeach
                                 </div>
-
                                 <div class="col-8">
                                     <div class="card-body">
                                         <h4 class="card-title mb-3">{{ $i->tenxe }}</h4>
@@ -37,7 +35,6 @@
                                                 <p class="d-inline">{{ $i->tendongxe }}</p>
                                             </div>
                                         </div>
-
                                         <div class="row justify-content-center align-items-center g-2">
                                             <div class="col mt-3"><i class="bi bi-calendar2 fs-4"> </i>
                                                 <p class="d-inline">{{ $i->namsx }}</p>
@@ -73,19 +70,21 @@
                                             <div class="col-3 mt-3 ">
                                                 <div class="d-grid">
                                                     <a name="" id="" type="button"
-                                                        class="btn btn-outline-secondary"><i class="bi bi-eye-fill">
+                                                        class="btn btn-primary"><i class="bi bi-eye-fill">
                                                         </i>
                                                         Xem chi tiết</a>
                                                 </div>
                                             </div>
-                                            <div class="col-3 mt-3">
-                                                <div class="d-grid">
-                                                    <a name="" id="" class="btn btn-primary btn-block"
-                                                        href="#" role="button">Đặt mua</a>
+                                            @if (Auth::guard('guest')->check())
+                                                <div class="col-3 mt-3">
+                                                    <div class="d-grid">
+                                                        <a name="" id=""
+                                                            class="btn btn-primary btn-block" href="#"
+                                                            role="button">Thêm giỏ hàng</a>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -163,20 +162,22 @@
                                             <div class="col-3 mt-3 ">
                                                 <div class="d-grid">
                                                     <a name="" id="" type="button"
-                                                        class="btn btn-outline-secondary"><i class="bi bi-eye-fill">
+                                                        class="btn btn-primary"><i class="bi bi-eye-fill">
                                                         </i>
                                                         Xem chi tiết</a>
                                                 </div>
                                             </div>
-                                            <div class="col-3 mt-3">
-                                                <div class="d-grid">
-                                                    <a name="" id=""
-                                                        class="btn btn-primary btn-block" href="#"
-                                                        role="button">Đặt mua</a>
+                                            @if (Auth::guard('guest')->check())
+                                                <div class="col-3 mt-3">
+                                                    <div class="d-grid">
+                                                        <a name="" id=""
+                                                            class="btn btn-primary btn-block" href="#"
+                                                            role="button">Thêm giỏ hàng</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            @endif
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>

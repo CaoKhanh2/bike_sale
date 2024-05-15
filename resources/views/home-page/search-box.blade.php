@@ -13,23 +13,17 @@
     <div class="card-body box-search border-0">
         <form action="{{ route('timkiem') }}" method="GET">
             <div class="row">
-                <div class="col">
+                <div class="col-12 col-lg-4 mb-2 mb-lg-0">
                     <input type="text" class="form-control" placeholder="Tìm tên, hãng, dòng xe, ..." name="tenxe">
                 </div>
-                {{-- <div class="col">
-                    <select id="inputState1" class="form-select">
-                        <option selected>Tỉnh, thành phố</option>
-                        <option>...</option>
-                    </select>
-                </div> --}}
-                <div class="col">
+                <div class="col-12 col-lg-2 mb-2 mb-lg-0">
                     <select id="inputState2" class="form-select">
                         <option selected hidden>Loại xe</option>
                         <option>Xe máy</option>
                         <option>Xe đạp điện</option>
                     </select>
                 </div>
-                <div class="col">
+                <div class="col-12 col-lg-4 mb-2 mb-lg-0">
                     <div class="input-group">
                         <input type="button" class="form-control text-start" value="Bộ lọc" data-bs-toggle="modal" data-bs-target="#parentPopup">
                         <span></span>
@@ -55,7 +49,6 @@
                                                     <h5>Giá từ:</h5>
                                                     <input type="text" id="rangeSlider1" name="rangeSlider1" />
                                                 </div>
-    
                                                 <div class="col-12 mt-2 mb-2">
                                                     <h5>Sắp xếp theo</h5>
                                                     <div class="container-fluid mt-3">
@@ -87,11 +80,8 @@
                                                     
                                                 </div>
                                             </form>
-
                                         </div>
-
                                     </div>
-
                                 </div>
                                 <div class="modal-footer">
                                     {{-- <button type="button" class="btn btn-secondary"
@@ -101,7 +91,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Category Popup -->
                     <div class="modal fade" id="childPopup" tabindex="-1" aria-labelledby="childPopupLabel"
                         aria-hidden="true">
@@ -265,7 +254,6 @@
                     <!-- XeDapien Popup -->
                     <div class="modal fade" id="childPopup2" tabindex="-1" aria-labelledby="childPopupLabel"
                     aria-hidden="true">
-
                         <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -355,9 +343,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="d-grid gap-2 col-2 mx-auto">
+                <div class="d-grid col-12 col-lg-2 mx-auto my-auto">
                     {{-- <a name="" id="" class="btn btn-primary btn-block" href="#"
                         role="button">Tìm</a> --}}
                         <button type="submit" class="btn btn-primary btn-block">Tìm kiếm</button>

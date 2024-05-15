@@ -24,12 +24,11 @@ class XeDangKyThuMuaController extends Controller
         return view('dashboard.transaction.purchasing.purchasing-manage', [
             'xedangkythumua_check' => $dstm_check,
             'xedangkythumua_uncheck' => $dstm_uncheck,
-            'xedangkythumua_waiting' => $dstm_waiting,
         ]);
     }
 
     public function index2()
-    {   
+    {
         //dd(Auth::guard('guest')->check());
         //if (Auth::guard('guest')->check() == false) {
             return view('guest-acc.purchasing.purchasing-form')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
@@ -90,7 +89,6 @@ class XeDangKyThuMuaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -115,16 +113,6 @@ class XeDangKyThuMuaController extends Controller
     {
         $manv = Auth::user()->manv;
         $trangthai = 'Duyệt';
-        DB::table('xedangkythumua')
-            ->where('madkthumua', $id)
-            ->update(['trangthaipheduyet' => $trangthai, 'manv' => $manv]);
-
-        return redirect()->route('xedkthumua');
-    }
-    public function huydon(Request $request, $id)
-    {
-        $manv = Auth::user()->manv;
-        $trangthai = 'Không duyệt';
         DB::table('xedangkythumua')
             ->where('madkthumua', $id)
             ->update(['trangthaipheduyet' => $trangthai, 'manv' => $manv]);

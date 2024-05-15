@@ -14,7 +14,7 @@
         {{-- content --}}
         <div class="row justify-content-center">
             <div class="col-xl">
-                @include('cart.cart-content')
+                @include('guest-acc.cart.cart-content')
             </div>
         </div>
         {{-- endcontetn --}}

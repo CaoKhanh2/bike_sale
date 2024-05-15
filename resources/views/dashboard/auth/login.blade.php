@@ -71,21 +71,6 @@
             </div>
         </div>
     </div>
-    <!-- js -->
-
-    {{-- <script>
-        // Đợi cho trang tải hoàn tất
-        document.addEventListener("DOMContentLoaded", function() {
-            // Lắng nghe sự kiện khi nút "Sign In" được nhấn
-            document.querySelector('form').addEventListener('submit', function(e) {
-                // Ngăn chặn hành động mặc định của biểu mẫu
-                // e.preventDefault();
-                // Hiển thị modal
-                $('#success-modal').modal('show');
-            });
-        });
-    </script> --}}
-
 
     <script src="{{ asset('dashboard_src/vendors/scripts/core.js') }} "></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/script.min.js') }}"></script>

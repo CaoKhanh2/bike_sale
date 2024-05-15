@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('xedangban', function (Blueprint $table) {
             $table->string('maxedangban',20);
             $table->string('maxe',15);
-            $table->string('makhuyenmai',5);
-            $table->string('manv',10);
+            $table->string('makhuyenmai',5)->nullable();
+            $table->string('manv',10)->nullable();
             $table->dateTime('ngayban');
             $table->year('namsx');
             $table->decimal('giaban',10,2);

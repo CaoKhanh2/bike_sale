@@ -46,7 +46,7 @@
                         @endif
                     @endforeach
                 </td>
-                <td>
+                {{-- <td>
                     <a type="button" class="btn btn-primary"
                         href="{{ route('ctthongtinxedapdien', ['maxedapdien' => $i->maxe]) }}">
                         <i class="bi bi-eye"></i> Xem
@@ -54,7 +54,7 @@
                     <a type="button" class="btn btn-danger" href="{{ route('xoathongtinxedapdien', ['maxedapdien' => $i->maxe]) }}">
                         <i class="bi bi-trash3"></i> Xóa
                     </a>
-                </td>
+                </td> --}}
 
             </tr>
         @endforeach
