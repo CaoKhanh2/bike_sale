@@ -1,7 +1,7 @@
-<div class="container bg-light">
+<div class="container shadow">
     <form method="POST" action="{{ route('themdldangkythumua')}}" id="formthumua" enctype="multipart/form-data">
         @csrf
-        <div class="row justify-content-around">
+        <div class="row p-4 justify-content-around">
             <div class="col-5 mt-3">
                 <label>
                     <h3>Hình ảnh của xe</h3>

@@ -21,7 +21,7 @@
             @include('dashboard.layout.page-header')
             {{-- End Page Header --}}
 
-            <div class="pd-20 card-box mb-30">
+            <div class="pd-20 card-box px-3 mb-30">
                 <div class="clearfix">
                     <div class="pull-left">
                         <h4 class="text-blue h4">Thông tin đơn bán xe</h4>

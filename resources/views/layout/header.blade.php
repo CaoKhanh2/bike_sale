@@ -48,7 +48,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-disabled="true" href="{{ url('/selling-item') }}">
+                            <a class="nav-link active" aria-disabled="true" href="{{ route('nhapxethumua') }}">
                                 <img src="{{ asset('Image\Icon\icons8-sell-48.png') }}" width="30" height="24"
                                     class="img-fluid mx-auto d-block">
                                 <span class="text-center mx-auto d-block">Đăng ký bán xe</span>
@@ -96,40 +96,40 @@
         </nav>
         <div class="container-fluid py-2 bg-blue">
             <div class="row justify-content-center">
-                <div class="col-md-9 col-xs-9">
+                <div class="col-md-9 col-xs-12">
                     <div class="row">
-                        <div class="col">
+                        <div class="col col-sm">
                             <div class="row">
-                                <div class="col-3 py-3 d-flex align-items-center">
+                                <div class="col-md-3 py-3 d-flex align-items-center">
                                     <div class="fs-3 text-warning mx-3">
                                         <i class="fa-solid fa-phone"></i>
                                     </div>
                                 </div>
-                                <div class="col-9 py-3 text-white">Tư vấn hỗ trợ<br>
+                                <div class="col-md-9 py-3 text-white">Tư vấn hỗ trợ<br>
                                     <strong class="text-warning">0973951289</strong>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col col-sm">
                             <div class="row">
-                                <div class="col-3 py-3 d-flex align-items-center">
+                                <div class="col-md-3 py-3 d-flex align-items-center">
                                     <div class="fs-3 text-warning mx-3">
                                         <i class="fa-solid fa-truck"></i>
                                     </div>
                                 </div>
-                                <div class="col-9 py-3 text-white">Miễn phí vận chuyển<br>
+                                <div class="col-md-9 py-3 text-white">Miễn phí vận chuyển<br>
                                     <strong class="text-warning">Bán kính 10Km</strong>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col col-sm">
                             <div class="row">
-                                <div class="col-3 py-3 d-flex align-items-center">
+                                <div class="col-md-3 py-3 d-flex align-items-center">
                                     <div class="fs-3 text-warning mx-4">
                                         <i class="fa-regular fa-clock"></i>
                                     </div>
                                 </div>
-                                <div class="col-9 py-3 text-white">Giờ làm việc<br>
+                                <div class="col-md-9 py-3 text-white">Giờ làm việc<br>
                                     <strong class="text-warning">T2-T7 giờ hành chính</strong>
                                 </div>
                             </div>
