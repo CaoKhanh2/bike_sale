@@ -54,7 +54,7 @@
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianbatdau)) }}</td>
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianketthuc))}}
                             
-                                                        <td>{{ $i->thoigianconlai  . ' Ngày'  }}</td>
+                                                        <td>{{ 'Còn lại ' .$i->thoigianconlai  . ' Ngày'  }}</td>
                                                         <td>
                                                             {{-- <a type="button" class="btn btn-outline-primary col"
                                                                 href="{{ route('duyetdonthumua', ['id' => $i->madkthumua]) }}">
