@@ -89,9 +89,9 @@ use App\Models\ThongSoKyThuatXeMay;
     //     return view('modal-webs.inform-success-login');
     // });
 
-    Route::get('/mail', function () {
-        return view('mail.forgot-password-mail');
-    });
+    // Route::get('/mail', function () {
+    //     return view('mail.forgot-password-mail');
+    // });
     
     // Route::get('/mail', [NguoiDungController::class, 'sendmail']);
 
@@ -107,36 +107,37 @@ use App\Models\ThongSoKyThuatXeMay;
  * -------------- Website --------------
  *
  */
-Route::post('/sending_bike', [XeDangKyThuMuaController::class, 'store'])->name('dangkythumua'); // gửi form đăng ký thu mua về csdl
-Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'create'])->name('nhapxethumua'); // Hiện form đăng ký thu mua
+    
+    //Route::post('/sending_bike', [XeDangKyThuMuaController::class, 'store'])->name('dangkythumua'); // gửi form đăng ký thu mua về csdl
+    //Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'create'])->name('nhapxethumua'); // Hiện form đăng ký thu mua
 
     Route::get('/', function () {
         return view('index');
     })->name('indexWeb');
 
     Route::get('/selling-item', [XeDangKyThuMuaController::class, 'index2']);
-
+    
     Route::middleware(['roleGuest'])->group(function () {
 
-        Route::post('/selling-item/sending-item', [XeDangKyThuMuaController::class, 'store'])->name('themdldangkythumua');
+        Route::post('/selling-item/sending-item', [XeDangKyThuMuaController::class, 'store'])->name('thuchien-dangkythumua-Guest');
 
         Route::get('/cart-index', function () {
             return view('guest-acc.cart.cart-index');
         });
     });
 
-// Tìm kiếm ----------
+    // Tìm kiếm ----------
 
-    Route::get('/sub-index', [SearchContrller::class, 'searchData'])->name('timkiem');
+        Route::get('/sub-index', [SearchContrller::class, 'searchData'])->name('timkiem');
 
-// ----------
+    // ----------
 
     // Trang hiển thị sản phẩm ----------
     Route::get('/sub-index/xemay', [SubIndexContrller::class, 'getData']);
 
-Route::get('/sub-index/xedapdien', [SubIndexContrller::class, 'getData']);
+    Route::get('/sub-index/xedapdien', [SubIndexContrller::class, 'getData']);
 
-// ----------
+    // ----------
 
 Route::get('sub-page/sale-page', function () {
     return view('sale-page');

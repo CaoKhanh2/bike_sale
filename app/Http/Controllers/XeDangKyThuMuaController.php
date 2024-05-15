@@ -31,7 +31,7 @@ class XeDangKyThuMuaController extends Controller
     {
         //dd(Auth::guard('guest')->check());
         //if (Auth::guard('guest')->check() == false) {
-        return view('guest-acc.selling-item')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
+        return view('guest-acc.purchasing-form')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
         //}
     }
 
@@ -90,10 +90,6 @@ class XeDangKyThuMuaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-    }
-
     /**
      * Show the form for editing the specified resource.
      *

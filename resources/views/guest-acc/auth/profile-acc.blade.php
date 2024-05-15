@@ -6,7 +6,7 @@
 @section('st4', 'false')
 
 @section('auth-content')
-    @include('guest-acc.auth.layout.header')
+    @include('guest-acc.layout.header')
     <section style="background-color: #eee;">
         <div class="container py-3">
             @include('layout.header-breadcrum')
@@ -41,6 +41,14 @@
                             </div>
                         </div>
                         <hr> --}}
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">ID</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ Auth::guard('guest')->user()->mand }}</p>
+                            </div>
+                        </div>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <p class="mb-0">Email</p>
