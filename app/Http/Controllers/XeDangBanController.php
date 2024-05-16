@@ -102,11 +102,11 @@ class XeDangBanController extends Controller
     
     public function data(){
         $xedangban = array(
-            array('maxedangban' => 'XDDB-00001','maxe' => 'XD-0001','makhuyenmai' => NULL,'manv' => 'MNV-0003','namsx' => '2015','ngayban' => '2024-04-30 17:42:08','giaban' => '3500000.00','mota' => '','tranghthai' => 'Còn xe'),
-            array('maxedangban' => 'XMDB-00001','maxe' => 'XM-0001','makhuyenmai' => NULL,'manv' => 'MNV-0004','namsx' => '2023','ngayban' => '2024-04-30 17:28:56','giaban' => '25000000.00','mota' => '','tranghthai' => 'Còn xe'),
-            array('maxedangban' => 'XMDB-00002','maxe' => 'XM-0002','makhuyenmai' => NULL,'manv' => 'MNV-0008','namsx' => '2024','ngayban' => '2024-05-01 16:41:45','giaban' => '45560000.00','mota' => '','tranghthai' => 'Còn xe'),
-            array('maxedangban' => 'XMDB-00003','maxe' => 'XM-0004','makhuyenmai' => NULL,'manv' => 'MNV-0009','namsx' => '2022','ngayban' => '2024-05-01 16:53:45','giaban' => '40000000.00','mota' => '','tranghthai' => 'Còn xe')
-          );
+            //array('maxedangban' => 'XDB-00001','maxe' => 'XD-0001','makhuyenmai' => NULL,'manv' => 'MNV-0003','namsx' => '2015','ngayban' => '2024-04-30 17:42:08','giaban' => '3500000.00','mota' => '','tranghthai' => 'Còn xe'),
+            array('maxedangban' => 'XDB-00002','maxe' => 'XM-0001','makhuyenmai' => NULL,'manv' => 'MNV-0004','namsx' => '2023','ngayban' => '2024-04-30 17:28:56','giaban' => '25000000.00','mota' => '','tranghthai' => 'Còn xe'),
+            array('maxedangban' => 'XDB-00003','maxe' => 'XM-0002','makhuyenmai' => NULL,'manv' => 'MNV-0008','namsx' => '2024','ngayban' => '2024-05-01 16:41:45','giaban' => '45560000.00','mota' => '','tranghthai' => 'Còn xe'),
+            array('maxedangban' => 'XDB-00004','maxe' => 'XM-0004','makhuyenmai' => NULL,'manv' => 'MNV-0009','namsx' => '2022','ngayban' => '2024-05-01 16:53:45','giaban' => '40000000.00','mota' => '','tranghthai' => 'Còn xe')
+        );
         XeDangBan::insert($xedangban);
     }
 }

@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('khuyenmai', function (Blueprint $table) {
             $table->string('makhuyenmai',5);
             $table->string('tenkhuyenmai',35);
-            $table->string('thoigiankhuyenmai',50);
             $table->string('dieukienapdung')->nullable();
             $table->string('motakhuyenmai')->nullable();
             $table->dateTime('thoigianbatdau');

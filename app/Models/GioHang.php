@@ -26,4 +26,9 @@ class GioHang extends Model
         return $this->belongsTo(NguoiDung::class,'magh','mand');
     }
     public $timestamps = false;
+
+    public function Giohang()
+    {
+        return $this->belongsTo(XeDangBan::class,'prod_id','id');
+    }
 }

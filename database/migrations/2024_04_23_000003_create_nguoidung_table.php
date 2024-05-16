@@ -23,8 +23,9 @@ return new class extends Migration
             $table->string('email',35);
             $table->string('diachi',100)->nullable();
             $table->string('tentk',20)->nullable();
-            $table->string('password',255)->nullable();
+            $table->string('password',255);
             $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
             $table->tinyInteger('tinhtrang')->default(1);
 

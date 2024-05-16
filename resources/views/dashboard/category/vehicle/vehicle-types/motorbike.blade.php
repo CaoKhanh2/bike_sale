@@ -1,4 +1,10 @@
-<table class="table hover data-table-export">
+<div class="row mx-2 my-2">
+    <form class="mx-2" action="{{ route('xuatfile-excel-thongtinxemay') }}" method="POST">
+        @csrf
+        <input type="submit" class="btn btn-secondary" value="Xuất file CSV">
+    </form>
+</div>
+<table class="table hover">
     <thead>
         <tr>
             <th>ID</th>

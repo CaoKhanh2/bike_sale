@@ -1,5 +1,4 @@
 <div class="container">
-
     @php
         $url = url()->current();
         $arr = explode('/', $url);

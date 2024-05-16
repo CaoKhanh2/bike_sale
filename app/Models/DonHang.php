@@ -9,5 +9,6 @@ class DonHang extends Model
 {
     use HasFactory;
     protected $table = "donhang";
+    protected $fillable = ['madh, mathanhtoan, makhuyenamai, ngaytaodon, tongtien'];
     public $timestamps = false;
 }

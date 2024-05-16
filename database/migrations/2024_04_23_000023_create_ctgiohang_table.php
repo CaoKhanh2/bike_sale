@@ -16,13 +16,12 @@ return new class extends Migration
         Schema::create('ctgiohang', function (Blueprint $table) {
             $table->string('mactgh',15);
             $table->string('magh',10);
-            $table->string('maxe',15)->nullable();
-            $table->integer('soluong');
+            $table->string('maxedangban',20)->nullable();
             $table->decimal('dongia',10,2);
 
             $table->primary('mactgh');
             $table->foreign('magh')->references('magh')->on('giohang')->onDelete('cascade');
-            $table->foreign('maxe')->references('maxe')->on('thongtinxe')->onDelete('cascade');
+            $table->foreign('maxedangban')->references('maxedangban')->on('xedangban')->onDelete('cascade');
             
         });
     }

@@ -1,6 +1,6 @@
 @extends('layout.content')
 @section('title', 'Đăng ký bán xe')
-@section('pg-hd-2', 'Đăng ký bán xe')
+@section('pg-hd-2', 'Đăng ký bán xe') @section('act2','text-dark')
 
 <link rel="stylesheet" href="{{ asset('dashboard_src\src\plugins\dropzone\src\dropzone.css') }}" type="text/css" />
 
@@ -18,7 +18,7 @@
         {{-- Content --}}
         <div class="row justify-content-center">
             <div class="col-xl">
-                @include('guest-acc.posting-item')
+                @include('guest-acc.purchasing.posting-item')
             </div>
         </div>
 
@@ -31,7 +31,7 @@
     <script>
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone('div#mydropzone', { // The camelized version of the ID of the form element
-            url: "{{ route('themdldangkythumua') }}",
+            url: "{{ route('thuchien-dangkythumua-Guest') }}",
             dictDefaultMessage: "Thêm ảnh cho xe của bạn",
             autoProcessQueue: false,
             uploadMultiple: true,

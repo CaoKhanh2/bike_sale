@@ -22,9 +22,11 @@
     </header>
     {{-- End Header --}}
 
+    {{-- Main --}}
     <div id="container">
         @yield('guest-content')
     </div>
+    {{-- End Main --}}
 
 </body>
 
