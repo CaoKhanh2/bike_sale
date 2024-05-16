@@ -14,21 +14,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ url('/') }}">
+                            <a class="nav-link active" aria-current="page" href="{{ route('indexWeb') }}">
                                 <img src="{{ asset('Image\Icon\home.png') }}" width="30" height="24"
                                     class="img-fluid mx-auto d-block">
                                 <span class="text-center mx-auto d-block">Trang chủ</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ url('/sub-index/xemay') }}">
+                            <a class="nav-link active" href="{{ route('hienthi-thongtinxemay') }}">
                                 <img src="{{ asset('Image\Icon\motorbike.png') }}" width="30" height="24"
                                     class="img-fluid mx-auto d-block">
                                 <span class="text-center mx-auto d-block">Mua xe máy</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-disabled="true" href="/sub-index/xedapdien">
+                            <a class="nav-link active" aria-disabled="true" href="{{ route('hienthi-thongtinxedapdien') }}">
                                 <img src="{{ asset('Image\Icon\electric-scooter.png') }}" width="30" height="24"
                                     class="img-fluid mx-auto d-block">
                                 <span class="text-center mx-auto d-block">Mua xe đạp điện</span>

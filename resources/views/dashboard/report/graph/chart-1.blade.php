@@ -8,7 +8,7 @@
     <div id="chart">
     </div>
     <script>
-        options = {
+        var options = {
             chart: {
                 type: 'bar',
                 height: 350
@@ -20,12 +20,26 @@
                     horizontal: false
                 }
             },
+            yaxis: {
+                labels: {
+                    formatter: function(value) {
+                        return value.toLocaleString() + ' đ'; // Định dạng số cho trục Y
+                    }
+                }
+            },
             series: [{
-                label: 'Doanh số bán hàng',
+                name: 'Doanh số bán hàng',
                 data: {!! json_encode($giatien) !!}
             }],
             xaxis: {
-                categories: {!! json_encode($thang) !!},
+                categories: {!! json_encode($thang) !!}
+            },
+            tooltip: {
+                y: {
+                    formatter: function(value) {
+                        return value.toLocaleString(); // Định dạng số trong tooltip
+                    }
+                }
             }
         };
 

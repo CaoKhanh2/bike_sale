@@ -5,7 +5,7 @@
         $res = end($arr);
     @endphp
 
-    @if ($res == 'xemay')
+    @if ($res == 'motorbike')
         @foreach ($db_xemay as $i)
             <div class="item-list">
                 <div class="item">
@@ -69,10 +69,9 @@
                                             </div>
                                             <div class="col-3 mt-3 ">
                                                 <div class="d-grid">
-                                                    <a name="" id="" type="button"
+                                                    <a href="{{ route('hienthi-chitietthongtinxemay', ['maxe'=> $i->maxe] ) }}" id=""
                                                         class="btn btn-primary"><i class="bi bi-eye-fill">
-                                                        </i>
-                                                        Xem chi tiết</a>
+                                                        </i>Xem chi tiết</a>
                                                 </div>
                                             </div>
                                             @if (Auth::guard('guest')->check())
@@ -95,7 +94,7 @@
                 </div>
             </div>
         @endforeach
-    @elseif($res == 'xedapdien')
+    @elseif($res == 'electric-bicycles')
         @foreach ($db_xedapdien as $i)
             <div class="item-list">
                 <div class="item">
