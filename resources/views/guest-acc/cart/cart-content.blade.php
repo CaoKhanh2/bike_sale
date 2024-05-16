@@ -1,15 +1,15 @@
 <div class="container my-5">
     <div class="card shadow">
-        
+        {{-- @if($giohangitems->count() >= 0) --}}
             <div class="card-body">
-            @php $total = 0; @endphp
-                @foreach ($cartitems as $item)
+            {{-- @php $total = 0; @endphp --}}
+                @foreach ($gh as $i)
                     <div class="row product_data">
                         <div class="col-md-2 my-auto">
                             <img src="" height="70px" width="70px" alt="Image here">
                         </div>
                         <div class="col-md-3 my-auto">
-                            <h6></h6>
+                            <h6>{{ $i->maxedangban }}</h6>
                         </div>
                         <div class="col-md-2 my-auto">
                             <h6></h6>
@@ -28,12 +28,12 @@
                             @else
                                 <h6>Out of Stock</h6>
                             @endif --}}
-                        {{-- </div>
+                        </div>
                         <div class="col-md-2 my-auto">
                             <button class="btn btn-danger delete-cart-item"><i class="fa fa-trash"></i> Remove</button>
                         </div>
                     </div>
-                @endforeach --}}
+                @endforeach
             </div>
             <div class="card-footer">
                 <h6>
@@ -49,6 +49,8 @@
         @endif --}}
     </div>
 </div>
+
+
 
 {{-- <div class="container bg-light py-3 my-3">
     <div class="row mb-3 ms-3">
