@@ -32,9 +32,10 @@
                             </li>
                         </ul>
                         <div class="tab-content">
+                            {{-- danh sách chờ  --}}
                             <div class="tab-pane fade show active" id="choxacnhan" role="tabpanel">
                                 <div class="pd-20">
-                                    <table class="table hover multiple-select-row align-middle">
+                                    <table class="table hover align-middle">
                                         <thead class="text-center">
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
@@ -82,9 +83,11 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="datuchoi" role="tabpanel">
+                            {{-- end --}}
+                            {{-- danh sach dang xu ly --}}
+                            <div class="tab-pane fade" id="dangxuly" role="tabpanel">
                                 <div class="pd-20">
-                                    <table class="table hover multiple-select-row align-middle">
+                                    <table class="table hover align-middle">
                                         <thead class="text-center">
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
@@ -124,9 +127,11 @@
                                     </table>
                                 </div>
                             </div>
+                            {{-- end --}}
+                            {{-- danh sach da tu choi --}}
                             <div class="tab-pane fade" id="datuchoi" role="tabpanel">
                                 <div class="pd-20">
-                                    <table class="table hover multiple-select-row align-middle">
+                                    <table class="table hover align-middle">
                                         <thead>
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
@@ -163,6 +168,7 @@
                                     </table>
                                 </div>
                             </div>
+                            {{-- ----end---- --}}
                         </div>
                     </div>
                 </div>

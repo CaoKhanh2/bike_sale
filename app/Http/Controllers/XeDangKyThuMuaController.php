@@ -31,18 +31,17 @@ class XeDangKyThuMuaController extends Controller
     {
         //dd(Auth::guard('guest')->check());
         //if (Auth::guard('guest')->check() == false) {
-        return view('guest-acc.purchasing-form')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
+            return view('guest-acc.purchasing.purchasing-form')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
         //}
     }
+
+ 
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-    }
 
     /**
      * Store a newly created resource in storage.

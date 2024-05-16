@@ -9,6 +9,22 @@ class GioHang extends Model
 {
     use HasFactory;
     protected $table = "giohang";
+
+    protected $fillable = [
+        'magh',
+        'mand',
+        'tongtien',
+    ];
+
+    // public function xedangban()
+    // {
+    //     return $this->belongsTo(XeDangBan::class,'maxe','maxe');
+    // }
+ 
+    public function giohang()
+    {
+        return $this->belongsTo(NguoiDung::class,'magh','mand');
+    }
     public $timestamps = false;
 
     public function Giohang()

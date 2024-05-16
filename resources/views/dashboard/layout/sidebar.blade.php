@@ -180,8 +180,13 @@
                         </li>
                         <li><a href="form-pickers.html">Quản lý thanh toán</a></li>
                         <li><a href="image-cropper.html">Quản lý rủi ro</a></li>
-                        <li><a href="image-dropzone.html">Quản lý khuyến mãi</a></li>
+                        <li><a href="{{route('danhmuckhuyenmai')}}">Quản lý khuyến mãi</a></li>
                     </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon"><i class="fa-solid fa-box"></i></span><span class="mtext">Kho hàng</span>
+                    </a>
                 </li>
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">

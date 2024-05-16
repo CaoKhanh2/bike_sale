@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="form-add" role="tabpanel">
                                     <div class="pd-20">
-
++
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-md-2 col-form-label">Phương tiện</label>
                                             <div class="col-sm-12 col-md-10">
@@ -255,9 +255,7 @@
 
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 

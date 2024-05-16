@@ -18,12 +18,16 @@ use App\Http\Controllers\TaiKhoanContrller;
 use App\Http\Controllers\ThongSoKyThuatXeDapDienContrller;
 use App\Http\Controllers\ThongSoKyThuatXeMayContrller;
 use App\Http\Controllers\VanChuyenController;
+use App\Http\Controllers\KhuyenMaiController;
 use App\Http\Controllers\ThongTinXeController;
 use App\Http\Controllers\XeDangBanController;
 use App\Http\Controllers\XeDangKyThuMuaController;
 use App\Models\GioHang;
 use App\Models\ThongSoKyThuatXeDapDien;
 use App\Models\ThongSoKyThuatXeMay;
+use App\Http\Controllers\GioHangContrllre;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -117,17 +121,16 @@ use App\Models\ThongSoKyThuatXeMay;
         return view('index');
     })->name('indexWeb');
 
-    Route::get('/selling-item', [XeDangKyThuMuaController::class, 'index2']);
+    Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'index2'])->name('formthumua');
     
     Route::middleware(['roleGuest'])->group(function () {
 
         Route::get('/cart-index', [GioHangController::class, 'show_cart'])->name('hienthi-giohang-Guest');
 
-        Route::post('/selling-item/sending-item', [XeDangKyThuMuaController::class, 'store'])->name('thuchien-dangkythumua-Guest');
+        Route::post('/purchasing-form/sending', [XeDangKyThuMuaController::class, 'store'])->name('thuchien-dangkythumua-Guest');
 
-        // Route::get('/cart-index', function () {
-        //     return view('guest-acc.cart.cart-index');
-        // });
+        Route::get('/cart-index/add/{maxedangban}',[GioHangContrllre::class, 'addXedangban'])->name('them-giohang');
+
     });
 
     // Tìm kiếm ----------
@@ -374,7 +377,8 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
      */
 });
 
-
+    Route::get('/dashboard/category/saling-events/saling-manage', [KhuyenMaiController::class,'index'])->name('danhmuckhuyenmai');
+    Route::post('/dashboard/category/saling-events/saling-manage', [KhuyenMaiController::class,'store'])->name('themskkhuyenmai');
 /**
  *
  * -------------- End Dashboard --------------
@@ -423,3 +427,33 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
  * -------------- End Clean Image --------------
  *
  */
+
+
+
+ /**
+ *
+ * -------------- Huy --------------
+ *
+ */
+// Route::get('/load-cart-data', [GioHangContrllre::class, 'cartcount']);
+// Route::post('delete-cart-item', [GioHangContrllre::class, 'deleteproduct']);
+// Route::post('update-cart', [GioHangContrllre::class, 'updatecart']);
+
+//Route::get('/cart-index', [GioHangContrllre::class, 'viewgiohang']);
+// Route::get('/add-to-cart', [GioHangContrllre::class, 'addXedangban'])->name('themvaogiohang');
+
+ 
+Route::middleware(['roleGuest'])->group(function () {
+    
+});
+
+
+//  Route::middleware(['roleGuest'])->group(function (){
+    
+//     // Route::get('checkout', [CheckoutController::class, 'index']);
+//     // Route::post('place-order', [CheckoutController::class, 'placeorder']);
+
+//     // Route::get('my-orders',[UserController::class,'index']);
+//     // Route::get('view-order/{id}',[UserController::class,'view']);
+    
+// });

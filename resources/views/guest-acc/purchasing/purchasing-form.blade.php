@@ -18,7 +18,7 @@
         {{-- Content --}}
         <div class="row justify-content-center">
             <div class="col-xl">
-                @include('guest-acc.posting-item')
+                @include('guest-acc.purchasing.posting-item')
             </div>
         </div>
 

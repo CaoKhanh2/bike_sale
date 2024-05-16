@@ -18,13 +18,13 @@
 <body>
     {{-- Header --}}
     <header>
-        {{-- @include('guest-acc.auth.layout.header') --}}
+        @include('guest-acc.layout.header')
     </header>
     {{-- End Header --}}
 
     {{-- Main --}}
     <div id="container">
-        @yield('auth-content')
+        @yield('guest-content')
     </div>
     {{-- End Main --}}
 

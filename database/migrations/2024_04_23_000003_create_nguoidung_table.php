@@ -28,7 +28,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
             $table->tinyInteger('tinhtrang')->default(1);
-            
+
             $table->primary('mand');
             
         });
