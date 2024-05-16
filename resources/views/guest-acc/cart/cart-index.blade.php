@@ -1,7 +1,8 @@
-@extends('layout.content')
+@extends('guest-acc.layout.content')
 @section('title', 'Giỏ hàng')
 @section('pg-hd-2', 'Giỏ hàng')
-@section('main')
+
+@section('guest-content')
     {{-- breadcrum --}}
     <div class="container">
         <div class="row justify-content-around">
@@ -9,12 +10,11 @@
                 @include('layout.header-breadcrum')
             </div>
         </div>
-
         {{-- endbreadcrum --}}
         {{-- content --}}
         <div class="row justify-content-center">
             <div class="col-xl">
-                @include('cart.cart-content')
+                @include('guest-acc.cart.cart-content')
             </div>
         </div>
         {{-- endcontetn --}}

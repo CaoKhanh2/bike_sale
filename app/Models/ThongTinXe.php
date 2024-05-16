@@ -10,4 +10,18 @@ class ThongTinXe extends Model
     use HasFactory;
     protected $table = 'thongtinxe';
 
+    protected $fillable = [
+        'maxe',
+        'madx',
+        'matsxemay',
+        'matsxedapdien',
+        'tenxe',
+        'thoigiandasudung',
+        'tinhtrangxe',
+        'sokmdadi',
+        'hinhanh',
+        'biensoxe',
+        'ghichu',
+    ];
+
 }

@@ -19,6 +19,21 @@ class XeDangBanController extends Controller
 
         // return view('dashboard.transaction.purchasing.purchasing-manage',['xedkban'=>$dk_banxe]);
     }
+
+    public function index2()
+    {
+        $xedangban_xemay = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang FROM xedangban INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe INNER JOIN thongsokythuatxemay ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+
+        $xedangban_xedapdien = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang FROM xedangban INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe INNER JOIN thongsokythuatxedapdien ON thongtinxe.matsxedapdien = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+
+        $hxm = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe máy"');
+
+        $hxdd = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
+
+
+        return view('/sub-index',['db_xemay'=>$xedangban_xemay, 'db_xedapdien'=>$xedangban_xedapdien, 'hangxemay'=>$hxm, 'hangxedapdien'=>$hxdd]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -91,7 +106,7 @@ class XeDangBanController extends Controller
             array('maxedangban' => 'XMDB-00001','maxe' => 'XM-0001','makhuyenmai' => NULL,'manv' => 'MNV-0004','namsx' => '2023','ngayban' => '2024-04-30 17:28:56','giaban' => '25000000.00','mota' => '','tranghthai' => 'Còn xe'),
             array('maxedangban' => 'XMDB-00002','maxe' => 'XM-0002','makhuyenmai' => NULL,'manv' => 'MNV-0008','namsx' => '2024','ngayban' => '2024-05-01 16:41:45','giaban' => '45560000.00','mota' => '','tranghthai' => 'Còn xe'),
             array('maxedangban' => 'XMDB-00003','maxe' => 'XM-0004','makhuyenmai' => NULL,'manv' => 'MNV-0009','namsx' => '2022','ngayban' => '2024-05-01 16:53:45','giaban' => '40000000.00','mota' => '','tranghthai' => 'Còn xe')
-        );
+          );
         XeDangBan::insert($xedangban);
     }
 }

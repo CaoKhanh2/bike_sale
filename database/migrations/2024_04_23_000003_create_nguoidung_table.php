@@ -17,16 +17,17 @@ return new class extends Migration
             $table->string('mand',10);
             $table->string('hovaten',50);
             $table->date('ngaysinh')->nullable();
-            $table->string('cccd', 12);
+            $table->string('cccd', 12)->nullable();
             $table->enum('gioitinh',['Nam','Nữ']);
             $table->string('sodienthoai',11);
             $table->string('email',35);
             $table->string('diachi',100)->nullable();
             $table->string('tentk',20)->nullable();
-            $table->string('password',20)->nullable();
+            $table->string('password',255)->nullable();
             $table->rememberToken();
+            $table->timestamps();
             $table->tinyInteger('tinhtrang')->default(1);
-            
+
             $table->primary('mand');
             
         });

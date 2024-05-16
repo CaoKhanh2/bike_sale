@@ -9,4 +9,17 @@ class XeDangBan extends Model
 {
     use HasFactory;
     protected $table = "xedangban";
+
+    protected $fillable = [
+        'maxedangban',
+        'maxe',
+        'giaban',
+        'mota',
+        'tranghthai',
+    ];
+    public function thongtinxe()
+    {
+        return $this->belongsTo(ThongTinXe::class, 'maxe', 'maxe');
+    }
+
 }

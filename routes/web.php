@@ -20,6 +20,9 @@ use App\Http\Controllers\XeDangBanController;
 use App\Http\Controllers\XeDangKyThuMuaController;
 use App\Models\ThongSoKyThuatXeDapDien;
 use App\Models\ThongSoKyThuatXeMay;
+use App\Http\Controllers\GioHangContrllre;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -92,8 +95,8 @@ Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'create'])->nam
         return view('index');
     })->name('indexWeb');
 
-    Route::get('/dashboard/transaction/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
-    Route::get('/dashboard/tranction/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
+    // Route::get('/dashboard/transaction/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
+    // Route::get('/dashboard/tranction/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
 
     // Route::get('/selling-item', function () {
     //     return view('guest-acc.selling-item');
@@ -109,9 +112,8 @@ Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'create'])->nam
 
         Route::post('/selling-item/sending-item', [XeDangKyThuMuaController::class, 'store'])->name('themdldangkythumua');
 
-        Route::get('/cart-index', function () {
-            return view('cart.cart-index');
-        });
+        Route::get('/cart-index',[GioHangContrllre::class, 'showGiohang'])->name('hienthi-giohang-Guest');
+        Route::get('/cart-index/add/{maxedangban}',[GioHangContrllre::class, 'addXedangban'])->name('them-giohang');
 
     });
 
@@ -122,9 +124,9 @@ Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'create'])->nam
 // ----------
 
     // Trang hiển thị sản phẩm ----------
-    Route::get('/sub-index/xemay', [SubIndexContrller::class, 'getData']);
+    Route::get('/sub-index/xemay', [XeDangBanController::class, 'index2']);
 
-Route::get('/sub-index/xedapdien', [SubIndexContrller::class, 'getData']);
+    Route::get('/sub-index/xedapdien', [XeDangBanController::class, 'index2']);
 
 // ----------
 
@@ -292,7 +294,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     Route::get('/dashboard/tranction/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
 
     //Quan ly thu mua
-    Route::get('/dashboard/transaction/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua'); //Hiện bảng ds xe thu mua
+    Route::get('/dashboard/transaction/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua'); // Hiện bảng ds xe thu mua
     Route::get('/dashboard/tranction/{id}', [XeDangKyThuMuaController::class, 'huydon'])->name('huydonthumua'); // Hủy đơn thu mua
     Route::get('/dashboard/tranction/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'duyetdon'])->name('duyetdonthumua'); // Duyệt đơn thu mua
     Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/{id}', [XeDangKyThuMuaController::class, 'show'])->name('ctthongtinmua'); // Xem chi tiết đơn thu mua
@@ -375,3 +377,33 @@ Route::get('/clean/clean_img_posted', [CleanImagesController::class, 'cleanImgPo
  * -------------- End Clean Image --------------
  *
  */
+
+
+
+ /**
+ *
+ * -------------- Huy --------------
+ *
+ */
+// Route::get('/load-cart-data', [GioHangContrllre::class, 'cartcount']);
+// Route::post('delete-cart-item', [GioHangContrllre::class, 'deleteproduct']);
+// Route::post('update-cart', [GioHangContrllre::class, 'updatecart']);
+
+//Route::get('/cart-index', [GioHangContrllre::class, 'viewgiohang']);
+// Route::get('/add-to-cart', [GioHangContrllre::class, 'addXedangban'])->name('themvaogiohang');
+
+ 
+Route::middleware(['roleGuest'])->group(function () {
+    
+});
+
+
+//  Route::middleware(['roleGuest'])->group(function (){
+    
+//     // Route::get('checkout', [CheckoutController::class, 'index']);
+//     // Route::post('place-order', [CheckoutController::class, 'placeorder']);
+
+//     // Route::get('my-orders',[UserController::class,'index']);
+//     // Route::get('view-order/{id}',[UserController::class,'view']);
+    
+// });
