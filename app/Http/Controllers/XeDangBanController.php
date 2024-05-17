@@ -19,6 +19,21 @@ class XeDangBanController extends Controller
 
         // return view('dashboard.transaction.purchasing.purchasing-manage',['xedkban'=>$dk_banxe]);
     }
+
+    public function index2()
+    {
+        $xedangban_xemay = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang FROM xedangban INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe INNER JOIN thongsokythuatxemay ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+
+        $xedangban_xedapdien = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang FROM xedangban INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe INNER JOIN thongsokythuatxedapdien ON thongtinxe.matsxedapdien = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+
+        $hxm = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe máy"');
+
+        $hxdd = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
+
+
+        return view('/sub-index',['db_xemay'=>$xedangban_xemay, 'db_xedapdien'=>$xedangban_xedapdien, 'hangxemay'=>$hxm, 'hangxedapdien'=>$hxdd]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -46,9 +61,38 @@ class XeDangBanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showData()
     {
-        //
+        $db_xemay = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang 
+        FROM xedangban 
+        INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe 
+        INNER JOIN thongsokythuatxemay ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay 
+        INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx 
+        INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+
+        $db_xedapdien = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang FROM xedangban INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe INNER JOIN thongsokythuatxedapdien ON thongtinxe.matsxedapdien = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+
+        $hangxemay = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe máy"');
+
+        $hangxedapdien = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
+
+
+        //return view('/sub-index',['db_xemay'=>$xedangban_xemay, 'db_xedapdien'=>$xedangban_xedapdien, 'hangxemay'=>$hxm, 'hangxedapdien'=>$hxdd]);
+        return view('sub-index', compact('db_xemay', 'db_xedapdien', 'hangxemay', 'hangxedapdien'));
+    }
+
+    public function show_Detail_Data($id)
+    {
+        $ct_thongtin_xe = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang 
+        FROM xedangban 
+        INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe 
+        INNER JOIN thongsokythuatxemay ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay 
+        INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx 
+        INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx 
+        WHERE thongtinxe.maxe = ?',[$id]);
+
+
+        return view('sale-page',compact('ct_thongtin_xe'));
     }
 
     /**
@@ -84,7 +128,7 @@ class XeDangBanController extends Controller
     {
         //
     }
-    
+
     public function data(){
         $xedangban = array(
             //array('maxedangban' => 'XDB-00001','maxe' => 'XD-0001','makhuyenmai' => NULL,'manv' => 'MNV-0003','namsx' => '2015','ngayban' => '2024-04-30 17:42:08','giaban' => '3500000.00','mota' => '','tranghthai' => 'Còn xe'),

@@ -35,7 +35,7 @@
         border: 20px solid green;
     }
 
-    #imagePopup{
+    #imagePopup {
         padding: 0;
     }
 
@@ -51,77 +51,70 @@
 </style>
 <div class="container">
     <div class="row g-0 text-center">
-        <div class="col-sm-4 col-md-8">
-            <div class="row">
-                <div class="col-2">
-                    <!-- Image List -->
-                    <div class="image-list">
-                        <ul class="list-group">
-                            <li class="list-group-item border-0">
-                                <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
-                                    alt="Image 1" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                    class="object-fit-contain border rounded" alt="..." height="80"
-                                    width="80" />
-                            </li>
-                            <li class="list-group-item border-0">
-                                <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
-                                    alt="Image 2" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                    class="object-fit-contain border rounded" alt="..." height="80"
-                                    width="80" />
-                            </li>
-                            <li class="list-group-item border-0">
-                                <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
-                                    alt="Image 3" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                    class="object-fit-contain border rounded" alt="..." height="80"
-                                    width="80" />
-                            </li>
-                        </ul>
+        @foreach ($ct_thongtin_xe as $i)
+            <div class="col-sm-4 col-md-8">
+                <div class="row">
+                    <div class="col-2">
+                        <!-- Image List -->
+                        <div class="image-list">
+                            <ul class="list-group">
+                                @php
+                                    $count = 0; // Khởi tạo biến count ở đây
+                                @endphp
+                                @foreach (explode(',', $i->hinhanh) as $path)
+                                    @php
+                                        $index = array_search($path, explode(',', $i->hinhanh));
+                                    @endphp
+                                    <li class="list-group-item border-0">
+                                        <img src="{{ asset('storage/' . $path) }}" alt="Image {{ $index + 1 }}"
+                                            data-bs-target="#carouselExampleIndicators"
+                                            data-bs-slide-to="{{ $count++ }}"
+                                            class="object-fit-contain border rounded" alt="..." height="80"
+                                            width="80" />
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <!-- Carousel -->
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                @foreach (explode(',', $i->hinhanh) as $index => $path)
+                                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                                        data-bs-slide-to="{{ $index }}"
+                                        class="{{ $index === 0 ? 'active' : '' }}"
+                                        aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                        aria-label="Slide {{ $index }}"></button>
+                                @endforeach
+                            </div>
+                            <div class="carousel-inner">
+                                @foreach (explode(',', $i->hinhanh) as $index => $path)
+                                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                        <img src="{{ asset('storage/' . $path) }}" class="img-fluid" alt="..."
+                                            onclick="showPopup(this)">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev bg-primary" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next bg-primary" type="button"
+                                data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-10">
-                    <!-- Carousel -->
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="{{ asset('Image\Xe\XeDien\mini MiBike X7\Xe-dien-mini-Mibike-X7-7287-2.jpg') }}"
-                                    class="img-fluid" alt="..." onclick="showPopup(this)">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('Image\Xe\XeDien\mini MiBike X7\Xe-dien-mini-Mibike-X7-7461.jpg') }}"
-                                    class="img-fluid" alt="..." onclick="showPopup(this)">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('Image\Xe\XeDien\mini MiBike X7\Xe-dien-mini-Mibike-X7-7352.jpg') }}"
-                                    class="img-fluid" alt="..." onclick="showPopup(this)">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev bg-primary" type="button"
-                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next bg-primary" type="button"
-                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
         <div class="col-6 col-md-4"></div>
     </div>
 </div>
 
-<div class="modal fade" id="imagePopup" tabindex="-1" aria-labelledby="imagePopupLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="imagePopup" tabindex="-1" aria-labelledby="imagePopupLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header bg-dark">
@@ -157,7 +150,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 

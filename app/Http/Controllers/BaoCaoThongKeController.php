@@ -49,7 +49,7 @@ class BaoCaoThongKeController extends Controller
     }
     public function exporrt_report_sales_situation()
     {
-        return Excel::download(new TinhHinhBanHangExport, 'tinh_hinh_ban_hang.xlsx');
+        return Excel::download(new TinhHinhBanHangExport, 'bao_cao_ban_hang.xlsx');
         
     }
 }

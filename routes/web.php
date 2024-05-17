@@ -25,6 +25,9 @@ use App\Http\Controllers\XeDangKyThuMuaController;
 use App\Models\GioHang;
 use App\Models\ThongSoKyThuatXeDapDien;
 use App\Models\ThongSoKyThuatXeMay;
+use App\Http\Controllers\GioHangContrllre;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -126,30 +129,32 @@ use App\Models\ThongSoKyThuatXeMay;
 
         Route::post('/purchasing-form/sending', [XeDangKyThuMuaController::class, 'store'])->name('thuchien-dangkythumua-Guest');
 
-        // Route::get('/cart-index', function () {
-        //     return view('guest-acc.cart.cart-index');
-        // });
+        Route::get('/cart-index/add/{maxedangban}',[GioHangContrllre::class, 'addXedangban'])->name('them-giohang');
+
     });
 
     // Tìm kiếm ----------
 
-        Route::get('/sub-index', [SearchContrller::class, 'searchData'])->name('timkiem');
+        Route::get('/sub-index/search', [SearchContrller::class, 'searchData'])->name('timkiem');
 
     // ----------
 
     // Trang hiển thị sản phẩm ----------
+
+        Route::get('/sub-index', function () {
+            return view('sub-index');
+        })->name('hienthi-thongtinxe');
     
-        Route::get('/sub-index/xemay', [SubIndexContrller::class, 'getData']);
+        Route::get('/sub-index/motorbike', [XeDangBanController::class, 'showData'])->name('hienthi-thongtinxemay');
 
-        Route::get('/sub-index/xedapdien', [SubIndexContrller::class, 'getData']);
+        Route::get('/sub-index/electric-bicycles', [XeDangBanController::class, 'showData'])->name('hienthi-thongtinxedapdien');
 
     // ----------
 
-    // Trang hiển thị sản phẩm ----------
+    // Trang hiển thị chi tiết thông tin sản phẩm ----------
 
-    Route::get('sub-page/sale-page', function () {
-        return view('sale-page');
-    });
+
+        Route::get('sub-index/motorbike/sale-page/{maxe}', [XeDangBanController::class, 'show_Detail_Data'])->name('hienthi-chitietthongtinxemay');
 
     // ----------
 
@@ -422,3 +427,33 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
  * -------------- End Clean Image --------------
  *
  */
+
+
+
+ /**
+ *
+ * -------------- Huy --------------
+ *
+ */
+// Route::get('/load-cart-data', [GioHangContrllre::class, 'cartcount']);
+// Route::post('delete-cart-item', [GioHangContrllre::class, 'deleteproduct']);
+// Route::post('update-cart', [GioHangContrllre::class, 'updatecart']);
+
+//Route::get('/cart-index', [GioHangContrllre::class, 'viewgiohang']);
+// Route::get('/add-to-cart', [GioHangContrllre::class, 'addXedangban'])->name('themvaogiohang');
+
+ 
+Route::middleware(['roleGuest'])->group(function () {
+    
+});
+
+
+//  Route::middleware(['roleGuest'])->group(function (){
+    
+//     // Route::get('checkout', [CheckoutController::class, 'index']);
+//     // Route::post('place-order', [CheckoutController::class, 'placeorder']);
+
+//     // Route::get('my-orders',[UserController::class,'index']);
+//     // Route::get('view-order/{id}',[UserController::class,'view']);
+    
+// });

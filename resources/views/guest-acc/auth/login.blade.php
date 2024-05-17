@@ -1,6 +1,6 @@
 @extends('guest-acc.layout.content')
 
-@section('auth-content')
+@section('guest-content')
     <div class="container my-5">
         <div class="row d-flex justify-content-center my-4">
             <div class="col-lg-4">

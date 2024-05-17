@@ -22,4 +22,18 @@ class ThongTinXe extends Model
         return $this->belongsTo(DongXe::class, 'madx', 'madx');
     }
 
+    protected $fillable = [
+        'maxe',
+        'madx',
+        'matsxemay',
+        'matsxedapdien',
+        'tenxe',
+        'thoigiandasudung',
+        'tinhtrangxe',
+        'sokmdadi',
+        'hinhanh',
+        'biensoxe',
+        'ghichu',
+    ];
+
 }

@@ -72,7 +72,7 @@
                             </div>
                             <div class="clearfix mb-20">
                                 <div class="pull-left">
-                                    <h4 class="text-blue h4">Báo cáo sản phẩm bán chạy</h4>
+                                    <h4 class="text-blue h4">Báo cáo tình hình bán hàng</h4>
                                 </div>
                             </div>
                                 @include('dashboard.report.table.table-sales-stiuation')
