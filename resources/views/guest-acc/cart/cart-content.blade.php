@@ -43,7 +43,7 @@
                             @endif
                         @endforeach
                     </h6>
-                    <a href="{{  }}" class="btn btn-outline-success">Proceed to Checkout</a>
+                    <a href="" class="btn btn-outline-success">Proceed to Checkout</a>
                 </div>
             </div>
         @else

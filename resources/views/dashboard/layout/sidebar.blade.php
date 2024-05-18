@@ -173,7 +173,7 @@
                                 <span class="micon"></span><span class="mtext">Quản lý tiến trình</span>
                             </a>
                             <ul class="submenu child">
-                                <li><a href="{{ url('/dashboard/transaction/purchasing-manage') }}">Thu mua xe</a>
+                                <li><a href="{{route('xedkthumua') }}">Thu mua xe</a>
                                 </li>
                                 <li><a href="{{ route('danhsach-donhang') }}">Đăng bán xe</a></li>
                             </ul>

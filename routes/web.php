@@ -23,7 +23,7 @@ use App\Http\Controllers\XeDangKyThuMuaController;
 
 use App\Models\ThongSoKyThuatXeDapDien;
 use App\Models\ThongSoKyThuatXeMay;
-use App\Http\Controllers\GioHangContrllre;
+use App\Http\Controllers\GioHangController;
 
 
 
