@@ -22,7 +22,7 @@ return new class extends Migration
             $table->year('namsx');
             $table->decimal('giaban',10,2);
             $table->text('mota');
-            $table->enum('tranghthai',['Đã bán xe','Còn xe']);
+            $table->enum('trangthai',['Đã bán xe','Còn xe']);
 
 
             $table->primary('maxedangban');

@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="row justify-content-center mt-4 mb-5">
-        <div class="col-md-6 center-column text-center fs-5"><a href="{{ route('hienthi-thongtinxemay') }}"
+        <div class="col-md-6 center-column text-center fs-5"><a href="{{ route('hienthi-thongtinxemay-Guest') }}"
                 class="link-underline link-underline-opacity-0">XEM TẤT CẢ ></a></div>
     </div>
 </div>
@@ -266,7 +266,7 @@
 
     </div>
     <div class="row justify-content-center mt-4 mb-5">
-        <div class="col-md-6 center-column text-center fs-5"><a href="{{ route('hienthi-thongtinxedapdien') }}"
+        <div class="col-md-6 center-column text-center fs-5"><a href="{{ route('hienthi-thongtinxedapdien-Guest') }}"
                 class="link-underline link-underline-opacity-0">XEM TẤT CẢ ></a></div>
     </div>
 </div>

@@ -11,16 +11,12 @@
 
     <!-- Boostrap -->
     <link rel="stylesheet" href="{{ asset('bootstrap-tool\css\bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css" rel="stylesheet" />
 </head>
 
 <body>
-    {{-- Header --}}
-    <header>
-        @include('guest-acc.layout.header')
-    </header>
-    {{-- End Header --}}
 
     {{-- Main --}}
     <div id="container">
@@ -30,7 +26,7 @@
 
 </body>
 
-<script src="{{ asset('bootstrap-tool\js\bootstrap.bundle.min.js') }}"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"></script>
+    <script src="{{ asset('bootstrap-tool\js\bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"></script>
 
 </html>

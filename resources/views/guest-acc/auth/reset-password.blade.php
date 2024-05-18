@@ -1,6 +1,6 @@
 @extends('guest-acc.layout.content')
 
-@section('auth-content')
+@section('guest-content')
     <div class="container my-5">
         <div class="row mt-5">
             <div class="col-4">

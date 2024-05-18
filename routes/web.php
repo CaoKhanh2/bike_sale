@@ -7,14 +7,11 @@ use App\Http\Controllers\DataContrller;
 use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\XeDangBan;
 use App\Http\Controllers\DongXeController;
-use App\Http\Controllers\DoThiController;
-use App\Http\Controllers\GioHangController;
 use App\Http\Controllers\HangXeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\nguoidungController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\SearchContrller;
-use App\Http\Controllers\SubIndexContrller;
 use App\Http\Controllers\TaiKhoanContrller;
 use App\Http\Controllers\ThongSoKyThuatXeDapDienContrller;
 use App\Http\Controllers\ThongSoKyThuatXeMayContrller;
@@ -23,7 +20,7 @@ use App\Http\Controllers\KhuyenMaiController;
 use App\Http\Controllers\ThongTinXeController;
 use App\Http\Controllers\XeDangBanController;
 use App\Http\Controllers\XeDangKyThuMuaController;
-use App\Models\GioHang;
+
 use App\Models\ThongSoKyThuatXeDapDien;
 use App\Models\ThongSoKyThuatXeMay;
 use App\Http\Controllers\GioHangContrllre;
@@ -115,8 +112,6 @@ use App\Http\Controllers\GioHangContrllre;
  *
  */
     
-    //Route::post('/sending_bike', [XeDangKyThuMuaController::class, 'store'])->name('dangkythumua'); // gửi form đăng ký thu mua về csdl
-    //Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'create'])->name('nhapxethumua'); // Hiện form đăng ký thu mua
 
     Route::get('/', function () {
         return view('index');
@@ -126,12 +121,16 @@ use App\Http\Controllers\GioHangContrllre;
     
     Route::middleware(['roleGuest'])->group(function () {
 
-        Route::get('/cart-index', [GioHangController::class, 'show_cart'])->name('hienthi-giohang-Guest');
-
         Route::post('/purchasing-form/sending', [XeDangKyThuMuaController::class, 'store'])->name('thuchien-dangkythumua-Guest');
 
-        Route::get('/cart-index/add/{maxedangban}',[GioHangContrllre::class, 'addXedangban'])->name('them-giohang');
+         // Giỏ hàng ----------
+            Route::get('/cart-index', [GioHangController::class, 'show_cart'])->name('hienthi-giohang-Guest');
 
+            Route::get('/cart-index/add/{maxedangban}',[GioHangController::class, 'add_cart'])->name('them-giohang-Guest');
+
+            Route::post('/cart-index',[GioHangController::class, 'destroy_cart'])->name('xoa-giohang-Guest');
+
+        // ----------
     });
 
     // Tìm kiếm ----------
@@ -146,16 +145,15 @@ use App\Http\Controllers\GioHangContrllre;
             return view('sub-index');
         })->name('hienthi-thongtinxe');
     
-        Route::get('/sub-index/motorbike', [XeDangBanController::class, 'showData'])->name('hienthi-thongtinxemay');
+        Route::get('/sub-index/motorbike', [XeDangBanController::class, 'showData'])->name('hienthi-thongtinxemay-Guest');
 
-        Route::get('/sub-index/electric-bicycles', [XeDangBanController::class, 'showData'])->name('hienthi-thongtinxedapdien');
+        Route::get('/sub-index/electric-bicycles', [XeDangBanController::class, 'showData'])->name('hienthi-thongtinxedapdien-Guest');
 
     // ----------
 
     // Trang hiển thị chi tiết thông tin sản phẩm ----------
 
-
-        Route::get('sub-index/motorbike/sale-page/{maxe}', [XeDangBanController::class, 'show_Detail_Data'])->name('hienthi-chitietthongtinxemay');
+        Route::get('sub-index/motorbike/sale-page/{maxe}', [XeDangBanController::class, 'show_Detail_Data'])->name('hienthi-chitietthongtinxemay-Guest');
 
     // ----------
 
@@ -283,14 +281,10 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
         // Route::get('/dashboard/category/customer/customer-info', function () {
         //     return view('dashboard.category.customer.customer-info');
         // });
-        Route::get('/dashboard/category/customer/customer-info', [NguoiDungController::class, 'index']);
-
-        Route::get('/customer/detail_customer-info', function () {
-            return view('dashboard.category.customer.detail_customer-info');
-        });
-
+        Route::get('/dashboard/category/customer/customer-info', [NguoiDungController::class, 'index'])->name('thongtinkhachang');
         Route::post('/dashboard/category/customer/customer-info', [NguoiDungController::class, 'store'])->name('themthongtinkhachhang');
         Route::get('/dashboard/category/customer/customer-info/{id}', [NguoiDungController::class, 'destroy'])->name('xoathongtinkhachhang');
+        
         Route::get('/dashboard/category/customer/detail-customer-info/{id}', [NguoiDungController::class, 'show'])->name('ctthongtinkhachhang');
         Route::patch('/dashboard/category/customer/detail-customer-info/{id}', [NguoiDungController::class, 'update'])->name('capnhatthongtinkhachhang');
 
@@ -447,9 +441,9 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
 // Route::get('/add-to-cart', [GioHangContrllre::class, 'addXedangban'])->name('themvaogiohang');
 
  
-Route::middleware(['roleGuest'])->group(function () {
+// Route::middleware(['roleGuest'])->group(function () {
     
-});
+// });
 
 
 //  Route::middleware(['roleGuest'])->group(function (){
