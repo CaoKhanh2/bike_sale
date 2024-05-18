@@ -18,32 +18,25 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('hienthi-thongtinxemay') }}">
+                    <a class="nav-link active" href="{{ route('hienthi-thongtinxemay-Guest') }}">
                         <img src="{{ asset('Image\Icon\motorbike.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
                         <span class="text-center mx-auto d-block">Mua xe máy</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-disabled="true" href="{{ route('hienthi-thongtinxedapdien') }}">
+                    <a class="nav-link active" aria-disabled="true" href="{{ route('hienthi-thongtinxedapdien-Guest') }}">
                         <img src="{{ asset('Image\Icon\electric-scooter.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
                         <span class="text-center mx-auto d-block">Mua xe đạp điện</span>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link active" aria-disabled="true" href="">
-                        <img src="{{ asset('Image\Icon\notification.png') }}" width="30" height="24"
-                            class="img-fluid mx-auto d-block">
-                        <span class="text-center mx-auto d-block">Thông báo</span>
-                    </a>
-                </li> --}}
             </ul>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-disabled="true" href="{{ url('/selling-item') }}">
+                    <a class="nav-link active" aria-disabled="true" href="{{ route('formthumua') }}">
                         <img src="{{ asset('Image\Icon\icons8-sell-48.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
                         <span class="text-center mx-auto d-block">Đăng ký bán xe</span>

@@ -50,6 +50,7 @@ class NguoiDungController extends Controller
     public function store(Request $request)
     {
         $mand = $this->generateUniqueNumericId(7);
+        $magh = $this->generateUniqueNumericId(7);
 
         DB::table('nguoidung')->insert([
             'mand' => $mand,
@@ -63,7 +64,13 @@ class NguoiDungController extends Controller
             // 'tinhtrang' => $request->tt
         ]);
 
-        return redirect('/dashboard/category/customer/customer-info')->with('success-dash-customer', 'Post created successfully!');
+        DB::table('giohang')->insert([
+            'magh' => 'GH-'.$magh,
+            'mand' => $mand,
+            'ngaytao' => Carbon::now(),
+        ]);
+
+        return redirect()->route('thongtinkhachang')->with('success-dash-customer', 'Post created successfully!');
     }
 
     public function store2(Request $request)
@@ -77,6 +84,7 @@ class NguoiDungController extends Controller
             return redirect()->route('dangky-Guest')->with('cross-dangky-Guest', 'Đăng ký không thành công!');
         } else {
             $mand = $this->generateUniqueNumericId(7);
+            $magh = $this->generateUniqueNumericId(7);
 
             DB::table('nguoidung')->insert([
                 'mand' => $mand,
@@ -85,6 +93,12 @@ class NguoiDungController extends Controller
                 'sodienthoai' => $request->sodienthoai,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
+            ]);
+
+            DB::table('giohang')->insert([
+                'magh' => 'GH-'.$magh,
+                'mand' => $mand,
+                'ngaytao' => Carbon::now(),
             ]);
 
             $acc = DB::table('nguoidung')->where('mand', $mand)->first();

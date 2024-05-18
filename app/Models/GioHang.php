@@ -9,26 +9,28 @@ class GioHang extends Model
 {
     use HasFactory;
     protected $table = "giohang";
+    public $timestamps = false;
 
-    protected $fillable = [
-        'magh',
-        'mand',
-        'tongtien',
-    ];
+
+    // protected $fillable = [
+    //     'magh',
+    //     'mand',
+    //     'tongtien',
+    // ];
 
     // public function xedangban()
     // {
     //     return $this->belongsTo(XeDangBan::class,'maxe','maxe');
     // }
- 
-    public function giohang()
-    {
-        return $this->belongsTo(NguoiDung::class,'magh','mand');
-    }
-    public $timestamps = false;
 
-    public function Giohang()
-    {
-        return $this->belongsTo(XeDangBan::class,'prod_id','id');
-    }
+    // public function giohang()
+    // {
+    //     return $this->belongsTo(NguoiDung::class,'magh','mand');
+    // }
+    // public $timestamps = false;
+
+    // public function Giohang()
+    // {
+    //     return $this->belongsTo(XeDangBan::class,'prod_id','id');
+    // }
 }

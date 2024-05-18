@@ -5,7 +5,7 @@
 @section('st3', 'true') @section('pg-hd-3', 'Thông tin cá nhân') @section('act3', 'text-dark')
 @section('st4', 'false')
 
-@section('auth-content')
+@section('guest-content')
     @include('guest-acc.layout.header')
     <section style="background-color: #eee;">
         <div class="container py-3">
@@ -21,8 +21,7 @@
                             {{-- <p class="text-muted mb-4"></p> --}}
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary">Đổi
-                                    mật
-                                    khẩu</button>
+                                    mật khẩu</button>
                                 {{-- <button type="button" data-mdb-button-init data-mdb-ripple-init
                                 class="btn btn-outline-primary ms-1">Thay ảnh đại diện</button> --}}
                             </div>
@@ -41,14 +40,6 @@
                             </div>
                         </div>
                         <hr> --}}
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">ID</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{ Auth::guard('guest')->user()->mand }}</p>
-                            </div>
-                        </div>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <p class="mb-0">Email</p>

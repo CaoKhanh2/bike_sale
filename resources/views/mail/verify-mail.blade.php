@@ -117,7 +117,7 @@
 
 <body>
     <div class="container">
-        <div class="shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 360px;">
+        <div class="shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 620px;">
             <div class="my-3" style="overflow: hidden; width: 100%; height: 150px;">
                 <img src="https://tse3.mm.bing.net/th/id/OIG2.dyy2drtEHdmprI5Bb8ah?pid=ImgGn" alt=""
                     id="img-banner">

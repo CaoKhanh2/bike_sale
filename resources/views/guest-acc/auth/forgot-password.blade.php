@@ -1,6 +1,6 @@
 @extends('guest-acc.layout.content')
 
-@section('auth-content')
+@section('guest-content')
     <div class="container my-5">
         <div class="row justify-content-center align-items-center">
             <div class="card text-center" style="width: 450px;">
