@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BaoCaoThongKeController;
 use App\Http\Controllers\ChucVuContrller;
@@ -8,8 +9,8 @@ use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\XeDangBan;
 use App\Http\Controllers\DongXeController;
 use App\Http\Controllers\HangXeController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\nguoidungController;
+use App\Http\Controllers\GioHangController;
+use App\Http\Controllers\NguoiDungController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\SearchContrller;
 use App\Http\Controllers\TaiKhoanContrller;
@@ -23,7 +24,7 @@ use App\Http\Controllers\XeDangKyThuMuaController;
 
 use App\Models\ThongSoKyThuatXeDapDien;
 use App\Models\ThongSoKyThuatXeMay;
-use App\Http\Controllers\GioHangController;
+
 
 
 
@@ -117,7 +118,7 @@ use App\Http\Controllers\GioHangController;
         return view('index');
     })->name('indexWeb');
 
-    Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'index2'])->name('formthumua');
+    Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'index2'])->name('gui-form-thumua-Guest');
     
     Route::middleware(['roleGuest'])->group(function () {
 
