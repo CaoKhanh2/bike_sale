@@ -1,4 +1,6 @@
-<div class="container bg-light">
+<div class="container shadow">
+  
+
     <form method="POST" action="{{ route('thuchien-dangkythumua-Guest')}}" id="formthumua" enctype="multipart/form-data">
         @csrf
         <div class="row p-4 justify-content-around">

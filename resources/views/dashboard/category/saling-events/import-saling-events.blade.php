@@ -64,6 +64,5 @@
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3" formaction="{{route('themskkhuyenmai')}}">Thêm</button>
-        <button type="submit" class="btn btn-danger me-md-2 mx-3 my-3" name="huythem" formaction="#">Không duyệt</button>
     </div>
 </form>

@@ -21,8 +21,8 @@
                 @include('guest-acc.purchasing.posting-item')
             </div>
         </div>
-
-        @include('modal-webs.inform-posting-item')
+        @include('modal-webs.inform-sending-item-success')
+        {{-- @include('modal-webs.inform-posting-item') --}}
 
     </div>
     {{-- End Content --}}

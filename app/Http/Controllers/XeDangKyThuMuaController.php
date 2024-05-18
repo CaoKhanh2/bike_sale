@@ -75,7 +75,7 @@ class XeDangKyThuMuaController extends Controller
             'mota' => $mota,
         ]);
 
-        return redirect('/purchasing-form')->with('success', 'Thông tin đã được gửi đi');
+        return redirect()->route('formthumua')->with('success-guiformthanhcong-guest', 'Thông tin đã được gửi đi');
     }
 
     public function show($id)
@@ -131,7 +131,10 @@ class XeDangKyThuMuaController extends Controller
 
         return redirect()->route('xedkthumua');
     }
-
+    public function dondep()
+    {
+        
+    }
     /**
      * Remove the specified resource from storage.
      *
