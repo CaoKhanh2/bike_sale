@@ -11,27 +11,27 @@
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub-page.sale-page.image_product')
+            @include('sub-page.sale-page.image-product')
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub-page.sale-page.info_product')
+            @include('sub-page.sale-page.info-product')
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub-page.sale-page.product_description')
+            @include('sub-page.sale-page.product-description')
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub-page.sale-page.social_share')
+            @include('sub-page.sale-page.social-share')
         </div>
 
         <div class="row justify-content-md-center mt-4 mb-4">
-            @include('sub-page.sale-page.report_group')
+            @include('sub-page.sale-page.report-group')
         </div>
 
         <div class="row justify-content-md-center mt-5 mb-5">
-            @include('sub-page.sale-page.related_product')
+            @include('sub-page.sale-page.related-product')
         </div>
     </div>
     <script src="{{ asset('home_src\js\show-product.js') }}"></script>

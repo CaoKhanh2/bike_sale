@@ -51,6 +51,7 @@ class NguoiDungController extends Controller
     {
         $mand = $this->generateUniqueNumericId(7);
         $magh = $this->generateUniqueNumericId(7);
+        $trangthai = 'Đang chờ xử lý';
 
         DB::table('nguoidung')->insert([
             'mand' => $mand,
@@ -65,9 +66,11 @@ class NguoiDungController extends Controller
         ]);
 
         DB::table('giohang')->insert([
-            'magh' => 'GH-'.$magh,
+            'magh' => 'GH-' . $magh,
             'mand' => $mand,
             'ngaytao' => Carbon::now(),
+            'tonggiatien' => 0,
+            'ghichu' => $trangthai,
         ]);
 
         return redirect()->route('thongtinkhachang')->with('success-dash-customer', 'Post created successfully!');
@@ -76,6 +79,8 @@ class NguoiDungController extends Controller
     public function store2(Request $request)
     {
         $email = $request->email;
+        $trangthai = 'Đang chờ xử lý';
+
         // Kiểm tra xem địa chỉ email đã tồn tại trong cơ sở dữ liệu hay không
         $user = DB::table('nguoidung')->where('email', $email)->first();
 
@@ -96,9 +101,11 @@ class NguoiDungController extends Controller
             ]);
 
             DB::table('giohang')->insert([
-                'magh' => 'GH-'.$magh,
+                'magh' => 'GH-' . $magh,
                 'mand' => $mand,
                 'ngaytao' => Carbon::now(),
+                'tonggiatien' => 0,
+                'ghichu' => $trangthai,
             ]);
 
             $acc = DB::table('nguoidung')->where('mand', $mand)->first();
@@ -174,8 +181,8 @@ class NguoiDungController extends Controller
         // $tokenData = DatLaiMatKhauNguoiDung::checkToken($token);
         // $customer = $tokenData->customer;
 
-        $tokenData = DatLaiMatKhauNguoiDung::where('token',$token)->firstOrFail();
-        $customer = NguoiDung::where('email',$tokenData->email)->firstOrFail();
+        $tokenData = DatLaiMatKhauNguoiDung::where('token', $token)->firstOrFail();
+        $customer = NguoiDung::where('email', $tokenData->email)->firstOrFail();
 
         $data = [
             'password' => bcrypt(request('password')),
@@ -309,5 +316,4 @@ class NguoiDungController extends Controller
     //     $email = "khanh85969@st.vimaru.edu.vn";
     //     Mail::to($email)->send(new XacNhanMail());
     // }
-
 }

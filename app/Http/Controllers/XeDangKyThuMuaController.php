@@ -30,10 +30,7 @@ class XeDangKyThuMuaController extends Controller
 
     public function index2()
     {   
-        //dd(Auth::guard('guest')->check());
-        //if (Auth::guard('guest')->check() == false) {
-            return view('guest-acc.purchasing.purchasing-form')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
-        //}
+        return view('guest-acc.purchasing.purchasing-form')->with('cross', 'Bạn cần đăng nhập để sử dụng chức năng này !');
     }
 
  
@@ -75,7 +72,7 @@ class XeDangKyThuMuaController extends Controller
             'mota' => $mota,
         ]);
 
-        return redirect('/purchasing-form')->with('success', 'Thông tin đã được gửi đi');
+        return redirect()->route('gui-form-thumua-Guest')->with('success-form-posting-Guest', 'Thông tin đã được gửi đi !');
     }
 
     public function show($id)

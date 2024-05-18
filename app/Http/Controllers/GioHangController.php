@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ChiTietGioHang;
 use App\Models\GioHang;
+use App\Models\NguoiDung;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -14,13 +16,30 @@ class GioHangController extends Controller
     public function show_cart()
     {
         $mand = Auth::guard('guest')->user()->mand;
+        
+        $trangthai = "Đang chờ xử lý";
+
+        $magh = $this->generateUniqueNumericId(7);
+
+        $cre_cart = DB::table('giohang')->where('ghichu',$trangthai)->where('mand', $mand)->exists();
+
+        if($cre_cart == false){
+            DB::table('giohang')->insert([
+                'magh' => 'GH-'.$magh,
+                'mand' => $mand,
+                'ngaytao' => Carbon::now(),
+                'tonggiatien' => 0,
+                'ghichu' => $trangthai,
+            ]);
+        }
+
         $gh = DB::select(
             'SELECT ctgiohang.*, giohang.*, xedangban.*, thongtinxe.* FROM ctgiohang
                         INNER JOIN giohang ON giohang.magh = ctgiohang.magh
                         INNER JOIN xedangban ON xedangban.maxedangban = ctgiohang.maxedangban
                         INNER JOIN thongtinxe ON thongtinxe.maxe = xedangban.maxe
-                        WHERE giohang.mand = ?',
-            [$mand],
+                        WHERE giohang.mand = ? AND giohang.ghichu = ?',
+            [$mand, $trangthai]
         );
 
         $tongtien = ChiTietGioHang::selectRaw('SUM(dongia) as tonggiatien, magh')->groupBy('magh')->orderBy('magh')->get();
@@ -87,5 +106,25 @@ class GioHangController extends Controller
 
         return redirect()->route('hienthi-giohang-Guest')->with('success-xoa-sp-giohang-Guest', 'Sản phẩm đã được xóa khỏi giỏ hàng !');
 
+    }
+
+    private function generateUniqueNumericId($length)
+    {
+        $id = $this->generateRandomNumber($length);
+
+        // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
+        while (NguoiDung::where('mand', $id)->exists()) {
+            // Nếu ID đã tồn tại, tạo lại một ID mới
+            $id = $this->generateRandomNumber($length);
+        }
+
+        return $id;
+    }
+
+    private function generateRandomNumber($length)
+    {
+        $min = pow(10, $length - 1);
+        $max = pow(10, $length) - 1;
+        return str_pad(rand($min, $max), $length, '0', STR_PAD_LEFT);
     }
 }

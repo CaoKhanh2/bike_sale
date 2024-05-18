@@ -1,6 +1,6 @@
 @extends('layout.content')
 @section('title', 'Đăng ký bán xe')
-@section('pg-hd-2', 'Đăng ký bán xe') @section('act2','text-dark')
+@section('pg-hd-2', 'Đăng ký bán xe') @section('act2', 'text-dark')
 
 <link rel="stylesheet" href="{{ asset('dashboard_src\src\plugins\dropzone\src\dropzone.css') }}" type="text/css" />
 
@@ -72,14 +72,34 @@
                 //         // Hide the success button or the complete form.
                 //     }
                 // });
+                // this.on("successmultiple", function(files, response) {
+                //     // myDropzone.removeAllFiles();
+                //     // document.getElementById("formthumua").reset();
+                //     window.location.href = '{{ route('gui-form-thumua-Guest') }}';
+                // });
                 this.on("successmultiple", function(files, response) {
-                    myDropzone.removeAllFiles();
-                    document.getElementById("formthumua").reset();
-                    window.location.href = '/purchasing-form';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Thành công!',
+                        text: "Thông tin đã được gửi đi.",
+                        showConfirmButton: false,
+                        timer: 1500 // Thời gian hiển thị thông báo (ms)
+                    }).then((result) => {
+                        // Sau khi thông báo đã biến mất, chuyển hướng người dùng
+                        window.location.href = '{{ route('gui-form-thumua-Guest') }}';
+                    });
                 });
                 this.on("errormultiple", function(files, response) {
-                    console.log("Files are not being sent");
-
+                    Swal.fire({
+                        icon: "error",
+                        title: "Lỗi!",
+                        text: "Thông tin của bạn chưa được gửi đi.",
+                        showConfirmButton: false,
+                        timer: 1500 // Thời gian hiển thị thông báo (ms)
+                    }).then((result) => {
+                        // Sau khi thông báo đã biến mất, chuyển hướng người dùng
+                        window.location.href = '{{ route('gui-form-thumua-Guest') }}';
+                    });
                 });
 
             }
