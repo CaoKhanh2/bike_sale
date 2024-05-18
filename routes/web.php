@@ -4,6 +4,7 @@ use App\Http\Controllers\BaoCaoThongKeController;
 use App\Http\Controllers\ChucVuContrller;
 use App\Http\Controllers\CleanImagesController;
 use App\Http\Controllers\DataContrller;
+use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\XeDangBan;
 use App\Http\Controllers\DongXeController;
 use App\Http\Controllers\DoThiController;
@@ -323,20 +324,23 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
 
     // Quan ly giao dich ----------
 
-        Route::get('/dashboard/transaction/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
-        Route::get('/dashboard/tranction/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
+        Route::get('/dashboard/transaction/purchasing/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
+        Route::get('/dashboard/transaction/purchasing/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
 
         //Quan ly thu mua
-        Route::get('/dashboard/transaction/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua'); //Hiện bảng ds xe thu mua
-        Route::get('/dashboard/tranction/{id}', [XeDangKyThuMuaController::class, 'huydon'])->name('huydonthumua'); // Hủy đơn thu mua
-        Route::get('/dashboard/tranction/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'duyetdon'])->name('duyetdonthumua'); // Duyệt đơn thu mua
+        Route::get('/dashboard/transaction/purchasing/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua'); //Hiện bảng ds xe thu mua
+        Route::get('/dashboard/transaction/purchasing/{id}', [XeDangKyThuMuaController::class, 'huydon'])->name('huydonthumua'); // Hủy đơn thu mua
+        Route::get('/dashboard/transaction/purchasing/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'duyetdon'])->name('duyetdonthumua'); // Duyệt đơn thu mua
         Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/{id}', [XeDangKyThuMuaController::class, 'show'])->name('ctthongtinmua'); // Xem chi tiết đơn thu mua
         ////end////
 
         //Quan ly ban hang
-        Route::get('/dashboard/transaction/selling', function () {
-            return view('dashboard.transaction.selling.sell-manage');
-        });
+        // Route::get('/dashboard/transaction/selling', function () {
+        //     return view('dashboard.transaction.selling.sell-manage');
+        // });
+
+        Route::get('/dashboard/transaction/selling/sell-manage', [DonHangController::class, 'index'])->name('danhsach-donhang'); //Hiện bảng ds đơn hàng
+
 
     /**
      *

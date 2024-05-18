@@ -175,7 +175,7 @@
                             <ul class="submenu child">
                                 <li><a href="{{ url('/dashboard/transaction/purchasing-manage') }}">Thu mua xe</a>
                                 </li>
-                                <li><a href="{{ url('/dashboard/transaction/selling') }}">Đăng bán xe</a></li>
+                                <li><a href="{{ route('danhsach-donhang') }}">Đăng bán xe</a></li>
                             </ul>
                         </li>
                         <li><a href="form-pickers.html">Quản lý thanh toán</a></li>
