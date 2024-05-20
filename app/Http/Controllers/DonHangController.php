@@ -9,15 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class DonHangController extends Controller
 {
-    public function index()
+    public function index_checkout()
     {
-        $donhang = DB::table('donhang')
-        ->select('giohang.*', 'ctgiohang.*', 'donhang.*', 'nguoidung.*')
-        ->join('giohang','giohang.magh', 'donhang.magh')
-        ->join('ctgiohang', 'ctgiohang.magh', 'giohang.magh')
-        ->join('xedangban', 'xedangban.maxedangban', 'donhang.maxedangban')
-        ->join('nguoidung', 'nguoidung.mand', 'giohang.mand')
-        ->get();
-        return view('dashboard.transaction.selling.sell-manage', compact('donhang'));
+        $mand = Auth::guard('guest')->user()->mand;
+        
+        $trangthai = "Đang chờ xử lý";
+
+        $giohang_items =DB::select(
+            'SELECT ctgiohang.*, giohang.*, xedangban.*, thongtinxe.* FROM ctgiohang
+                        INNER JOIN giohang ON giohang.magh = ctgiohang.magh
+                        INNER JOIN xedangban ON xedangban.maxedangban = ctgiohang.maxedangban
+                        INNER JOIN thongtinxe ON thongtinxe.maxe = xedangban.maxe
+                        WHERE giohang.mand = ? AND giohang.ghichu = ?',
+            [$mand, $trangthai]
+        );
+        return view('guest-acc.orders.checkout', compact('giohang_items'));
     }
 }

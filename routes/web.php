@@ -126,6 +126,15 @@ Route::middleware(['roleGuest'])->group(function () {
     Route::post('/cart-index', [GioHangController::class, 'destroy_cart'])->name('xoa-giohang-Guest');
 
     // ----------
+
+    // Đơn hàng ----------
+    Route::get('/checkout', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
+
+    // Route::get('/cart-index/add/{maxedangban}', [GioHangController::class, 'add_cart'])->name('them-giohang-Guest');
+
+    // Route::post('/cart-index', [GioHangController::class, 'destroy_cart'])->name('xoa-giohang-Guest');
+
+    // ----------
 });
 
 // Tìm kiếm ----------
