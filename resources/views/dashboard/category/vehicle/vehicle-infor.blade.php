@@ -191,10 +191,10 @@
                                                         <select class="custom-select col-12" name="dx"
                                                             id="dongxedapdien">
                                                             <option selected hidden>Choose...</option>
-                                                            {{-- @foreach ($dongxedapdien as $i)
+                                                            @foreach ($dongxedapdien as $i)
                                                                 <option value="{{ $i->madx }}">{{ $i->tendongxe }}
                                                                 </option>
-                                                            @endforeach --}}
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>

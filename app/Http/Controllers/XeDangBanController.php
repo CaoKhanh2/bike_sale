@@ -69,7 +69,7 @@ class XeDangBanController extends Controller
         INNER JOIN thongsokythuatxemay ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay 
         INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx 
         INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
-
+        
         $db_xedapdien = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang FROM xedangban INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe INNER JOIN thongsokythuatxedapdien ON thongtinxe.matsxedapdien = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
 
         $hangxemay = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe máy"');

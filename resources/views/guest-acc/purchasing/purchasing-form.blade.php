@@ -21,8 +21,7 @@
                 @include('guest-acc.purchasing.posting-item')
             </div>
         </div>
-        @include('modal-webs.inform-sending-item-success')
-        {{-- @include('modal-webs.inform-posting-item') --}}
+        @include('modal-webs.inform-posting-item')
 
     </div>
     {{-- End Content --}}
@@ -65,13 +64,6 @@
                         }
                     });
                 });
-                // this.on("sendingmultiple", function(file, xhr, formData) {
-                //     for (var i = 0; i <= file.length; i++) {
-                //         formData.append("image[]", file[i])
-                //         // Gets triggered when the form is actually being sent.
-                //         // Hide the success button or the complete form.
-                //     }
-                // });
                 // this.on("successmultiple", function(files, response) {
                 //     // myDropzone.removeAllFiles();
                 //     // document.getElementById("formthumua").reset();

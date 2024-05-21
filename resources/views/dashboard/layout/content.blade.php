@@ -25,7 +25,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/vendors/styles/style.css') }}" />
     <link rel="stylesheet" type="text/css"
         href="{{ asset('dashboard_src/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/select2/dist/css/select2.css')}}"
+   
 
     <link rel="stylesheet" type="text/css"
         href="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.css') }}" />
@@ -110,7 +111,8 @@
     <!-- switchery js -->
     <script src="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/advanced-components.js') }}"></script>
-
+    
+    <script src="{{ asset('dashboard_src/src/plugins/select2/dist/js/select2.js') }}"></script>
     <!-- buttons for Export datatable -->
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/buttons.bootstrap4.min.js') }}"></script>
