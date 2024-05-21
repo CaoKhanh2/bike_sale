@@ -45,7 +45,7 @@
                     </h6>
                     <div class="row">
                         <div class="col-6 d-flex justify-content-start">
-                            <a href="" class="btn btn-outline-success"><Strong>Thanh toán</Strong></a>
+                            <a href="{{ route('xacnhan-giohang-Guest') }}" class="btn btn-outline-success"><Strong>Xác nhận</Strong></a>
                         </div>
                         <div class="col-6 d-flex justify-content-end">
                             <a href="{{ route('indexWeb') }}" class="btn btn-outline-primary"><strong>Tiếp tục mua hàng</strong></a>
