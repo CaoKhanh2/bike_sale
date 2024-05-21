@@ -129,6 +129,7 @@ Route::middleware(['roleGuest'])->group(function () {
 
     // Đơn hàng ----------
     Route::get('/checkout', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
+    Route::get('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
 
     // Route::get('/cart-index/add/{maxedangban}', [GioHangController::class, 'add_cart'])->name('them-giohang-Guest');
 

@@ -50,3 +50,30 @@
         }
     </style>
 @endif
+
+
+@if (Session::has('success-dathang-Guest'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                icon: 'info',
+                title: "{{ Session::get('success-dathang-Guest') }}",
+                position: 'top-50 end-50',
+                showConfirmButton: false,
+                timer: 2300,
+                timerProgressBar: true,
+                toast: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+            });
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
+@endif

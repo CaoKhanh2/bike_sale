@@ -4,10 +4,16 @@
     Checkout
 @endsection
 
+@php
+    $url = url()->current();
+    $arr = explode('/', $url);
+    $res = end($arr);
+@endphp
+
 @section('guest-content')
     <div class="container mt-3">
-        <form action="{{ url('place-order') }}" method="POST">
-            {{ csrf_field() }}
+        <form action="{{ route('dathang-Guest') }}" method="GET">
+            @csrf
             <div class="row">
                 <div class="col-md-7">
                     <div class="card">
@@ -33,7 +39,7 @@
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="">Địa chỉ</label>
-                                    <input type="text" class="form-control" value="{{ Auth::guard('guest')->user()->diachi }}" name="diachi" placeholder="Nhập địa chỉ">
+                                    <input type="text" class="form-control" value="{{ Auth::guard('guest')->user()->diachi }}" name="diachi"  placeholder="Nhập địa chỉ">
                                 </div>
                                
                             </div>
@@ -62,11 +68,12 @@
                                 </tbody>
                             </table>
                             <hr>
+                            <input type="text" value="{{ $res }}" name="magh" hidden>
                             <button type="submit" class="btn btn-primary w-100">Đặt hàng</button>
                         </div>
                     </div>
                 </div>
             </div>
-        {{-- </form> --}}
+        </form>
     </div>
 @endsection
