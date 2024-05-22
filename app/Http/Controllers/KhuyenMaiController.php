@@ -64,7 +64,7 @@ class KhuyenMaiController extends Controller
             ]);
             DB::table('xedangban')
                 ->whereIn('maxedangban', $maxedangban)
-                ->whereNull('makhuyemai')
+                ->whereNull('makhuyenmai')
                 ->update([
                     'makhuyenmai' => $request->makhuyemai,
                 ]);

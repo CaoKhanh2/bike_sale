@@ -25,7 +25,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/vendors/styles/style.css') }}" />
     <link rel="stylesheet" type="text/css"
         href="{{ asset('dashboard_src/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/select2/dist/css/select2.css')}}"
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/select2/dist/css/select2.css') }}">
    
 
     <link rel="stylesheet" type="text/css"

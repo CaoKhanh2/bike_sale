@@ -18,9 +18,19 @@
                 <div class="row">
                     <div class="col-7">
                         <div class="price-detail text-start">
+                        @if  (is_null($i->makhuyenmai))
                             <span>
-                                <p class="fs-3">{{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                <p class="fs-1">{{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
                             </span>
+                        @else
+                            <span>
+                                <p class="fs-3">
+                                <s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s>
+                                </p>
+                                <p class="d-inline text-danger fs-3">
+                                    {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                            </span>
+                        @endif
                         </div>
                     </div>
                     <div class="col-5">

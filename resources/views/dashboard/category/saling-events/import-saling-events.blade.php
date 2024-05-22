@@ -1,9 +1,5 @@
-<style>
-    .select2-selection__placeholder {
-        color: #FF0000;
-    }
-</style>
-<form action="" method="POST" id="formkhuyenmai">
+
+<form action="{{ route('themskkhuyenmai') }}" method="POST" id="formkhuyenmai"  style="display: block">
     @csrf
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Mã khuyến mãi</label>
@@ -22,7 +18,7 @@
             <div class="form-group row">
                 <label class="col-sm-12 col-md-4 col-form-label">Ngày bắt đầu</label>
                 <div class="col-sm-12 col-md-8">
-                    <input type="date" class="form-control" name="ngaybatdau" required/>
+                    <input type="date" class="form-control" name="ngaybatdau" />
                 </div>
             </div>
         </div>
@@ -30,7 +26,7 @@
             <div class="form-group row">
                 <label class="col-sm-12 col-md-3 col-form-label">Ngày kết thúc</label>
                 <div class="col-sm-12 col-md-9">
-                    <input type="date" class="form-control" name="ngayketthuc" required/>
+                    <input type="date" class="form-control" name="ngayketthuc" />
                 </div>
             </div>
         </div>
@@ -99,8 +95,7 @@
     </div>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button type="submit" id="submit" class="btn btn-primary me-md-2 mx-3 my-3"
-            formaction="{{ route('themskkhuyenmai') }}">Thêm</button>
+        <button type="submit" id="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
     </div>
 </form>
 <script>
