@@ -372,6 +372,11 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             // });
 
             Route::get('/dashboard/transaction/selling/sell-manage', [DonHangController::class, 'index'])->name('danhsach-donhang'); //Hiện bảng ds đơn hàng
+            Route::get('/dashboard/transaction/selling/sell-manage/view-order/{id}', [DonHangController::class, 'view'])->name('xem-ctdonhang'); // Xem chi tiết từng đơn hàng
+            Route::put('/dashboard/transaction/selling/sell-manage/update-order/{id}', [DonHangController::class, 'updateorder'])->name('capnhat-donhang'); // Cập nhật trạng thái đơn hàng
+            Route::get('/dashboard/transaction/selling/sell-manage/order-history',[DonHangController::class, 'orderhistory'])->name('lichsu-donhang'); // Xem lịch sử đơn hàng   
+
+
 
             // ---------- **** ----------
         
