@@ -24,23 +24,23 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-blue" data-toggle="tab" href="#dangxuly" role="tab"
-                                    aria-selected="false">Đang xử lý</a>
+                                    aria-selected="false">Đang liên hệ</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-blue" data-toggle="tab" href="#datuchoi" role="tab"
-                                    aria-selected="false">Đã mua</a>
+                                    aria-selected="false">Đã từ chối</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             {{-- danh sách chờ  --}}
                             <div class="tab-pane fade show active" id="choxacnhan" role="tabpanel">
                                 <div class="pd-20">
-                                    <table class="table hover align-middle">
-                                        <thead class="text-center">
+                                    <table class="table hover multiple-select-row">
+                                        <thead>
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
                                                 <th>Tên người bán</th>
-                                                <th>Ngày bán</th>
+                                                <th>Ngày đăng bán</th>
                                                 <th>Mô tả</th>
                                                 <th>Giá bán</th>
                                                 <th>Chi tiết</th>
@@ -60,7 +60,7 @@
                                                     </td>
                                                     <td>{{ $i->mota }}</td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
-                                                    <td class="d-flex justify-content-center">
+                                                    <td>
                                                         <a href="{{ route('ctthongtinmua',['id' => $i->madkthumua]) }}">
                                                             <img src={{ asset('Image\Icon\eye.png') }} width="30px"
                                                                 height="30px">
@@ -73,7 +73,7 @@
                                                         </a>
                                                         <a type="button" class="btn btn-danger col mt-2"
                                                             href="{{ route('huydonthumua', ['id' => $i->madkthumua]) }}">
-                                                            <i class="bi bi-pencil-fill"></i> Không duyệt
+                                                            <i class="bi bi-trash"></i> Không duyệt
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -87,7 +87,7 @@
                             {{-- danh sach dang xu ly --}}
                             <div class="tab-pane fade" id="dangxuly" role="tabpanel">
                                 <div class="pd-20">
-                                    <table class="table hover align-middle">
+                                    <table class="table hover multiple-select-row">
                                         <thead class="text-center">
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
@@ -103,8 +103,8 @@
                                             @foreach ($xedangkythumua_check as $i)
                                                 <tr>
                                                     <td class="table-plus">{{ $i->madkthumua }}</td>
-                                                    <td>{{ $i->hovaten }}</td>
-                                                    <td>{{ Auth::user()->manv }}</td>
+                                                    <td>{{ $i->tennd }}</td>
+                                                    <td>{{ $i->tennv}}</td>
                                                     <td>
                                                         @php
                                                             $formattedDate = date('d/m/Y', strtotime($i->ngaydk));
@@ -116,8 +116,8 @@
                                                     <td class="text-center">
                                                         @php
                                                             echo '<img src="' .
-                                                                asset('Image/Icon/check.png') .
-                                                                '" alt="" srcset="" width="25" height=215">';
+                                                                asset('Image/Icon/waiting.png') .
+                                                                '" alt="" srcset="" width="20" height=150">';
                                                         @endphp
                                                     </td>
                                                 </tr>
@@ -131,7 +131,7 @@
                             {{-- danh sach da tu choi --}}
                             <div class="tab-pane fade" id="datuchoi" role="tabpanel">
                                 <div class="pd-20">
-                                    <table class="table hover align-middle">
+                                    <table class="table hover multiple-select-row">
                                         <thead>
                                             <tr>
                                                 <th class="table-plus datatable-nosort">Mã đăng ký</th>
@@ -147,8 +147,8 @@
                                             @foreach ($xedangkythumua_uncheck as $i)
                                                 <tr>
                                                     <td class="table-plus">{{ $i->madkthumua }}</td>
-                                                    <td>{{ $i->hovaten }}</td>
-                                                    <td>{{ Auth::user()->manv }}</td>
+                                                    <td>{{ $i->tennd }}</td>
+                                                    <td>{{ $i->tennv}}</td>
                                                     <td>
                                                         {{ date('d/m/Y', strtotime($i->ngaydk)) }}
                                                     </td>

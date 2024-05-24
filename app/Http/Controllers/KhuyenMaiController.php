@@ -69,7 +69,7 @@ class KhuyenMaiController extends Controller
                     'makhuyenmai' => $request->makhuyemai,
                 ]);
 
-            return redirect('dashboard/category/saling-events/saling-manage')->with('success', 'Post created successfully!');
+            return redirect()->back()->with('success', 'Post created successfully!');
         }
         else return redirect('dashboard/category/saling-events/saling-manage')->with('error','Chưa chọn điều kiện áp dụng');
     }

@@ -79,7 +79,7 @@ class XeDangBanController extends Controller
                 'dongxe.loaixe',
                 'hangxe.tenhang',
                 'tilegiamgia',
-                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL THEN xedangban.giaban
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                                             ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                                         END AS giaban'),
             )
@@ -113,7 +113,7 @@ class XeDangBanController extends Controller
         // WHERE thongtinxe.maxe = ?',
         //     [$id],
         // );
-
+    
         $ct_thongtin_xe  = DB::table('xedangban')
             ->select(
                 'xedangban.*',
@@ -124,7 +124,7 @@ class XeDangBanController extends Controller
                 'dongxe.loaixe',
                 'hangxe.tenhang',
                 'tilegiamgia',
-                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL THEN xedangban.giaban
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                     ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                 END AS giaban'),
             )
