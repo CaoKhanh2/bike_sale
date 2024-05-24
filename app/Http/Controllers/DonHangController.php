@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NguoiDung;
+use App\Models\DonHang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,106 @@ use Carbon\Carbon;
 
 class DonHangController extends Controller
 {
+    //Dashboard
+
+    public function index()
+    {
+        
+        $trangthai = "Đang chờ xử lý";
+        // $mand = Auth::guard('guest')->user()->mand;
+        // $gh = DB::table('giohang')->where('mand', $mand)->first();
+
+        // $donhang =DB::select(
+        //     'SELECT
+        //             -- ctgiohang.*
+        //             giohang.*
+        //             , donhang.ngaytaodon
+        //             , donhang.trangthai
+        //             ,donhang.madh
+        //             ,donhang.magh
+        //                 FROM giohang
+        //                 -- INNER JOIN ctgiohang ON ctgiohang.magh = donhang.magh
+        //                 INNER JOIN donhang ON giohang.magh = donhang.magh
+        //                 WHERE giohang.ghichu = ?',
+        //     [$trangthai]
+        // );
+
+        $donhang = DB::table('donhang')
+                ->where('donhang.trangthai', $trangthai)
+                ->get();
+
+        // dd($donhang);
+        return view('dashboard.transaction.selling.index', compact('donhang'));
+    }
+
+    public function view($id)
+    {
+
+        $trangthai = "0";
+
+        // $donhang_items =DB::select(
+        //     'SELECT 
+        //             -- ctgiohang.*
+        //             giohang.*
+        //             , donhang.ngaytaodon
+        //             , donhang.trangthai
+        //             ,donhang.madh
+        //             ,donhang.tongtien
+        //                 FROM donhang
+        //                 -- INNER JOIN ctgiohang ON ctgiohang.magh = donhang.magh
+        //                 INNER JOIN giohang ON giohang.magh = donhang.magh
+        //                 WHERE donhang.trangthai = ?',
+        //     [$trangthai]
+        // );
+
+        $donhang_items = DB::table('donhang')
+                            ->select('thongtinxe.*', 'xedangban.giaban', 'donhang.*')
+                            ->join('giohang', 'giohang.magh', 'donhang.magh')
+                            ->join('ctgiohang', 'giohang.magh', 'ctgiohang.magh')
+                            ->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')
+                            ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+                            ->where('donhang.madh',$id)
+                            ->get();
+
+        $tt_nguoidung = DB::table('nguoidung')
+            ->select('nguoidung.*')
+            ->join('giohang', 'giohang.mand', 'nguoidung.mand')
+            ->join('donhang', 'donhang.magh', 'giohang.magh')
+            ->where('donhang.madh', $id)
+            ->first();  
+
+        // dd($tt_nguoidung);
+
+        // dd($donhang_items);
+        return view('dashboard.transaction.selling.view',compact('donhang_items','tt_nguoidung'));
+        
+    }
+
+    public function updateorder(Request $request, $id)
+    {
+        $trangthai = $request->input('order_status');
+        $dhang = DB::table('donhang')
+            ->where('donhang.madh',$id)
+            ->update(['trangthai' => $trangthai]);
+        // dd($dhang);     
+           
+        return redirect()->route('danhsach-donhang')->with('success-capnhat-donhang', 'Sản phẩm đã được thêm vào giỏ hàng.');
+    }
+
+    public function orderhistory()
+    {
+        $donhang = DB::table('donhang')
+                ->where('donhang.trangthai','Đã hoàn thành') 
+                ->orWhere('donhang.trangthai','Đã hủy')
+                ->get() ;
+        
+        // dd($donhang);
+        return view('dashboard.transaction.selling.history',compact('donhang'));
+
+    }
+
+    //Khách hàng
+
     public function index_checkout()
     {
         $mand = Auth::guard('guest')->user()->mand;
@@ -25,6 +126,7 @@ class DonHangController extends Controller
                         WHERE giohang.mand = ? AND giohang.ghichu = ?',
             [$mand, $trangthai]
         );
+
         return view('guest-acc.orders.checkout', compact('giohang_items'));
     }
 
@@ -76,4 +178,5 @@ class DonHangController extends Controller
         
         return redirect('/')->with('success-dathang-Guest', 'Đặt hàng thành công');
     }
+   
 }

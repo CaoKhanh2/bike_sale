@@ -45,11 +45,11 @@
                                                 <th>Mã khuyến mãi</th>
                                                 <th>Ngày tạo đơn</th>
                                                 <th>Tổng tiền</th>
-                                                {{-- <th>Hành động</th> --}}
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($donhang as $i)
+                                            {{-- @foreach ($donhang as $i)
                                             <tr>
                                                 <td class="table-plus">{{ $i->madkthumua }}</td>
                                                 <td>{{ $i->hovaten }}</td>
@@ -78,7 +78,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -138,3 +138,35 @@
         </div>
     </div>
 @endsection
+
+{{-- 
+@foreach ($donhang as $i)
+<tr>
+    <td class="table-plus">{{ $i->madkthumua }}</td>
+    <td>{{ $i->hovaten }}</td>
+    <td>
+        @php
+            $formattedDate = date('d/m/Y', strtotime($i->ngaydk));
+            echo $formattedDate;
+        @endphp
+    </td>
+    <td>{{ $i->mota }}</td>
+    <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
+    <td class="d-flex justify-content-center">
+        <a href="{{ route('ctthongtinmua',['id' => $i->madkthumua]) }}">
+            <img src={{ asset('Image\Icon\eye.png') }} width="30px"
+                height="30px">
+        </a>
+    </td>
+    <td>
+        <a type="button" class="btn btn-outline-primary col"
+            href="{{ route('duyetdonthumua', ['id' => $i->madkthumua]) }}">
+            <i class="bi bi-pencil-fill"></i> Duyệt
+        </a>
+        <a type="button" class="btn btn-danger col mt-2"
+            href="{{ route('huydonthumua', ['id' => $i->madkthumua]) }}">
+            <i class="bi bi-pencil-fill"></i> Không duyệt
+        </a>
+    </td>
+</tr>
+@endforeach --}}
