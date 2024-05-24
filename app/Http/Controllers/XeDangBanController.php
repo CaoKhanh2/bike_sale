@@ -30,8 +30,7 @@ class XeDangBanController extends Controller
 
         $hxdd = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
 
-
-        return view('/sub-index',['db_xemay'=>$xedangban_xemay, 'db_xedapdien'=>$xedangban_xedapdien, 'hangxemay'=>$hxm, 'hangxedapdien'=>$hxdd]);
+        return view('/sub-index', ['db_xemay' => $xedangban_xemay, 'db_xedapdien' => $xedangban_xedapdien, 'hangxemay' => $hxm, 'hangxedapdien' => $hxdd]);
     }
 
     /**
@@ -63,12 +62,34 @@ class XeDangBanController extends Controller
      */
     public function showData()
     {
-        $db_xemay = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang 
-        FROM xedangban 
-        INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe 
-        INNER JOIN thongsokythuatxemay ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay 
-        INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx 
-        INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+        // $db_xemay = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang
+        // FROM xedangban
+        // INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe
+        // INNER JOIN thongsokythuatxemay ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay
+        // INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx
+        // INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+
+        $db_xemay = DB::table('xedangban')
+            ->select(
+                'xedangban.*',
+                'xedangban.giaban as giagoc',
+                'thongtinxe.*',
+                'thongsokythuatxemay.*',
+                'dongxe.tendongxe',
+                'dongxe.loaixe',
+                'hangxe.tenhang',
+                'tilegiamgia',
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL THEN xedangban.giaban
+                                            ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                                        END AS giaban'),
+            )
+            ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+            ->join('thongsokythuatxemay', 'thongtinxe.matsxemay', 'thongsokythuatxemay.matsxemay')
+            ->join('dongxe', 'thongtinxe.madx', 'dongxe.madx')
+            ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
+            ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->get();
+        //dd($db_xemay);
 
         $db_xedapdien = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang FROM xedangban INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe INNER JOIN thongsokythuatxedapdien ON thongtinxe.matsxedapdien = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
 
@@ -76,23 +97,46 @@ class XeDangBanController extends Controller
 
         $hangxedapdien = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
 
-
         //return view('/sub-index',['db_xemay'=>$xedangban_xemay, 'db_xedapdien'=>$xedangban_xedapdien, 'hangxemay'=>$hxm, 'hangxedapdien'=>$hxdd]);
         return view('sub-index', compact('db_xemay', 'db_xedapdien', 'hangxemay', 'hangxedapdien'));
     }
 
     public function show_Detail_Data($id)
     {
-        $ct_thongtin_xe = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang 
-        FROM xedangban 
-        INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe 
-        INNER JOIN thongsokythuatxemay ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay 
-        INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx 
-        INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx 
-        WHERE thongtinxe.maxe = ?',[$id]);
+        // $ct_thongtin_xe = DB::select(
+        //     'SELECT xedangban.*, thongtinxe.*, thongsokythuatxemay.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang
+        // FROM xedangban
+        // INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe
+        // INNER JOIN thongsokythuatxemay ON thongtinxe.matsxemay = thongsokythuatxemay.matsxemay
+        // INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx
+        // INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx
+        // WHERE thongtinxe.maxe = ?',
+        //     [$id],
+        // );
 
+        $ct_thongtin_xe  = DB::table('xedangban')
+            ->select(
+                'xedangban.*',
+                'xedangban.giaban as giagoc',
+                'thongtinxe.*',
+                'thongsokythuatxemay.*',
+                'dongxe.tendongxe',
+                'dongxe.loaixe',
+                'hangxe.tenhang',
+                'tilegiamgia',
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL THEN xedangban.giaban
+                    ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                END AS giaban'),
+            )
+            ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+            ->join('thongsokythuatxemay', 'thongtinxe.matsxemay', 'thongsokythuatxemay.matsxemay')
+            ->join('dongxe', 'thongtinxe.madx', 'dongxe.madx')
+            ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
+            ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('thongtinxe.maxe',$id)
+            ->get();
 
-        return view('sale-page',compact('ct_thongtin_xe'));
+        return view('sale-page', compact('ct_thongtin_xe'));
     }
 
     /**
@@ -129,13 +173,14 @@ class XeDangBanController extends Controller
         //
     }
 
-    public function data(){
-        $xedangban = array(
+    public function data()
+    {
+        $xedangban = [
             //array('maxedangban' => 'XDB-00001','maxe' => 'XD-0001','makhuyenmai' => NULL,'manv' => 'MNV-0003','namsx' => '2015','ngayban' => '2024-04-30 17:42:08','giaban' => '3500000.00','mota' => '','tranghthai' => 'Còn xe'),
-            array('maxedangban' => 'XDB-00002','maxe' => 'XM-0001','makhuyenmai' => NULL,'manv' => 'MNV-0004','namsx' => '2023','ngayban' => '2024-04-30 17:28:56','giaban' => '25000000.00','mota' => '','trangthai' => 'Còn xe'),
-            array('maxedangban' => 'XDB-00003','maxe' => 'XM-0002','makhuyenmai' => NULL,'manv' => 'MNV-0008','namsx' => '2024','ngayban' => '2024-05-01 16:41:45','giaban' => '45560000.00','mota' => '','trangthai' => 'Còn xe'),
-            array('maxedangban' => 'XDB-00004','maxe' => 'XM-0004','makhuyenmai' => NULL,'manv' => 'MNV-0009','namsx' => '2022','ngayban' => '2024-05-01 16:53:45','giaban' => '40000000.00','mota' => '','trangthai' => 'Còn xe')
-        );
+            ['maxedangban' => 'XDB-00002', 'maxe' => 'XM-0001', 'makhuyenmai' => null, 'manv' => 'MNV-0004', 'namsx' => '2023', 'ngayban' => '2024-04-30 17:28:56', 'giaban' => '25000000.00', 'mota' => '', 'trangthai' => 'Còn xe'],
+            ['maxedangban' => 'XDB-00003', 'maxe' => 'XM-0002', 'makhuyenmai' => null, 'manv' => 'MNV-0008', 'namsx' => '2024', 'ngayban' => '2024-05-01 16:41:45', 'giaban' => '45560000.00', 'mota' => '', 'trangthai' => 'Còn xe'],
+            ['maxedangban' => 'XDB-00004', 'maxe' => 'XM-0004', 'makhuyenmai' => null, 'manv' => 'MNV-0009', 'namsx' => '2022', 'ngayban' => '2024-05-01 16:53:45', 'giaban' => '40000000.00', 'mota' => '', 'trangthai' => 'Còn xe'],
+        ];
         XeDangBan::insert($xedangban);
     }
 }

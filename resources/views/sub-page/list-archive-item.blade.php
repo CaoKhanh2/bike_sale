@@ -16,7 +16,7 @@
                                 <div class="col-12 col-sm-4 mb-3 mb-sm-0">
                                     @foreach (explode(',', $i->hinhanh) as $path)
                                         @if ($loop->first)
-                                            <img src="{{ asset('storage/' . $path) }}"
+                                            <img src="{{ asset('storage/public/' . $path) }}"
                                                 class="object-fit-contain border rounded img-fluid" alt="..."
                                                 style="height: 180px; width: 100%;">
                                         @endif
@@ -58,14 +58,28 @@
                                             </div>
                                         </div>
                                         <div class="row justify-content-center align-items-center g-2 mt-4">
-                                            <div class="col-12 col-md-4 mt-3">
-                                                <h4>
-                                                    <span>
-                                                        <p class="d-inline">
-                                                            {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
-                                                    </span>
-                                                </h4>
-                                            </div>
+                                            @if (is_null($i->makhuyenmai))
+                                                <div class="col-12 col-md-4 mt-3">
+                                                    <h4>
+                                                        <span>
+                                                            <p class="d-inline">
+                                                                {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                                        </span>
+                                                    </h4>
+                                                </div>
+                                            @else
+                                                <div class="col-12 col-md-4 mt-3">
+                                                    <h4>
+                                                        <span>
+                                                            <p class="h5">
+                                                                <span><s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s></span>
+                                                            </p>
+                                                            <p class="d-inline text-danger">
+                                                                {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                                        </span>
+                                                    </h4>
+                                                </div>
+                                            @endif
                                             {{-- Nút thực hiện chức năng --}}
                                             <div class="col-12 col-md-4 mt-3">
                                                 <div class="d-grid">

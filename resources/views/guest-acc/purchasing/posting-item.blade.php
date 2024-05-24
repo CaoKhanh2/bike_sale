@@ -1,10 +1,8 @@
 <div class="container shadow">
-  
-
-    <form method="POST" action="{{ route('thuchien-dangkythumua-Guest')}}" id="formthumua" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('thuchien-dangkythumua-Guest')}}" id="formthumua" enctype="multipart/form-data">
         @csrf
         <div class="row p-4 justify-content-around">
-            <div class="col-5 mt-3">
+            <div class="col-md-5 mt-3">
                 <label>
                     <h3>Hình ảnh của xe</h3>
                 </label>
@@ -26,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-7 mt-3">
+            <div class="col-md-7 mt-3">
                 <div class="row">
                     <div class="mb-3 form-group">
                         <input type="hidden" class="userid" name="userid" id="mand" value="">
@@ -60,11 +58,7 @@
                             class="form-control form-control-lg border border-3 border-primary" placeholder="Giá bán">
                     </div>
                     <div class="mb-2">
-                        <h3>Tiêu đề & Nội dung</h3>
-                    </div>
-                    <div class="mb-4 form-group">
-                        <input type="text" name="tieude" id="tieude"
-                            class="form-control form-control-lg border border-3 border-primary" placeholder="Tiêu đề">
+                        <h3>Mô tả cho xe</h3>
                     </div>
                     <div class="mb-4 form-group">
                         <textarea class="form-control border border-3 border-primary" style="height: 200px" placeholder="Mô tả sản phẩm"
