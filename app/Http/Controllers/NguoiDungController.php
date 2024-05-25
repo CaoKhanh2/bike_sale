@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Mail\Mailable;
 
 use App\Exports\NguoiDungExport;
+use App\Models\GioHang;
 use Maatwebsite\Excel\Facades\Excel;
 
 class NguoiDungController extends Controller
@@ -49,8 +50,8 @@ class NguoiDungController extends Controller
      */
     public function store(Request $request)
     {
-        $mand = $this->generateUniqueNumericId(7);
-        $magh = $this->generateUniqueNumericId(7);
+        $mand = $this->generateUniqueNumericId_guest(7);
+        $magh = $this->generateUniqueNumericId_cart(7);
         $trangthai = 'Đang chờ xử lý';
 
         DB::table('nguoidung')->insert([
@@ -86,10 +87,10 @@ class NguoiDungController extends Controller
 
         // Nếu địa chỉ email đã tồn tại, trả về thông báo
         if ($user) {
-            return redirect()->route('dangky-Guest')->with('cross-dangky-Guest', 'Đăng ký không thành công!');
+            return redirect()->back()->with('cross-dangky-Guest', 'Đăng ký không thành công!');
         } else {
-            $mand = $this->generateUniqueNumericId(7);
-            $magh = $this->generateUniqueNumericId(7);
+            $mand = $this->generateUniqueNumericId_guest(7);
+            $magh = $this->generateUniqueNumericId_cart(7);
 
             DB::table('nguoidung')->insert([
                 'mand' => $mand,
@@ -148,10 +149,10 @@ class NguoiDungController extends Controller
         if ($rs->passes()) {
             if (DatLaiMatKhauNguoiDung::create($tokenData)) {
                 Mail::to($request->email)->send(new DatLaiMatKhauMail($rs, $token));
-                return redirect()->route('quen-matkhau-Guest')->with('success-quen-matkhau-Guest', 'Đã gửi yêu cầu đặt lại mật khẩu đến email của bạn, vui lòng kiểm tra emai!');
+                return redirect()->back()->with('success-quen-matkhau-Guest', 'Đã gửi yêu cầu đặt lại mật khẩu đến email của bạn, vui lòng kiểm tra emai!');
             }
         } else {
-            return redirect()->route('quen-matkhau-Guest')->with('cross-quen-matkhau-Guest', 'Tài khoản chưa được đăng ký!');
+            return redirect()->back()->with('cross-quen-matkhau-Guest', 'Tài khoản chưa được đăng ký!');
         }
     }
     public function reset_password(Request $request)
@@ -285,19 +286,32 @@ class NguoiDungController extends Controller
 
     public function data()
     {
-        $mand = $this->generateUniqueNumericId(7);
+        $mand = $this->generateUniqueNumericId_guest(7);
 
         $data = [['mand' => $mand, 'hovaten' => 'CoTrungKien', 'tentk' => 'kienco', 'password' => bcrypt('12345678'), 'email' => 'kienco@gmail.com'], ['mand' => 'KH0002', 'hovaten' => 'Huy', 'tentk' => 'huy', 'password' => bcrypt('12345678'), 'email' => 'huy@gmail.com']];
 
         NguoiDung::insert($data);
     }
 
-    private function generateUniqueNumericId($length)
+    private function generateUniqueNumericId_guest($length)
     {
         $id = $this->generateRandomNumber($length);
 
         // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
         while (NguoiDung::where('mand', $id)->exists()) {
+            // Nếu ID đã tồn tại, tạo lại một ID mới
+            $id = $this->generateRandomNumber($length);
+        }
+
+        return $id;
+    }
+
+    private function generateUniqueNumericId_cart($length)
+    {
+        $id = $this->generateRandomNumber($length);
+
+        // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
+        while (GioHang::where('magh', $id)->exists()) {
             // Nếu ID đã tồn tại, tạo lại một ID mới
             $id = $this->generateRandomNumber($length);
         }

@@ -129,7 +129,7 @@
                 </div>
                 <div class="my-4 text-sm text-gray-600">
                     <h3 style="text-align: center;">Đặt Lại Mật Khẩu</h3>
-                    <p>Có vẻ như bạn đã quên mật khẩu của TP. Nếu điều này đúng, hãy nhấp vào bên dưới để đặt lại mật
+                    <p>Có vẻ như bạn đã quên mật khẩu của TP. Nếu điều này đúng, hãy nhấn vào nút bên dưới để đặt lại mật
                         khẩu của bạn.</p>
                     <p><strong>Liên kết sẽ hết hạn sau 5 phút.</strong></p>
                 </div>

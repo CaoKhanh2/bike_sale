@@ -18,6 +18,9 @@ class BaoCaoThongKeController extends Controller
         $tungay = $request->tungay;
         $denngay = $request->denngay;
 
+        $request->session()->put('tungay', $request->input('tungay'));
+        $request->session()->put('denngay', $request->input('denngay'));
+
         $thangTungay = date('Y-m', strtotime($tungay));
         $thangDenngay = date('Y-m', strtotime($denngay));
 
@@ -37,7 +40,7 @@ class BaoCaoThongKeController extends Controller
         }
 
 
-        $thongtintbanhang = DB::select("SELECT donhang.*, giohang.*, ctgiohang.maxedangban, xedangban.maxe, thongtinxe.tenxe FROM donhang
+        $thongtintbanhang = DB::select("SELECT donhang.*, giohang.magh, ctgiohang.maxedangban, xedangban.maxedangban, thongtinxe.tenxe FROM donhang
                         INNER JOIN giohang ON donhang.magh = giohang.magh
                         INNER JOIN ctgiohang ON giohang.magh = ctgiohang.magh
                         INNER JOIN xedangban ON ctgiohang.maxedangban = xedangban.maxedangban
@@ -47,7 +50,7 @@ class BaoCaoThongKeController extends Controller
 
         return view('dashboard.report.sales-situation', compact('giatien', 'thang', 'thongtintbanhang'));
     }
-    public function exporrt_report_sales_situation()
+    public function export_report_sales_situation()
     {
         return Excel::download(new TinhHinhBanHangExport, 'bao_cao_ban_hang.xlsx');
         

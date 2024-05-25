@@ -324,11 +324,29 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
          * ---------- Quản lý kho hàng ----------
          */
 
-        // Route::get('/dashboard/category/warehouse', function () {
-        //     return view('dashboard.category.warehouse.warehouse-infor');
-        // })->name('thongtinkhohang');
-
         Route::get('/dashboard/category/warehouse', [KhoHangController::class, 'index'])->name('thongtinkhohang');
+        Route::post('/dashboard/category/warehouse/warehouse-export', [KhoHangController::class, 'perform_export'])->name('thuchien-xuatkho');
+
+
+        //Route::post('/dashboard/category/warehouse/export-item', [KhoHangController::class, 'index_export'])->name('thongtinxuatkho');
+        Route::get('/dashboard/category/warehouse/mutil-export-item', [KhoHangController::class, 'mutil_index_export'])->name('mutil-thongtinxuatkho');
+        Route::get('/dashboard/category/warehouse/mutil-export-item/update', [KhoHangController::class, 'update_export_detail'])->name('capnhat-mutil-thongtinxuatkho');
+        Route::post('/dashboard/category/warehouse/mutil-export-item/export-pdf', [KhoHangController::class, 'warehouse_export_pdf'])->name('xuatfile-pdf-phieuxuatkho');
+
+        
+        Route::get('/dashboard/category/warehouse/warehouse-export/view-detail', [KhoHangController::class, 'show_export_detail'])->name('chitietphieuxuat');        
+        Route::post('/dashboard/category/warehouse/warehouse-export/view-detail/update', [KhoHangController::class, 'update_export_detail'])->name('capnhatchitietphieuxuat'); 
+        Route::get('/dashboard/category/warehouse/warehouse-export/{maphieuxuat}', [KhoHangController::class, 'destroy_export_detail'])->name('xoa-chitietphieuxuat');
+        
+
+        Route::get('/dashboard/category/warehouse/mutil-receipt-item', [KhoHangController::class, 'mutil_index_receipt'])->name('mutil-thongtinnhapkho');
+
+        Route::post('/dashboard/category/warehouse/mutil-receipt-item/add', [KhoHangController::class, 'mutil_store_receipt'])->name('them-mutil-thongtinnhapkho');
+
+        Route::get('/dashboard/category/warehouse/warehouse-receipt/view-detail', [KhoHangController::class, 'show_receipt_detail'])->name('chitietphieunhap');
+        
+        //Route::post('/dashboard/category/warehouse/warehouse-export/view-detail/perform-export', [KhoHangController::class, 'update_warehouse_status'])->name('thuchien-xuathang');
+
 
         /**
          * ---------- **** ----------
@@ -434,7 +452,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
 
         Route::post('/dashboard/report/sales-situation', [BaoCaoThongKeController::class, 'data_sales_situation'])->name('bieudo-tinhhinhbanhang');
 
-        Route::post('/dashboard/report/sales-situation/export', [BaoCaoThongKeController::class, 'exporrt_report_sales_situation'])->name('xuatfile-excel-thongtintinhhinhbanhang');
+        Route::post('/dashboard/report/sales-situation/export', [BaoCaoThongKeController::class, 'export_report_sales_situation'])->name('xuatfile-excel-thongtintinhhinhbanhang');
 
         /**
          * ---------- **** ----------

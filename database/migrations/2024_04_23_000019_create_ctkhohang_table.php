@@ -14,13 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ctkhohang', function (Blueprint $table) {
-            $table->string('id',10);
+            $table->string('machitietkho',10);
             $table->string('makho',5);
             $table->string('maxe',15)->nullable();
+            $table->tinyInteger('soluong',3)->nullable();
             $table->decimal('gianhapkho',12,2)->nullable();
             $table->date('ngaynhapkho');
+            $table->enum('trangthai', ['Đang xử lý','Đã xuất kho', 'Còng trong kho'])->nullable();
 
-            $table->primary('id');
+            $table->primary('machitietkho');
             $table->foreign('makho')->references('makho')->on('khohang')->onDelete('cascade');
             $table->foreign('maxe')->references('maxe')->on('thongtinxe')->onDelete('cascade');
         });
