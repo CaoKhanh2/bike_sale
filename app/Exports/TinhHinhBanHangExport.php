@@ -185,6 +185,21 @@ class TinhHinhBanHangExport implements FromCollection, WithDefaultStyles, WithDr
                 $event->sheet->setCellValue('E10', 'Ngày tạo đơn');
                 $event->sheet->setCellValue('F10', 'Tổng tiền');
 
+                $lastRow = $event->sheet->getHighestRow();
+
+                $newRow = $lastRow + 4;
+
+                $event->sheet->setCellValue('E' . $newRow, "Ngày " . now()->format('d') . " tháng " . now()->format('m') . " năm " . now()->format('Y'));
+
+                $event->sheet->setCellValue('B' . $newRow+2, "Người lập biểu");
+                $event->sheet->setCellValue('B' . $newRow+3, "(Ký họ và tên)");
+
+                $event->sheet->setCellValue('E' . $newRow+2, "Giám đốc");
+                $event->sheet->setCellValue('E' . $newRow+3, "(Ký họ và tên)");
+
+                $event->sheet->getStyle('A' . $newRow . ':F' . $newRow+2)->applyFromArray([
+                    'font' => ['bold' => true],
+                ]);
             },
         ];
     }

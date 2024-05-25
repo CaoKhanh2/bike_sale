@@ -125,7 +125,7 @@
             <div class="my-4 text-sm text-gray-600">
                 <h3>Xin chào <strong>{{ $acc->hovaten }}</strong>, </h3>
                 <p>Xin chân thành cảm ơn bạn vì đã sử dụng dịch vụ của chúng tôi!</p>
-                <p>TP xin thông báo tài khoản của bạn đã được đăng ký thành công, vui lòng click vào button bên dưới
+                <p>TP xin thông báo tài khoản của bạn đã được đăng ký thành công, vui lòng nhấn vào nút bên dưới
                     để
                     xác thực tài khoản email của bạn.</p>
                 <p><strong>Liên kết sẽ hết hạn sau 2 phút.</strong></p>

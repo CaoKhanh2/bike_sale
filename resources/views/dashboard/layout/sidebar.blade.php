@@ -91,9 +91,9 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="">
-            <img src="{{ asset('Image\Logo\logo.png') }}" alt=""  width="80" height="70"
+            <img src="{{ asset('Image\Logo\logo.png') }}" alt="" width="80" height="70"
                 class="rounded-circle dark-logo" />
-            <img src="{{ asset('Image\Logo\logo.png') }}" alt=""  width="80" height="70"
+            <img src="{{ asset('Image\Logo\logo.png') }}" alt="" width="80" height="70"
                 class="rounded-circle light-logo" />
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
@@ -110,57 +110,55 @@
                     </a>
                 </li>
                 @if (Auth::User()->phanquyen == 'Quản trị viên')
-                <li>
-                    <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon bi bi-window-sidebar"></span><span class="mtext">Hệ thống</span>
-                    </a>
-                    <ul class="submenu">
-                        <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle"><span class="micon"><i
-                                        class="fa-solid fa-user-tie"></i></span><span class="mtext">Quản lý tài
-                                    khoản</span></a>
-                            <ul class="submenu child">
-                                <li><a href="{{ url('#') }}">Tài khoản khách hàng</a>
-                                </li>
-                                <li><a href="{{ url('/dashboard/sys/management-acc/employee-account') }}">Tài khoản nhân viên</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{ url('/dashboard/sys/user-authorization') }}">Quản lý phân quyền người dùng</a></li>
-                        <li><a href="{{ url('#') }}">Sao lưu dữ liệu</a></li>
-                        <li><a href="{{ url('#') }}">Phục hồi dữ liệu</a></li>
-                    </ul>
-                </li>
-                @endif
-                {{-- @if (Auth::User()->phanquyen == 'Nhân viên' || Auth::User()->phanquyen == 'Quản lý') --}}
-                    <li class="dropdown">
+                    <li>
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon"><i class="fa-solid fa-layer-group"></i></span><span
-                                class="mtext">Danh
-                                mục</span>
+                            <span class="micon bi bi-window-sidebar"></span><span class="mtext">Hệ thống</span>
                         </a>
                         <ul class="submenu">
                             <li class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle"><span class="micon"><i
-                                            class="fa-solid fa-motorcycle"></i></span><span class="mtext">Quản lý
-                                        danh mục xe</span></a>
+                                            class="fa-solid fa-user-tie"></i></span><span class="mtext">Quản lý tài khoản</span></a>
                                 <ul class="submenu child">
-                                    <li><a href="{{ url('/dashboard/category/vehicle/automaker-info') }}">Thông tin
-                                            hãng xe</a>
-                                    </li>
-                                    <li><a href="{{ url('/dashboard/category/vehicle/vehicle-line-infor') }}">Thông tin
-                                            dòng xe</a></li>
-                                    <li><a href="{{ url('/dashboard/category/vehicle/vehicle-infor') }}">Thông tin
-                                            xe</a></li>
+                                    <li><a href="">Tài khoản khách hàng</a></li>
+                                    <li><a href="{{ url('/dashboard/sys/management-acc/employee-account') }}">Tài khoản nhân viên</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{ url('dashboard/category/customer/customer-info') }}">Quản lý khách
-                                    hàng</a></li>
-                            <li><a href="{{ url('dashboard/category/shipping/ship-infor') }}">Quản lý vận chuyển
-                                    hàng</a></li>
-                            <li><a href="{{ url('dashboard/category/sales-agent/staff-infor') }}">Quản lý nhân viên
-                                    bán hàng</a></li>
+                            <li><a href="{{ url('/dashboard/sys/user-authorization') }}">Quản lý phân quyền người dùng</a></li>
+                            <li><a href="">Sao lưu dữ liệu</a></li>
+                            <li><a href="">Phục hồi dữ liệu</a></li>
                         </ul>
                     </li>
+                @endif
+                {{-- @if (Auth::User()->phanquyen == 'Nhân viên' || Auth::User()->phanquyen == 'Quản lý') --}}
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon"><i class="fa-solid fa-layer-group"></i></span><span class="mtext">Danh
+                            mục</span>
+                    </a>
+                    <ul class="submenu">
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle"><span class="micon"><i
+                                        class="fa-solid fa-motorcycle"></i></span><span class="mtext">Quản lý
+                                    danh mục xe</span></a>
+                            <ul class="submenu child">
+                                <li><a href="{{ url('/dashboard/category/vehicle/automaker-info') }}">Thông tin
+                                        hãng xe</a>
+                                </li>
+                                <li><a href="{{ url('/dashboard/category/vehicle/vehicle-line-infor') }}">Thông tin
+                                        dòng xe</a></li>
+                                <li><a href="{{ url('/dashboard/category/vehicle/vehicle-infor') }}">Thông tin
+                                        xe</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url('dashboard/category/customer/customer-info') }}">Quản lý khách
+                                hàng</a></li>
+                        <li><a href="{{ url('dashboard/category/shipping/ship-infor') }}">Quản lý vận chuyển
+                                hàng</a></li>
+                        <li><a href="{{ url('dashboard/category/sales-agent/staff-infor') }}">Quản lý nhân viên
+                                bán hàng</a></li>
+                        <li><a href="{{ route('thongtinkhohang') }}">Quản lý kho hàng</a></li>
+                    </ul>
+                </li>
                 {{-- @endif --}}
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
@@ -173,21 +171,22 @@
                                 <span class="micon"></span><span class="mtext">Quản lý tiến trình</span>
                             </a>
                             <ul class="submenu child">
-                                <li><a href="{{route('xedkthumua') }}">Thu mua xe</a>
+                                <li><a href="{{ route('xedkthumua') }}">Thu mua xe</a>
                                 </li>
                                 <li><a href="{{ route('danhsach-donhang') }}">Đăng bán xe</a></li>
                             </ul>
                         </li>
                         <li><a href="form-pickers.html">Quản lý thanh toán</a></li>
                         <li><a href="image-cropper.html">Quản lý rủi ro</a></li>
-                        <li><a href="{{route('danhmuckhuyenmai')}}">Quản lý khuyến mãi</a></li>
+                        <li><a href="{{ route('danhmuckhuyenmai') }}">Quản lý khuyến mãi</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon"><i class="fa-solid fa-box"></i></span><span class="mtext">Kho hàng</span>
+                        <span class="micon"><i class="fa-solid fa-box"></i></span><span class="mtext">Kho
+                            hàng</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon"><i class="fa-solid fa-file-invoice"></i></span><span class="mtext">Báo
@@ -195,7 +194,8 @@
                             kê</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ url('/dashboard/report/sales-situation') }}">Báo cáo tình hình bán hàng</a></li>
+                        <li><a href="{{ url('/dashboard/report/sales-situation') }}">Báo cáo tình hình bán hàng</a>
+                        </li>
                         <li><a href="{{ url('#') }}">Báo cáo tình hình thu mua</a></li>
                         <li><a href="{{ url('/dashboard/report/inventory') }}">Báo cáo tồn kho</a></li>
                         <li><a href="forgot-password.html">Báo cáo rủi ro</a></li>

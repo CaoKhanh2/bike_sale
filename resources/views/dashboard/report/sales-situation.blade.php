@@ -26,14 +26,12 @@
                                     <div class="col-md-6 col-sm-12">
                                         <label for="example-datetime-local-input" class="">Từ ngày</label>
                                         <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text" name="tungay">
-
+                                            type="text" name="tungay" value="{{ session('tungay') }}">
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <label for="example-datetime-local-input" class="">Đến ngày</label>
                                         <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text" name="denngay">
-
+                                            type="text" name="denngay" value="{{ session('denngay') }}">
                                     </div>
                                 </div>
                                 <div class="pull-right my-3 px-1">
@@ -43,12 +41,11 @@
                                     <input class="btn btn-lg btn-primary mt-3" type="submit" value="Áp dụng">
                                 </div>
                             </form>
-
                         </div>
                     </div>
                     <div class="col-md-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
-                            <h4 class="h4 text-blue">Từ ngày đến ngày</h4>
+                            <h4 class="h4 text-blue">Biểu đồ doanh thu bán hàng</h4>
                             @include('dashboard.report.graph.chart-1')
                         </div>
                     </div>

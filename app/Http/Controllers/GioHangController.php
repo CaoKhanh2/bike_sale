@@ -19,7 +19,7 @@ class GioHangController extends Controller
         
         $trangthai = "Đang chờ xử lý";
 
-        $magh = $this->generateUniqueNumericId(7);
+        $magh = $this->generateUniqueNumericId_cart(7);
 
         $cre_cart = DB::table('giohang')->where('ghichu',$trangthai)->where('mand', $mand)->exists();
 
@@ -108,12 +108,12 @@ class GioHangController extends Controller
 
     }
 
-    private function generateUniqueNumericId($length)
+    private function generateUniqueNumericId_cart($length)
     {
         $id = $this->generateRandomNumber($length);
 
         // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
-        while (NguoiDung::where('mand', $id)->exists()) {
+        while (GioHang::where('magh', $id)->exists()) {
             // Nếu ID đã tồn tại, tạo lại một ID mới
             $id = $this->generateRandomNumber($length);
         }

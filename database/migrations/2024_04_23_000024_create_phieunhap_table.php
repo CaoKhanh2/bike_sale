@@ -14,16 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('phieunhap', function (Blueprint $table) {
-            $table->string('maphieunhap',20);
-            $table->string('makho',10);
-            $table->string('maxe',15)->nullable();
+            $table->string('maphieunhap',10);
             $table->string('manv',10);
             $table->dateTime('ngaynhap');
             $table->decimal('thanhtien',12,2);
 
             $table->primary('maphieunhap');
-            $table->foreign('makho')->references('makho')->on('khohang')->onDelete('cascade');
-            $table->foreign('maxe')->references('maxe')->on('thongtinxe')->onDelete('cascade');
             $table->foreign('manv')->references('manv')->on('nhanvien')->onDelete('cascade');
         });
     }
