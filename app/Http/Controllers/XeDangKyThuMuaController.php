@@ -15,11 +15,20 @@ class XeDangKyThuMuaController extends Controller
      */
     public function index()
     {
-        $dstm_waiting = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('trangthaipheduyet', 'Chờ duyệt')->get();
+        $dstm_waiting = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')
+                                                    ->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')
+                                                    ->where('trangthaipheduyet', 'Chờ duyệt')
+                                                    ->orderBy('ngaydk','desc')->get();
         //
-        $dstm_check = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('trangthaipheduyet', 'Duyệt')->get();
+        $dstm_check = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten as tennd','nhanvien.hovaten as tennv')
+                                                    ->join('nguoidung', 'xedangkythumua.mand','nguoidung.mand')
+                                                    ->join('nhanvien','xedangkythumua.manv','nhanvien.manv')
+                                                    ->where('trangthaipheduyet', 'Duyệt')->get();
         //
-        $dstm_uncheck = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('trangthaipheduyet', 'Không duyệt')->get();
+        $dstm_uncheck = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten as tennd','nhanvien.hovaten as tennv')
+                                                    ->join('nguoidung', 'xedangkythumua.mand','nguoidung.mand')
+                                                    ->join('nhanvien','xedangkythumua.manv','nhanvien.manv')
+                                                    ->where('trangthaipheduyet', 'Không duyệt')->get();
         //
         return view('dashboard.transaction.purchasing.purchasing-manage', [
             'xedangkythumua_check' => $dstm_check,
@@ -128,7 +137,10 @@ class XeDangKyThuMuaController extends Controller
 
         return redirect()->route('xedkthumua');
     }
-
+    public function dondep()
+    {
+        $del = DB::table('xedangkythumua')->where('ngaydk')->delete();
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -1,3 +1,31 @@
+<style>
+    .product-img {
+        position: relative;
+    }
+
+    .product-img img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .product-img .overlay {
+        border-radius: 30px;
+        background: red;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 15%;
+        right: 70%;
+        transform: translate(-50%, -50%);
+        line-height: 50px;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+    }
+</style>
 <div class="container">
     @php
         $url = url()->current();
@@ -13,12 +41,15 @@
                     <div class="row g-0 mt-4 mb-4">
                         <div class="col-12 col-md-8">
                             <div class="row g-0 mt-3 mb-4">
-                                <div class="col-12 col-sm-4 mb-3 mb-sm-0">
+                                <div class="col-12 col-sm-4 mb-3 mb-sm-0 product-img">
                                     @foreach (explode(',', $i->hinhanh) as $path)
                                         @if ($loop->first)
                                             <img src="{{ asset('storage/' . $path) }}"
                                                 class="object-fit-contain border rounded img-fluid" alt="..."
                                                 style="height: 180px; width: 100%;">
+                                                @if ($i->giagoc != $i->giaban)
+                                                <div class="overlay">{{$i->tilegiamgia . '%'}}</div>
+                                                @endif
                                         @endif
                                     @endforeach
                                 </div>
@@ -58,14 +89,28 @@
                                             </div>
                                         </div>
                                         <div class="row justify-content-center align-items-center g-2 mt-4">
-                                            <div class="col-12 col-md-4 mt-3">
-                                                <h4>
-                                                    <span>
-                                                        <p class="d-inline">
-                                                            {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
-                                                    </span>
-                                                </h4>
-                                            </div>
+                                            @if ($i->giagoc == $i->giaban)
+                                                <div class="col-12 col-md-4 mt-3">
+                                                    <h4>
+                                                        <span>
+                                                            <p class="d-inline">
+                                                                {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                                        </span>
+                                                    </h4>
+                                                </div>
+                                            @else
+                                                <div class="col-12 col-md-4 mt-3">
+                                                    <h4>
+                                                        <span>
+                                                            <p class="h6 text-secondary">
+                                                                <span><s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s></span>
+                                                            </p>
+                                                            <p class="d-inline text-danger">
+                                                                {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                                        </span>
+                                                    </h4>
+                                                </div>
+                                            @endif
                                             {{-- Nút thực hiện chức năng --}}
                                             <div class="col-12 col-md-4 mt-3">
                                                 <div class="d-grid">

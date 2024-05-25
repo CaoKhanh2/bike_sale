@@ -11,21 +11,66 @@ class KhuyenMaiController extends Controller
 {
     public function index()
     {
+        $hxm = DB::table('hangxe')->select('hangxe.tenhang', 'hangxe.mahx')->join('dongxe', 'hangxe.mahx', 'dongxe.mahx')->where('loaixe', 'Xe máy')->distinct()->get();
+        $hxd = DB::table('hangxe')->select('hangxe.tenhang', 'hangxe.mahx')->join('dongxe', 'hangxe.mahx', 'dongxe.mahx')->where('loaixe', 'Xe đạp điện')->distinct()->get();
+        $dxdd = DB::table('dongxe')->select('dongxe.madx', 'dongxe.mahx', 'dongxe.tendongxe')->where('loaixe', 'Xe đạp điện')->get();
+        $dxm = DB::table('dongxe')->select('dongxe.madx', 'dongxe.mahx', 'dongxe.tendongxe')->where('loaixe', 'Xe máy')->get();
         $km = DB::table('khuyenmai')->get();
         $km_active = DB::table('khuyenmai')->selectRaw('*,DATEDIFF(thoigianketthuc,CURDATE()) AS thoigianconlai')->get();
-        return view('dashboard.category.saling-events.saling-manage',['khuyenmai'=> $km,'khuyenmai_active'=> $km_active]);
+        return view('dashboard.category.saling-events.saling-manage', compact('km', 'km_active', 'hxm', 'hxd', 'dxdd', 'dxm'));
     }
     public function store(Request $request)
     {
-        DB::table('khuyenmai')->insert([
-            'makhuyenmai' => $request->makhuyemai,
-            'tenkhuyenmai' => $request->tenkhuyenmai,
-            'dieukienapdung' => $request->dieukienapdung,
-            'motakhuyenmai' => $request->mota,
-            'thoigianbatdau' => $request->ngaybatdau,
-            'thoigianketthuc' => $request->ngayketthuc,
-        ]);
+        if (!empty($request->xemay) || !empty($request->xedapdien)) {
+            $query = DB::table('xedangban')->select('xedangban.maxedangban')->join('thongtinxe', 'thongtinxe.maxe', 'xedangban.maxe')->join('dongxe', 'thongtinxe.madx', 'dongxe.madx');
 
-        return redirect('dashboard/category/saling-events/saling-manage')->with('success', 'Post created successfully!');    
+            $query->where(function ($query) use ($request) {
+                if (!empty($request->xemay)) {
+                    $query->where('dongxe.loaixe', 'Xe máy');
+
+                    if (!empty($request->hangxemay)) {
+                        $query->whereIn('dongxe.mahx', $request->hangxemay);
+                    }
+
+                    if (!empty($request->dongxemay)) {
+                        $query->whereIn('dongxe.madx', $request->dongxemay);
+                    }
+                }
+            });
+            $query->orWhere(function ($query) use ($request) {
+                if (!empty($request->xedapdien)) {
+                    $query->where('dongxe.loaixe', 'Xe đạp điện');
+
+                    if (!empty($request->hangxedapdien)) {
+                        $query->whereIn('dongxe.mahx', $request->hangxedapdien);
+                    }
+
+                    if (!empty($request->dongxedapdien)) {
+                        $query->whereIn('dongxe.madx', $request->dongxedapdien);
+                    }
+                }
+            });
+            $maxedangban = $query->pluck('maxedangban')->toArray();
+            //dd($maxedangban);
+
+            DB::table('khuyenmai')->insert([
+                'makhuyenmai' => $request->makhuyemai,
+                'tenkhuyenmai' => $request->tenkhuyenmai,
+                //'dieukienapdung' => $maxedangban,
+                'tilegiamgia' => $request->tile,
+                'motakhuyenmai' => $request->mota,
+                'thoigianbatdau' => $request->ngaybatdau,
+                'thoigianketthuc' => $request->ngayketthuc,
+            ]);
+            DB::table('xedangban')
+                ->whereIn('maxedangban', $maxedangban)
+                ->whereNull('makhuyenmai')
+                ->update([
+                    'makhuyenmai' => $request->makhuyemai,
+                ]);
+
+            return redirect()->back()->with('success', 'Post created successfully!');
+        }
+        else return redirect('dashboard/category/saling-events/saling-manage')->with('error','Chưa chọn điều kiện áp dụng');
     }
 }

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('donhang', function (Blueprint $table) {
             $table->string('madh',10);
             $table->string('magh',10);
-            $table->string('mand',10);
-            $table->string('maxedangban',20);
+            // $table->string('mand',10);
+            // $table->string('maxedangban',20);
             $table->string('mavanchuyen',10);
             $table->string('mathanhtoan',15);
             $table->string('makhuyenmai',5)->nullable();
@@ -26,8 +26,8 @@ return new class extends Migration
 
             $table->primary('madh');
             $table->foreign('magh')->references('magh')->on('giohang')->onDelete('cascade');
-            $table->foreign('mand')->references('mand')->on('nguoidung')->onDelete('cascade');
-            $table->foreign('maxedangban')->references('maxedangban')->on('xedangban')->onDelete('cascade');
+            // $table->foreign('mand')->references('mand')->on('nguoidung')->onDelete('cascade');
+            // $table->foreign('maxedangban')->references('maxedangban')->on('xedangban')->onDelete('cascade');
             $table->foreign('mavanchuyen')->references('mavanchuyen')->on('vanchuyen')->onDelete('cascade');
             $table->foreign('mathanhtoan')->references('mathanhtoan')->on('thanhtoan')->onDelete('cascade');
             $table->foreign('makhuyenmai')->references('makhuyenmai')->on('khuyenmai')->onDelete('cascade');

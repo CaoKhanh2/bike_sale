@@ -6,12 +6,7 @@
 @section('st4', 'true')
 @section('pg-hd-4', 'Danh mục xe máy') @section('act4', 'active')
 
-<style>
-    .table-container {
-        max-height: 600px;
-        overflow: auto;
-    }
-</style>
+
 
 @section('main')
 

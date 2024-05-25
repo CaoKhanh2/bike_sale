@@ -12,12 +12,12 @@ class ChiTietGioHang extends Model
 
     public $timestamps = false;
 
-    // protected $fillable = [
-    //     'magh',
-    //     'maxe',
-    //     'soluong',
-    //     'dongia',
-    // ];
+    protected $fillable = [
+        'mactgh',
+        'magh',
+        'maxedangban',
+        'dongia',
+    ];
 
     // public function xedangban()
     // {

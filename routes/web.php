@@ -126,6 +126,16 @@ Route::middleware(['roleGuest'])->group(function () {
     Route::post('/cart-index', [GioHangController::class, 'destroy_cart'])->name('xoa-giohang-Guest');
 
     // ----------
+
+    // Đơn hàng ----------
+    Route::get('/checkout', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
+    Route::get('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
+
+    // Route::get('/cart-index/add/{maxedangban}', [GioHangController::class, 'add_cart'])->name('them-giohang-Guest');
+
+    // Route::post('/cart-index', [GioHangController::class, 'destroy_cart'])->name('xoa-giohang-Guest');
+
+    // ----------
 });
 
 // Tìm kiếm ----------
@@ -380,6 +390,11 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             // });
 
             Route::get('/dashboard/transaction/selling/sell-manage', [DonHangController::class, 'index'])->name('danhsach-donhang'); //Hiện bảng ds đơn hàng
+            Route::get('/dashboard/transaction/selling/sell-manage/view-order/{id}', [DonHangController::class, 'view'])->name('xem-ctdonhang'); // Xem chi tiết từng đơn hàng
+            Route::put('/dashboard/transaction/selling/sell-manage/update-order/{id}', [DonHangController::class, 'updateorder'])->name('capnhat-donhang'); // Cập nhật trạng thái đơn hàng
+            Route::get('/dashboard/transaction/selling/sell-manage/order-history',[DonHangController::class, 'orderhistory'])->name('lichsu-donhang'); // Xem lịch sử đơn hàng   
+
+
 
             // ---------- **** ----------
         

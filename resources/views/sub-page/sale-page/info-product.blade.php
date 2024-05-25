@@ -18,9 +18,19 @@
                 <div class="row">
                     <div class="col-7">
                         <div class="price-detail text-start">
+                        @if  ($i->giagoc==$i->giaban)
                             <span>
                                 <p class="fs-3">{{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
                             </span>
+                        @else
+                            <span>
+                                <p class="h5">
+                                <s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s>
+                                </p>
+                                <p class="text-danger fs-3">
+                                    {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                            </span>
+                        @endif
                         </div>
                     </div>
                     <div class="col-5">
@@ -100,6 +110,15 @@
                                             <div class="ms-auto">{{ $i->sokmdadi }} km</div>
                                         </div>
                                     </li>
+                                      @if($i->giagoc != $i->giaban)
+                                      <li class="list-group-item my-2 border-0 bg-light">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-percent fs-4 me-2 align-self-center"></i>
+                                            <p class="mb-0 align-self-center">Khuyến mãi</p>
+                                            <div class="ms-auto">{{ $i->tilegiamgia . '%'}} </div>
+                                        </div>
+                                    </li>
+                                      @endif
                                 </ul>
                             </div>
                     </div>
