@@ -43,7 +43,8 @@
                                                     <th>Tỉ lệ giảm giá</th>
                                                     <th>Ngày bắt đầu</th>
                                                     <th>Ngày kết thúc</th>
-                                                    <th>Thời gian còn lại
+                                                    <th>Thời gian còn lại</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody class="text-center">
@@ -53,8 +54,17 @@
                                                         <td>{{ $i->tenkhuyenmai }}</td>
                                                         <td>{{ $i->tilegiamgia . '%' }}</td>
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianbatdau)) }}</td>
-                                                        <td>{{ date('d/m/Y', strtotime($i->thoigianketthuc))}}                      
+                                                        <td>{{ date('d/m/Y', strtotime($i->thoigianketthuc))}}
+                                                        @if ($i->thoigianconlai === 'Hết hạn')   
+                                                        <td class="text-danger">{{$i->thoigianconlai}}</td>
+                                                        <td><a type="button" class="btn btn-danger"
+                                                            href="{{ route('xoakhuyemai', ['id' => $i->makhuyenmai]) }}">
+                                                            <i class="bi bi-trash"></i> Xóa
+                                                        </a></td>
+                                                        @else                   
                                                         <td>{{ 'Còn lại ' .$i->thoigianconlai  . ' Ngày'  }}</td>
+                                                        <td></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
 
@@ -69,10 +79,10 @@
                                                 <tr>
                                                     <th>Mã khuyến mãi</th>
                                                     <th>Tên khuyến mãi</th>
-                                                    <th>Điều kiện áp dụng</th>
-                                                    <th>Mô tả</th>
+                                                    <th>Tỉ lệ giảm giá</th>
                                                     <th>Ngày bắt đầu</th>
                                                     <th>Ngày kết thúc</th>
+                                                    <th>Hiệu lực</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="text-center">
@@ -80,12 +90,12 @@
                                                     <tr>
                                                         <td class="table-plus">{{ $i->makhuyenmai }}</td>
                                                         <td>{{ $i->tenkhuyenmai }}</td>
-                                                        <td>
-                                                            {{ $i->dieukienapdung }}
-                                                        </td>
-                                                        <td>{{ $i->motakhuyenmai }}</td>
+                                                        <td>{{ $i->tilegiamgia . '%' }}</td>
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianbatdau)) }}</td>
-                                                        <td>{{ date('d/m/Y', strtotime($i->thoigianketthuc)) }}
+                                                        <td>{{ date('d/m/Y', strtotime($i->thoigianketthuc)) }}</td>
+                                                        <td class="text-danger">
+                                                            {{ $i->hieuluc}}
+                                                        </td>
                                                     </tr>
                                                 @endforeach
 

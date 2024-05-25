@@ -10,7 +10,7 @@
     }
 
     .product-img .overlay {
-        border-radius: 30px;
+        border-radius: 40px;
         background: red;
         display: inline-block;
         width: 50px;

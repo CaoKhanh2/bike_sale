@@ -24,7 +24,7 @@
                             </span>
                         @else
                             <span>
-                                <p class="h5">
+                                <p class="h5 text-secondary">
                                 <s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s>
                                 </p>
                                 <p class="text-danger fs-3">
@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="col-9"></div>
                     <div class="d-grid col-12 col-lg-4 ms-lg-auto my-auto">
-                        <button type="button" class="btn btn-primary">Đặt mua</button>
+                        <a type="button"  href="{{ route('them-giohang-Guest', ['maxedangban' => $i->maxedangban]) }}" class="btn btn-primary">Đặt mua</a>
                     </div>
                 </div>
                 <div class="row">

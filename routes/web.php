@@ -404,6 +404,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             
         Route::get('/dashboard/category/saling-events/saling-manage', [KhuyenMaiController::class, 'index'])->name('danhmuckhuyenmai');
         Route::post('/dashboard/category/saling-events/saling-manage', [KhuyenMaiController::class, 'store'])->name('themskkhuyenmai');
+        Route::get('/dashboard/category/saling-events/saling-manage/delete{id}', [KhuyenMaiController::class, 'xoa_khuyenmai'])->name('xoakhuyemai');
 
         /**
          * ---------- **** ----------
