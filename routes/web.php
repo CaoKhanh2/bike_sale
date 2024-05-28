@@ -267,15 +267,15 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             Route::get('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'index']);
             Route::post('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
             Route::get('/dashboard/category/vehicle/vehicle-infor/{maxemay}', [ThongTinXeController::class, 'del_xemay'])->name('xoathongtinxemay');
-            Route::get('/dashboard/category/vehicle/vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'del_Xedapdien'])->name('xoathongtinxedapdien');
+            Route::get('/dashboard/category/vehicle/vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'del_xedapdien'])->name('xoathongtinxedapdien');
 
             Route::post('/dashboard/category/vehicle/vehicle-infor/export', [ThongTinXeController::class, 'exporrt_excel_report_infor_motorbike'])->name('xuatfile-excel-thongtinxemay');
 
-            Route::get('/dashboard/category/vehicle/detail-vehicle-infor/{maxemay}', [ThongTinXeController::class, 'show'])->name('ctthongtinxemay');
-            Route::get('/dashboard/category/vehicle/detail-vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'show'])->name('ctthongtinxedapdien');
+            Route::get('/dashboard/category/vehicle/detail-vehicle-infor/{maxe}', [ThongTinXeController::class, 'show'])->name('ctthongtinxe');
+
             Route::get('/dashboard/category/vehicle/detail-vehicle-infor/delete_image/{id}/{index}', [ThongTinXeController::class, 'delete_image'])->name('xoaanh');
 
-            Route::post('/dashboard/category/vehicle/vehicle-infor/update/{maxemay}', [ThongTinXeController::class, 'update_xemay'])->name('capnhat-thongtinxemay');
+            Route::post('/dashboard/category/vehicle/vehicle-infor/update/{maxe}', [ThongTinXeController::class, 'update_xe'])->name('capnhat-thongtinxe');
             //Route::post('/dashboard/category/customer/customer-info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
 
             

@@ -7,7 +7,7 @@
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
                 <a href="{{ url('/login') }}">
-                    <img src=" {{ asset('dashboard_src/vendors/images/deskapp-logo.svg') }}" alt="" />
+                    {{-- <img src=" {{ asset('dashboard_src/vendors/images/deskapp-logo.svg') }}" alt="" /> --}}
                 </a>
             </div>
         </div>

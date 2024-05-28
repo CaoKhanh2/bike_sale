@@ -154,11 +154,12 @@ class XeDangBanController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'giaban' => 'required|max:10',
+                'giaban' => 'required|max:11|min:8',
             ],
             [
                 'giaban.required' => 'Bạn chưa nhập trường thông tin giá bán!',
-                'giaban.max' => 'Giá bán không được vượt quá 8 ký tự!',
+                'giaban.max' => 'Giá bán không vượt quá 100,000,000 đ',
+                'giaban.min' => 'Giá bán không được dưới quá 1,000,000 đ',
             ],
         );
 
