@@ -19,7 +19,7 @@ class GioHangController extends Controller
         
         $trangthai = "Đang chờ xử lý";
 
-        $magh = $this->generateUniqueNumericId(7);
+        $magh = $this->generateUniqueNumericId_cart(7);
 
         $cre_cart = DB::table('giohang')->where('ghichu',$trangthai)->where('mand', $mand)->exists();
 
@@ -34,10 +34,15 @@ class GioHangController extends Controller
         }
 
         $gh = DB::select(
-            'SELECT ctgiohang.*, giohang.*, xedangban.*, thongtinxe.* FROM ctgiohang
+            'SELECT ctgiohang.*, giohang.*, xedangban.*, thongtinxe.* ,
+                        CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                            ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                            END AS giaban
+                        FROM ctgiohang
                         INNER JOIN giohang ON giohang.magh = ctgiohang.magh
                         INNER JOIN xedangban ON xedangban.maxedangban = ctgiohang.maxedangban
                         INNER JOIN thongtinxe ON thongtinxe.maxe = xedangban.maxe
+                        LEFT JOIN khuyenmai ON khuyenmai.makhuyenmai = xedangban.makhuyenmai
                         WHERE giohang.mand = ? AND giohang.ghichu = ?',
             [$mand, $trangthai]
         );
@@ -63,7 +68,12 @@ class GioHangController extends Controller
 
         $gh = DB::table('giohang')->where('mand', $mand)->first();
 
-        $ctgh = DB::table('xedangban')->select('maxe', 'giaban')->where('maxedangban', $id)->first();
+        $ctgh = DB::table('xedangban')->select('maxe', 
+                                            DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                                                    ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                                                    END AS giaban'))
+                                        ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+                                        ->where('maxedangban', $id)->first();
 
         $check = DB::table('ctgiohang')
                             ->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')
@@ -108,12 +118,12 @@ class GioHangController extends Controller
 
     }
 
-    private function generateUniqueNumericId($length)
+    private function generateUniqueNumericId_cart($length)
     {
         $id = $this->generateRandomNumber($length);
 
         // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
-        while (NguoiDung::where('mand', $id)->exists()) {
+        while (GioHang::where('magh', $id)->exists()) {
             // Nếu ID đã tồn tại, tạo lại một ID mới
             $id = $this->generateRandomNumber($length);
         }

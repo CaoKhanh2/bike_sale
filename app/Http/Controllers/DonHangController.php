@@ -35,14 +35,15 @@ class DonHangController extends Controller
         // );
 
         $donhang = DB::table('donhang')->where('donhang.trangthai', $trangthai)->get();
+        $xedangban = DB::table('xedangban')->select('xedangban.*', 'thongtinxe.tenxe')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')->get();
 
         // dd($donhang);
-        return view('dashboard.transaction.selling.index', compact('donhang'));
+        return view('dashboard.transaction.selling.index', compact('donhang','xedangban'));
     }
 
     public function view($id)
     {
-        // $trangthai = '0';
+        $trangthai = '0';
 
         // $donhang_items =DB::select(
         //     'SELECT
@@ -66,18 +67,17 @@ class DonHangController extends Controller
         // dd($tt_nguoidung);
 
         // dd($donhang_items);
-        return view('dashboard.transaction.selling.view', compact('donhang_items', 'tt_nguoidung'));
+        return view('dashboard.transaction.selling.order.view', compact('donhang_items', 'tt_nguoidung'));
     }
 
     public function updateorder(Request $request, $id)
     {
         $trangthai = $request->input('order_status');
-        $dhang = DB::table('donhang')
+        DB::table('donhang')
             ->where('donhang.madh', $id)
             ->update(['trangthai' => $trangthai]);
-        // dd($dhang);
 
-        return redirect()->route('danhsach-donhang')->with('success-capnhat-donhang', 'Sản phẩm đã được thêm vào giỏ hàng.');
+        return redirect()->route('danhsach-donhang-dangbanxe')->with('success-capnhat-donhang', 'Sản phẩm đã được thêm vào giỏ hàng.');
     }
 
     public function orderhistory()
@@ -85,7 +85,7 @@ class DonHangController extends Controller
         $donhang = DB::table('donhang')->where('donhang.trangthai', 'Đã hoàn thành')->orWhere('donhang.trangthai', 'Đã hủy')->get();
 
         // dd($donhang);
-        return view('dashboard.transaction.selling.history', compact('donhang'));
+        return view('dashboard.transaction.selling.order.history', compact('donhang'));
     }
 
     //Khách hàng

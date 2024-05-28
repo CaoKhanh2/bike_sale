@@ -2,7 +2,8 @@
     <thead>
         <tr>
             <th scope="col">STT</th>
-            <th scope="col">Mã xe</th>
+            <th scope="col">Mã xe đăng bán</th>
+            <th scope="col">Mã đơn hàng</th>
             <th scope="col">Tên xe</th>
             <th scope="col">Ngày bán</th>
             <th scope="col">Thành tiền</th>
@@ -15,7 +16,8 @@
         @foreach ($thongtintbanhang as $i)
             <tr>
                 <td>{{ $count++ }}</td>
-                <td>{{ $i->maxe }}</td>
+                <td>{{ $i->maxedangban }}</td>
+                <td>{{ $i->madh }}</td>
                 <td>{{ $i->tenxe }}</td>
                 <td>{{ date('d/m/Y', strtotime($i->ngaytaodon)) }}</td>
                 <td>{{ number_format($i->tongtien, 0, ',') . ' đ' }}</td>

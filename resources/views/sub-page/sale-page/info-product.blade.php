@@ -18,16 +18,16 @@
                 <div class="row">
                     <div class="col-7">
                         <div class="price-detail text-start">
-                        @if  (is_null($i->makhuyenmai))
+                        @if  ($i->giagoc==$i->giaban)
                             <span>
-                                <p class="fs-1">{{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                <p class="fs-3">{{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
                             </span>
                         @else
                             <span>
-                                <p class="fs-3">
+                                <p class="h5 text-secondary">
                                 <s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s>
                                 </p>
-                                <p class="d-inline text-danger fs-3">
+                                <p class="text-danger fs-3">
                                     {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
                             </span>
                         @endif
@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="col-9"></div>
                     <div class="d-grid col-12 col-lg-4 ms-lg-auto my-auto">
-                        <button type="button" class="btn btn-primary">Đặt mua</button>
+                        <a type="button"  href="{{ route('them-giohang-Guest', ['maxedangban' => $i->maxedangban]) }}" class="btn btn-primary">Đặt mua</a>
                     </div>
                 </div>
                 <div class="row">
@@ -110,6 +110,15 @@
                                             <div class="ms-auto">{{ $i->sokmdadi }} km</div>
                                         </div>
                                     </li>
+                                      @if($i->giagoc != $i->giaban)
+                                      <li class="list-group-item my-2 border-0 bg-light">
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-percent fs-4 me-2 align-self-center"></i>
+                                            <p class="mb-0 align-self-center">Khuyến mãi</p>
+                                            <div class="ms-auto">{{ $i->tilegiamgia . '%'}} </div>
+                                        </div>
+                                    </li>
+                                      @endif
                                 </ul>
                             </div>
                     </div>

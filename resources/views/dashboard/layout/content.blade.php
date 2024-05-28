@@ -25,8 +25,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/vendors/styles/style.css') }}" />
     <link rel="stylesheet" type="text/css"
         href="{{ asset('dashboard_src/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
+        
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/select2/dist/css/select2.css') }}">
-   
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css"
         href="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.css') }}" />
@@ -34,14 +35,15 @@
         href="{{ asset('dashboard_src/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" /> --}}
 
+
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src=" {{ url('https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85') }} "></script>
+    {{-- <script async src=" {{ url('https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85') }} "></script>
     <script async
         src=" {{ url('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258') }} "
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> --}}
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -54,7 +56,7 @@
     </script>
 
     <!-- Google Tag Manager -->
-    <script>
+    {{-- <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
@@ -68,11 +70,13 @@
             j.src = "{{ url('https://www.googletagmanager.com/gtm.js?id=') }}" + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
-    </script>
+    </script> --}}
     <!-- End Google Tag Manager -->
 
     <!-- Link icon fontawesome -->
     <script src="https://kit.fontawesome.com/09dc0ea4f4.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -124,8 +128,8 @@
     <!-- Datatable Setting js -->
     <script src="{{ asset('dashboard_src/vendors/scripts/datatable-setting.js') }}"></script>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
-            style="display: none; visibility: hidden"></iframe></noscript>
+    {{-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
+            style="display: none; visibility: hidden"></iframe></noscript> --}}
     <!-- End Google Tag Manager (noscript) -->
 
 </body>

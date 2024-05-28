@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32"
         href="{{ asset('dashboard_src/vendors/images/favicon-32x32.png') }}" />
     <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('dashboard_src/vendors/images/favicon-16x16.png') }}" />
+        href="{{ asset('dashboard_src/vendors/images/favicon-16x16.png') }}" />     
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -34,11 +34,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src=" {{ url('https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85') }} "></script>
+    {{-- <script async src=" {{ url('https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85') }} "></script>
     <script async
         src=" {{ url('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258') }} "
-        crossorigin="anonymous"></script>
-    <script>
+        crossorigin="anonymous"></script> --}}
+    {{-- <script>
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
@@ -47,10 +47,10 @@
         gtag("js", new Date());
 
         gtag("config", "G-GBZ3SGGX85");
-    </script>
+    </script> --}}
 
     <!-- Google Tag Manager -->
-    <script>
+    {{-- <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
@@ -64,7 +64,7 @@
             j.src = "{{ url('https://www.googletagmanager.com/gtm.js?id=') }}" + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
-    </script>
+    </script> --}}
     <!-- End Google Tag Manager -->
 
     <!-- Link icon fontawesome -->

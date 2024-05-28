@@ -1,4 +1,4 @@
-<table class="table hover data-table-export">
+<table class="table hover multiple-select-row nowrap dtr-inline">
     <thead>
         <tr>
             <th>ID</th>
@@ -46,15 +46,50 @@
                         @endif
                     @endforeach
                 </td>
-                {{-- <td>
-                    <a type="button" class="btn btn-primary"
-                        href="{{ route('ctthongtinxedapdien', ['maxedapdien' => $i->maxe]) }}">
+                <td>
+                    <a type="button" class="btn btn-primary" href="{{ route('ctthongtinxe', ['maxe' => $i->maxe]) }}">
                         <i class="bi bi-eye"></i> Xem
                     </a>
-                    <a type="button" class="btn btn-danger" href="{{ route('xoathongtinxedapdien', ['maxedapdien' => $i->maxe]) }}">
+                    <a type="button" class="btn btn-danger"
+                        href="{{ route('xoathongtinxedapdien', ['maxedapdien' => $i->maxe]) }}">
                         <i class="bi bi-trash3"></i> Xóa
                     </a>
-                </td> --}}
+
+                    @php
+                        $check = DB::table('xedangban')
+                            ->select('xedangban.maxe')
+                            ->where('xedangban.maxe', $i->maxe)
+                            ->exists();
+                    @endphp
+                    @if ($check == true)
+                        <a type="button" class="btn btn-info"
+                            href="{{ route('xedangban1-thongtinxe', ['maxe' => $i->maxe]) }}" aria-disabled="true">
+                            <i class="bi bi-postcard"></i> Đăng bán
+                        </a>
+                    @endif
+
+                    @if ($check == false)
+                        <a type="button" class="btn btn-info disabled"
+                            href="{{ route('xedangban1-thongtinxe', ['maxe' => $i->maxe]) }}" aria-disabled="true">
+                            <i class="bi bi-postcard"></i> Đăng bán
+                        </a>
+                    @endif
+                    {{-- @foreach ($xedangban as $k)
+                        @if ($k->maxe == $i->maxe)
+                            <a type="button" class="btn btn-info"
+                                href="{{ route('xedangban1-thongtinxe', ['maxe' => $i->maxe]) }}" aria-disabled="true">
+                                <i class="bi bi-postcard"></i> Đăng bán
+                            </a>
+                        @endif
+
+                        @if ($k->maxe != $i->maxe)
+                            <a type="button" class="btn btn-info disabled"
+                                href="{{ route('xedangban1-thongtinxe', ['maxe' => $i->maxe]) }}" aria-disabled="true">
+                                <i class="bi bi-postcard"></i> Đăng bán
+                            </a>
+                        @endif
+                    @endforeach --}}
+                </td>
 
             </tr>
         @endforeach

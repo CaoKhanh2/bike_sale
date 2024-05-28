@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Mail\Mailable;
 
 use App\Exports\NguoiDungExport;
+use App\Models\GioHang;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class NguoiDungController extends Controller
@@ -49,8 +51,8 @@ class NguoiDungController extends Controller
      */
     public function store(Request $request)
     {
-        $mand = $this->generateUniqueNumericId(7);
-        $magh = $this->generateUniqueNumericId(7);
+        $mand = $this->generateUniqueNumericId_guest(7);
+        $magh = $this->generateUniqueNumericId_cart(7);
         $trangthai = 'Đang chờ xử lý';
 
         DB::table('nguoidung')->insert([
@@ -86,10 +88,10 @@ class NguoiDungController extends Controller
 
         // Nếu địa chỉ email đã tồn tại, trả về thông báo
         if ($user) {
-            return redirect()->route('dangky-Guest')->with('cross-dangky-Guest', 'Đăng ký không thành công!');
+            return redirect()->back()->with('cross-dangky-Guest', 'Đăng ký không thành công!');
         } else {
-            $mand = $this->generateUniqueNumericId(7);
-            $magh = $this->generateUniqueNumericId(7);
+            $mand = $this->generateUniqueNumericId_guest(7);
+            $magh = $this->generateUniqueNumericId_cart(7);
 
             DB::table('nguoidung')->insert([
                 'mand' => $mand,
@@ -148,10 +150,10 @@ class NguoiDungController extends Controller
         if ($rs->passes()) {
             if (DatLaiMatKhauNguoiDung::create($tokenData)) {
                 Mail::to($request->email)->send(new DatLaiMatKhauMail($rs, $token));
-                return redirect()->route('quen-matkhau-Guest')->with('success-quen-matkhau-Guest', 'Đã gửi yêu cầu đặt lại mật khẩu đến email của bạn, vui lòng kiểm tra emai!');
+                return redirect()->back()->with('success-quen-matkhau-Guest', 'Đã gửi yêu cầu đặt lại mật khẩu đến email của bạn, vui lòng kiểm tra emai!');
             }
         } else {
-            return redirect()->route('quen-matkhau-Guest')->with('cross-quen-matkhau-Guest', 'Tài khoản chưa được đăng ký!');
+            return redirect()->back()->with('cross-quen-matkhau-Guest', 'Tài khoản chưa được đăng ký!');
         }
     }
     public function reset_password(Request $request)
@@ -247,6 +249,108 @@ class NguoiDungController extends Controller
         }
     }
 
+    public function update_infor_Guest(Request $request)
+    {
+        $rs = Validator::make(
+            $request->all(),
+            [
+                'hovaten' => 'required|max:50',
+                'ngaysinh' => 'required',
+                'gioitinh' => 'required',
+                'tentaikhoan' => 'required',
+                'cccd' => 'required|min:11|max:11',
+                'sodienthoai' => 'required|min:11|max:11',
+                'diachi' => 'required|max:100',
+                
+            ],
+            [
+                'hovaten.required' => 'Bạn chưa nhập thông tin họ và tên.',
+                'ngaysinh.required' => 'Bạn chưa nhập thông tin ngày sinh.',
+                'gioitinh.required' => 'Bạn chưa chọn thông tin giới tính.',
+                'tentaikhoan.required' => 'Bạn chưa nhập tên tài khoản.',
+                'cccd.required' => 'Bạn chưa nhập số căn cước công dân.',
+                'sodienthoai.required' => 'Bạn chưa nhập số điện thoại.',
+                'diachi.required' => 'Bạn chưa nhập thông tin địa chỉ.',
+
+                
+                'hovaten.max' => 'Họ và tên không được vượt quá 50 ký tự.',
+                'cccd.max' => 'Số căn cước công dân của bạn phải bao gồm 11 ký tự!',
+                'sodienthoai.max' => 'Số điện thoại của bạn không vượt quá 11 ký tự!',
+                'diachi.max' => 'Địa chỉ của bạn không vượt quá 100 ký tự!',
+                
+                'cccd.min' => 'Số căn cước công dân của bạn phải bao gồm 11 ký tự!',
+                'sodienthoai.min' => 'Số điện thoại của bạn phải bao gồm 11 ký tự!',
+                
+            ],
+        );
+
+        if ($rs->fails()) {
+            return back()->withErrors($rs)->with('cross-thaydoi-thongtin-Guest', 'Thông tin của bạn chưa được cập nhật đầy đủ.');
+        }
+
+        $guest = Auth::guard('guest')->user();
+        DB::table('nguoidung')
+            ->where('mand', $guest->mand)
+            ->update([
+                'hovaten' => $request->hovaten,
+                'ngaysinh' => $request->ngaysinh,
+                'cccd' => $request->cccd,
+                'gioitinh' => $request->gioitinh,
+                'sodienthoai' => $request->sodienthoai,
+                'tentk' => $request->tentaikhoan,
+                'diachi' => $request->diachi,
+            ]);
+
+        return back()->with('success-thaydoi-thongtin-Guest', 'Thông tin được cập nhật thành công!');
+    }
+
+    public function change_password_guest(Request $request)
+    {
+        $rs = Validator::make(
+            $request->all(),
+            [
+                'current-password' => 'required|min:8|max:32',
+                'new-password' => ['required', 'min:8', 'max:32', 'regex:/[A-Z]/', 'regex:/[!@#$%^&*(),.?":{}|<>]/'],
+                'confirm-password' => 'required|same:new-password',
+            ],
+            [
+                'current-password.required' => 'Bạn chưa nhập mật khẩu hiện tại!',
+                'new-password.required' => 'Bạn chưa nhập mật khẩu mới!',
+                'confirm-password.required' => 'Bạn chưa nhập mật khẩu xác nhận!',
+
+                'current-password.min' => 'Mật khẩu hiện tại phải có ít nhất 8 ký tự!',
+                'new-password.min' => 'Mật khẩu mới phải có ít nhất 8 ký tự!',
+                'confirm-password.min' => 'Mật khẩu xác nhận phải có ít nhất 8 ký tự!',
+
+                'current-password.max' => 'Mật khẩu hiện tại không được quá 32 ký tự!',
+                'new-password.max' => 'Mật khẩu mới không được quá 32 ký tự!',
+                'confirm-password.max' => 'Mật khẩu xác nhận không được quá 32 ký tự!',
+
+                'new-password.regex' => 'Mật khẩu mới phải có ít nhất 1 ký tự đặc biệt và 1 ký tự viết hoa!',
+                'confirm-password.same' => 'Mật khẩu xác nhận không khớp với mật khẩu mới!',
+            ],
+        );
+
+        if ($rs->fails()) {
+            return back()->withErrors($rs)->with('cross-thaydoi-matkhau-Guest', 'Mật khẩu chưa được đặt lại!');
+        }
+
+        $guest = Auth::guard('guest')->user();
+
+        // Check if the provided current password matches the stored password
+        if (!Hash::check($request->input('current-password'), $guest->password)) {
+            //return response()->json(['error' => 'Current password is incorrect'], 400);
+            return back()->with('cross-thaydoi-matkhau-Guest', 'Mật khẩu hiện tại không đúng!');
+        }
+
+        DB::table('nguoidung')
+            ->where('mand', $guest->mand)
+            ->update([
+                'password' => Hash::make($request->input('new-password')),
+            ]);
+        return back()->with('success-thaydoi-matkhau-Guest', 'Mật khẩu đã được thay đổi thành công!');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -285,19 +389,32 @@ class NguoiDungController extends Controller
 
     public function data()
     {
-        $mand = $this->generateUniqueNumericId(7);
+        $mand = $this->generateUniqueNumericId_guest(7);
 
         $data = [['mand' => $mand, 'hovaten' => 'CoTrungKien', 'tentk' => 'kienco', 'password' => bcrypt('12345678'), 'email' => 'kienco@gmail.com'], ['mand' => 'KH0002', 'hovaten' => 'Huy', 'tentk' => 'huy', 'password' => bcrypt('12345678'), 'email' => 'huy@gmail.com']];
 
         NguoiDung::insert($data);
     }
 
-    private function generateUniqueNumericId($length)
+    private function generateUniqueNumericId_guest($length)
     {
         $id = $this->generateRandomNumber($length);
 
         // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
         while (NguoiDung::where('mand', $id)->exists()) {
+            // Nếu ID đã tồn tại, tạo lại một ID mới
+            $id = $this->generateRandomNumber($length);
+        }
+
+        return $id;
+    }
+
+    private function generateUniqueNumericId_cart($length)
+    {
+        $id = $this->generateRandomNumber($length);
+
+        // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
+        while (GioHang::where('magh', $id)->exists()) {
             // Nếu ID đã tồn tại, tạo lại một ID mới
             $id = $this->generateRandomNumber($length);
         }

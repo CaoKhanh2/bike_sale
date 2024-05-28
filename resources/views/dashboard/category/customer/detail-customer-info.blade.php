@@ -59,7 +59,7 @@
                         <label class="col-sm-12 col-md-2 col-form-label" for="gioitinh">Giới tính</label>
                         <div class="col-sm-12 col-md-10">
                             <select class="custom-select col-12" id="gioitinh" name="gt">
-                                <option value="" {{ $nd->gioitinh == '' ? 'selected' : '' }}>Choose...</option>
+                                <option value="" {{ $nd->gioitinh == '' ? 'selected' : '' }} hidden>Lựa chọn...</option>
                                 <option value="Nam" {{ $nd->gioitinh == 'Nam' ? 'selected' : '' }}>Nam</option>
                                 <option value="Nữ" {{ $nd->gioitinh == 'Nữ' ? 'selected' : '' }}>Nữ</option>
                             </select>

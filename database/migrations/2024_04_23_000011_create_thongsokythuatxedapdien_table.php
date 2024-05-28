@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('thongsokythuatxedapdien', function (Blueprint $table) {
             $table->string('matsxedapdien',10);
-            $table->float('trongluong',4,2)->nullable();
+            $table->double('trongluong',5,2)->nullable();
             $table->string('acquy',25)->nullable();
             $table->string('dongcodien',25)->nullable();
             $table->string('thoigiansacdien',15)->nullable();
