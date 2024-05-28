@@ -17,13 +17,12 @@ return new class extends Migration
             $table->string('makhuyenmai',5);
             $table->string('tenkhuyenmai',35);
             $table->string('dieukienapdung')->nullable();
-            $table->demical('tilegiamgia');
+            $table->double('tilegiamgia',3,2);
             $table->string('motakhuyenmai')->nullable();
             $table->dateTime('thoigianbatdau');
             $table->dateTime('thoigianketthuc');
-
+            $table->enum('hieuluc',['Còn hiệu lực','Hết hạn']);    
             $table->primary('makhuyenmai');
-
         });
     }
 

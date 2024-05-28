@@ -255,7 +255,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             // ---------- **** ----------
 
             // ---------- Thông tin xe ----------
-            Route::get('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'index']);
+            Route::get('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'index'])->name('thongtinxe');
             Route::post('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
             Route::get('/dashboard/category/vehicle/vehicle-infor/{maxemay}', [ThongTinXeController::class, 'del_xemay'])->name('xoathongtinxemay');
             Route::get('/dashboard/category/vehicle/vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'del_Xedapdien'])->name('xoathongtinxedapdien');
@@ -378,7 +378,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             Route::get('/dashboard/transaction/purchasing/{id}', [XeDangKyThuMuaController::class, 'huydon'])->name('huydonthumua'); // Hủy đơn thu mua
             Route::get('/dashboard/transaction/purchasing/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'duyetdon'])->name('duyetdonthumua'); // Duyệt đơn thu mua
             Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/{id}', [XeDangKyThuMuaController::class, 'show'])->name('ctthongtinmua'); // Xem chi tiết đơn thu mua
-
+            Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/add/{id}', [XeDangKyThuMuaController::class, 'add_bike'])->name('themxe-xethumua'); // Xem chi tiết đơn thu mua
             
 
             // ---------- **** ----------

@@ -47,14 +47,25 @@
                 var myDropzone = this;
                 // for Dropzone to process the queue (instead of default form behavior):
                 document.getElementById("formthumua").addEventListener("submit", function(e) {
-                    // $("form[name='formthumua']").submit(function(e) {
-                    // Make sure that the form isn't actually being sent.
                     e.preventDefault();
                     e.stopPropagation();
-                    // var formData = $('#formthumua').serialize();
-                    myDropzone.processQueue();
+                    if (myDropzone.getUploadingFiles().length === 0 && myDropzone.getQueuedFiles().length === 0) {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Lỗi!",
+                            text: "Bạn chưa tải ảnh của xe.",
+                            showConfirmButton: false,
+                            timer: 3000 // Thời gian hiển thị thông báo (ms)
+                        }).then((result) => {
+                            // Sau khi thông báo đã biến mất, chuyển hướng người dùng
+                            window.location.href = '{{ route('gui-form-thumua-Guest') }}';
+                        });
+                    } else {
+                        // var formData = $('#formthumua').serialize();
+                        myDropzone.processQueue();
+                    }
                 });
-                myDropzone.on("sending", function(file, xhr, formData) {
+                this.on("sending", function(file, xhr, formData) {
                     $('#formthumua').find('input, select').each(function() {
                         if ($(this).is('input')) {
                             formData.append($(this).attr('name'), $(this).val());
@@ -78,6 +89,8 @@
                         timer: 1500 // Thời gian hiển thị thông báo (ms)
                     }).then((result) => {
                         // Sau khi thông báo đã biến mất, chuyển hướng người dùng
+                        myDropzone.removeAllFiles();
+                        document.getElementById("formthumua").reset();
                         window.location.href = '{{ route('gui-form-thumua-Guest') }}';
                     });
                 });
@@ -97,5 +110,56 @@
             }
         });
     </script>
+    <script>
+        document.getElementById('loaixe').addEventListener('change', function() {
+            var selectedLoaiXe = this.value;
+            var hangXeSelect = document.getElementById('hangxe');
+            hangXeSelect.innerHTML = '';
+            if (selectedLoaiXe === 'Xe may') {
+                @foreach ($hxm as $i)
+                    var option = document.createElement('option');
+                    option.value = "{{ $i->mahx }}";
+                    option.textContent = "{{ $i->tenhang }}";
+                    hangXeSelect.appendChild(option);
+                @endforeach
+            } else {
+                @foreach ($hxdd as $i)
+                    var option = document.createElement('option');
+                    option.value = "{{ $i->mahx }}";
+                    option.textContent = "{{ $i->tenhang }}";
+                    hangXeSelect.appendChild(option);
+                @endforeach
+            }
 
+        });
+    </script>
+
+    <script>
+        document.getElementById('hangxe').addEventListener('change', function() {
+            var selectedLoaiXe = document.getElementById('loaixe').value;
+            var selectedHangXe = this.value;
+            var dongXeSelect = document.getElementById('dongxe');
+            dongXeSelect.innerHTML = '';
+            if (selectedLoaiXe === 'Xe dap dien') {
+                @foreach ($dxdd as $i)
+                    if ("{{ $i->mahx }}" === selectedHangXe) {
+                        var option = document.createElement('option');
+                        option.value = "{{ $i->madx }}";
+                        option.textContent = "{{ $i->tendongxe }}";
+                        dongXeSelect.appendChild(option);
+                    }
+                @endforeach
+            } else {
+
+                @foreach ($dxm as $i)
+                    if ("{{ $i->mahx }}" === selectedHangXe) {
+                        var option = document.createElement('option');
+                        option.value = "{{ $i->madx }}";
+                        option.textContent = "{{ $i->tendongxe }}";
+                        dongXeSelect.appendChild(option);
+                    }
+                @endforeach
+            }
+        });
+    </script>
 @endsection

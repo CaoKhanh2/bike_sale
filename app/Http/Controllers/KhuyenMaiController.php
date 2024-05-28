@@ -13,8 +13,8 @@ class KhuyenMaiController extends Controller
     {
         $hxm = DB::table('hangxe')->select('hangxe.tenhang', 'hangxe.mahx')->join('dongxe', 'hangxe.mahx', 'dongxe.mahx')->where('loaixe', 'Xe máy')->distinct()->get();
         $hxd = DB::table('hangxe')->select('hangxe.tenhang', 'hangxe.mahx')->join('dongxe', 'hangxe.mahx', 'dongxe.mahx')->where('loaixe', 'Xe đạp điện')->distinct()->get();
-        $dxdd = DB::table('dongxe')->select('dongxe.madx', 'dongxe.mahx', 'dongxe.tendongxe')->where('loaixe', 'Xe đạp điện')->get();
-        $dxm = DB::table('dongxe')->select('dongxe.madx', 'dongxe.mahx', 'dongxe.tendongxe')->where('loaixe', 'Xe máy')->get();
+        $dxdd = DB::table('dongxe')->select('dongxe.madx', 'dongxe.mahx', 'dongxe.tendongxe')->where('loaixe', 'Xe đạp điện')->distinct()->get();
+        $dxm = DB::table('dongxe')->select('dongxe.madx', 'dongxe.mahx', 'dongxe.tendongxe')->where('loaixe', 'Xe máy')->distinct()->get();
         $km = DB::table('khuyenmai')->where('hieuluc','Hết hạn')->get();
         $km_active = DB::table('khuyenmai')->selectRaw('*,
                                         CASE WHEN DATEDIFF(thoigianketthuc,CURDATE()) > 0 THEN DATEDIFF(thoigianketthuc,CURDATE())
