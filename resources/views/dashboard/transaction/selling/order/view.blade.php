@@ -1,19 +1,18 @@
-@extends('guest-acc.layout.content')
+@extends('dashboard.layout.content')
 
-@section('title_ds', 'Đơn hàng')
-@section('pg-hd-2', 'Chi tiết đơn hàng')
-@section('title')
-    Chi tiết đơn hàng
-@endsection 
-@include('guest-acc.layout.header')
-@section('guest-content')
-    <div class="container py-5 ">
+@section('title_ds', 'Quản lý bán xe')
+@section('pg-hd-2', 'Quản lý bán xe')
+
+@section('main')
+    <div class="main-container ">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     @include('dashboard.layout.page-header')
                     <div class="card-header ">
-                        <h4 class="text">Chi tiết đơn hàng</h4>
+                        <h4 class="text">Chi tiết đơn hàng
+                            <a href="{{ route('danhsach-donhang-dangbanxe') }}" class="btn btn-warning float-right">Back</a>
+                        </h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -83,6 +82,7 @@
                                                         <option {{ $item->trangthai == 'Đã hủy' ? 'selected' : '' }} value="Đã hủy" hidden>Đã hủy</option>
                                                     @endif
                                                 </select>   
+                                                <button type="submit" class="btn btn-primary float-right mt-3">Cập nhật</button>
                                             @endif
                                         </form>
                                     @endforeach

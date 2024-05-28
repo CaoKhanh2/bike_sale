@@ -38,6 +38,45 @@ class KhoHangController extends Controller
         return view('dashboard.category.warehouse.warehouse-infor', compact('kho', 'ttkho', 'maphieuxuat', 'thongtinphieuxuat', 'thongtinphieunhap'));
     }
 
+    public function index_add_warehouse(){ 
+
+        return view('dashboard.category.warehouse.add-warehouse'); 
+    }
+
+    public function add_warehouse(Request $request){
+        $rs = $request->validate(
+            [
+                'makho' => 'required|unique:khohang|max:5',
+                'tenkho' => 'required|max:25',
+                'diachi' => 'required|max:50'
+            ],
+            [
+                'makho.required' => 'Bạn chưa nhập thông tin mã kho!',
+                'makho.unique' => 'Mã kho hàng đã tồn tại!',
+                'makho.max' => 'Mã kho hàng không được vượt quá 5 kí tự!',
+
+                'tenkho.required' => 'Bạn chưa nhập thông tin tên kho hàng!',
+                'tenkho.max' => 'Tên kho hàng không được vượt quá 25 ký tự!',
+                
+                'diachi.required' => 'Bạn chưa nhập thông tin địa chỉ kho hàng!',
+                'diachi.max' => 'Địa chỉ không được vượt quá 50 ký tự!',
+            ]
+        );
+
+        if($rs){
+            DB::table('khohang')->insert([
+            
+                'makho' => $request->makho,
+                'tenkhohang' => $request->tenkho,
+                'diachi' => $request->diachi,
+            ]);
+            return back()->with('success-them-khohang', 'Kho hàng được thêm mới thành công!');
+        }else {
+            return back()->withInput();
+        }
+
+    }
+
     public function mutil_index_export(Request $request)
     {
         $dataArray = $request->input('data');
@@ -357,6 +396,52 @@ class KhoHangController extends Controller
             ->get();
 
         return view('dashboard.category.warehouse.receipt-export.receipt.receipt-list-infor', compact('thongtinphieunhap'));
+    }
+
+    public function warehouse_receipt_pdf(Request $request)
+    {
+        $phieunhap = DB::table('phieunhap')
+            ->where('maphieunhap', $request->maphieunhap)
+            ->first();
+
+        $ct_phieunhap = DB::table('ctphieunhap')
+            ->select('ctphieunhap.*', 'ctkhohang.machitietkho')
+            ->join('phieunhap', 'phieunhap.maphieunhap', 'ctphieunhap.maphieunhap')
+            ->join('ctkhohang', 'ctkhohang.machitietkho', 'ctphieunhap.machitietkho')
+            ->where('ctphieunhap.maphieunhap', $request->maphieunhap)
+            ->get();
+
+        $ttkho = DB::table('ctkhohang')
+            ->join('khohang', 'khohang.makho', 'ctkhohang.makho')
+            ->select('ctkhohang.*', 'khohang.tenkhohang', 'khohang.diachi')
+            ->whereIn('ctkhohang.machitietkho', $ct_phieunhap->pluck('machitietkho')->toArray()) // Phương thức pluck('machitietkho') được sử dụng để lấy ra một mảng của tất cả các giá trị từ cột machitietkho của đối tượng $ct_phieunhap
+            ->get();
+
+        $ctphieunhap = DB::table('ctphieunhap')
+            ->select('ctphieunhap.*', 'ctkhohang.maxe', 'thongtinxe.tenxe', 'xedangban.giaban')
+            ->join('ctkhohang', 'ctkhohang.machitietkho', 'ctphieunhap.machitietkho')
+            ->join('thongtinxe', 'thongtinxe.maxe', 'ctkhohang.maxe')
+            ->join('xedangban', 'thongtinxe.maxe', 'xedangban.maxe')
+            ->where('ctphieunhap.maphieunhap', $request->maphieunhap)
+            ->get();
+
+        $tongtien_px = DB::table('ctphieunhap')
+            ->selectRaw('SUM(dongia * soluong) as tongtien')
+            ->where('maphieunhap', $request->maphieunhap)
+            ->first();
+
+        $data = [
+            'title' => 'Thông tin Phiếu Xuất',
+            'phieunhap' => $phieunhap,
+            'ct_phieunhap' => $ct_phieunhap,
+            'ttkho' => $ttkho,
+            'ctphieunhap' => $ctphieunhap,
+            'tongtien_px' => $tongtien_px,
+        ];
+
+        $pdf = PDF::loadView('dashboard.category.warehouse.receipt-export.receipt.receipt-a4', $data);
+
+        return $pdf->stream('myPDF.pdf');
     }
 
     private function generateUniqueNumericId_detail_warehouse($length)

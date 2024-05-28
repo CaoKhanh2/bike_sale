@@ -47,9 +47,9 @@
                                             <img src="{{ asset('storage/' . $path) }}"
                                                 class="object-fit-contain border rounded img-fluid" alt="..."
                                                 style="height: 180px; width: 100%;">
-                                            @if ($i->giagoc != $i->giaban)
-                                                <div class="overlay">{{ $i->tilegiamgia . '%' }}</div>
-                                            @endif
+                                                @if ($i->giagoc != $i->giaban)
+                                                <div class="overlay">{{number_format($i->tilegiamgia,'0',',') . '%'}}</div>
+                                                @endif
                                         @endif
                                     @endforeach
                                 </div>

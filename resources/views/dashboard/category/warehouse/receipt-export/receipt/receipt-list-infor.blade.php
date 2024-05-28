@@ -82,9 +82,9 @@
                         </table>
                         <div class="row">
                             <div class="col d-flex justify-content-end">
-                                <form action="{{ route('thuchien-xuatkho') }}" method="post">
+                                <form action="{{ route('xuatfile-pdf-phieunhapkho') }}" method="post">
                                     @csrf
-
+                                    <input type="text" name="maphieunhap" value="{{ $maphieunhap }}" hidden>
                                     <button class="btn btn-secondary" type="submit"><i
                                             class="fa-solid fa-file-export fs-3"></i>
                                         Xuất file pdf</button>

@@ -33,11 +33,7 @@
         .bordered-table td {
             border: 1px solid #000;
             padding: 8px;
-            text-align: center;
-        }
-
-        .bordered-table th {
-            border: 1px solid #000;
+            vertical-align: middle;
         }
 
         .font-weight-bold {
@@ -76,10 +72,10 @@
 </head>
 
 @php
-    $ngayxuat = new DateTime($phieuxuat->ngayxuat);
-    $day = $ngayxuat->format('d'); // Day
-    $month = $ngayxuat->format('m'); // Month
-    $year = $ngayxuat->format('Y'); // Year
+    $ngaynhap = new DateTime($phieunhap->ngaynhap);
+    $day = $ngaynhap->format('d'); // Day
+    $month = $ngaynhap->format('m'); // Month
+    $year = $ngaynhap->format('Y'); // Year
 @endphp
 
 <body>
@@ -91,7 +87,7 @@
             </div>
         </div>
         <div class="row text-center">
-            <h3 class="text-dark"><strong>PHIẾU XUẤT KHO</strong></h3>
+            <h3 class="text-dark"><strong>PHIẾU NHẬP KHO</strong></h3>
         </div>
         <div class="row text-center">
             <p class="text-dark">Ngày {{ $day }} tháng
@@ -99,25 +95,20 @@
                 {{ $year }}</p>
         </div>
         <div class="row text-center">
-            <p class="text-dark">Mã số: {{ $phieuxuat->maphieuxuat }}</p>
+            <p class="text-dark">Mã số: {{ $phieunhap->maphieunhap }}</p>
         </div>
         <div class="row mx-2 mb-2">
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <p class="text-dark mb-1">- Họ và tên người nhận hàng:
+                        <p class="text-dark mb-1">- Họ và tên người giao:
                             ..............................................................................</p>
-                    </div>
-                    <div class="col">
-                        <p class="text-dark mb-1">- Lý do xuất hàng:
-                            ................................................................................................
-                        </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="inline-p">
-                            <p class="text-dark mb-1">- Xuất tại kho:
+                            <p class="text-dark mb-1">- Nhập tại kho:
                                 @foreach ($ttkho as $i)
                                     @if ($loop->first)
                                         {{ $i->tenkhohang }}
@@ -142,7 +133,7 @@
         </div>
         <div class="row justify-content-center align-items-center mt-3">
             <div class="col-auto">
-                <table class="word-table bordered-table">
+                <table class="word-table bordered-table" id="table">
                     <thead class="table-dark">
                         <tr>
                             <th>STT</th>
@@ -156,7 +147,7 @@
                     </thead>
                     <tbody>
                         @php $count=1; @endphp
-                        @foreach ($ctphieuxuat as $i)
+                        @foreach ($ctphieunhap as $i)
                             <tr>
                                 <td>{{ $count++ }}</td>
                                 <td>{{ $i->tenxe }}</td>
@@ -168,7 +159,7 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <th></th>
+                            <th scope="row"></th>
                             <td colspan="3"><strong>Tổng tiền</strong></td>
                             <td></td>
                             <td></td>

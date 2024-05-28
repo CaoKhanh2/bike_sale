@@ -1,7 +1,7 @@
 @extends('dashboard.layout.content')
 
-@section('title_ds', 'Xuất kho')
-@section('pg-card-title', 'Phiếu xuất kho')
+@section('title_ds', 'Nhập kho')
+@section('pg-card-title', 'Phiếu nhập kho')
 @section('pg-hd-2', 'Danh mục')
 @section('pg-hd-3', 'Kho hàng')
 @section('st4', 'true') @section('pg-hd-4', 'Nhập kho') @section('act4', 'active')

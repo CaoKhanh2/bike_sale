@@ -22,6 +22,7 @@ use App\Http\Controllers\KhuyenMaiController;
 use App\Http\Controllers\ThongTinXeController;
 use App\Http\Controllers\XeDangBanController;
 use App\Http\Controllers\XeDangKyThuMuaController;
+use App\Http\Controllers\OnlineCheckoutController;
 
 use App\Models\ThongSoKyThuatXeDapDien;
 use App\Models\ThongSoKyThuatXeMay;
@@ -56,10 +57,10 @@ Route::group(['prefix' => 'account'], function () {
         return view('guest-acc.auth.register');
     })->name('dangky-Guest');
 
+    //Đăng ký tài khoản
     Route::post('/guest/register', [NguoiDungController::class, 'store2'])->name('thuchien-dangky-Guest');
 
     //Xác thực email tài khoản
-
     Route::get('/guest/verify-acc/{id}', [NguoiDungController::class, 'verify_acc'])->name('thuchien-xacnhan-mail-Guest');
 
     // ----------
@@ -84,6 +85,11 @@ Route::group(['prefix' => 'account'], function () {
     })
         ->middleware(['roleGuest'])
         ->name('thongtin-Guest');
+
+    Route::post('/profile/change-infor',[NguoiDungController::class,'update_infor_Guest'])->middleware(['roleGuest'])->name('thuchien-thaydoi-thongtin-Guest');
+    
+    Route::post('/profile/change-pass',[NguoiDungController::class,'change_password_guest'])->middleware(['roleGuest'])->name('thuchien-thaydoi-matkhu-Guest');
+    
     // ----------
 });
 
@@ -129,11 +135,21 @@ Route::middleware(['roleGuest'])->group(function () {
 
     // Đơn hàng ----------
     Route::get('/checkout', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
-    Route::get('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
+    Route::post('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
+    // Route::post('/online-checkout',[DonHangController::class, 'dat_hang'])->name('thanhtoan-onl');
+    Route::get('/thanks',[DonHangController::class, 'thanks']);
+    // Route::post('/online-checkout',[OnlineCheckoutController::class, 'online_checkout'])->name('thanhtoan-onl');;
+    // Route::get('/thanks',[OnlineCheckoutController::class, 'thanks']);
 
     // Route::get('/cart-index/add/{maxedangban}', [GioHangController::class, 'add_cart'])->name('them-giohang-Guest');
 
     // Route::post('/cart-index', [GioHangController::class, 'destroy_cart'])->name('xoa-giohang-Guest');
+
+    // Lịch sử đơn hàng ----------
+
+    Route::get('/my-order', [NguoiDungController::class, 'orderhistory'])->name('khach-donhang'); // Xem đơn hàng
+    Route::get('/view-order/{id}', [NguoiDungController::class, 'view'])->name('khach-ctdonhang'); // Xem chi tiết đơn hàng
+
 
     // ----------
 });
@@ -174,16 +190,20 @@ Route::get('sub-index/motorbike/sale-page/{maxe}', [XeDangBanController::class, 
  *
  */
 
-Route::get('/login', function () {
-    return view('dashboard.auth.login');
-});
-Route::post('/login', [TaiKhoanContrller::class, 'login'])->name('login');
+    Route::get('/login', function () {
+        return view('dashboard.auth.login');
+    });
+    Route::post('/login', [TaiKhoanContrller::class, 'login'])->name('login');
 
-Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
+    Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
 
-// Route::get('/dasboard', function () {
-//     return view('dashboard.index');
-// })->middleware(['roleAcc']);
+    // Route::get('/dasboard', function () {
+    //     return view('dashboard.index');
+    // })->middleware(['roleAcc']);
+
+    // Route::post('/password/confirm', function () {
+    //     return view('dashboard.auth.login');
+    // })->name('password.confirm');
 
 /**
  *
@@ -258,17 +278,18 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             Route::get('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'index'])->name('thongtinxe');
             Route::post('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
             Route::get('/dashboard/category/vehicle/vehicle-infor/{maxemay}', [ThongTinXeController::class, 'del_xemay'])->name('xoathongtinxemay');
-            Route::get('/dashboard/category/vehicle/vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'del_Xedapdien'])->name('xoathongtinxedapdien');
+            Route::get('/dashboard/category/vehicle/vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'del_xedapdien'])->name('xoathongtinxedapdien');
 
             Route::post('/dashboard/category/vehicle/vehicle-infor/export', [ThongTinXeController::class, 'exporrt_excel_report_infor_motorbike'])->name('xuatfile-excel-thongtinxemay');
 
-            Route::get('/dashboard/category/vehicle/detail-vehicle-infor/{maxemay}', [ThongTinXeController::class, 'show'])->name('ctthongtinxemay');
-            Route::get('/dashboard/category/vehicle/detail-vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'show'])->name('ctthongtinxedapdien');
+            Route::get('/dashboard/category/vehicle/detail-vehicle-infor/{maxe}', [ThongTinXeController::class, 'show'])->name('ctthongtinxe');
+
             Route::get('/dashboard/category/vehicle/detail-vehicle-infor/delete_image/{id}/{index}', [ThongTinXeController::class, 'delete_image'])->name('xoaanh');
 
-            // Route::post('/dashboard/category/vehicle/vehicle-infor', [XeDapDienController::class, 'store'])->name('themthongtinxedapien');
+            Route::post('/dashboard/category/vehicle/vehicle-infor/update/{maxe}', [ThongTinXeController::class, 'update_xe'])->name('capnhat-thongtinxe');
             //Route::post('/dashboard/category/customer/customer-info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
 
+            
             // ---------- **** ----------
 
         /**
@@ -328,7 +349,6 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
         Route::post('/dashboard/category/warehouse/warehouse-export', [KhoHangController::class, 'perform_export'])->name('thuchien-xuatkho');
 
 
-        //Route::post('/dashboard/category/warehouse/export-item', [KhoHangController::class, 'index_export'])->name('thongtinxuatkho');
         Route::get('/dashboard/category/warehouse/mutil-export-item', [KhoHangController::class, 'mutil_index_export'])->name('mutil-thongtinxuatkho');
         Route::get('/dashboard/category/warehouse/mutil-export-item/update', [KhoHangController::class, 'update_export_detail'])->name('capnhat-mutil-thongtinxuatkho');
         Route::post('/dashboard/category/warehouse/mutil-export-item/export-pdf', [KhoHangController::class, 'warehouse_export_pdf'])->name('xuatfile-pdf-phieuxuatkho');
@@ -339,13 +359,18 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
         Route::get('/dashboard/category/warehouse/warehouse-export/{maphieuxuat}', [KhoHangController::class, 'destroy_export_detail'])->name('xoa-chitietphieuxuat');
         
 
-        Route::get('/dashboard/category/warehouse/mutil-receipt-item', [KhoHangController::class, 'mutil_index_receipt'])->name('mutil-thongtinnhapkho');
+        Route::get('/dashboard/category/warehouse/warehouse-receipt/mutil-receipt-item', [KhoHangController::class, 'mutil_index_receipt'])->name('mutil-thongtinnhapkho');
 
-        Route::post('/dashboard/category/warehouse/mutil-receipt-item/add', [KhoHangController::class, 'mutil_store_receipt'])->name('them-mutil-thongtinnhapkho');
+        Route::post('/dashboard/category/warehouse/warehouse-receipt/mutil-receipt-item/add', [KhoHangController::class, 'mutil_store_receipt'])->name('them-mutil-thongtinnhapkho');
 
         Route::get('/dashboard/category/warehouse/warehouse-receipt/view-detail', [KhoHangController::class, 'show_receipt_detail'])->name('chitietphieunhap');
+
+        Route::post('/dashboard/category/warehouse/mutil-receipt-item/receipt-pdf', [KhoHangController::class, 'warehouse_receipt_pdf'])->name('xuatfile-pdf-phieunhapkho');
         
-        //Route::post('/dashboard/category/warehouse/warehouse-export/view-detail/perform-export', [KhoHangController::class, 'update_warehouse_status'])->name('thuchien-xuathang');
+        
+        Route::get('/dashboard/category/warehouse/add-warehouse', [KhoHangController::class, 'index_add_warehouse'])->name('them-khohang');
+        
+        Route::post('/dashboard/category/warehouse/add', [KhoHangController::class, 'add_warehouse'])->name('thuchien-them-khohang'); 
 
 
         /**
@@ -389,11 +414,16 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             //     return view('dashboard.transaction.selling.sell-manage');
             // });
 
-            Route::get('/dashboard/transaction/selling/sell-manage', [DonHangController::class, 'index'])->name('danhsach-donhang'); //Hiện bảng ds đơn hàng
-            Route::get('/dashboard/transaction/selling/sell-manage/view-order/{id}', [DonHangController::class, 'view'])->name('xem-ctdonhang'); // Xem chi tiết từng đơn hàng
-            Route::put('/dashboard/transaction/selling/sell-manage/update-order/{id}', [DonHangController::class, 'updateorder'])->name('capnhat-donhang'); // Cập nhật trạng thái đơn hàng
-            Route::get('/dashboard/transaction/selling/sell-manage/order-history',[DonHangController::class, 'orderhistory'])->name('lichsu-donhang'); // Xem lịch sử đơn hàng   
+            Route::get('/dashboard/transaction/selling/sell-manage', [DonHangController::class, 'index'])->name('danhsach-donhang-dangbanxe'); 
+            Route::get('/dashboard/transaction/selling/sell-manage/order/view-order/{id}', [DonHangController::class, 'view'])->name('xem-ctdonhang'); // Xem chi tiết từng đơn hàng
+            Route::put('/dashboard/transaction/selling/sell-manage/order/update-order/{id}', [DonHangController::class, 'updateorder'])->name('capnhat-donhang'); // Cập nhật trạng thái đơn hàng
+            Route::get('/dashboard/transaction/selling/sell-manage/order/order-history',[DonHangController::class, 'orderhistory'])->name('lichsu-donhang'); // Xem lịch sử đơn hàng   
 
+            Route::get('/dashboard/transaction/selling/sell-manage/vehicle-infor-sale/{maxe}', [XeDangBanController::class, 'index_post_sale_1'])->name('xedangban1-thongtinxe');
+            Route::get('/dashboard/transaction/selling/sell-manage/vehicle-directly', [XeDangBanController::class, 'index_post_sale_2'])->name('xedangban2-thongtinxe');
+
+            Route::post('/dashboard/transaction/selling/sell-manage/add', [XeDangBanController::class, 'add_post_sale'])->name('them-xedangban-thongtinxe');
+            Route::get('/dashboard/transaction/selling/sell-manage/delete/{id}', [XeDangBanController::class, 'destroy_post_sale'])->name('xoa-xedangban-thongtinxe');
 
 
             // ---------- **** ----------

@@ -6,13 +6,35 @@
 @section('pg-hd-3', 'Thông tin xe') @section('act3', 'active')
 @section('st4', 'false')
 @section('main')
+
+
+    @if (Session::has('success-them-thongtinxe'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-them-thongtinxe') }}",
+            });
+        </script>
+    @elseif(Session::has('cross-them-thongtinxe'))
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('cross-them-thongtinxe') }}",
+            });
+        </script>
+    @endif
+
+
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
                 {{-- Page Header --}}
                 @include('dashboard.layout.page-header')
                 {{-- End Page Header --}}
-
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4"></h4>
@@ -35,12 +57,12 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="table1" role="tabpanel">
-                                    <div class="pt-20">
+                                    <div class="pt-20 table-responsive">
                                         @include('dashboard.category.vehicle.vehicle-types.motorbike')
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show" id="table2" role="tabpanel">
-                                    <div class="pt-20">
+                                    <div class="pt-20 table-responsive">
                                         @include('dashboard.category.vehicle.vehicle-types.electric-bicycles')
                                     </div>
                                 </div>
@@ -66,16 +88,16 @@
                                                 </div>
                                             </div>
                                             <div id="form1" style="display: none;">
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <input class="form-control" name="mx" />
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="hangxemay">Hãng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <select class="custom-select col-12" name="hx" id="hangxemay">
+                                                        <select class="custom-select col-12" name="hx" id="hangxemay" required>
                                                             <option selected hidden>Choose...</option>
                                                             @foreach ($hangxemay as $i)
                                                                 <option value="{{ $i->mahx }}">{{ $i->tenhang }}
@@ -85,9 +107,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="dongxemay">Dòng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <select class="custom-select col-12" name="dx" id="dongxemay">
+                                                        <select class="custom-select col-12" name="dx" id="dongxemay" required>
                                                             <option selected hidden>Choose...</option>
                                                             {{-- @foreach ($dongxemay as $i)
                                                                 <option value="{{ $i->madx }}">{{ $i->tendongxe }}
@@ -97,39 +119,38 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="tx">Tên xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tx" />
+                                                        <input class="form-control" name="tx" id="tx"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="tgsd">Thời gian đã sử
                                                         dụng</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tgsd" />
+                                                        <input class="form-control" name="tgsd" id="tgsd" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="sokmdadi">Số Km đã đi</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" type="number" name="sokmdadi" />
+                                                        <input class="form-control" type="number" name="sokmdadi" id="sokmdadi"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="tinhtrangxe">Tình trạng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tinhtrangxe" min="2000"
-                                                            max="2024">
+                                                        <input type="text" class="form-control" name="tinhtrangxe" id="tinhtrangxe">
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Biển số xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <input class="form-control" name="bsx" maxlength="12">
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="images">Hình ảnh</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <div class="custom-file">
                                                             <input type="file" class="custom-file-input"
@@ -140,9 +161,9 @@
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Ghi chú</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="ghichu">Ghi chú</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <textarea class="form-control" rows="3" name="mt"></textarea>
+                                                        <textarea class="form-control" rows="3" name="ghichu" id="ghichu"></textarea>
                                                     </div>
                                                 </div>
 
@@ -164,14 +185,14 @@
                                                 </div>
                                             </div>
                                             <div id="form2" style="display: none;">
-                                                <div class="form-group row">
+                                                {{-- <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <input class="form-control" name="mx" />
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="hangxedapdien">Hãng xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <select class="custom-select col-12" name="hx"
                                                             id="hangxedapdien">
@@ -184,7 +205,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="dongxedapdien">Dòng xe</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <select class="custom-select col-12" name="dx"
                                                             id="dongxedapdien">
@@ -197,33 +218,32 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="tx">Tên xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tx" />
+                                                        <input class="form-control" name="tx" id="tx"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="tgsd">Thời gian đã sử
                                                         dụng</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tgsd" />
+                                                        <input class="form-control" name="tgsd" id="tgsd"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="sokmdadi">Số Km đã đi</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" type="number" name="sokmdadi" />
+                                                        <input class="form-control" type="number" name="sokmdadi" id="sokmdadi"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="tinhtrangxe">Tình trạng xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tinhtrangxe" min="2000"
-                                                            max="2024">
+                                                        <input class="form-control" name="tinhtrangxe" id="tinhtrangxe">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="images">Hình ảnh</label>
                                                     <div class="col-sm-12 col-md-10">
                                                         <div class="custom-file">
                                                             <input type="file" class="custom-file-input"
@@ -233,9 +253,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-12 col-md-2 col-form-label">Ghi chú</label>
+                                                    <label class="col-sm-12 col-md-2 col-form-label" for="ghichu">Ghi chú</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <textarea class="form-control" rows="3" name="mt"></textarea>
+                                                        <textarea class="form-control" rows="3" name="ghichu" id="ghichu"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -246,7 +266,6 @@
                                         </form>
                                         {{-- Het --}}
                                     </div>
-
                                 </div>
                             </div>
                         </div>

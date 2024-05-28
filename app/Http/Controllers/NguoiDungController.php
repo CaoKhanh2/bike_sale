@@ -18,6 +18,7 @@ use Illuminate\Mail\Mailable;
 
 use App\Exports\NguoiDungExport;
 use App\Models\GioHang;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
 class NguoiDungController extends Controller
@@ -248,6 +249,108 @@ class NguoiDungController extends Controller
         }
     }
 
+    public function update_infor_Guest(Request $request)
+    {
+        $rs = Validator::make(
+            $request->all(),
+            [
+                'hovaten' => 'required|max:50',
+                'ngaysinh' => 'required',
+                'gioitinh' => 'required',
+                'tentaikhoan' => 'required',
+                'cccd' => 'required|min:11|max:11',
+                'sodienthoai' => 'required|min:11|max:11',
+                'diachi' => 'required|max:100',
+                
+            ],
+            [
+                'hovaten.required' => 'Bạn chưa nhập thông tin họ và tên.',
+                'ngaysinh.required' => 'Bạn chưa nhập thông tin ngày sinh.',
+                'gioitinh.required' => 'Bạn chưa chọn thông tin giới tính.',
+                'tentaikhoan.required' => 'Bạn chưa nhập tên tài khoản.',
+                'cccd.required' => 'Bạn chưa nhập số căn cước công dân.',
+                'sodienthoai.required' => 'Bạn chưa nhập số điện thoại.',
+                'diachi.required' => 'Bạn chưa nhập thông tin địa chỉ.',
+
+                
+                'hovaten.max' => 'Họ và tên không được vượt quá 50 ký tự.',
+                'cccd.max' => 'Số căn cước công dân của bạn phải bao gồm 11 ký tự!',
+                'sodienthoai.max' => 'Số điện thoại của bạn không vượt quá 11 ký tự!',
+                'diachi.max' => 'Địa chỉ của bạn không vượt quá 100 ký tự!',
+                
+                'cccd.min' => 'Số căn cước công dân của bạn phải bao gồm 11 ký tự!',
+                'sodienthoai.min' => 'Số điện thoại của bạn phải bao gồm 11 ký tự!',
+                
+            ],
+        );
+
+        if ($rs->fails()) {
+            return back()->withErrors($rs)->with('cross-thaydoi-thongtin-Guest', 'Thông tin của bạn chưa được cập nhật đầy đủ.');
+        }
+
+        $guest = Auth::guard('guest')->user();
+        DB::table('nguoidung')
+            ->where('mand', $guest->mand)
+            ->update([
+                'hovaten' => $request->hovaten,
+                'ngaysinh' => $request->ngaysinh,
+                'cccd' => $request->cccd,
+                'gioitinh' => $request->gioitinh,
+                'sodienthoai' => $request->sodienthoai,
+                'tentk' => $request->tentaikhoan,
+                'diachi' => $request->diachi,
+            ]);
+
+        return back()->with('success-thaydoi-thongtin-Guest', 'Thông tin được cập nhật thành công!');
+    }
+
+    public function change_password_guest(Request $request)
+    {
+        $rs = Validator::make(
+            $request->all(),
+            [
+                'current-password' => 'required|min:8|max:32',
+                'new-password' => ['required', 'min:8', 'max:32', 'regex:/[A-Z]/', 'regex:/[!@#$%^&*(),.?":{}|<>]/'],
+                'confirm-password' => 'required|same:new-password',
+            ],
+            [
+                'current-password.required' => 'Bạn chưa nhập mật khẩu hiện tại!',
+                'new-password.required' => 'Bạn chưa nhập mật khẩu mới!',
+                'confirm-password.required' => 'Bạn chưa nhập mật khẩu xác nhận!',
+
+                'current-password.min' => 'Mật khẩu hiện tại phải có ít nhất 8 ký tự!',
+                'new-password.min' => 'Mật khẩu mới phải có ít nhất 8 ký tự!',
+                'confirm-password.min' => 'Mật khẩu xác nhận phải có ít nhất 8 ký tự!',
+
+                'current-password.max' => 'Mật khẩu hiện tại không được quá 32 ký tự!',
+                'new-password.max' => 'Mật khẩu mới không được quá 32 ký tự!',
+                'confirm-password.max' => 'Mật khẩu xác nhận không được quá 32 ký tự!',
+
+                'new-password.regex' => 'Mật khẩu mới phải có ít nhất 1 ký tự đặc biệt và 1 ký tự viết hoa!',
+                'confirm-password.same' => 'Mật khẩu xác nhận không khớp với mật khẩu mới!',
+            ],
+        );
+
+        if ($rs->fails()) {
+            return back()->withErrors($rs)->with('cross-thaydoi-matkhau-Guest', 'Mật khẩu chưa được đặt lại!');
+        }
+
+        $guest = Auth::guard('guest')->user();
+
+        // Check if the provided current password matches the stored password
+        if (!Hash::check($request->input('current-password'), $guest->password)) {
+            //return response()->json(['error' => 'Current password is incorrect'], 400);
+            return back()->with('cross-thaydoi-matkhau-Guest', 'Mật khẩu hiện tại không đúng!');
+        }
+
+        DB::table('nguoidung')
+            ->where('mand', $guest->mand)
+            ->update([
+                'password' => Hash::make($request->input('new-password')),
+            ]);
+        return back()->with('success-thaydoi-matkhau-Guest', 'Mật khẩu đã được thay đổi thành công!');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -330,4 +433,40 @@ class NguoiDungController extends Controller
     //     $email = "khanh85969@st.vimaru.edu.vn";
     //     Mail::to($email)->send(new XacNhanMail());
     // }
+
+    public function orderhistory()
+    {
+        $mand = Auth::guard('guest')->user()->mand;
+        $donhang = DB::table('donhang')
+                ->select('donhang.*')
+                ->join('giohang', 'giohang.magh', 'donhang.magh')
+                ->where('giohang.mand', $mand)
+                ->where('donhang.trangthai', "Đã hoàn thành")
+                ->orWhere('donhang.trangthai', "Đã hủy")
+                ->where('giohang.mand', $mand)
+                ->get();
+
+        // dd($donhang);
+        return view('guest-acc.orders.index', compact('donhang'));
+    }
+
+
+    // Lịch sử mua hàng của khách
+    public function view($id)
+    {
+        $donhang_items = DB::table('donhang')
+                    ->select('thongtinxe.*', 'xedangban.giaban', 'donhang.*')
+                    ->join('giohang', 'giohang.magh', 'donhang.magh')->join('ctgiohang', 'giohang.magh', 'ctgiohang.magh')
+                    ->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+                    ->where('donhang.madh', $id)
+                    ->get();
+
+        $tt_nguoidung = DB::table('nguoidung')->select('nguoidung.*')->join('giohang', 'giohang.mand', 'nguoidung.mand')->join('donhang', 'donhang.magh', 'giohang.magh')->where('donhang.madh', $id)->first();
+
+        // dd($tt_nguoidung);
+
+        // dd($donhang_items);
+        return view('guest-acc.orders.view', compact('donhang_items', 'tt_nguoidung'));
+    }
+
 }

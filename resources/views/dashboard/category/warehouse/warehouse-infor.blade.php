@@ -75,7 +75,7 @@
                                                         phiếu nhập</a>
                                                 </div>
                                                 <div class="col text-right">
-                                                    <a href="" class="btn btn-info"><i class="fa-solid fa-warehouse"></i> Thêm kho hàng</a>
+                                                    <a href="{{ route('them-khohang') }}" class="btn btn-info"><i class="fa-solid fa-warehouse"></i> Thêm kho hàng</a>
                                                 </div>
                                             </div>
                                         </div>
