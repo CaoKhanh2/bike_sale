@@ -22,6 +22,7 @@ use App\Http\Controllers\KhuyenMaiController;
 use App\Http\Controllers\ThongTinXeController;
 use App\Http\Controllers\XeDangBanController;
 use App\Http\Controllers\XeDangKyThuMuaController;
+use App\Http\Controllers\OnlineCheckoutController;
 
 use App\Models\ThongSoKyThuatXeDapDien;
 use App\Models\ThongSoKyThuatXeMay;
@@ -129,11 +130,21 @@ Route::middleware(['roleGuest'])->group(function () {
 
     // Đơn hàng ----------
     Route::get('/checkout', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
-    Route::get('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
+    Route::post('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
+    // Route::post('/online-checkout',[DonHangController::class, 'dat_hang'])->name('thanhtoan-onl');
+    Route::get('/thanks',[DonHangController::class, 'thanks']);
+    // Route::post('/online-checkout',[OnlineCheckoutController::class, 'online_checkout'])->name('thanhtoan-onl');;
+    // Route::get('/thanks',[OnlineCheckoutController::class, 'thanks']);
 
     // Route::get('/cart-index/add/{maxedangban}', [GioHangController::class, 'add_cart'])->name('them-giohang-Guest');
 
     // Route::post('/cart-index', [GioHangController::class, 'destroy_cart'])->name('xoa-giohang-Guest');
+
+    // Lịch sử đơn hàng ----------
+
+    Route::get('/my-order', [NguoiDungController::class, 'orderhistory'])->name('khach-donhang'); // Xem đơn hàng
+    Route::get('/view-order/{id}', [NguoiDungController::class, 'view'])->name('khach-ctdonhang'); // Xem chi tiết đơn hàng
+
 
     // ----------
 });

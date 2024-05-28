@@ -16,7 +16,7 @@
                                 <div class="col-12 col-sm-4 mb-3 mb-sm-0">
                                     @foreach (explode(',', $i->hinhanh) as $path)
                                         @if ($loop->first)
-                                            <img src="{{ asset('storage/public/' . $path) }}"
+                                            <img src="{{ asset('storage/' . $path) }}"
                                                 class="object-fit-contain border rounded img-fluid" alt="..."
                                                 style="height: 180px; width: 100%;">
                                         @endif
