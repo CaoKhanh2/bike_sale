@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('machitietkho',10);
             $table->string('makho',5);
             $table->string('maxe',15)->nullable();
-            $table->tinyInteger('soluong',3)->nullable();
+            $table->tinyInteger('soluong',false,false)->nullable();
             $table->decimal('gianhapkho',12,2)->nullable();
             $table->date('ngaynhapkho');
             $table->enum('trangthai', ['Đang xử lý','Đã xuất kho', 'Còng trong kho'])->nullable();

@@ -1,4 +1,4 @@
-<table class="table hover data-table-export">
+<table class="table hover multiple-select-row nowrap dtr-inline">
     <thead>
         <tr>
             <th>ID</th>
@@ -46,7 +46,7 @@
                         @endif
                     @endforeach
                 </td>
-                {{-- <td>
+                <td>
                     <a type="button" class="btn btn-primary"
                         href="{{ route('ctthongtinxedapdien', ['maxedapdien' => $i->maxe]) }}">
                         <i class="bi bi-eye"></i> Xem
@@ -54,7 +54,20 @@
                     <a type="button" class="btn btn-danger" href="{{ route('xoathongtinxedapdien', ['maxedapdien' => $i->maxe]) }}">
                         <i class="bi bi-trash3"></i> Xóa
                     </a>
-                </td> --}}
+                    @foreach ($thongtinxe as $k)
+                        @if ($k->maxe == $i->maxe)
+                            <a type="button" class="btn btn-info"
+                                href="{{ route('xedangban1-thongtinxe', ['maxe' => $i->maxe]) }}" aria-disabled="true">
+                                <i class="bi bi-postcard"></i> Đăng bán
+                            </a>
+                        @else
+                            <a type="button" class="btn btn-info disabled"
+                                href="{{ route('xedangban1-thongtinxe', ['maxe' => $i->maxe]) }}" aria-disabled="true">
+                                <i class="bi bi-postcard"></i> Đăng bán
+                            </a>
+                        @endif
+                    @endforeach
+                </td>
 
             </tr>
         @endforeach

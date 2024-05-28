@@ -11,7 +11,7 @@
                     @include('dashboard.layout.page-header')
                     <div class="card-header ">
                         <h4 class="text">Chi tiết đơn hàng
-                            <a href="{{ route('danhsach-donhang') }}" class="btn btn-warning float-right">Back</a>
+                            <a href="{{ route('danhsach-donhang-dangbanxe') }}" class="btn btn-warning float-right">Back</a>
                         </h4>
                     </div>
                     <div class="card-body">

@@ -6,13 +6,35 @@
 @section('pg-hd-3', 'Thông tin xe') @section('act3', 'active')
 @section('st4', 'false')
 @section('main')
+
+
+    @if (Session::has('success-them-thongtinxe'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-them-thongtinxe') }}",
+            });
+        </script>
+    @elseif(Session::has('cross-them-thongtinxe'))
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('cross-them-thongtinxe') }}",
+            });
+        </script>
+    @endif
+
+
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
                 {{-- Page Header --}}
                 @include('dashboard.layout.page-header')
                 {{-- End Page Header --}}
-
                 <div class="card-box mb-30">
                     <div class="pd-20">
                         <h4 class="text-blue h4"></h4>
@@ -35,12 +57,12 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="table1" role="tabpanel">
-                                    <div class="pt-20">
+                                    <div class="pt-20 table-responsive">
                                         @include('dashboard.category.vehicle.vehicle-types.motorbike')
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show" id="table2" role="tabpanel">
-                                    <div class="pt-20">
+                                    <div class="pt-20 table-responsive">
                                         @include('dashboard.category.vehicle.vehicle-types.electric-bicycles')
                                     </div>
                                 </div>
@@ -246,7 +268,6 @@
                                         </form>
                                         {{-- Het --}}
                                     </div>
-
                                 </div>
                             </div>
                         </div>

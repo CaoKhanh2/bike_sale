@@ -25,8 +25,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/vendors/styles/style.css') }}" />
     <link rel="stylesheet" type="text/css"
         href="{{ asset('dashboard_src/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
+        
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/select2/dist/css/select2.css') }}">
-   
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css"
         href="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.css') }}" />
@@ -34,7 +35,6 @@
         href="{{ asset('dashboard_src/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" />
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.css') }}" /> --}}
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet">
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

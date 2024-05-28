@@ -20,7 +20,7 @@
                             <div class="card">
                                 <div class="card-header ">
                                     <h4 class="text">Lịch sử đơn hàng
-                                        <a href="{{ route('danhsach-donhang') }}" class="btn btn-warning float-right">Đơn hàng mới</a>
+                                        <a href="{{ route('danhsach-donhang-dangbanxe') }}" class="btn btn-warning float-right">Đơn hàng mới</a>
                                     </h4>
                                 </div>
                                 <div class="card-body">

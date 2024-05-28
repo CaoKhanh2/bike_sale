@@ -16,6 +16,36 @@
 
 @section('main')
 
+    @if (Session::has('success-thaydoi-thongtinxe'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-thaydoi-thongtinxe') }}",
+            });
+        </script>
+    @endif
+    @if (Session::has('success-xoaanh-thongtinxe'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: "{{ Session::get('success-xoaanh-thongtinxe') }}",
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true,
+                    toast: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                    }
+                });
+            });
+        </script>
+    @endif
+
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             {{-- Page Header --}}
@@ -28,51 +58,84 @@
                         <h4 class="text-blue h4">Thông tin xe</h4>
                     </div>
                 </div>
-                <form action="{{ url('/dashboard/category/vehicle/detail_vehicle-infor/$xm->maxemay') }}" method="POST">
+                <form action="{{ route('capnhat-thongtinxemay', ['maxemay' => $xm->maxe]) }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Mã xe</label>
+                        <label class="col-sm-12 col-md-2 col-form-label" for="maxe">Mã xe</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" value="{{ $xm->maxe }}" disabled />
+                            <input class="form-control" id="maxe" value="{{ $xm->maxe }}" disabled />
+                            <input class="form-control" name="maxe" value="{{ $xm->maxe }}" hidden />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                        <label class="col-sm-12 col-md-2 col-form-label" for="dongxe">Dòng xe</label>
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select col-12">
-                                <option value="{{ $xm->madx }}" selected hidden>{{ $xm->madx }}</option>
+                            <select class="custom-select col-12" name="dongxe" id="dongxe">
+                                <option value="{{ $xm->madx }}" selected hidden>{{ $xm->tendongxe }}</option>
                                 @foreach ($dx as $i)
-                                    <option value="{{ $i->madx }}">{{ $i->madx }}</option>
+                                    <option value="{{ $i->madx }}">{{ $i->tendongxe }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="tenxe">Tên xe</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control" id="tenxe" name="tenxe" value="{{ $xm->tenxe }}" />
+                            @error('tenxe')
+                                <small class="help-block">
+                                    <p class="text-danger">{{ $message }}</p>
+                                </small>
+                            @enderror
                         </div>
                     </div>
                     {{-- <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
+                        <label class="col-sm-12 col-md-2 col-form-label" for="bsx">Biển số xe</label>
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select col-12">
-                                <option value="{{ $xm->mahx }}" selected>{{ $xm->mahx }}</option>
-                                @foreach ($hx as $i)
-                                    <option value="{{ $i->mahx }}">{{ $i->mahx }}</option>
-                                @endforeach
-                            </select>
+                            <input class="form-control" name="bsx" id="bsx" value="{{ $xm->biensoxe }}"
+                                maxlength="12">
                         </div>
                     </div> --}}
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
+                        <label class="col-sm-12 col-md-2 col-form-label" for="thoigiansudung">Thời gian đã sử dụng</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" value="{{ $xm->tenxe }}" />
+                            <input type="text" class="form-control" name="thoigiansudung" id="thoigiansudung"
+                                value="{{ $xm->thoigiandasudung }}">
+                            @error('thoigiansudung')
+                                <small class="help-block">
+                                    <p class="text-danger">{{ $message }}</p>
+                                </small>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Biển số xe</label>
+                        <label class="col-sm-12 col-md-2 col-form-label" for="tinhtrangxe">Tình trạng xe</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" name="bsx" value="{{ $xm->biensoxe }}" maxlength="12">
+                            <textarea class="form-control" id="tinhtrangxe" name="tinhtrangxe">{{ $xm->tinhtrangxe }}</textarea>
+                            @error('tinhtrangxe')
+                                <small class="help-block">
+                                    <p class="text-danger">{{ $message }}</p>
+                                </small>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Ghi chú</label>
+                        <label class="col-sm-12 col-md-2 col-form-label" for="sokmdadi">Số km đã đi</label>
                         <div class="col-sm-12 col-md-10">
-                            <textarea class="form-control" rows="3" name="mt">{{ $xm->ghichu }}</textarea>
+                            <input type="text" class="form-control" name="sokmdadi" id="sokmdadi"
+                                value="{{ $xm->sokmdadi }}">
+                            @error('sokmdadi')
+                                <small class="help-block">
+                                    <p class="text-danger">{{ $message }}</p>
+                                </small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label" for="ghichu">Ghi chú</label>
+                        <div class="col-sm-12 col-md-10">
+                            <textarea class="form-control" rows="3" id="ghichu" name="ghichu">{{ $xm->ghichu }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -101,10 +164,14 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                            <input type="file" class="form-control-file form-control height-auto" id="images"
-                                name="images[]" multiple>
+                            <input type="file" class="form-control-file " id="images" name="images[]" multiple>
+                            @error('images')
+                                <small class="help-block">
+                                    <p class="text-danger">{{ $message }}</p>
+                                </small>
+                            @enderror
                         </div>
+
                     </div>
                     @if (substr($xm->maxe, 0, 2) == 'XM')
                         <div class="clearfix mt-3 mb-3">
@@ -145,31 +212,31 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Trọng lượng</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="number"/>
+                                <input class="form-control" type="number" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Ắc quy</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text"/>
+                                <input class="form-control" type="text" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Động cơ điện</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text"/>
+                                <input class="form-control" type="text" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Thời gian sử dụng</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text"/>
+                                <input class="form-control" type="text" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Phạm vi sử dụng</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text"/>
+                                <input class="form-control" type="text" />
                             </div>
                         </div>
                     @endif

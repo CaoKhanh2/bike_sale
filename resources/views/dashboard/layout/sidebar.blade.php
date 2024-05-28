@@ -173,7 +173,7 @@
                             <ul class="submenu child">
                                 <li><a href="{{ route('xedkthumua') }}">Thu mua xe</a>
                                 </li>
-                                <li><a href="{{ route('danhsach-donhang') }}">Đăng bán xe</a></li>
+                                <li><a href="{{ route('danhsach-donhang-dangbanxe') }}">Đăng bán xe</a></li>
                             </ul>
                         </li>
                         <li><a href="form-pickers.html">Quản lý thanh toán</a></li>
