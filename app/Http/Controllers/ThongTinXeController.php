@@ -58,14 +58,14 @@ class ThongTinXeController extends Controller
             $maxemay = $this->generateUniqueId_moto();
 
             DB::table('thongsokythuatxemay')->insert([
-                'matsxemay' => 'TS' . $request->mx,
+                'matsxemay' => 'TS' . $maxemay,
             ]);
 
             $imagePathsString = implode(',', $imagePaths);
 
             DB::table('thongtinxe')->insert([
                 'maxe' => $maxemay,
-                'matsxemay' => 'TS' . $request->mx,
+                'matsxemay' => 'TS' . $maxemay,
                 'madx' => $request->dx,
                 'tenxe' => $request->tx,
                 'thoigiandasudung' => $request->tgsd,
@@ -82,14 +82,14 @@ class ThongTinXeController extends Controller
             $maxedap = $this->generateUniqueId_bike();
 
             DB::table('thongsokythuatxedapdien')->insert([
-                'matsxedapdien' => 'TS' . $request->mx,
+                'matsxedapdien' => 'TS' . $maxedap,
             ]);
 
             $imagePathsString = implode(',', $imagePaths);
 
             DB::table('thongtinxe')->insert([
                 'maxe' => $maxedap,
-                'matsxedapdien' => 'TS' . $request->mx,
+                'matsxedapdien' => 'TS' . $maxedap,
                 'madx' => $request->dx,
                 'tenxe' => $request->tx,
                 'thoigiandasudung' => $request->tgsd,
@@ -106,13 +106,7 @@ class ThongTinXeController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function detail_vehicle_infor($id)
     {
         $firstTwoChars = substr($id, 0, 2);
 
@@ -128,12 +122,6 @@ class ThongTinXeController extends Controller
         return view('/dashboard/category/vehicle/detail-vehicle-infor', ['xe' => $xe, 'dx' => $dx, 'hx' => $hx]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -269,7 +257,7 @@ class ThongTinXeController extends Controller
         DB::table('thongsokythuatxemay')
             ->where('matsxemay', 'TS' . $id)
             ->delete();
-        return redirect('dashboard/category/vehicle/vehicle-infor')->with('success', 'Post created successfully!');
+        return back()->with('success-xoa-thongtinxemay', 'Thông tin xe đã được xóa!');
     }
     public function del_xedapdien($id)
     {
@@ -277,7 +265,7 @@ class ThongTinXeController extends Controller
         DB::table('thongsokythuatxedapdien')
             ->where('matsxedapdien', 'TS' . $id)
             ->delete();
-        return redirect('dashboard/category/vehicle/vehicle-infor')->with('success', 'Post created successfully!');
+        return back()->with('success-xoa-thongtinxedap', 'Thông tin xe đã được xóa!');
     }
     public function delete_image($id, $index)
     {
@@ -333,10 +321,10 @@ class ThongTinXeController extends Controller
     {
         $thongtinxe = [
             ['maxe' => 'XD-0001', 'madx' => 'DX012', 'matsxemay' => null, 'matsxedapdien' => null, 'tenxe' => 'Dibao Ninja', 'thoigiandasudung' => '2 năm', 'tinhtrangxe' => 'đã sử dụng 50%', 'sokmdadi' => '150', 'hinhanh' => 'vehicles/oP7aFutXvJohjELTcm4R6AeE6zeZ4LZCmE3JMGb4.jpg,vehicles/8GCQVyjXVZGPEOKAARHHVAJZC7k8Fxcd9IHiuRHg.jpg', 'biensoxe' => null, 'ghichu' => null],
-            //['maxe' => 'XM-0001', 'madx' => 'DX003', 'matsxemay' => 'TSXM-0001', 'matsxedapdien' => null, 'tenxe' => 'Honda Vision 110cc', 'thoigiandasudung' => '4 năm', 'tinhtrangxe' => 'đã sử dụng 40%', 'sokmdadi' => '45', 'hinhanh' => 'vehicles/0u5smLX4b9zdcpXn52RRJussphidEgB8ojMOWw6t.jpg,vehicles/XX999reAtHYQJOFKPlgF2rlfZwKSirhCaJqyBN28.jpg,vehicles/1Uq4Co5ZFqsjHFboueKcihJJZZjb8Jytj4rYSAzP.jpg', 'biensoxe' => '15-B1234.56', 'ghichu' => null],
-            //['maxe' => 'XM-0002', 'madx' => 'DX001', 'matsxemay' => 'TSXM-0002', 'matsxedapdien' => null, 'tenxe' => 'Honda Airblade 160cc', 'thoigiandasudung' => '2 năm', 'tinhtrangxe' => 'đã sử dụng 20%', 'sokmdadi' => '65', 'hinhanh' => 'vehicles/EWrz0NFASRjMZxnIFXtVkg2WN9dq4tjrsdCdOfEp.jpg,vehicles/hzs5Cq83NLOGkNON36uWtcrWQvAbq3LCeOnkdA03.jpg', 'biensoxe' => '15-B1764.53', 'ghichu' => null],
-            //['maxe' => 'XM-0003', 'madx' => 'DX005', 'matsxemay' => 'TSXM-0003', 'matsxedapdien' => null, 'tenxe' => 'Honda Winner X 2023', 'thoigiandasudung' => '3 năm', 'tinhtrangxe' => 'đã sử dụng 10%', 'sokmdadi' => '25', 'hinhanh' => 'vehicles/Rt95T2SqSUOjbugwIYdvmPqxIJvH0e8YWHA86ajt.webp,vehicles/yiRidzawyUJXLuASleXTPHCXb8KAuRVJWglv4mgg.jpg,vehicles/Uxcd9PB7jhb8Telg8FYbbwuAjJYiVwZZsaIOP0vO.webp', 'biensoxe' => '15-B1474.55', 'ghichu' => null],
-            //['maxe' => 'XM-0004', 'madx' => 'DX009', 'matsxemay' => 'TSXM-0004', 'matsxedapdien' => null, 'tenxe' => 'Yamaha Grande 2022', 'thoigiandasudung' => '2 năm', 'tinhtrangxe' => 'đã sử dụng 30%', 'sokmdadi' => '250', 'hinhanh' => 'vehicles/Rw4prS0LyXUn6igkU74S1mbDIX1oVs4A5mzeMJz7.jpg,vehicles/wtEoo3PB2gZ1nQethKRVYyyGStdMM8myxl8dUf7k.png', 'biensoxe' => '15-B1592.86', 'ghichu' => null],
+            ['maxe' => 'XM-0001', 'madx' => 'DX003', 'matsxemay' => 'TSXM-0001', 'matsxedapdien' => null, 'tenxe' => 'Honda Vision 110cc', 'thoigiandasudung' => '4 năm', 'tinhtrangxe' => 'đã sử dụng 40%', 'sokmdadi' => '45', 'hinhanh' => 'vehicles/0u5smLX4b9zdcpXn52RRJussphidEgB8ojMOWw6t.jpg,vehicles/XX999reAtHYQJOFKPlgF2rlfZwKSirhCaJqyBN28.jpg,vehicles/1Uq4Co5ZFqsjHFboueKcihJJZZjb8Jytj4rYSAzP.jpg', 'biensoxe' => '15-B1234.56', 'ghichu' => null],
+            ['maxe' => 'XM-0002', 'madx' => 'DX001', 'matsxemay' => 'TSXM-0002', 'matsxedapdien' => null, 'tenxe' => 'Honda Airblade 160cc', 'thoigiandasudung' => '2 năm', 'tinhtrangxe' => 'đã sử dụng 20%', 'sokmdadi' => '65', 'hinhanh' => 'vehicles/EWrz0NFASRjMZxnIFXtVkg2WN9dq4tjrsdCdOfEp.jpg,vehicles/hzs5Cq83NLOGkNON36uWtcrWQvAbq3LCeOnkdA03.jpg', 'biensoxe' => '15-B1764.53', 'ghichu' => null],
+            ['maxe' => 'XM-0003', 'madx' => 'DX005', 'matsxemay' => 'TSXM-0003', 'matsxedapdien' => null, 'tenxe' => 'Honda Winner X 2023', 'thoigiandasudung' => '3 năm', 'tinhtrangxe' => 'đã sử dụng 10%', 'sokmdadi' => '25', 'hinhanh' => 'vehicles/Rt95T2SqSUOjbugwIYdvmPqxIJvH0e8YWHA86ajt.webp,vehicles/yiRidzawyUJXLuASleXTPHCXb8KAuRVJWglv4mgg.jpg,vehicles/Uxcd9PB7jhb8Telg8FYbbwuAjJYiVwZZsaIOP0vO.webp', 'biensoxe' => '15-B1474.55', 'ghichu' => null],
+            ['maxe' => 'XM-0004', 'madx' => 'DX009', 'matsxemay' => 'TSXM-0004', 'matsxedapdien' => null, 'tenxe' => 'Yamaha Grande 2022', 'thoigiandasudung' => '2 năm', 'tinhtrangxe' => 'đã sử dụng 30%', 'sokmdadi' => '250', 'hinhanh' => 'vehicles/Rw4prS0LyXUn6igkU74S1mbDIX1oVs4A5mzeMJz7.jpg,vehicles/wtEoo3PB2gZ1nQethKRVYyyGStdMM8myxl8dUf7k.png', 'biensoxe' => '15-B1592.86', 'ghichu' => null],
         ];
         ThongTinXe::insert($thongtinxe);
     }

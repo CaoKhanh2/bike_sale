@@ -7,7 +7,7 @@
 @section('st4', 'false')
 @section('main')
 
-
+    {{-- Thêm thông tin xe --}}
     @if (Session::has('success-them-thongtinxe'))
         <script>
             Swal.fire({
@@ -27,7 +27,31 @@
             });
         </script>
     @endif
+    {{-- End --}}
 
+    {{-- Xóa thông tin xe --}}
+    @if (Session::has('success-xoa-thongtinxemay'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-xoa-thongtinxemay') }}",
+            });
+        </script>
+    @endif
+
+    @if (Session::has('success-xoa-thongtinxedap'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-xoa-thongtinxedap') }}",
+            });
+        </script>
+    @endif
+    {{-- End --}}
 
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -121,7 +145,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-12 col-md-2 col-form-label" for="tx">Tên xe</label>
                                                     <div class="col-sm-12 col-md-10">
-                                                        <input class="form-control" name="tx" id="tx"/>
+                                                        <input class="form-control" name="tx" id="tx" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">

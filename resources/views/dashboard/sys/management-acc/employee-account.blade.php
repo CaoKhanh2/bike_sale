@@ -45,7 +45,7 @@
                                         <td>{{ $i->sodienthoai }}</td>
                                         <td>
                                             <form
-                                                action="{{ route('thongtintaikhoannhanvien' . $i->matk) }}"
+                                                action="{{ url('/dashboard/sys/management-acc/employee-account/' . $i->matk) }}"
                                                 method="post" id="myForm">
                                                 @csrf
                                                 @method('PATCH')
@@ -59,7 +59,7 @@
                                         <td>
                                             <a type="button" class="btn btn-primary"
                                                 href="">
-                                                <i class="bi bi-eye"></i> Xem chi tiết
+                                                <i class="bi bi-eye"></i> Xem
                                             </a>
                                         </td>
                                     </tr>
