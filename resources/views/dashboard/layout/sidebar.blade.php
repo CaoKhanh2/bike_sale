@@ -150,6 +150,7 @@
                                         xe</a></li>
                             </ul>
                         </li>
+                        <li><a href="{{ route('danhmuckhuyenmai') }}">Quản lý khuyến mãi</a></li>
                         <li><a href="{{ url('dashboard/category/customer/customer-info') }}">Quản lý khách
                                 hàng</a></li>
                         <li><a href="{{ url('dashboard/category/shipping/ship-infor') }}">Quản lý vận chuyển
@@ -178,7 +179,7 @@
                         </li>
                         <li><a href="form-pickers.html">Quản lý thanh toán</a></li>
                         <li><a href="image-cropper.html">Quản lý rủi ro</a></li>
-                        <li><a href="{{ route('danhmuckhuyenmai') }}">Quản lý khuyến mãi</a></li>
+                       
                     </ul>
                 </li>
                 {{-- <li class="dropdown">

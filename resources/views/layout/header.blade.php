@@ -65,7 +65,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('thongtin-Guest') }}">Thông tin tài khoản</a></li>
                                     <li><a class="dropdown-item" href="">Thông báo</a></li>
-                                    <li><a class="dropdown-item" href="">Lịch sử đơn hàng</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('khach-donhang') }}">Lịch sử đơn hàng</a></li>
                                     <li>
                                         <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}" class="mb-0">
                                             @csrf

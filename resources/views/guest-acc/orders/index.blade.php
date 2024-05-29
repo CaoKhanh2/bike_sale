@@ -1,10 +1,13 @@
 @extends('guest-acc.layout.content')
 
+@section('title_ds', 'Quản lý bán xe')
+@section('pg-hd-2', 'Quản lý bán xe')
+
 @section('title')
     Đơn hàng của tôi
 @endsection 
-
-@section('content')
+@include('guest-acc.layout.header')
+@section('guest-content')
     <div class="container py-5">
         <div class="row">
             <div class="col-md-12">
@@ -16,25 +19,25 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Ngày đặt hàng</th>
                                     <th>Mã đơn hàng</th>
+                                    <th>Ngày đặt hàng</th>
                                     <th>Tổng giá tiền</th>
                                     <th>Trạng thái</th>
                                     <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($orders as $item)
-                                    <tr>
-                                        <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-                                        <td>{{ $item->tracking_no }}</td>
-                                        <td>{{ $item->total_price }}</td>
-                                        <td>{{ $item->status == '0' ? 'pending' : 'completed' }}</td>
-                                        <td>
-                                            <a href="{{ url('view-order/'.$item->id) }}" class="btn btn-primary">View</a>
-                                        </td>
-                                    </tr>   
-                                @endforeach
+                                @foreach ($donhang as $item)
+                                <tr>
+                                    <td>{{ $item->madh}}</td>
+                                    <td>{{ date('d-m-Y', strtotime($item->ngaytaodon)) }}</td>
+                                    <td>{{ number_format($item->tongtien, 0, ',', '.') . ' đ' }}</td>
+                                    <td>{{ $item->trangthai == 'Đã hủy' ? 'Đã hủy' : 'Đã hoàn thành' }}</td>
+                                    <td>
+                                        <a href="{{ route('khach-ctdonhang', ['id' => $item->madh]) }}" class="btn btn-primary">View</a>
+                                    </td>
+                                </tr>   
+                            @endforeach
                             </tbody>
                         </table>     
                     </div>

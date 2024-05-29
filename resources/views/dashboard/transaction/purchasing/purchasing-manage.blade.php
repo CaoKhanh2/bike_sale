@@ -69,11 +69,11 @@
                                                     <td>
                                                         <a type="button" class="btn btn-outline-primary col"
                                                             href="{{ route('duyetdonthumua', ['id' => $i->madkthumua]) }}">
-                                                            <i class="bi bi-pencil-fill"></i> Duyệt
+                                                            <i class="bi bi-pencil-fill"></i> Chấp nhận
                                                         </a>
                                                         <a type="button" class="btn btn-danger col mt-2"
                                                             href="{{ route('huydonthumua', ['id' => $i->madkthumua]) }}">
-                                                            <i class="bi bi-trash"></i> Không duyệt
+                                                            <i class="bi bi-trash"></i> Không chấp nhận
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -94,9 +94,9 @@
                                                 <th>Tên người bán</th>
                                                 <th>Tên người duyệt</th>
                                                 <th>Ngày bán</th>
-                                                <th>Mô tả</th>
+                        
                                                 <th>Giá bán</th>
-                                                <th>Trạng thái</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-center">
@@ -111,14 +111,13 @@
                                                             echo $formattedDate;
                                                         @endphp
                                                     </td>
-                                                    <td>{{ $i->mota }}</td>
+                                    
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
-                                                    <td class="text-center">
-                                                        @php
-                                                            echo '<img src="' .
-                                                                asset('Image/Icon/waiting.png') .
-                                                                '" alt="" srcset="" width="20" height=150">';
-                                                        @endphp
+                                                    <td>
+                                                        <a type="button" class="btn btn-outline-primary col"
+                                                        href="{{ route('themxe-xethumua', ['id' => $i->madkthumua]) }}">
+                                                        <i class="bi bi-pencil-fill"></i> Lập phiếu
+                                                    </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -138,7 +137,6 @@
                                                 <th>Tên người bán</th>
                                                 <th>Tên người duyệt</th>
                                                 <th>Ngày bán</th>
-                                                <th>Mô tả</th>
                                                 <th>Giá bán</th>
                                                 <th>Trạng thái</th>
                                             </tr>
@@ -152,7 +150,6 @@
                                                     <td>
                                                         {{ date('d/m/Y', strtotime($i->ngaydk)) }}
                                                     </td>
-                                                    <td>{{ $i->mota }}</td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
                                                     <td class="text-center">
                                                         @php

@@ -33,6 +33,7 @@
                         </label>
                         <select class="form-select form-select-lg border border-3 border-primary" aria-label="Loại xe"
                             id="loaixe" name="loaixe">
+                            <option selected hidden>Chọn Loại xe</option>
                             <option value="Xe may">Xe máy</option>
                             <option value="Xe dap dien">Xe đạp điện</option>
                         </select>
@@ -41,8 +42,29 @@
                         <h3>Thông tin xe chi tiết</h3>
                     </div>
                     <div class="mb-4 form-group">
-                        <input type="text" name="tenhang" id="Hangxe"
-                            class="form-control form-control-lg border border-3 border-primary" placeholder="Hãng xe">
+                        <select class="form-select form-select-lg border border-3 border-primary" aria-label="Loại xe"
+                            id="hangxe" name="hangxe">
+                            <option selected hidden>Chọn hãng xe</option>
+                            @foreach ($hxm as $i)
+                                <option value="{{ $i->mahx }}">{{ $i->tenhang }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-4 form-group">
+                        <select class="form-select form-select-lg border border-3 border-primary" aria-label="Loại xe"
+                            id="dongxe" name="dongxe">
+                            <option selected hidden>Chọn dòng xe</option>
+                            @foreach ($dxm as $i)
+                            <option value="{{ $i->madx }}">{{ $i->tendongxe }}
+                            </option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-4 form-group">
+                        <input type="text" name="tenxe" id="tenxe"
+                            class="form-control form-control-lg border border-3 border-primary"
+                            placeholder="Tên xe">
                     </div>
                     <div class="mb-4 form-group">
                         <input type="text" name="namdangky" id="Namdangky"
@@ -52,6 +74,10 @@
                     <div class="mb-4 form-group">
                         <input type="text" name="xuatxu" id="Xuatxu"
                             class="form-control form-control-lg border border-3 border-primary" placeholder="Xuất xứ">
+                    </div>
+                    <div class="mb-4 form-group">
+                        <input type="text" name="kmdadi" id="KMdadi"
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Số km đã đi">
                     </div>
                     <div class="mb-4 form-group">
                         <input type="text" name="giaban" id="Giaban"
@@ -65,11 +91,15 @@
                             name="mota"></textarea>
                     </div>
                     <div class="mb-2">
-                        <h3>Thông tin người bán</h3>
+                        <h3>Thông tin liên hệ</h3>
                     </div>
                     <div class="mb-4 form-group">
                         <input type="text" name="diachi" id="diachi"
                             class="form-control form-control-lg border border-3 border-primary" placeholder="Địa chỉ">
+                    </div>
+                    <div class="mb-4 form-group">
+                        <input type="text" name="sdt" id="sdt"
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Số điện thoại liên lạc">
                     </div>
                 </div>
             </div>
