@@ -9,10 +9,6 @@
 
 
 @section('main')
-    @php
-        $lx = $tt['Loai xe'];
-        echo $lx;
-    @endphp
 
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
@@ -37,12 +33,12 @@
                     </div>
                 </div>
                 {{-- Thong tin xe may --}}
-                <form action="{{ route('themthongtinxe') }}" class="form mt-2" method="POST"
+                <form action="{{ route('themxe-xethumua-accepted') }}" class="form mt-2" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row" hidden>
                         <div class="col-sm-12 col-md-10">
-                            <input type="text" value="{{ $tt['Loai xe']}}" name="xe">
+                            <input type="text" value="1" name="xe">
                         </div>
                     </div>
                     <div id="form1" style="display: none;">
@@ -51,13 +47,6 @@
                             <div class="col-sm-12 col-md-10">
                                 <input class="form-control"  value="{{ $hangxe['tenhang']}}"/>
                                 <input class="form-control" name="hx" value="{{ $hangxe['mahx']}}" hidden/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control"  value="{{ $dongxe['tendongxe']}}"/>
-                                <input class="form-control" name="dx" value="{{ $dongxe['madx']}}" hidden/>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -79,23 +68,6 @@
                                 <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi']}}"/>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tinhtrangxe" min="2000"
-                                    max="2024">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
-                            <div class="col-sm-12 col-md-10">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input"
-                                        id="images" name="anh[]" multiple>
-                                    <label class="custom-file-label">Chọn ảnh</label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit"
                                 class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
@@ -105,12 +77,12 @@
                 </form>
                 {{-- Het --}}
                 {{-- Thong tin xe dap dien --}}
-                <form action="{{ route('themthongtinxe') }}" class="form mt-2" method="POST"
+                <form action="{{ route('themxe-xethumua-accepted') }}" class="form mt-2" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row" hidden>
                         <div class="col-sm-12 col-md-10">
-                            <input type="text" value="{{ $tt['Loai xe']}}" name="xe">
+                            <input type="text" value="2" name="xe">
                         </div>
                     </div>
                     <div id="form2" style="display: none;">
@@ -122,51 +94,31 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control"  value="{{ $dongxe['tendongxe']}}"/>
-                                <input class="form-control" name="hx" value="{{ $dongxe['madx']}}" hidden/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tx" />
+                                <input class="form-control" name="tx" value="{{ $tt['Ten xe']}}"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
                                 dụng</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tgsd" />
+                                <input class="form-control" name="tgsd" value="{{ $tt['tgsd']}}"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="number" name="sokmdadi" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tinhtrangxe" min="2000"
-                                    max="2024">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Hình ảnh</label>
-                            <div class="col-sm-12 col-md-10">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input"
-                                        id="images" name="anh[]" multiple>
-                                    <label class="custom-file-label">Chọn ảnh</label>
-                                </div>
+                                <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi']}}" />
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="submit"
                                 class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button type="button"
+                                class="btn btn-primary me-md-2 mx-3 my-3">Quay về</button>
                         </div>
                     </div>
                 </form>
@@ -174,7 +126,7 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
+            $(document).ready(function() {
             var lx = "{{ $tt['Loai xe'] }}"
             if(lx === 'Xe may')
             {

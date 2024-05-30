@@ -133,33 +133,4 @@
 
         });
     </script>
-
-    <script>
-        document.getElementById('hangxe').addEventListener('change', function() {
-            var selectedLoaiXe = document.getElementById('loaixe').value;
-            var selectedHangXe = this.value;
-            var dongXeSelect = document.getElementById('dongxe');
-            dongXeSelect.innerHTML = '';
-            if (selectedLoaiXe === 'Xe dap dien') {
-                @foreach ($dxdd as $i)
-                    if ("{{ $i->mahx }}" === selectedHangXe) {
-                        var option = document.createElement('option');
-                        option.value = "{{ $i->madx }}";
-                        option.textContent = "{{ $i->tendongxe }}";
-                        dongXeSelect.appendChild(option);
-                    }
-                @endforeach
-            } else {
-
-                @foreach ($dxm as $i)
-                    if ("{{ $i->mahx }}" === selectedHangXe) {
-                        var option = document.createElement('option');
-                        option.value = "{{ $i->madx }}";
-                        option.textContent = "{{ $i->tendongxe }}";
-                        dongXeSelect.appendChild(option);
-                    }
-                @endforeach
-            }
-        });
-    </script>
 @endsection

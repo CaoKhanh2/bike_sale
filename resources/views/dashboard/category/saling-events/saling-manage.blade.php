@@ -93,8 +93,8 @@
                                                         <td>{{ $i->tilegiamgia . '%' }}</td>
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianbatdau)) }}</td>
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianketthuc)) }}</td>
-                                                        <td class="text-danger">
-                                                            {{ $i->hieuluc}}
+                                                        <td>
+                                                           <div class="text-danger"> {{ $i->hieuluc}} </div>
                                                         </td>
                                                     </tr>
                                                 @endforeach

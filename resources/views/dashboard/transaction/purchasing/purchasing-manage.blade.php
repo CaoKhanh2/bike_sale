@@ -30,6 +30,11 @@
                                 <a class="nav-link text-blue" data-toggle="tab" href="#datuchoi" role="tab"
                                     aria-selected="false">Đã từ chối</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-blue" data-toggle="tab" href="#damua" role="tab"
+                                    aria-selected="false">Đã nhận mua</a>
+                            </li>
+                            
                         </ul>
                         <div class="tab-content">
                             {{-- danh sách chờ  --}}
@@ -94,13 +99,13 @@
                                                 <th>Tên người bán</th>
                                                 <th>Tên người duyệt</th>
                                                 <th>Ngày bán</th>
-                        
+                                                <th>Ngày duyệt</th>
                                                 <th>Giá bán</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-center">
-                                            @foreach ($xedangkythumua_check as $i)
+                                            @foreach ($xedangkythumua_procces as $i)
                                                 <tr>
                                                     <td class="table-plus">{{ $i->madkthumua }}</td>
                                                     <td>{{ $i->tennd }}</td>
@@ -111,7 +116,12 @@
                                                             echo $formattedDate;
                                                         @endphp
                                                     </td>
-                                    
+                                                    <td>
+                                                        @php
+                                                            $formattedDate = date('d/m/Y', strtotime($i->ngayduyet));
+                                                            echo $formattedDate;
+                                                        @endphp
+                                                    </td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
                                                     <td>
                                                         <a type="button" class="btn btn-outline-primary col"
@@ -133,10 +143,11 @@
                                     <table class="table hover multiple-select-row">
                                         <thead>
                                             <tr>
-                                                <th class="table-plus datatable-nosort">Mã đăng ký</th>
+                                                <th>Mã đăng ký</th>
                                                 <th>Tên người bán</th>
                                                 <th>Tên người duyệt</th>
                                                 <th>Ngày bán</th>
+                                                <th>Ngày duyệt</th>
                                                 <th>Giá bán</th>
                                                 <th>Trạng thái</th>
                                             </tr>
@@ -149,6 +160,12 @@
                                                     <td>{{ $i->tennv}}</td>
                                                     <td>
                                                         {{ date('d/m/Y', strtotime($i->ngaydk)) }}
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $formattedDate = date('d/m/Y', strtotime($i->ngayduyet));
+                                                            echo $formattedDate;
+                                                        @endphp
                                                     </td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
                                                     <td class="text-center">
@@ -166,6 +183,45 @@
                                 </div>
                             </div>
                             {{-- ----end---- --}}
+                            {{-- danh sach da mua --}}
+                            <div class="tab-pane fade" id="damua" role="tabpanel">
+                                <div class="pd-20">
+                                    <table class="table hover multiple-select-row">
+                                        <thead>
+                                            <tr>
+                                                <th>Mã đăng ký</th>
+                                                <th>Tên người bán</th>
+                                                <th>Tên người duyệt</th>
+                                                <th>Ngày bán</th>
+                                                <th>Giá bán</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($xedangkythumua_check as $i)
+                                                <tr>
+                                                    <td>{{ $i->madkthumua }}</td>
+                                                    <td>{{ $i->tennd }}</td>
+                                                    <td>{{ $i->tennv}}</td>
+                                                    <td>
+                                                        {{ date('d/m/Y', strtotime($i->ngaydk)) }}
+                                                    </td>
+                                                    <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
+                                                    <td class="text-center">
+                                                        @php
+                                                            echo '<img src="' .
+                                                                asset('Image/Icon/check.png') .
+                                                                '" alt="" srcset="" width="25" height="25">';
+                                                        @endphp
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
