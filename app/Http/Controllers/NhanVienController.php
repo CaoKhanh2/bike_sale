@@ -5,85 +5,90 @@ namespace App\Http\Controllers;
 use App\Models\NhanVien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Validator;
 
 class NhanVienController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $nv = DB::select('SELECT nhanvien.*,chucvu.tencv FROM nhanvien INNER JOIN chucvu ON nhanvien.macv = chucvu.macv');
-        return view('dashboard.category.sales-agent.staff-infor', ['nhanvien'=>$nv]);
+        $nhanvien = DB::select('SELECT nhanvien.*,chucvu.* FROM nhanvien INNER JOIN chucvu ON nhanvien.macv = chucvu.macv');
+        $chucvu = DB::select('SELECT chucvu.* FROM chucvu');
+        
+        return view('dashboard.category.sales-agent.staff-infor', compact('nhanvien','chucvu'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function store(Request $request){
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'hovaten' => 'required|max:50',
+                'chucvu' => 'required',
+                'ngaysinh' => 'required',
+                'sdt' => 'required|numeric|min:11',
+                // 'email' => 'email|unique:nhanvien,email|max:35',
+                'diachi' => 'required|max:150',
+
+            ],
+            [
+                'hovaten.required' => 'Bạn chưa nhập thông tin họ tên!',
+                'hovaten.max' => 'Số ký tự nhập vào không được vượt quá 50 ký tự.',
+
+                'chucvu.required' => 'Bạn chưa lựa chọn thông tin chức vụ!',
+                'ngaysinh.required' => 'Bạn chưa nhập thông tin ngày sinh!',
+                
+                'sdt.required' => 'Bạn chưa nhập thông tin số điện thoại!',
+                'sdt.numeric' => 'Trường thông tin này chỉ được nhập số!',
+                'sdt.max' => 'Số ký tự nhập vào không được vượt quá 11 ký tự.',
+                'sdt.min' => 'Số ký tự nhập vào không được ít hơn 11 ký tự.',
+
+                'diachi.required' => 'Bạn chưa nhập thông tin địa chỉ!',
+                'diachi.max' => 'Số ký tự nhập vào không được vượt quá 150 ký tự.',
+                
+            ],
+        );
+
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator)->with('cross-them-nhanvien','Thông tin nhân viên chưa được thêm thành công.');;
+        }
+
+        $manv = $this->generateUniqueId_staff();
+
+        DB::table('nhanvien')->insert([
+            'manv' => $manv,
+            'macv' => $request->chucvu,
+            'hovaten' => $request->hovaten,
+            'gioitinh' => $request->gioitinh,
+            'ngaysinh' => $request->ngaysinh,
+            'sodienthoai' => $request->sdt,
+            'diachi' => $request->diachi,
+            'ghichu' => $request->ghichu,
+        ]);
+
+        return back()->with('success-them-nhanvien','Thông tin nhân viên đã được thêm thành công.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function destroy($id){
+
+        DB::table('nhanvien')->where('manv', $id)->delete();
+        return back()->with('success-xoa-nhanvien','Thông tin nhân viên đã được xóa thành công.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    private function generateUniqueId_staff()
     {
-        //
-    }
+        $lastCode = DB::table('nhanvien')->where('manv', 'like', 'MNV%')->orderBy('manv', 'desc')->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        if ($lastCode) {
+            // Tăng mã xe lên 1
+            $Code = intval(substr($lastCode->manv, 4));
+            $newCode = 'MNV-' . str_pad($Code + 1, 4, '0', STR_PAD_LEFT);
+        } else {
+            // Nếu không có xe nào trong bảng, khởi tạo mã đầu tiên
+            $newCode = 'MNV-0001';
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $newCode;
     }
 
     public function data(){

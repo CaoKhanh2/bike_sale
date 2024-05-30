@@ -55,4 +55,10 @@ class BaoCaoThongKeController extends Controller
         return Excel::download(new TinhHinhBanHangExport, 'bao_cao_ban_hang.xlsx');
         
     }
+
+    public function data_purchasing_situation() {
+
+        return view('dashboard.report.purchasing-situation');
+
+    }
 }

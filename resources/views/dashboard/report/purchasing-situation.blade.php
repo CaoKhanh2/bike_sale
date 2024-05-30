@@ -1,9 +1,9 @@
 @extends('dashboard.layout.content')
 
-@section('title_ds', 'Báo cáo tình hình bán hàng')
-@section('pg-card-title', 'Báo cáo tình hình bán hàng')
+@section('title_ds', 'Báo cáo tình hình thu mua')
+@section('pg-card-title', 'Báo cáo tình hình thu mua')
 @section('pg-hd-2', 'Báo cáo thống kê')
-@section('pg-hd-3', 'Báo cáo tình hình bán hàng')
+@section('pg-hd-3', 'Báo cáo tình hình thu mua')
 @section('st4', 'false')
 
 @section('main')
@@ -20,18 +20,41 @@
                     <div class="col-md-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
                             {{-- <h4 class="h4 text-blue"></h4> --}}
-                            <form action="{{ route('bieudo-tinhhinhbanhang') }}" method="POST">
+                            <form action="" method="POST">
                                 @csrf
-                                <div class="row">
+                                {{-- <div class="row my-2">
+                                    <div class="col-md-12 my-1">
+                                        <label for="example-datetime-local-input" for="loaixe" class="">Loại xe</label>
+                                        <select name="loaixe" id="loaixe" class="form-control">
+                                            <option value="">Xe máy</option>
+                                            <option value="">Xe đạp điện</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 my-1">
+                                        <label for="example-datetime-local-input" for="hangxe" class="">Hãng xe</label>
+                                        <select name="hangxe" id="hangxe" class="form-control">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row my-2">
                                     <div class="col-md-6 col-sm-12">
-                                        <label for="example-datetime-local-input" class="" for="tungay">Từ ngày</label>
+                                        <label for="example-datetime-local-input" class="">Từ ngày</label>
                                         <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text" name="tungay" id="tungay" value="{{ session('tungay') }}">
+                                            type="text" name="tungay" value="{{ session('tungay') }}">
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <label for="example-datetime-local-input" class="" for="denngay">Đến ngày</label>
+                                        <label for="example-datetime-local-input" class="">Đến ngày</label>
                                         <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text" name="denngay" id="denngay" value="{{ session('denngay') }}">
+                                            type="text" name="denngay" value="{{ session('denngay') }}">
+                                    </div>
+                                </div> --}}
+                                <div class="row my-2">
+                                    <div class="col-md-6 col-sm-12">
+                                        <label for="example-datetime-local-input" class="">Năm</label>
+                                        <select name="hangxe" id="hangxe" class="form-control">
+                                            <option value=""></option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="pull-right my-3 px-1">
@@ -45,8 +68,8 @@
                     </div>
                     <div class="col-md-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
-                            <h4 class="h4 text-blue">Biểu đồ doanh thu bán hàng</h4>
-                            @include('dashboard.report.graph.chart-1')
+                            <h4 class="h4 text-blue">Biểu đồ </h4>
+                            
                         </div>
                     </div>
                 </div>
@@ -56,23 +79,23 @@
                             <div class="clearfix mb-20">
                                 <div class="pull-left">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <form class="mx-2" action="{{ route('xuatfile-excel-thongtintinhhinhbanhang') }}" method="POST">
+                                        {{-- <form class="mx-2" action="{{ route('xuatfile-excel-thongtintinhhinhbanhang') }}" method="POST">
                                             @csrf
                                             <input type="submit" class="btn btn-secondary" value="Xuất file CSV">
                                         </form>
                                         <form class="mx-2" method="post">
                                             @csrf
                                             <input type="submit" class="btn btn-secondary" value="Xuất file PDF">
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </div>
                             </div>
                             <div class="clearfix mb-20">
                                 <div class="pull-left">
-                                    <h4 class="text-blue h4">Báo cáo tình hình bán hàng</h4>
+                                    <h4 class="text-blue h4">Báo cáo tình hình thu mua xe</h4>
                                 </div>
                             </div>
-                                @include('dashboard.report.table.table-sales-stiuation')
+                                
                         </div>
                     </div>
                 </div>
