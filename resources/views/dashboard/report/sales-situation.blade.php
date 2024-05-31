@@ -24,14 +24,14 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
-                                        <label for="example-datetime-local-input" class="">Từ ngày</label>
+                                        <label for="example-datetime-local-input" class="" for="tungay">Từ ngày</label>
                                         <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text" name="tungay" value="{{ session('tungay') }}">
+                                            type="text" name="tungay" id="tungay" value="{{ session('tungay') }}">
                                     </div>
                                     <div class="col-md-6 col-sm-12">
-                                        <label for="example-datetime-local-input" class="">Đến ngày</label>
+                                        <label for="example-datetime-local-input" class="" for="denngay">Đến ngày</label>
                                         <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text" name="denngay" value="{{ session('denngay') }}">
+                                            type="text" name="denngay" id="denngay" value="{{ session('denngay') }}">
                                     </div>
                                 </div>
                                 <div class="pull-right my-3 px-1">

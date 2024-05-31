@@ -148,15 +148,18 @@
                     <div class="row g-0 mt-4 mb-4">
                         <div class="col-sm-6 col-md-8">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-4 product-img">
                                     {{-- <img src="{{ asset('Image\Xe\XeDien\LX 150i JVC\xe-may-dien-vespa-lx-150i-jvc-ghi.png') }}"
                                     class="object-fit-contain border rounded" alt="..." height="190px"
                                     width="100%"> --}}
                                     @foreach (explode(',', $i->hinhanh) as $path)
                                         @if ($loop->first)
                                             <img src="{{ asset('storage/' . $path) }}"
-                                                cclass="object-fit-contain border rounded" alt="..." height="190px"
-                                                width="100%">
+                                                class="object-fit-contain border rounded img-fluid" alt="..."
+                                                style="height: 180px; width: 100%;">
+                                            @if ($i->giagoc != $i->giaban)
+                                                <div class="overlay">{{ $i->tilegiamgia . '%' }}</div>
+                                            @endif
                                         @endif
                                     @endforeach
                                 </div>
@@ -199,11 +202,28 @@
 
                                         <div class="row justify-content-center align-items-center g-2 mt-4">
                                             <div class="col-6 mt-3">
-                                                <h4><span>
-                                                        <p class="d-inline">
-                                                            {{ number_format($i->giaban, 0, ',') . ' đ' }}
-                                                        </p>
-                                                    </span></h4>
+                                                @if ($i->giagoc == $i->giaban)
+                                                    <div class="col-12 col-md-4 mt-3">
+                                                        <h4>
+                                                            <span>
+                                                                <p class="d-inline">
+                                                                    {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                                            </span>
+                                                        </h4>
+                                                    </div>
+                                                @else
+                                                    <div class="col-12 col-md-4 mt-3">
+                                                        <h4>
+                                                            <span>
+                                                                <p class="h6 text-secondary">
+                                                                    <span><s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s></span>
+                                                                </p>
+                                                                <p class="d-inline text-danger">
+                                                                    {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                                            </span>
+                                                        </h4>
+                                                    </div>
+                                                @endif
                                             </div>
                                             <div class="col-3 mt-3 ">
                                                 <div class="d-grid">

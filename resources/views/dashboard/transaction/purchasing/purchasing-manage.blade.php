@@ -30,6 +30,11 @@
                                 <a class="nav-link text-blue" data-toggle="tab" href="#datuchoi" role="tab"
                                     aria-selected="false">Đã từ chối</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-blue" data-toggle="tab" href="#damua" role="tab"
+                                    aria-selected="false">Đã nhận mua</a>
+                            </li>
+                            
                         </ul>
                         <div class="tab-content">
                             {{-- danh sách chờ  --}}
@@ -69,11 +74,11 @@
                                                     <td>
                                                         <a type="button" class="btn btn-outline-primary col"
                                                             href="{{ route('duyetdonthumua', ['id' => $i->madkthumua]) }}">
-                                                            <i class="bi bi-pencil-fill"></i> Duyệt
+                                                            <i class="bi bi-pencil-fill"></i> Chấp nhận
                                                         </a>
                                                         <a type="button" class="btn btn-danger col mt-2"
                                                             href="{{ route('huydonthumua', ['id' => $i->madkthumua]) }}">
-                                                            <i class="bi bi-trash"></i> Không duyệt
+                                                            <i class="bi bi-trash"></i> Không chấp nhận
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -94,13 +99,13 @@
                                                 <th>Tên người bán</th>
                                                 <th>Tên người duyệt</th>
                                                 <th>Ngày bán</th>
-                                                <th>Mô tả</th>
+                                                <th>Ngày duyệt</th>
                                                 <th>Giá bán</th>
-                                                <th>Trạng thái</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-center">
-                                            @foreach ($xedangkythumua_check as $i)
+                                            @foreach ($xedangkythumua_procces as $i)
                                                 <tr>
                                                     <td class="table-plus">{{ $i->madkthumua }}</td>
                                                     <td>{{ $i->tennd }}</td>
@@ -111,14 +116,18 @@
                                                             echo $formattedDate;
                                                         @endphp
                                                     </td>
-                                                    <td>{{ $i->mota }}</td>
-                                                    <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
-                                                    <td class="text-center">
+                                                    <td>
                                                         @php
-                                                            echo '<img src="' .
-                                                                asset('Image/Icon/waiting.png') .
-                                                                '" alt="" srcset="" width="20" height=150">';
+                                                            $formattedDate = date('d/m/Y', strtotime($i->ngayduyet));
+                                                            echo $formattedDate;
                                                         @endphp
+                                                    </td>
+                                                    <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
+                                                    <td>
+                                                        <a type="button" class="btn btn-outline-primary col"
+                                                        href="{{ route('themxe-xethumua', ['id' => $i->madkthumua]) }}">
+                                                        <i class="bi bi-pencil-fill"></i> Lập phiếu
+                                                    </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -134,11 +143,11 @@
                                     <table class="table hover multiple-select-row">
                                         <thead>
                                             <tr>
-                                                <th class="table-plus datatable-nosort">Mã đăng ký</th>
+                                                <th>Mã đăng ký</th>
                                                 <th>Tên người bán</th>
                                                 <th>Tên người duyệt</th>
                                                 <th>Ngày bán</th>
-                                                <th>Mô tả</th>
+                                                <th>Ngày duyệt</th>
                                                 <th>Giá bán</th>
                                                 <th>Trạng thái</th>
                                             </tr>
@@ -152,7 +161,12 @@
                                                     <td>
                                                         {{ date('d/m/Y', strtotime($i->ngaydk)) }}
                                                     </td>
-                                                    <td>{{ $i->mota }}</td>
+                                                    <td>
+                                                        @php
+                                                            $formattedDate = date('d/m/Y', strtotime($i->ngayduyet));
+                                                            echo $formattedDate;
+                                                        @endphp
+                                                    </td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
                                                     <td class="text-center">
                                                         @php
@@ -169,6 +183,45 @@
                                 </div>
                             </div>
                             {{-- ----end---- --}}
+                            {{-- danh sach da mua --}}
+                            <div class="tab-pane fade" id="damua" role="tabpanel">
+                                <div class="pd-20">
+                                    <table class="table hover multiple-select-row">
+                                        <thead>
+                                            <tr>
+                                                <th>Mã đăng ký</th>
+                                                <th>Tên người bán</th>
+                                                <th>Tên người duyệt</th>
+                                                <th>Ngày bán</th>
+                                                <th>Giá bán</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($xedangkythumua_check as $i)
+                                                <tr>
+                                                    <td>{{ $i->madkthumua }}</td>
+                                                    <td>{{ $i->tennd }}</td>
+                                                    <td>{{ $i->tennv}}</td>
+                                                    <td>
+                                                        {{ date('d/m/Y', strtotime($i->ngaydk)) }}
+                                                    </td>
+                                                    <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
+                                                    <td class="text-center">
+                                                        @php
+                                                            echo '<img src="' .
+                                                                asset('Image/Icon/check.png') .
+                                                                '" alt="" srcset="" width="25" height="25">';
+                                                        @endphp
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
