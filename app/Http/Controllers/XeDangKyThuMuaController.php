@@ -189,9 +189,9 @@ class XeDangKyThuMuaController extends Controller
                 'sokmdadi' => $request->sokmdadi,
             ]);
 
-            return view('dashboard.transaction.purchasing.purchasing-manage')->with('success-them-thongtinxe', 'Thông tin xe đã được thêm.');
+            return redirect()->route('xedkthumua')->with('success-them-thongtinxe', 'Thông tin xe đã được thêm.');
         } else {
-            return view('dashboard.transaction.purchasing.purchasing-manage')->with('cross-them-thongtinxe', 'Thông tin xe chưa được thêm!');
+            return redirect()->route('xedkthumua')->with('cross-them-thongtinxe', 'Thông tin xe chưa được thêm!');
         }
     }
     private function generateUniqueId_moto()
