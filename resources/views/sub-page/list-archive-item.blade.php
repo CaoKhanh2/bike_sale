@@ -33,7 +33,7 @@
         $res = end($arr);
     @endphp
 
-    @if ($res == 'motorbike')
+    @if ($res == "motorbike")
         @include('modal-webs.inform-add-cart')
         @foreach ($db_xemay as $i)
             <div class="item-list">

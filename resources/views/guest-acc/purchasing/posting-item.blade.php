@@ -52,35 +52,25 @@
                         </select>
                     </div>
                     <div class="mb-4 form-group">
-                        <select class="form-select form-select-lg border border-3 border-primary" aria-label="Loại xe"
-                            id="dongxe" name="dongxe">
-                            <option selected hidden>Chọn dòng xe</option>
-                            @foreach ($dxm as $i)
-                            <option value="{{ $i->madx }}">{{ $i->tendongxe }}
-                            </option>
-                        @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-4 form-group">
                         <input type="text" name="tenxe" id="tenxe"
                             class="form-control form-control-lg border border-3 border-primary"
-                            placeholder="Tên xe">
+                            placeholder="Tên xe" required>
                     </div>
                     <div class="mb-4 form-group">
-                        <input type="text" name="namdangky" id="Namdangky"
+                        <input type="text" name="tgsd" id="Namdangky"
                             class="form-control form-control-lg border border-3 border-primary"
-                            placeholder="Năm đăng ký">
+                            placeholder="Thời gian sử dụng" required>
                     </div>
                     <div class="mb-4 form-group">
-                        <input type="text" name="xuatxu" id="Xuatxu"
-                            class="form-control form-control-lg border border-3 border-primary" placeholder="Xuất xứ">
+                        <input type="text" name="tinhtrangxe" id="Xuatxu"
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Tình trạng xe">
                     </div>
                     <div class="mb-4 form-group">
-                        <input type="text" name="kmdadi" id="KMdadi"
-                            class="form-control form-control-lg border border-3 border-primary" placeholder="Số km đã đi">
+                        <input type="number" name="kmdadi" id="KMdadi"
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Số km đã đi" required>
                     </div>
                     <div class="mb-4 form-group">
-                        <input type="text" name="giaban" id="Giaban"
+                        <input type="number" name="giaban" id="Giaban"
                             class="form-control form-control-lg border border-3 border-primary" placeholder="Giá bán">
                     </div>
                     <div class="mb-2">
@@ -95,11 +85,11 @@
                     </div>
                     <div class="mb-4 form-group">
                         <input type="text" name="diachi" id="diachi"
-                            class="form-control form-control-lg border border-3 border-primary" placeholder="Địa chỉ">
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Địa chỉ" required>
                     </div>
                     <div class="mb-4 form-group">
                         <input type="text" name="sdt" id="sdt"
-                            class="form-control form-control-lg border border-3 border-primary" placeholder="Số điện thoại liên lạc">
+                            class="form-control form-control-lg border border-3 border-primary" placeholder="Số điện thoại liên lạc" required>
                     </div>
                 </div>
             </div>

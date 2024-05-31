@@ -71,7 +71,6 @@ class ThongTinXeController extends Controller
                 'thoigiandasudung' => $request->tgsd,
                 'tinhtrangxe' => $request->tinhtrangxe,
                 'sokmdadi' => $request->sokmdadi,
-                'biensoxe' => $request->bsx,
                 'hinhanh' => $imagePathsString,
                 'ghichu' => $request->ghichu,
                 //'tinhtrang' => $request->tt

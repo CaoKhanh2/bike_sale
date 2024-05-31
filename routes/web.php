@@ -156,6 +156,10 @@ Route::middleware(['roleGuest'])->group(function () {
 
     Route::get('/my-order', [NguoiDungController::class, 'orderhistory'])->name('khach-donhang'); // Xem đơn hàng
     Route::get('/view-order/{id}', [NguoiDungController::class, 'view'])->name('khach-ctdonhang'); // Xem chi tiết đơn hàng
+    
+    // Hiển thị sản phẩm trong giỏ
+    Route::get('load-cart-data', [GioHangController::class, 'cartcount']); // Xem chi tiết đơn hàng
+
 
     // ----------
 });
@@ -400,10 +404,12 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     // Route::get('/dashboard/transaction/purchasing/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua');
     // Route::get('/dashboard/transaction/purchasing/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'updatedon'])->name('duyetdon');
 
-    Route::get('/dashboard/transaction/purchasing/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua'); //Hiện bảng ds xe thu mua
-    Route::get('/dashboard/transaction/purchasing/{id}', [XeDangKyThuMuaController::class, 'huydon'])->name('huydonthumua'); // Hủy đơn thu mua
-    Route::get('/dashboard/transaction/purchasing/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'duyetdon'])->name('duyetdonthumua'); // Duyệt đơn thu mua
-    Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/{id}', [XeDangKyThuMuaController::class, 'show'])->name('ctthongtinmua'); // Xem chi tiết đơn thu mua
+            Route::get('/dashboard/transaction/purchasing/purchasing-manage', [XeDangKyThuMuaController::class, 'index'])->name('xedkthumua'); //Hiện bảng ds xe thu mua
+            Route::get('/dashboard/transaction/purchasing/{id}', [XeDangKyThuMuaController::class, 'huydon'])->name('huydonthumua'); // Hủy đơn thu mua
+            Route::get('/dashboard/transaction/purchasing/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'duyetdon'])->name('duyetdonthumua'); // Duyệt đơn thu mua
+            Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/{id}', [XeDangKyThuMuaController::class, 'show'])->name('ctthongtinmua'); // Xem chi tiết đơn thu mua
+            Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/add/{id}', [XeDangKyThuMuaController::class, 'add_bike'])->name('themxe-xethumua'); // Xem chi tiết đơn thu mua
+            Route::post('/dashboard/transaction/purchasing/purchasing-bike-detail/add/accepted', [XeDangKyThuMuaController::class,'store2'])->name('themxe-xethumua-accepted'); // Xem chi tiết đơn thu mua
 
     // ---------- **** ----------
 

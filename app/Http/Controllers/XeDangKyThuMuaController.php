@@ -17,13 +17,15 @@ class XeDangKyThuMuaController extends Controller
     {
         $dstm_waiting = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('trangthaipheduyet', 'Chờ duyệt')->orderBy('ngaydk', 'desc')->get();
         //
-        $dstm_check = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten as tennd', 'nhanvien.hovaten as tennv')->join('nguoidung', 'xedangkythumua.mand', 'nguoidung.mand')->join('nhanvien', 'xedangkythumua.manv', 'nhanvien.manv')->where('trangthaipheduyet', 'Đang kiểm tra')->get();
+        $dstm_procces = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten as tennd', 'nhanvien.hovaten as tennv')->join('nguoidung', 'xedangkythumua.mand', 'nguoidung.mand')->join('nhanvien', 'xedangkythumua.manv', 'nhanvien.manv')->where('trangthaipheduyet', 'Đang kiểm tra')->get();
         //
         $dstm_uncheck = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten as tennd', 'nhanvien.hovaten as tennv')->join('nguoidung', 'xedangkythumua.mand', 'nguoidung.mand')->join('nhanvien', 'xedangkythumua.manv', 'nhanvien.manv')->where('trangthaipheduyet', 'Không duyệt')->get();
+        $dstm_check = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten as tennd', 'nhanvien.hovaten as tennv')->join('nguoidung', 'xedangkythumua.mand', 'nguoidung.mand')->join('nhanvien', 'xedangkythumua.manv', 'nhanvien.manv')->where('trangthaipheduyet', 'Duyệt')->get();
         //
         return view('dashboard.transaction.purchasing.purchasing-manage', [
-            'xedangkythumua_check' => $dstm_check,
+            'xedangkythumua_procces' => $dstm_procces,
             'xedangkythumua_uncheck' => $dstm_uncheck,
+            'xedangkythumua_check' => $dstm_check,
             'xedangkythumua_waiting' => $dstm_waiting,
         ]);
     }
@@ -53,11 +55,7 @@ class XeDangKyThuMuaController extends Controller
             ->select('mahx', 'tenhang')
             ->where('mahx', $request->hangxe)
             ->first();
-        $dongxe = DB::table('dongxe')
-            ->select('madx', 'tendongxe')
-            ->where('madx', $request->dongxe)
-            ->first();
-        $mota = 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Dòng xe: ' . $dongxe->madx . '-' . $dongxe->tendongxe . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Năm đăng ký: ' . $request->namdangky . ', Xuất xứ:  ' . $request->xuatxu . ', Thời gian sử dụng: '. $request->tgsd .', Mô tả: ' . $request->mota;
+        $mota = 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Thời gian sử dụng: ' . $request->tgsd . ' năm' . ', Tình trạng xe: ' . $request->tinhtrangxe . ', Mô tả: ' . $request->mota;
         $imagePathsString = implode(',', $imagePaths);
         $mand = Auth::guard('guest')->user()->mand;
 
@@ -82,9 +80,10 @@ class XeDangKyThuMuaController extends Controller
     public function duyetdon(Request $request, $id)
     {
         $manv = Auth::user()->manv;
+        $now = date('Y-m-d');
         DB::table('xedangkythumua')
             ->where('madkthumua', $id)
-            ->update(['trangthaipheduyet' => 'Đang kiểm tra', 'manv' => $manv]);
+            ->update(['trangthaipheduyet' => 'Đang kiểm tra', 'manv' => $manv, 'ngayduyet' => $now]);
 
         return redirect()->route('xedkthumua');
     }
@@ -93,7 +92,7 @@ class XeDangKyThuMuaController extends Controller
         $manv = Auth::user()->manv;
         DB::table('xedangkythumua')
             ->where('madkthumua', $id)
-            ->update(['trangthaipheduyet' => 'Không duyệt', 'manv' => $manv]);
+            ->update(['trangthaipheduyet' => 'Không duyệt', 'manv' => $manv, 'ngayduyet' => $now]);
 
         return redirect()->route('xedkthumua');
     }
@@ -110,22 +109,13 @@ class XeDangKyThuMuaController extends Controller
         $info = [
             'Loai xe' => null,
             'Ten hang' => null,
-            'Dong xe' => null,
-            'Nam dang ky' => null,
             'tgsd' => null,
-            'Xuat xu' => null,
             'Ten xe' => null,
-            'Dia chi' => null,
-            'sdt' => null,
             'kmdadi' => null,
         ];
         $hangxe = [
             'mahx' => null,
             'tenhang' => null,
-        ];
-        $dongxe = [
-            'madx' => null,
-            'tendongxe' => null,
         ];
         foreach ($parts as $part) {
             $keyValue = explode(':', $part);
@@ -139,17 +129,8 @@ class XeDangKyThuMuaController extends Controller
                 case 'Tên hãng':
                     $info['Ten hang'] = $value;
                     break;
-                case 'Năm đăng ký':
-                    $info['Nam dang ky'] = $value;
-                    break;
-                case 'Xuất xứ':
-                    $info['Xuat xu'] = $value;
-                    break;
                 case 'Thời gian sử dụng':
                     $info['tgsd'] = $value;
-                    break;
-                case 'Dòng xe':
-                    $info['Dong xe'] = $value;
                     break;
                 case 'Tên xe':
                     $info['Ten xe'] = $value;
@@ -162,14 +143,86 @@ class XeDangKyThuMuaController extends Controller
         $hx = explode('-', $info['Ten hang']);
         $hangxe['mahx'] = trim($hx[0]);
         $hangxe['tenhang'] = trim($hx[1]);
-        $dx = explode('-', $info['Dong xe']);
-        $dongxe['madx'] = trim($dx[0]);
-        $dongxe['tendongxe'] = trim($dx[1]);
-        //DB::table('xedangkythumua')->where('madkthumua',$id)->update(['trangthaipheduyet' => "Duyệt"]);
+        DB::table('xedangkythumua')
+        ->where('madkthumua', $id)
+        ->update(['trangthaipheduyet' => 'Duyệt']);
         return view('dashboard.transaction.purchasing.purchasing-submit-form', [
             'tt' => $info,
             'hangxe' => $hangxe,
-            'dongxe' => $dongxe,
         ]);
+    }
+    public function store2(Request $request)
+    {
+        if ($request->xe == 1) {
+            $maxemay = $this->generateUniqueId_moto();
+            DB::table('thongsokythuatxemay')->insert([
+                'matsxemay' => 'TS' . $maxemay,
+            ]);
+
+            DB::table('thongtinxe')->insert([
+                'maxe' => $maxemay,
+                'matsxemay' => 'TS' . $maxemay,
+                'madx' => $request->dx,
+                'tenxe' => $request->tx,
+                'thoigiandasudung' => $request->tgsd,
+                'tinhtrangxe' => $request->tinhtrangxe,
+                'sokmdadi' => $request->sokmdadi,
+                //'tinhtrang' => $request->tt
+            ]);
+
+            return back()->with('success-them-thongtinxe', 'Thông tin xe đã được thêm.');
+        } elseif ($request->xe == 2) {
+            $maxedap = $this->generateUniqueId_bike();
+
+            DB::table('thongsokythuatxedapdien')->insert([
+                'matsxedapdien' => 'TS' . $maxedap,
+            ]);
+
+          
+            DB::table('thongtinxe')->insert([
+                'maxe' => $maxedap,
+                'matsxedapdien' => 'TS' . $maxedap,
+                'madx' => $request->dx,
+                'tenxe' => $request->tx,
+                'thoigiandasudung' => $request->tgsd,
+                'tinhtrangxe' => $request->tinhtrangxe,
+                'sokmdadi' => $request->sokmdadi,
+            ]);
+
+            return redirect()->route('xedkthumua')->with('success-them-thongtinxe', 'Thông tin xe đã được thêm.');
+        } else {
+            return redirect()->route('xedkthumua')->with('cross-them-thongtinxe', 'Thông tin xe chưa được thêm!');
+        }
+    }
+    private function generateUniqueId_moto()
+    {
+        $lastCar = DB::table('thongtinxe')->where('maxe', 'like', 'XM%')->orderBy('maxe', 'desc')->first();
+
+        if ($lastCar) {
+            // Tăng mã xe lên 1
+            $lastCarCode = intval(substr($lastCar->maxe, 4));
+            $newCarCode = 'XM-' . str_pad($lastCarCode + 1, 4, '0', STR_PAD_LEFT);
+        } else {
+            // Nếu không có xe nào trong bảng, khởi tạo mã đầu tiên
+            $newCarCode = 'XM-0001';
+        }
+
+        return $newCarCode;
+    }
+
+    private function generateUniqueId_bike()
+    {
+        $lastCar = DB::table('thongtinxe')->where('maxe', 'like', 'XD%')->orderBy('maxe', 'desc')->first();
+
+        if ($lastCar) {
+            // Tăng mã xe lên 1
+            $lastCarCode = intval(substr($lastCar->maxe, 4));
+            $newCarCode = 'XD-' . str_pad($lastCarCode + 1, 4, '0', STR_PAD_LEFT);
+        } else {
+            // Nếu không có xe nào trong bảng, khởi tạo mã đầu tiên
+            $newCarCode = 'XD-0001';
+        }
+
+        return $newCarCode;
     }
 }
