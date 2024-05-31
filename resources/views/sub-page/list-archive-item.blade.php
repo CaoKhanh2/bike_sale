@@ -33,7 +33,7 @@
         $res = end($arr);
     @endphp
 
-    @if ($res == 'motorbike')
+    @if ($res == "motorbike")
         @include('modal-webs.inform-add-cart')
         @foreach ($db_xemay as $i)
             <div class="item-list">
@@ -125,8 +125,7 @@
                                                     <div class="d-grid">
                                                         <a class="btn btn-primary btn-block"
                                                             href="{{ route('them-giohang-Guest', ['maxedangban' => $i->maxedangban]) }}"
-                                                            role="button">
-                                                            Thêm giỏ hàng
+                                                            role="button">Thêm vào giỏ hàng
                                                         </a>
                                                     </div>
                                                 </div>

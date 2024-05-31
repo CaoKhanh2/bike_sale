@@ -65,14 +65,14 @@
                     @php
                         $check = DB::table('xedangban')->select('xedangban.maxe')->where('xedangban.maxe',$i->maxe)->exists();
                     @endphp
-                        @if ($check == true)
+                        @if ($check == false)
                             <a type="button" class="btn btn-info"
                                 href="{{ route('xedangban1-thongtinxe', ['maxe' => $i->maxe]) }}" aria-disabled="true">
                                 <i class="bi bi-postcard"></i> Đăng bán
                             </a>
                         @endif
 
-                        @if ($check == false)
+                        @if ($check == true)
                             <a type="button" class="btn btn-info disabled"
                                 href="{{ route('xedangban1-thongtinxe', ['maxe' => $i->maxe]) }}" aria-disabled="true">
                                 <i class="bi bi-postcard"></i> Đăng bán
