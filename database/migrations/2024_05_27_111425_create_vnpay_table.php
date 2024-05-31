@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('vnp_SecureHash',191);
             $table->timestamps();
 
-            $table->primary('id');
         });
     }
 

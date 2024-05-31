@@ -20,7 +20,7 @@ return new class extends Migration
             $table->datetime('ngaydk');
             $table->text('hinhanh');
             $table->decimal('giaban',10,2);
-            $table->text('mota')->nullable();
+            $table->text('ghichu')->nullable();
             $table->enum('trangthaipheduyet',['Duyệt','Chờ duyệt','Không duyệt','Đang kiểm tra'])->default('Chờ duyệt');
 
             $table->primary('madkthumua');

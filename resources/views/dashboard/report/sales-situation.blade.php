@@ -56,14 +56,16 @@
                             <div class="clearfix mb-20">
                                 <div class="pull-left">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <form class="mx-2" action="{{ route('xuatfile-excel-thongtintinhhinhbanhang') }}" method="POST">
+                                        <form class="mx-2" id="export-csv-tinhhinhbanhang" action="{{ route('xuatfile-excel-thongtintinhhinhbanhang') }}" method="POST">
                                             @csrf
+                                            <input type="text" name="tungay" id="tungay-export" hidden>
+                                            <input type="text" name="denngay" id="denngay-export" hidden>
                                             <input type="submit" class="btn btn-secondary" value="Xuất file CSV">
                                         </form>
-                                        <form class="mx-2" method="post">
+                                        {{-- <form class="mx-2" method="post">
                                             @csrf
                                             <input type="submit" class="btn btn-secondary" value="Xuất file PDF">
-                                        </form>
+                                        </form> --}}
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +85,18 @@
 
     <!-- js -->
     {{-- <script src="{{ asset('dashboard_src/src/plugins/apexcharts/apexcharts.min.js') }}"></script> --}}
-    <script src="{{ asset('dashboard_src/vendors/scripts/apexcharts-setting.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard_src/vendors/scripts/apexcharts-setting.js') }}"></script> --}}
+    <script>
+        document.getElementById('export-csv-tinhhinhbanhang').addEventListener('click', function() {
+            // Lấy dữ liệu từ input1
+            var input1Value = document.getElementById('tungay').value;
+            var input2Value = document.getElementById('dennay').value;
 
+            // Truyền dữ liệu vào input2
+            document.getElementById('tungay-export').value = input1Value;
+            document.getElementById('denngay-export').value = input2Value;
+
+        });
+    </script>
 
 @endsection

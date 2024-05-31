@@ -10,5 +10,6 @@ class XeDangKyThuMua extends Model
     use HasFactory;
     protected $table = 'xedangkythumua';
     protected $primarykey = 'madkthumua';
+    public $timestamps = false;
     
 }

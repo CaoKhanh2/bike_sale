@@ -10,8 +10,8 @@
     @section('title-subpage', 'Xe máy')
     @section('title', 'Xe máy')
     @section('pg-hd-2', 'Xe máy') @section('act2', 'text-dark')
-@elseif($res == 'xedapdien')
-    @section('title-subpage', 'electric-bicycles')
+@elseif($res == 'electric-bicycles')
+    @section('title-subpage', 'Xe đạp điện')
     @section('title', 'Xe đạp điện')
     @section('pg-hd-2', 'Xe đạp điện') @section('act2', 'text-dark')
 @endif

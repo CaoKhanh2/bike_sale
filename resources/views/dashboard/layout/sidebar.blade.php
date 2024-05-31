@@ -153,8 +153,8 @@
                         <li><a href="{{ route('danhmuckhuyenmai') }}">Quản lý khuyến mãi</a></li>
                         <li><a href="{{ url('dashboard/category/customer/customer-info') }}">Quản lý khách
                                 hàng</a></li>
-                        <li><a href="{{ url('dashboard/category/shipping/ship-infor') }}">Quản lý vận chuyển
-                                hàng</a></li>
+                        {{-- <li><a href="{{ url('dashboard/category/shipping/ship-infor') }}">Quản lý vận chuyển
+                                hàng</a></li> --}}
                         <li><a href="{{ url('dashboard/category/sales-agent/staff-infor') }}">Quản lý nhân viên
                                 bán hàng</a></li>
                         <li><a href="{{ route('thongtinkhohang') }}">Quản lý kho hàng</a></li>

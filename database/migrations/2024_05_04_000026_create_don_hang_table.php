@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('makhuyenmai',5)->nullable();
             $table->dateTime('ngaytaodon')->nullable();
             $table->decimal('tongtien',12,2)->nullable();
+            $table->enum('trangthai',['Đang chờ xử lý']);
 
             $table->primary('madh');
             $table->foreign('magh')->references('magh')->on('giohang')->onDelete('cascade');

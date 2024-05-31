@@ -119,9 +119,12 @@ Route::group(['prefix' => 'account'], function () {
  *
  */
 
-Route::get('/', function () {
-    return view('index');
-})->name('indexWeb');
+// Route::get('/', function () {
+//     [XeDangBanController::class, 'showdata2'],
+//     return view('index');
+// })->name('indexWeb');
+
+Route::get('/', [XeDangBanController::class, 'showdata2'])->name('indexWeb');
 
 Route::get('/purchasing-form', [XeDangKyThuMuaController::class, 'index2'])->name('gui-form-thumua-Guest');
 
@@ -141,7 +144,7 @@ Route::middleware(['roleGuest'])->group(function () {
     Route::get('/checkout', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
     Route::post('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
     // Route::post('/online-checkout',[DonHangController::class, 'dat_hang'])->name('thanhtoan-onl');
-    Route::get('/thanks',[DonHangController::class, 'thanks']);
+    Route::get('/thanks', [DonHangController::class, 'thanks']);
     // Route::post('/online-checkout',[OnlineCheckoutController::class, 'online_checkout'])->name('thanhtoan-onl');;
     // Route::get('/thanks',[OnlineCheckoutController::class, 'thanks']);
 
@@ -154,13 +157,13 @@ Route::middleware(['roleGuest'])->group(function () {
     Route::get('/my-order', [NguoiDungController::class, 'orderhistory'])->name('khach-donhang'); // Xem đơn hàng
     Route::get('/view-order/{id}', [NguoiDungController::class, 'view'])->name('khach-ctdonhang'); // Xem chi tiết đơn hàng
 
-
     // ----------
 });
 
 // Tìm kiếm ----------
 
-Route::get('/sub-index/search', [SearchContrller::class, 'searchData'])->name('timkiem');
+Route::get('/sub-index/search', [SearchContrller::class, 'searchData1'])->name('timkiem');
+Route::get('/sub-index/search-automaker/{id}', [SearchContrller::class, 'searchData2'])->name('timkiem-theohangxe');
 
 // ----------
 
@@ -179,6 +182,7 @@ Route::get('/sub-index/electric-bicycles', [XeDangBanController::class, 'showDat
 // Trang hiển thị chi tiết thông tin sản phẩm ----------
 
 Route::get('sub-index/motorbike/sale-page/{maxe}', [XeDangBanController::class, 'show_Detail_Data'])->name('hienthi-chitietthongtinxemay-Guest');
+Route::get('sub-index/electric-bicycles/sale-page/{maxe}', [XeDangBanController::class, 'show_Detail_Data'])->name('hienthi-chitietthongtinxedapdien-Guest');
 
 // ----------
 
@@ -475,6 +479,8 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
          */
 
         Route::get('/dashboard/report/purchasing-situation', [BaoCaoThongKeController::class, 'data_purchasing_situation'])->name('tinhhinhthumua');
+        Route::post('/dashboard/report/purchasing-situation/data', [BaoCaoThongKeController::class, 'data_purchasing_situation'])->name('bieudo-tinhhinhthumua');
+        Route::post('/dashboard/report/purchasing-situation/export', [BaoCaoThongKeController::class, 'export_report_purchasing_situation'])->name('xuatfile-excel-thongtintinhhinhthumua');
 
         /**
          * ---------- **** ----------
@@ -498,7 +504,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
  *
  */
 
-// Route::get('/chart', [DoThiController::class, 'salesChart']);
+// Route::get('/chart', [BaoCaoThongKeController::class, 'purchasingChart']);
 
 /**
  *

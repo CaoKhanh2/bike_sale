@@ -19,16 +19,15 @@ class DkBanXeSeeder extends Seeder
     public function run()
     {
         $fake = faker::create();
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 100 ; $i++) { 
             XeDangKyThuMua::create([
-                'madkbanxe'=> $fake -> numerify('MDKBX-######'),
-                'maxedapdien'=>$fake -> randomElement(['XE-003', 'XE-004', 'XE-005']),
-                'maxemay' => null,
-                'makh' => $fake -> randomElement(['MKH-1017','MKH-2697','MKH-3212']),
-                'namdk' => 2020,
-                'xuatxu' => 'Đài Loan',
-                'giaban' => 18000000,
-                'motachitiet'=> null
+                'madkthumua'=> $fake -> numerify('MDKBX-######'),
+                'mand' => $fake -> randomElement(['2062363','2108262','2674374','2674374', '9119430']),
+                'manv' => $fake -> randomElement(['MNV-0001','MNV-0002','MNV-0003']),
+                'ngaydk' => $fake->dateTimeThisDecade('+3 years'),
+                'giaban' => '12000000',
+                'ghichu' => 'Loại xe: Xe đạp điện',
+                'trangthaipheduyet' => 'Duyệt'
             ]);
         }
     }

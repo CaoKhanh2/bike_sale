@@ -20,45 +20,41 @@
                     <div class="col-md-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
                             {{-- <h4 class="h4 text-blue"></h4> --}}
-                            <form action="" method="POST">
+                            <form action="{{ route('bieudo-tinhhinhthumua') }}" method="POST">
                                 @csrf
-                                {{-- <div class="row my-2">
-                                    <div class="col-md-12 my-1">
-                                        <label for="example-datetime-local-input" for="loaixe" class="">Loại xe</label>
-                                        <select name="loaixe" id="loaixe" class="form-control">
-                                            <option value="">Xe máy</option>
-                                            <option value="">Xe đạp điện</option>
-                                        </select>
+                                <div class="row my-2">
+                                    <div class="col-md-6 col-sm-12">
+                                        <label  for="tunam">Từ Năm</label>
+                                        <input type="number" name="tunam" class="form-control" id="tunam"
+                                            value="{{ session('tunam') }}" oninput="limitLength(this, 4)" required>
                                     </div>
-                                    <div class="col-md-12 my-1">
-                                        <label for="example-datetime-local-input" for="hangxe" class="">Hãng xe</label>
-                                        <select name="hangxe" id="hangxe" class="form-control">
-                                            
-                                        </select>
+                                    <div class="col-md-6 col-sm-12">
+                                        <label  for="dennam">Đến Năm</label>
+                                        <input type="number" name="dennam" class="form-control" id="dennam"
+                                            value="{{ session('dennam') }}" oninput="limitLength(this, 4)" required>
                                     </div>
                                 </div>
                                 <div class="row my-2">
-                                    <div class="col-md-6 col-sm-12">
-                                        <label for="example-datetime-local-input" class="">Từ ngày</label>
-                                        <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text" name="tungay" value="{{ session('tungay') }}">
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <label for="example-datetime-local-input" class="">Đến ngày</label>
-                                        <input class="form-control" type="date" placeholder="Chọn thời gian"
-                                            type="text" name="denngay" value="{{ session('denngay') }}">
-                                    </div>
-                                </div> --}}
-                                <div class="row my-2">
-                                    <div class="col-md-6 col-sm-12">
-                                        <label for="example-datetime-local-input" class="">Năm</label>
-                                        <select name="hangxe" id="hangxe" class="form-control">
-                                            <option value=""></option>
+                                    <div class="col-md-12 col-sm-12">
+                                        <label  for="quy">Các quý</label>
+                                        <select name="quy" id="quy" class="form-control">
+                                            <option selected hidden>Lựa chọn</option>
+                                            <option value="1" {{ session('quy') == '1' ? 'selected' : '' }}>Quý 1
+                                            </option>
+                                            <option value="2" {{ session('quy') == '2' ? 'selected' : '' }}>Quý 2
+                                            </option>
+                                            <option value="3" {{ session('quy') == '3' ? 'selected' : '' }}>Quý 3
+                                            </option>
+                                            <option value="4" {{ session('quy') == '4' ? 'selected' : '' }}>Quý 4
+                                            </option>
+                                            <option value="0" {{ session('quy') == '0' ? 'selected' : '' }}>Tất cả
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="pull-right my-3 px-1">
-                                    <a class="btn btn-lg btn-primary mt-3" href="{{ url('dashboard/report/sales-situation') }}"> Xóa </a>
+                                    <a class="btn btn-lg btn-primary mt-3"
+                                        href="{{ url('dashboard/report/purchasing-situation') }}"> Xóa </a>
                                 </div>
                                 <div class="pull-right my-3">
                                     <input class="btn btn-lg btn-primary mt-3" type="submit" value="Áp dụng">
@@ -69,7 +65,7 @@
                     <div class="col-md-12 mb-30">
                         <div class="pd-20 card-box height-100-p">
                             <h4 class="h4 text-blue">Biểu đồ </h4>
-                            
+                            @include('dashboard.report.graph.chart-2')
                         </div>
                     </div>
                 </div>
@@ -79,11 +75,18 @@
                             <div class="clearfix mb-20">
                                 <div class="pull-left">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        {{-- <form class="mx-2" action="{{ route('xuatfile-excel-thongtintinhhinhbanhang') }}" method="POST">
+                                        <form class="mx-2" action="{{ route('xuatfile-excel-thongtintinhhinhthumua') }}"
+                                            method="POST">
                                             @csrf
-                                            <input type="submit" class="btn btn-secondary" value="Xuất file CSV">
+
+                                            <input type="text" name="tunam" id="tunam-export" hidden>
+                                            <input type="text" name="dennam" id="dennam-export" hidden>
+                                            <input type="text" name="quy" id="quy-export" hidden>
+
+                                            <input type="submit" id="export-csv-tinhhinhthumua" class="btn btn-secondary"
+                                                value="Xuất file CSV"> 
                                         </form>
-                                        <form class="mx-2" method="post">
+                                        {{-- <form class="mx-2" method="post">
                                             @csrf
                                             <input type="submit" class="btn btn-secondary" value="Xuất file PDF">
                                         </form> --}}
@@ -95,7 +98,7 @@
                                     <h4 class="text-blue h4">Báo cáo tình hình thu mua xe</h4>
                                 </div>
                             </div>
-                                
+                            @include('dashboard.report.table.table-purchasing-situation')
                         </div>
                     </div>
                 </div>
@@ -106,7 +109,29 @@
 
     <!-- js -->
     {{-- <script src="{{ asset('dashboard_src/src/plugins/apexcharts/apexcharts.min.js') }}"></script> --}}
-    <script src="{{ asset('dashboard_src/vendors/scripts/apexcharts-setting.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard_src/vendors/scripts/apexcharts-setting.js') }}"></script> --}}
+
+    <script>
+        function limitLength(element, maxLength) {
+            if (element.value.length > maxLength) {
+                element.value = element.value.slice(0, maxLength);
+            }
+        }
+    </script>
+
+    <script>
+        document.getElementById('export-csv-tinhhinhthumua').addEventListener('click', function() {
+            // Lấy dữ liệu từ input1
+            var input1Value = document.getElementById('tunam').value;
+            var input2Value = document.getElementById('dennam').value;
+            var input3Value = document.getElementById('quy').value;
+
+            // Truyền dữ liệu vào input2
+            document.getElementById('tunam-export').value = input1Value;
+            document.getElementById('dennam-export').value = input2Value;
+            document.getElementById('quy-export').value = input3Value;
+        });
+    </script>
 
 
 @endsection

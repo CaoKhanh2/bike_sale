@@ -122,10 +122,6 @@ class ThongTinXeController extends Controller
         return view('/dashboard/category/vehicle/detail-vehicle-infor', ['xe' => $xe, 'dx' => $dx, 'hx' => $hx]);
     }
 
-    public function edit($id)
-    {
-        //
-    }
 
     public function update_xe(Request $request)
     {
