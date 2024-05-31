@@ -149,6 +149,10 @@ Route::middleware(['roleGuest'])->group(function () {
 
     Route::get('/my-order', [NguoiDungController::class, 'orderhistory'])->name('khach-donhang'); // Xem đơn hàng
     Route::get('/view-order/{id}', [NguoiDungController::class, 'view'])->name('khach-ctdonhang'); // Xem chi tiết đơn hàng
+    
+    // Hiển thị sản phẩm trong giỏ
+    Route::get('load-cart-data', [GioHangController::class, 'cartcount']); // Xem chi tiết đơn hàng
+
 
 
     // ----------

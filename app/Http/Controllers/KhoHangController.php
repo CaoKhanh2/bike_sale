@@ -358,7 +358,7 @@ class KhoHangController extends Controller
                     'soluong' => $data['soluong'][$i],
                     'gianhapkho' => $data['gianhapkho'][$i],
                     'ngaynhapkho' => $ngaynhapkho->ngaynhap,
-                    'trangthai' => 'Còn trong kho',
+                    'trangthai' => "Còn trong kho",
                 ]);
 
                 DB::table('ctphieunhap')->insert([

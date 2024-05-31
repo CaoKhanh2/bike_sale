@@ -56,12 +56,6 @@ class XeDangBanController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function showData()
     {
         $db_xemay = DB::table('xedangban')

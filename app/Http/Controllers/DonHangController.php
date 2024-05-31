@@ -243,7 +243,7 @@ class DonHangController extends Controller
         ->where('giohang.mand', $mand)->first();
 
         if (isset($_POST['cod'])) {
-            return view('index');
+            return view('guest-acc.orders.thanks');
         } elseif (isset($_POST['payUrl'])) {
             $endpoint = 'https://test-payment.momo.vn/v2/gateway/api/create';
             $partnerCode = 'MOMOBKUN20180529';

@@ -28,7 +28,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-disabled="true" href="{{ route('hienthi-thongtinxedapdien-Guest') }}">
+                            <a class="nav-link active" aria-disabled="true"
+                                href="{{ route('hienthi-thongtinxedapdien-Guest') }}">
                                 <img src="{{ asset('Image\Icon\electric-scooter.png') }}" width="30" height="24"
                                     class="img-fluid mx-auto d-block">
                                 <span class="text-center mx-auto d-block">Mua xe đạp điện</span>
@@ -46,11 +47,22 @@
                             </a>
                         </li>
                         @if (Auth::guard('guest')->check())
+
+                            {{-- @php
+                                $cartcount = DB::table('ctgiohang')
+                                    ->join('giohang', 'giohang.magh', 'ctgiohang.magh')
+                                    // ->join('nguoidung', 'giohang.mand', 'nguoidung.mand')
+                                    ->where('mand', Auth::guard('guest')->user()->mand)
+                                    ->count();
+                            @endphp --}}
+
                             <li class="nav-item">
                                 <a class="nav-link active" aria-disabled="true" href="{{ url('/cart-index') }}">
                                     <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30"
                                         height="24" class="img-fluid mx-auto d-block">
-                                    <span class="text-center mx-auto d-block">Giỏ hàng</span>
+                                    <span class="text-center mx-auto d-block"> Giỏ hàng 
+                                        <span id="cart-count" class="badge badge-pill bg-success cart-count">0</span> 
+                                    </span>
                                 </a>
                             </li>
                         @endif
@@ -63,11 +75,14 @@
                                     <span class="text-center mx-auto d-block">Tài khoản</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('thongtin-Guest') }}">Thông tin tài khoản</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('thongtin-Guest') }}">Thông tin tài
+                                            khoản</a></li>
                                     <li><a class="dropdown-item" href="">Thông báo</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('khach-donhang') }}">Lịch sử đơn hàng</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('khach-donhang') }}">Lịch sử đơn
+                                            hàng</a></li>
                                     <li>
-                                        <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}" class="mb-0">
+                                        <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}"
+                                            class="mb-0">
                                             @csrf
                                             <input class="dropdown-item" type="submit" value="Đăng xuất">
                                         </form>
@@ -133,3 +148,55 @@
         </div>
     </div>
 </section>
+
+<script>
+    // Hàm để lấy số lượng sản phẩm từ localStorage và hiển thị
+    function loadCartCount() {
+        let cartCount = localStorage.getItem('cartCount');
+        if (cartCount) {
+            document.getElementById('cart-count').innerText = cartCount;
+        } else {
+            document.getElementById('cart-count').innerText = 0;
+        }
+    }
+
+    // Gọi hàm loadCartCount khi trang được tải
+    window.onload = loadCartCount;
+</script>
+
+<script>
+    $(document).ready(function() {
+    
+        loadcart();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    
+        function loadcart()
+        {
+            $.ajax({
+                method: "GET",
+                url :  '/load-cart-data',
+                success: function(response) {
+                    console.log(response.count);
+                    $('.cart-count').html('');
+                    $('.cart-count').html(response.count);
+                }
+            });
+        }
+    });
+</script>
+<style>
+    .cart-icon {
+        position: relative;
+        display: inline-block;
+    }
+    .cart-count {
+        position: absolute;
+        top: 18px; /* Điều chỉnh giá trị này để thay đổi vị trí theo chiều dọc */
+        right: 98px; /* Điều chỉnh giá trị này để thay đổi vị trí theo chiều ngang */
+        transform: translate(-50%, -50%);
+    }
+</style>

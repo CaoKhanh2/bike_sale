@@ -47,7 +47,8 @@
                         <a class="nav-link active" aria-disabled="true" href="{{ url('/cart-index') }}">
                             <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30" height="24"
                                 class="img-fluid mx-auto d-block">
-                            <span class="text-center mx-auto d-block">Giỏ hàng</span>
+                            <span class="text-center mx-auto d-block">Giỏ hàng
+                            </span>
                         </a>
                     </li>
                 @endif
@@ -85,3 +86,4 @@
         </div>
     </div>
 </nav>
+

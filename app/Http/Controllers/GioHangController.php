@@ -137,4 +137,16 @@ class GioHangController extends Controller
         $max = pow(10, $length) - 1;
         return str_pad(rand($min, $max), $length, '0', STR_PAD_LEFT);
     }
+
+    public function cartcount()
+    {   
+        $cartcount = DB::table('ctgiohang')
+                ->join('giohang', 'giohang.magh', 'ctgiohang.magh')
+                // ->join('nguoidung', 'giohang.mand', 'nguoidung.mand')
+                ->where('mand', Auth::guard('guest')->user()->mand)
+                ->count();
+        
+        return response()->json(['count' => $cartcount]);
+        // return view('layout.header',compact('cartcount'));
+    }
 }

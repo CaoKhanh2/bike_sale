@@ -58,14 +58,14 @@ class ThongTinXeController extends Controller
             $maxemay = $this->generateUniqueId_moto();
 
             DB::table('thongsokythuatxemay')->insert([
-                'matsxemay' => 'TS' . $request->mx,
+                'matsxemay' => 'TS' . $maxemay,
             ]);
 
             $imagePathsString = implode(',', $imagePaths);
 
             DB::table('thongtinxe')->insert([
                 'maxe' => $maxemay,
-                'matsxemay' => 'TS' . $request->mx,
+                'matsxemay' => 'TS' . $maxemay,
                 'madx' => $request->dx,
                 'tenxe' => $request->tx,
                 'thoigiandasudung' => $request->tgsd,
@@ -82,14 +82,14 @@ class ThongTinXeController extends Controller
             $maxedap = $this->generateUniqueId_bike();
 
             DB::table('thongsokythuatxedapdien')->insert([
-                'matsxedapdien' => 'TS' . $request->mx,
+                'matsxedapdien' => 'TS' . $maxedap,
             ]);
 
             $imagePathsString = implode(',', $imagePaths);
 
             DB::table('thongtinxe')->insert([
                 'maxe' => $maxedap,
-                'matsxedapdien' => 'TS' . $request->mx,
+                'matsxedapdien' => 'TS' . $maxedap,
                 'madx' => $request->dx,
                 'tenxe' => $request->tx,
                 'thoigiandasudung' => $request->tgsd,
