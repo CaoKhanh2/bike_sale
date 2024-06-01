@@ -63,8 +63,7 @@
                                     <p class="mb-0">{{ $i->namsx }}</p>
                                 </div>
                                 <div class="col mt-3 d-flex align-items-center icon-text">
-                                    <img class="img-fluid me-2" src="{{ asset('Image/Icon/motorbike.png') }}"
-                                        alt="" width="27px" height="27px">
+                                    <i class="fa-solid fa-motorcycle me-2" style="font-size: 1.4rem; line-height: 1;"></i>
                                     <p class="mb-0">{{ $i->loaixe }}</p>
                                 </div>
                             </div>
@@ -135,8 +134,7 @@
                                     <p class="mb-0">{{ $i->namsx }}</p>
                                 </div>
                                 <div class="col mt-3 d-flex align-items-center icon-text">
-                                    <img class="img-fluid me-2" src="{{ asset('Image/Icon/motorbike.png') }}"
-                                        alt="" width="27px" height="27px">
+                                    <i class="bi bi-bicycle fs-3 me-2 align-self-center"></i>
                                     <p class="mb-0">{{ $i->loaixe }}</p>
                                 </div>
                             </div>

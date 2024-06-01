@@ -62,6 +62,7 @@ class XeDangBanController extends Controller
             ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
             ->join('ctkhohang', 'ctkhohang.maxe', 'thongtinxe.maxe')
             ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('xedangban.trangthai','Còn xe')
             ->where('ctkhohang.trangthai', 'Còn trong kho')
             ->get();
 
@@ -85,6 +86,7 @@ class XeDangBanController extends Controller
             ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
             ->join('ctkhohang', 'ctkhohang.maxe', 'thongtinxe.maxe')
             ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('xedangban.trangthai','Còn xe')
             ->where('ctkhohang.trangthai', 'Còn trong kho')
             ->get();
 
@@ -119,6 +121,7 @@ class XeDangBanController extends Controller
             ->join('ctkhohang', 'ctkhohang.maxe', 'thongtinxe.maxe')
             ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
             ->where('ctkhohang.trangthai', 'Còn trong kho')
+            ->where('xedangban.trangthai','Còn xe')
             ->orderBy('xedangban.ngayban', 'desc')
             ->limit(4)
             ->get();
@@ -145,6 +148,7 @@ class XeDangBanController extends Controller
             ->join('ctkhohang', 'ctkhohang.maxe', 'thongtinxe.maxe')
             ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
             ->where('ctkhohang.trangthai', 'Còn trong kho')
+            ->where('xedangban.trangthai','Còn xe')
             ->orderBy('xedangban.ngayban', 'desc')
             ->limit(4)
             ->get();

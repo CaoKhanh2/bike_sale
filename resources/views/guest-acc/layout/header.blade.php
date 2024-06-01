@@ -25,7 +25,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-disabled="true" href="{{ route('hienthi-thongtinxedapdien-Guest') }}">
+                    <a class="nav-link active" aria-disabled="true"
+                        href="{{ route('hienthi-thongtinxedapdien-Guest') }}">
                         <img src="{{ asset('Image\Icon\electric-scooter.png') }}" width="30" height="24"
                             class="img-fluid mx-auto d-block">
                         <span class="text-center mx-auto d-block">Mua xe đạp điện</span>
@@ -43,11 +44,12 @@
                     </a>
                 </li>
                 @if (Auth::guard('guest')->check())
-                    <li class="nav-item">
+                    <li class="nav-item cart-icon">
                         <a class="nav-link active" aria-disabled="true" href="{{ url('/cart-index') }}">
                             <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30" height="24"
                                 class="img-fluid mx-auto d-block">
-                            <span class="text-center mx-auto d-block">Giỏ hàng
+                            <span class="text-center mx-auto d-block"> Giỏ hàng
+                                <span id="cart-count" class="badge badge-pill bg-success cart-count"></span>
                             </span>
                         </a>
                     </li>
@@ -64,7 +66,7 @@
                             <li><a class="dropdown-item" href="{{ route('thongtin-Guest') }}">Thông tin tài khoản</a>
                             </li>
                             <li><a class="dropdown-item" href="">Thông báo</a></li>
-                            <li><a class="dropdown-item" href="">Lịch sử đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="{{ route('khach-donhang') }}">Lịch sử đơn hàng</a></li>
                             <li>
                                 <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}" class="mb-0">
                                     @csrf
@@ -87,3 +89,52 @@
     </div>
 </nav>
 
+<script>
+    // Hàm để lấy số lượng sản phẩm từ localStorage và hiển thị
+    function loadCartCount() {
+        let cartCount = localStorage.getItem('cartCount');
+        if (cartCount) {
+            document.getElementById('cart-count').innerText = cartCount;
+        } else {
+            document.getElementById('cart-count').innerText = 0;
+        }
+    }
+
+    // Hàm để tải số lượng sản phẩm từ server và hiển thị
+    function loadCartFromServer() {
+        $.ajax({
+            method: "GET",
+            url: '/load-cart-data',
+            success: function(response) {
+                console.log(response.count);
+                localStorage.setItem('cartCount', response.count);
+                document.getElementById('cart-count').innerText = response.count;
+            }
+        });
+    }
+
+    // Gọi hàm loadCartCount khi trang được tải
+    window.onload = function() {
+        loadCartCount();
+        loadCartFromServer();
+    };
+</script>
+
+<style>
+    .cart-icon {
+        position: relative;
+        display: inline-block;
+    }
+
+    .cart-count {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        transform: translate(50%, -50%);
+        background-color: #28a745;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 50%;
+        font-size: 0.8rem;
+    }
+</style>
