@@ -1,16 +1,15 @@
-
-<form action="{{ route('themskkhuyenmai') }}" method="POST" id="formkhuyenmai"  style="display: block">
+<form action="{{ route('themskkhuyenmai') }}" method="POST" id="formkhuyenmai" style="display: block">
     @csrf
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Mã khuyến mãi</label>
         <div class="col-sm-12 col-md-10">
-            <input class="form-control " name="makhuyemai" required/>
+            <input class="form-control " name="makhuyemai" required />
         </div>
     </div>
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tên sk khuyến mãi</label>
         <div class="col-sm-12 col-md-10">
-            <input class="form-control" name="tenkhuyenmai" required/>
+            <input class="form-control" name="tenkhuyenmai" required />
         </div>
     </div>
     <div class="row">
@@ -34,7 +33,7 @@
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tỉ lệ giảm</label>
         <div class="col-sm-12 col-md-10">
-            <input class="form-control" type="number" min="10" max="99" name="tile" required/>
+            <input class="form-control" type="number" min="10" max="99" name="tile" required />
         </div>
     </div>
     <div class="form-group row">
@@ -103,7 +102,6 @@
         $('.hangxemay-select2').select2({
             placeholder: "Chọn hãng xe máy",
             allowClear: true,
-
         });
         $('.dongxemay-select2').select2({
             placeholder: "Chọn dòng xe máy",
@@ -132,6 +130,36 @@
         document.getElementById('xedapdien').addEventListener('change', function() {
             document.getElementById('hangxedapdien').disabled = !this.checked;
             document.getElementById('dongxedapdien').disabled = !this.checked;
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#hangxemay').on('change', function() {
+            var selectedHangXe = $(this).val();
+            var dongXeSelect = $('#dongxemay');
+            dongXeSelect.empty();
+            @foreach ($dxm as $i)
+                if (selectedHangXe.includes("{{ $i->mahx }}")) {
+                    dongXeSelect.append(new Option("{{ $i->tendongxe }}", "{{ $i->madx }}"));
+                }
+            @endforeach
+
+        
+            dongXeSelect.trigger('change');
+        });
+        $('#hangxedapdien').on('change', function() {
+            var selectedHangXe = $(this).val();
+            var dongXeSelect = $('#dongxedapdien');
+            dongXeSelect.empty();
+            @foreach ($dxdd as $i)
+                if (selectedHangXe.includes("{{ $i->mahx }}")) {
+                    dongXeSelect.append(new Option("{{ $i->tendongxe }}", "{{ $i->madx }}"));
+                }
+            @endforeach
+
+        
+            dongXeSelect.trigger('change');
         });
     });
 </script>
