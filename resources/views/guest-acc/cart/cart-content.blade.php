@@ -32,6 +32,9 @@
                             </form>
                         </div>
                     </div>
+                    @php
+                        $magh = $i->magh;
+                    @endphp
                 @endforeach
             </div>
             <div class="card-footer">
@@ -45,7 +48,7 @@
                         @endforeach
                     </h6>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{{ route('xacnhan-giohang-Guest') }}"
+                        <a href="{{ route('xacnhan-giohang-Guest',[$magh]) }}"
                             class="btn btn-outline-success d-flex align-items-center">
                             <i class="bi bi-bag-check me-2 fs-4"></i>
                             <strong>Xác nhận mua hàng</strong>

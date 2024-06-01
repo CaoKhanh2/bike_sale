@@ -141,7 +141,7 @@ Route::middleware(['roleGuest'])->group(function () {
     // ----------
 
     // Đơn hàng ----------
-    Route::get('/checkout', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
+    Route::get('/checkout/{id}', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
     Route::post('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
     // Route::post('/online-checkout',[DonHangController::class, 'dat_hang'])->name('thanhtoan-onl');
     Route::get('/thanks', [DonHangController::class, 'thanks']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NguoiDung;
 use App\Models\DonHang;
+use App\Models\GioHang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -38,35 +39,17 @@ class DonHangController extends Controller
         $xedangban = DB::table('xedangban')->select('xedangban.*', 'thongtinxe.tenxe')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')->get();
 
         // dd($donhang);
-        return view('dashboard.transaction.selling.index', compact('donhang','xedangban'));
+        return view('dashboard.transaction.selling.index', compact('donhang', 'xedangban'));
     }
 
     public function view($id)
     {
         $trangthai = '0';
 
-        // $donhang_items =DB::select(
-        //     'SELECT
-        //             -- ctgiohang.*
-        //             giohang.*
-        //             , donhang.ngaytaodon
-        //             , donhang.trangthai
-        //             ,donhang.madh
-        //             ,donhang.tongtien
-        //                 FROM donhang
-        //                 -- INNER JOIN ctgiohang ON ctgiohang.magh = donhang.magh
-        //                 INNER JOIN giohang ON giohang.magh = donhang.magh
-        //                 WHERE donhang.trangthai = ?',
-        //     [$trangthai]
-        // );
-
         $donhang_items = DB::table('donhang')->select('thongtinxe.*', 'xedangban.giaban', 'donhang.*')->join('giohang', 'giohang.magh', 'donhang.magh')->join('ctgiohang', 'giohang.magh', 'ctgiohang.magh')->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')->where('donhang.madh', $id)->get();
 
         $tt_nguoidung = DB::table('nguoidung')->select('nguoidung.*')->join('giohang', 'giohang.mand', 'nguoidung.mand')->join('donhang', 'donhang.magh', 'giohang.magh')->where('donhang.madh', $id)->first();
 
-        // dd($tt_nguoidung);
-
-        // dd($donhang_items);
         return view('dashboard.transaction.selling.order.view', compact('donhang_items', 'tt_nguoidung'));
     }
 
@@ -84,7 +67,6 @@ class DonHangController extends Controller
     {
         $donhang = DB::table('donhang')->where('donhang.trangthai', 'Đã hoàn thành')->orWhere('donhang.trangthai', 'Đã hủy')->get();
 
-        // dd($donhang);
         return view('dashboard.transaction.selling.order.history', compact('donhang'));
     }
 
@@ -117,6 +99,18 @@ class DonHangController extends Controller
 
         return $id;
     }
+    private function generateUniqueNumericId_cart($length)
+    {
+        $id = $this->generateRandomNumber($length);
+
+        // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
+        while (GioHang::where('magh', $id)->exists()) {
+            // Nếu ID đã tồn tại, tạo lại một ID mới
+            $id = $this->generateRandomNumber($length);
+        }
+
+        return $id;
+    }
     private function generateRandomNumber($length)
     {
         $min = pow(10, $length - 1);
@@ -138,12 +132,30 @@ class DonHangController extends Controller
                         WHERE giohang.mand = ? AND giohang.ghichu = ?',
             [$mand, $trangthai],
         );
-        // dd($giohang_items);
+        
         return view('guest-acc.orders.checkout', compact('giohang_items'));
     }
 
     public function thanks()
     {
+        $mand = Auth::guard('guest')->user()->mand;
+
+        $trangthai = 'Đang chờ xử lý';
+
+        $magh = $this->generateUniqueNumericId_cart(7);
+
+        $cre_cart = DB::table('giohang')->where('ghichu', $trangthai)->where('mand', $mand)->exists();
+
+        if ($cre_cart == false) {
+            DB::table('giohang')->insert([
+                'magh' => 'GH-' . $magh,
+                'mand' => $mand,
+                'ngaytao' => Carbon::now(),
+                'tonggiatien' => 0,
+                'ghichu' => $trangthai,
+            ]);
+        }
+
         $data = [];
         if (isset($_GET['partnerCode'])) {
             $data_momo = [
@@ -158,20 +170,6 @@ class DonHangController extends Controller
                 'signature' => $_GET['signature'],
             ];
             $result = DB::table('momo')->insert($data_momo);
-            // Thực thi truy vấn SQL
-            // try {
-            //     // lưu data momo
-            //     $result = DB::table('momo')->insert($data_momo);
-            //     // Tùy chọn: xử lý kết quả trả về
-            //     if (!$result) {
-            //         // Xử lý nếu chèn dữ liệu thất bại (ghi log, thông báo lỗi, v.v.)
-            //         error_log('Failed to insert data into momo table.');
-            //     }
-            // } catch (PDOException $e) {
-            //     // Xử lý ngoại lệ PDO nếu có lỗi xảy ra trong quá trình thực thi truy vấn
-            //     // Ghi log lỗi hoặc thông báo lỗi
-            //     error_log('Database error: ' . $e->getMessage());
-            // }
         } elseif (isset($_GET['vnp_Amount'])) {
             $data_vnpay = [
                 'vnp_Amount' => $_GET['vnp_Amount'],
@@ -197,50 +195,49 @@ class DonHangController extends Controller
     public function dat_hang(Request $request)
     {
         $mand = Auth::guard('guest')->user()->mand;
-        // $magh = $request->magh;
+        $magh = $request->magh;
 
         $giohang_items = DB::select(
             'SELECT ctgiohang.maxedangban, giohang.*, xedangban.maxedangban, thongtinxe.maxe FROM ctgiohang
                         INNER JOIN giohang ON giohang.magh = ctgiohang.magh
                         INNER JOIN xedangban ON xedangban.maxedangban = ctgiohang.maxedangban
                         INNER JOIN thongtinxe ON thongtinxe.maxe = xedangban.maxe
-                        WHERE giohang.mand = ? ',
-            [$mand],
+                        WHERE giohang.mand = ? AND giohang.magh = ?',
+            [$mand, $magh],
         );
-
-        // dd($giohang_items);
-
-        $gh = DB::table('giohang')->select('giohang.magh')->join('nguoidung', 'giohang.mand', 'nguoidung.mand')->where('giohang.mand', $mand)->first();
-
-        // dd($gh);
 
         foreach ($giohang_items as $item) {
             DB::table('donhang')->insert([
-                'magh' => $gh->magh,
-                // 'maxedangban' => $item->maxedangban,
-                // 'mand' => $mand,
+                'magh' => $item->magh,
                 'tongtien' => $item->tonggiatien,
                 'ngaytaodon' => Carbon::now(),
+                'trangthai' => 'Đã hoàn thành',
             ]);
+            DB::table('xedangban')
+                ->where('maxedangban', $item->maxedangban)
+                ->update([
+                    'trangthai' => 'Đã bán xe',
+                ]);
         }
+
+        DB::table('giohang')
+            ->where('magh', $magh)
+            ->update([
+                'ghichu' => 'Đã thanh toán',
+            ]);
 
         if (Auth::guard('guest')->user()->diachi == null) {
             $user = NguoiDung::where('mand', Auth::guard('guest')->user()->mand)->first();
             $user->hovaten = $request->input('hovaten');
             $user->gioitinh = $request->input('gioitinh');
-            // $user->email = $request->input('email');
             $user->sodienthoai = $request->input('sdt');
             $user->diachi = $request->input('diachi');
             $user->update();
         }
 
-        // Thanh toán 
+        // Thanh toán
 
-        $giatien = DB::table('donhang')
-        ->select('donhang.tongtien')
-        ->join('giohang', 'giohang.magh', 'donhang.magh')
-        ->join('nguoidung', 'giohang.mand', 'nguoidung.mand')
-        ->where('giohang.mand', $mand)->first();
+        $giatien = DB::table('donhang')->select('donhang.tongtien')->join('giohang', 'giohang.magh', 'donhang.magh')->join('nguoidung', 'giohang.mand', 'nguoidung.mand')->where('giohang.mand', $mand)->first();
 
         if (isset($_POST['cod'])) {
             return view('guest-acc.orders.thanks');
@@ -293,7 +290,6 @@ class DonHangController extends Controller
             error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
             date_default_timezone_set('Asia/Ho_Chi_Minh');
 
-          
             $vnp_Url = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
             $vnp_Returnurl = 'http://127.0.0.1:8000/thanks';
             $vnp_TmnCode = 'CH2VBH65'; //Mã website tại VNPAY
@@ -302,7 +298,7 @@ class DonHangController extends Controller
             $vnp_TxnRef = $this->generateRandomNumber(4); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
             $vnp_OrderInfo = 'Noi dung thanh toan';
             $vnp_OrderType = 'billpayment';
-            $vnp_Amount = intval($giatien->tongtien) *100;
+            $vnp_Amount = intval($giatien->tongtien) * 100;
             $vnp_Locale = 'vn';
             $vnp_BankCode = 'NCB';
             $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];

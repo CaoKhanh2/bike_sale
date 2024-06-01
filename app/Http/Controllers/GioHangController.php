@@ -66,7 +66,7 @@ class GioHangController extends Controller
     {
         $mand = Auth::guard('guest')->user()->mand;
 
-        $gh = DB::table('giohang')->where('mand', $mand)->first();
+        $gh = DB::table('giohang')->where('mand', $mand)->where('ghichu','Đang chờ xử lý')->first();
 
         $ctgh = DB::table('xedangban')->select('maxe', 
                                             DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
@@ -142,10 +142,9 @@ class GioHangController extends Controller
     {   
         $cartcount = DB::table('ctgiohang')
                 ->join('giohang', 'giohang.magh', 'ctgiohang.magh')
-                // ->join('nguoidung', 'giohang.mand', 'nguoidung.mand')
+                ->where('ghichu','Đang chờ xử lý')
                 ->where('mand', Auth::guard('guest')->user()->mand)
                 ->count();
-        
         return response()->json(['count' => $cartcount]);
         // return view('layout.header',compact('cartcount'));
     }
