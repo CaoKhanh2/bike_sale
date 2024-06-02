@@ -45,8 +45,16 @@
                 <div class="row">
                     <div class="col-9"></div>
                     <div class="d-grid col-12 col-lg-4 ms-lg-auto my-auto">
-                        <a type="button" href="{{ route('them-giohang-Guest', ['maxedangban' => $i->maxedangban]) }}"
-                            class="btn btn-primary">Đặt mua</a>
+                        @if (Auth('guest')->user() == true)
+                            <a type="button"
+                                href="{{ route('them-giohang-Guest', ['maxedangban' => $i->maxedangban]) }}"
+                                class="btn btn-primary">Đặt mua</a>
+                        @else
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#loginModal">
+                                Đặt mua
+                            </button>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
@@ -80,11 +88,12 @@
                                     </li>
                                     <li class="list-group-item my-2 border-0 bg-light">
                                         <div class="d-flex align-items-center">
-                                            <i class="fa-solid fa-motorcycle me-2" style="font-size: 1.5rem; line-height: 1;"></i>
+                                            <i class="fa-solid fa-motorcycle me-2"
+                                                style="font-size: 1.5rem; line-height: 1;"></i>
                                             <p class="mb-0 align-self-center">Loại xe</p>
                                             <div class="ms-auto">{{ $i->loaixe }}</div>
                                         </div>
-                                    </li>                                    
+                                    </li>
                                     <li class="list-group-item my-2 border-0 bg-light">
                                         <div class="d-flex align-items-center">
                                             <i class="bi bi-calendar2 fs-4 me-2 align-self-center"></i>
@@ -92,7 +101,7 @@
                                             <div class="ms-auto">{{ $i->namsx }}</div>
                                         </div>
                                     </li>
-                                </ul>                                
+                                </ul>
                             </div>
                             <div class="col-12 col-md-6">
                                 <ul class="list-group mt-2">
@@ -140,7 +149,7 @@
                                             </div>
                                         </li>
                                     @endif
-                                </ul>                                
+                                </ul>
                             </div>
                         </div>
                     @endif
@@ -190,8 +199,16 @@
                 <div class="row">
                     <div class="col-9"></div>
                     <div class="d-grid col-12 col-lg-4 ms-lg-auto my-auto">
-                        <a type="button" href="{{ route('them-giohang-Guest', ['maxedangban' => $i->maxedangban]) }}"
-                            class="btn btn-primary">Đặt mua</a>
+                        @if (Auth('guest')->user() == true)
+                            <a type="button"
+                                href="{{ route('them-giohang-Guest', ['maxedangban' => $i->maxedangban]) }}"
+                                class="btn btn-primary">Đặt mua</a>
+                        @else
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#loginModal">
+                                Đặt mua
+                            </button>
+                        @endif
                     </div>
                 </div>
                 <div class="row">
@@ -296,7 +313,7 @@
     </div>
 
 
-
+    @include('modal-webs.modal-login')
 
 
     {{-- <div class="col-6 col-md-4"></div> --}}
