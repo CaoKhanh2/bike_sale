@@ -6,7 +6,6 @@ use App\Http\Controllers\ChucVuContrller;
 use App\Http\Controllers\CleanImagesController;
 use App\Http\Controllers\DataContrller;
 use App\Http\Controllers\DonHangController;
-use App\Http\Controllers\XeDangBan;
 use App\Http\Controllers\DongXeController;
 use App\Http\Controllers\HangXeController;
 use App\Http\Controllers\GioHangController;
@@ -14,10 +13,9 @@ use App\Http\Controllers\KhoHangController;
 use App\Http\Controllers\NguoiDungController;
 use App\Http\Controllers\NhanVienController;
 use App\Http\Controllers\SearchContrller;
-use App\Http\Controllers\TaiKhoanContrller;
+use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\ThongSoKyThuatXeDapDienContrller;
 use App\Http\Controllers\ThongSoKyThuatXeMayContrller;
-use App\Http\Controllers\VanChuyenController;
 use App\Http\Controllers\KhuyenMaiController;
 use App\Http\Controllers\ThongTinXeController;
 use App\Http\Controllers\XeDangBanController;
@@ -92,7 +90,7 @@ Route::group(['prefix' => 'account'], function () {
 
     Route::post('/profile/change-pass', [NguoiDungController::class, 'change_password_guest'])
         ->middleware(['roleGuest'])
-        ->name('thuchien-thaydoi-matkhu-Guest');
+        ->name('thuchien-thaydoi-matkhau-Guest');
 
     // ----------
 });
@@ -205,9 +203,16 @@ Route::get('sub-index/electric-bicycles/sale-page/{maxe}', [XeDangBanController:
 Route::get('/login', function () {
     return view('dashboard.auth.login');
 });
-Route::post('/login', [TaiKhoanContrller::class, 'login'])->name('login');
+Route::post('/login', [TaiKhoanController::class, 'login'])->name('login');
 
-Route::post('/logout', [TaiKhoanContrller::class, 'logout'])->name('logout');
+Route::post('/logout', [TaiKhoanController::class, 'logout'])->name('logout');
+
+Route::get('/profile', [TaiKhoanController::class, 'profile_account'])->middleware(['auth', 'roleDash'])->name('thongtin-taikhoan');
+Route::patch('/profile', [TaiKhoanController::class, 'update_profile_account'])->middleware(['auth', 'roleDash'])->name('capnhat-thongtin-taikhoan');
+
+Route::post('/profile/change-password', [TaiKhoanController::class, 'change_password'])
+        ->middleware(['roleGuest'])
+        ->name('thuchien-thaydoi-matkhau');
 
 // Route::get('/dasboard', function () {
 //     return view('dashboard.index');
@@ -241,11 +246,14 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
      */
 
     Route::middleware('permission:Quản trị viên')->group(function () {
-        Route::get('/dashboard/sys/user-authorization', [TaiKhoanContrller::class, 'index1']);
-        Route::patch('/dashboard/sys/user-authorization/{id}', [TaiKhoanContrller::class, 'update1'])->name('capnhattrangthai');
+        Route::get('/dashboard/sys/user-authorization', [TaiKhoanController::class, 'index1']);
+        Route::patch('/dashboard/sys/user-authorization/{id}', [TaiKhoanController::class, 'update1'])->name('capnhattrangthai');
 
-        Route::get('/dashboard/sys/management-acc/employee-account', [TaiKhoanContrller::class, 'index2'])->name('thongtintaikhoannhanvien');
-        Route::patch('/dashboard/sys/management-acc/employee-account/{id}', [TaiKhoanContrller::class, 'update2']);
+        Route::get('/dashboard/sys/management-acc/employee-account', [TaiKhoanController::class, 'index2'])->name('thongtintaikhoannhanvien');
+        Route::patch('/dashboard/sys/management-acc/employee-account/{id}', [TaiKhoanController::class, 'update2']);
+        Route::get('/dashboard/sys/management-acc/employee-account/add-employee-account', [TaiKhoanController::class, 'add_acc_employee'])->name('them-taikhoannhanvien');
+        Route::post('/dashboard/sys/management-acc/employee-account/add-employee-account', [TaiKhoanController::class, 'store1'])->name('thuchien-them-taikhoannhanvien');
+        Route::get('/dashboard/sys/management-acc/employee-account/delete-employee-account/{id}', [TaiKhoanController::class, 'destroy'])->name('xoa-taikhoan-nhanvien');
     });
 
     /**
@@ -299,7 +307,6 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     Route::get('/dashboard/category/vehicle/detail-vehicle-infor/delete_image/{id}/{index}', [ThongTinXeController::class, 'delete_image'])->name('xoaanh');
 
     Route::post('/dashboard/category/vehicle/vehicle-infor/update/{maxe}', [ThongTinXeController::class, 'update_xe'])->name('capnhat-thongtinxe');
-    //Route::post('/dashboard/category/customer/customer-info/data', [XeDapDienController::class, 'store'])->name('themthongtinxe');
 
     // ---------- **** ----------
 
@@ -310,9 +317,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     /**
      * ---------- Quản lý danh mục khách hàng ----------
      */
-    // Route::get('/dashboard/category/customer/customer-info', function () {
-    //     return view('dashboard.category.customer.customer-info');
-    // });
+
     Route::get('/dashboard/category/customer/customer-info', [NguoiDungController::class, 'index'])->name('thongtinkhachang');
     Route::post('/dashboard/category/customer/customer-info', [NguoiDungController::class, 'store'])->name('themthongtinkhachhang');
     Route::get('/dashboard/category/customer/customer-info/{id}', [NguoiDungController::class, 'destroy'])->name('xoathongtinkhachhang');
@@ -331,7 +336,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     //     return view('dashboard.category.shipping.ship-infor');
     // });
 
-    Route::get('/dashboard/category/shipping/ship-infor', [VanChuyenController::class, 'index']);
+    //Route::get('/dashboard/category/shipping/ship-infor', [VanChuyenController::class, 'index']);
 
     /**
      * ---------- **** ----------
@@ -341,13 +346,13 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
      * ---------- Quản lý danh mục nhân viên ----------
      */
 
-    // Route::get('/dashboard/category/sales-agent/staff-infor', function () {
-    //     return view('dashboard.category.sales-agent.staff-infor');
-    // });
-
     Route::get('/dashboard/category/sales-agent/staff-infor', [NhanVienController::class, 'index']);
     Route::post('/dashboard/category/sales-agent/staff-infor/add-staff-infor', [NhanVienController::class, 'store'])->name('them-thongtinnhanvien');
     Route::get('/dashboard/category/sales-agent/staff-infor/delete-staff-infor/{id}', [NhanVienController::class, 'destroy'])->name('xoa-thongtinnhanvien');
+    
+    Route::get('/dashboard/category/sales-agent/staff-infor/detail-staff-infor/{id}', [NhanVienController::class, 'index2'])->name('chitiet-thongtinnhanvien');
+    Route::post('/dashboard/category/sales-agent/staff-infor/detail-staff-infor/reset-password', [TaiKhoanController::class, 'reset_password'])->name('datlai-matkhau-taikhoannhanvien');
+    Route::post('/dashboard/category/sales-agent/staff-infor/detail-staff-infor/update-staff-infor', [NhanVienController::class, 'update'])->name('capnhat-thongtinnhanvien');
 
     /**
      * ---------- **** ----------
@@ -523,7 +528,7 @@ Route::get('/data1', [HangXeController::class, 'data']);
 Route::get('/data2', [DongXeController::class, 'data']);
 Route::get('/data3', [ChucVuContrller::class, 'data']);
 Route::get('/data4', [NhanVienController::class, 'data']);
-Route::get('/data5', [TaiKhoanContrller::class, 'data']);
+Route::get('/data5', [TaiKhoanController::class, 'data']);
 Route::get('/data6', [ThongSoKyThuatXeMayContrller::class, 'data']);
 Route::get('/data7', [ThongSoKyThuatXeDapDienContrller::class, 'data']);
 Route::get('/data8', [ThongTinXeController::class, 'data']);
@@ -552,28 +557,3 @@ Route::get('/clean/clean_img_posted', [CleanImagesController::class, 'cleanImgPo
  *
  */
 
-/**
- *
- * -------------- Huy --------------
- *
- */
-// Route::get('/load-cart-data', [GioHangContrllre::class, 'cartcount']);
-// Route::post('delete-cart-item', [GioHangContrllre::class, 'deleteproduct']);
-// Route::post('update-cart', [GioHangContrllre::class, 'updatecart']);
-
-//Route::get('/cart-index', [GioHangContrllre::class, 'viewgiohang']);
-// Route::get('/add-to-cart', [GioHangContrllre::class, 'addXedangban'])->name('themvaogiohang');
-
-// Route::middleware(['roleGuest'])->group(function () {
-
-// });
-
-//  Route::middleware(['roleGuest'])->group(function (){
-
-//     // Route::get('checkout', [CheckoutController::class, 'index']);
-//     // Route::post('place-order', [CheckoutController::class, 'placeorder']);
-
-//     // Route::get('my-orders',[UserController::class,'index']);
-//     // Route::get('view-order/{id}',[UserController::class,'view']);
-
-// });

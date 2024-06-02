@@ -44,7 +44,6 @@ class DonHangController extends Controller
 
     public function view($id)
     {
-        $trangthai = '0';
 
         $donhang_items = DB::table('donhang')->select('thongtinxe.*', 'xedangban.giaban', 'donhang.*')->join('giohang', 'giohang.magh', 'donhang.magh')->join('ctgiohang', 'giohang.magh', 'ctgiohang.magh')->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')->where('donhang.madh', $id)->get();
 
@@ -87,38 +86,8 @@ class DonHangController extends Controller
         curl_close($ch);
         return $result;
     }
-    private function generateUniqueNumericId_momo($length)
-    {
-        $id = $this->generateRandomNumber($length);
-
-        // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
-        while (DB::table('momo')->where('orderId', $id)->exists()) {
-            // Nếu ID đã tồn tại, tạo lại một ID mới
-            $id = $this->generateRandomNumber($length);
-        }
-
-        return $id;
-    }
-    private function generateUniqueNumericId_cart($length)
-    {
-        $id = $this->generateRandomNumber($length);
-
-        // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
-        while (GioHang::where('magh', $id)->exists()) {
-            // Nếu ID đã tồn tại, tạo lại một ID mới
-            $id = $this->generateRandomNumber($length);
-        }
-
-        return $id;
-    }
-    private function generateRandomNumber($length)
-    {
-        $min = pow(10, $length - 1);
-        $max = pow(10, $length) - 1;
-        return str_pad(rand($min, $max), $length, '0', STR_PAD_LEFT);
-    }
-
-    public function index_checkout()
+    
+    public function index_checkout(Request $request, $id)
     {
         $mand = Auth::guard('guest')->user()->mand;
 
@@ -129,8 +98,8 @@ class DonHangController extends Controller
                         INNER JOIN giohang ON giohang.magh = ctgiohang.magh
                         INNER JOIN xedangban ON xedangban.maxedangban = ctgiohang.maxedangban
                         INNER JOIN thongtinxe ON thongtinxe.maxe = xedangban.maxe
-                        WHERE giohang.mand = ? AND giohang.ghichu = ?',
-            [$mand, $trangthai],
+                        WHERE giohang.mand = ? AND giohang.ghichu = ? AND giohang.magh = ?',
+            [$mand, $trangthai, $id],
         );
         
         return view('guest-acc.orders.checkout', compact('giohang_items'));
@@ -187,8 +156,7 @@ class DonHangController extends Controller
             ];
             $result = DB::table('vnpay')->insert($data_vnpay);
         }
-        // $data = DB::table('momo')->insert($data_momo);; // Thay thế bằng dữ liệu thực tế
-        // dd($data);
+
         return view('guest-acc.orders.thanks', $data);
     }
 
@@ -274,10 +242,6 @@ class DonHangController extends Controller
             $result = $this->execPostRequest($endpoint, json_encode($data));
             $jsonResult = json_decode($result, true); // decode json
 
-            // dd($jsonResult);
-            //Just a example, please check more in there
-            // $h=header('Location: ' . $jsonResult['payUrl']);
-            // dd($h);
             if (isset($jsonResult['payUrl'])) {
                 header('Location: ' . $jsonResult['payUrl']);
                 exit(); // Đảm bảo không có mã nào khác chạy sau header
@@ -295,7 +259,7 @@ class DonHangController extends Controller
             $vnp_TmnCode = 'CH2VBH65'; //Mã website tại VNPAY
             $vnp_HashSecret = 'WTF0OLLF2ZR9MTQB7XU3BEYNM8IENE9J'; //Chuỗi bí mật
 
-            $vnp_TxnRef = $this->generateRandomNumber(4); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+            $vnp_TxnRef = $this->generateUniqueNumericId_vnpay(4); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
             $vnp_OrderInfo = 'Noi dung thanh toan';
             $vnp_OrderType = 'billpayment';
             $vnp_Amount = intval($giatien->tongtien) * 100;
@@ -394,5 +358,49 @@ class DonHangController extends Controller
             }
             // vui lòng tham khảo thêm tại code demoP
         }
+    }
+
+    private function generateUniqueNumericId_momo($length)
+    {
+        $id = $this->generateRandomNumber($length);
+
+        // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
+        while (DB::table('momo')->where('orderId', $id)->exists()) {
+            // Nếu ID đã tồn tại, tạo lại một ID mới
+            $id = $this->generateRandomNumber($length);
+        }
+
+        return $id;
+    }
+
+    private function generateUniqueNumericId_vnpay($length)
+    {
+        $id = $this->generateRandomNumber($length);
+
+        // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
+        while (DB::table('vnpay')->where('vnp_TxnRef', $id)->exists()) {
+            // Nếu ID đã tồn tại, tạo lại một ID mới
+            $id = $this->generateRandomNumber($length);
+        }
+
+        return $id;
+    }
+    private function generateUniqueNumericId_cart($length)
+    {
+        $id = $this->generateRandomNumber($length);
+
+        // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
+        while (GioHang::where('magh', $id)->exists()) {
+            // Nếu ID đã tồn tại, tạo lại một ID mới
+            $id = $this->generateRandomNumber($length);
+        }
+
+        return $id;
+    }
+    private function generateRandomNumber($length)
+    {
+        $min = pow(10, $length - 1);
+        $max = pow(10, $length) - 1;
+        return str_pad(rand($min, $max), $length, '0', STR_PAD_LEFT);
     }
 }

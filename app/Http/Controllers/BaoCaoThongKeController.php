@@ -22,12 +22,13 @@ class BaoCaoThongKeController extends Controller
         $request->session()->put('denngay', $request->input('denngay'));
 
         if (empty($tungay) && empty($denngay)) {
-        
             $doanhthuthang = DonHang::selectRaw('MONTH(ngaytaodon) as thang, YEAR(ngaytaodon) as nam, SUM(tongtien) as tongdoanhthu')
-                ->where('donhang.trangthai', 'Đã hoàn thành')
-                ->groupBy('thang', 'nam')
-                ->orderBy('thang')
-                ->get();
+                                ->join('giohang', 'donhang.magh', '=', 'giohang.magh')
+                                ->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')
+                                ->where('donhang.trangthai', 'Đã hoàn thành')
+                                ->groupBy('thang', 'nam')
+                                ->orderBy('thang')
+                                ->get();
 
             // Tạo mảng dữ liệu cho biểu đồ
             $thang = [];
@@ -41,14 +42,7 @@ class BaoCaoThongKeController extends Controller
             $tu_ngay = date('Y-m-d', strtotime($tungay));
             $den_ngay = date('Y-m-d', strtotime($denngay));
 
-            $thongtintbanhang = DB::table('donhang')
-                ->select('donhang.*', 'giohang.magh', 'ctgiohang.maxedangban', 'xedangban.maxedangban', 'thongtinxe.tenxe')
-                ->join('giohang', 'donhang.magh', '=', 'giohang.magh')
-                ->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')
-                ->join('xedangban', 'ctgiohang.maxedangban', '=', 'xedangban.maxedangban')
-                ->join('thongtinxe', 'xedangban.maxe', '=', 'thongtinxe.maxe')
-                ->where('donhang.trangthai', 'Đã hoàn thành')
-                ->get();
+            $thongtintbanhang = DB::table('donhang')->select('donhang.*', 'giohang.magh', 'ctgiohang.maxedangban', 'xedangban.maxedangban', 'thongtinxe.tenxe')->join('giohang', 'donhang.magh', '=', 'giohang.magh')->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')->join('xedangban', 'ctgiohang.maxedangban', '=', 'xedangban.maxedangban')->join('thongtinxe', 'xedangban.maxe', '=', 'thongtinxe.maxe')->where('donhang.trangthai', 'Đã hoàn thành')->get();
         } else {
             $thangTungay = date('Y-m', strtotime($tungay));
             $thangDenngay = date('Y-m', strtotime($denngay));
@@ -97,18 +91,9 @@ class BaoCaoThongKeController extends Controller
         $den_ngay = date('Y-m-d', strtotime($denngay));
 
         if (empty($tungay) && empty($denngay)) {
+            $thongtintbanhang = DB::table('donhang')->select('donhang.*', 'giohang.magh', 'ctgiohang.maxedangban', 'xedangban.maxedangban', 'thongtinxe.tenxe', 'dongxe.loaixe')->join('giohang', 'donhang.magh', '=', 'giohang.magh')->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')->join('xedangban', 'ctgiohang.maxedangban', '=', 'xedangban.maxedangban')->join('thongtinxe', 'xedangban.maxe', '=', 'thongtinxe.maxe')->join('dongxe', 'dongxe.madx', '=', 'thongtinxe.madx')->where('donhang.trangthai', 'Đã hoàn thành')->get();
+        } else {
             $thongtintbanhang = DB::table('donhang')
-                ->select('donhang.*', 'giohang.magh', 'ctgiohang.maxedangban', 'xedangban.maxedangban', 'thongtinxe.tenxe', 'dongxe.loaixe')
-                ->join('giohang', 'donhang.magh', '=', 'giohang.magh')
-                ->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')
-                ->join('xedangban', 'ctgiohang.maxedangban', '=', 'xedangban.maxedangban')
-                ->join('thongtinxe', 'xedangban.maxe', '=', 'thongtinxe.maxe')
-                ->join('dongxe', 'dongxe.madx', '=', 'thongtinxe.madx')
-                ->where('donhang.trangthai', 'Đã hoàn thành')
-                ->get();
-
-            }else{
-                $thongtintbanhang = DB::table('donhang')
                 ->select('donhang.*', 'giohang.magh', 'ctgiohang.maxedangban', 'xedangban.maxedangban', 'thongtinxe.tenxe', 'dongxe.loaixe')
                 ->join('giohang', 'donhang.magh', '=', 'giohang.magh')
                 ->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')
@@ -119,8 +104,8 @@ class BaoCaoThongKeController extends Controller
                 ->whereDate('donhang.ngaytaodon', '>=', $tu_ngay) // Lọc theo ngày bắt đầu
                 ->whereDate('donhang.ngaytaodon', '<=', $den_ngay) // Lọc theo ngày kết thúc
                 ->get();
-            }
-            
+        }
+
         $export = new TinhHinhBanHangExport($thongtintbanhang);
 
         return Excel::download($export, 'bao_cao_ban_hang.xlsx');

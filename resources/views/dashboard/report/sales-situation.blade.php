@@ -60,7 +60,9 @@
                                             @csrf
                                             <input type="text" name="tungay" id="tungay-export" hidden>
                                             <input type="text" name="denngay" id="denngay-export" hidden>
-                                            <input type="submit" class="btn btn-secondary" value="Xuất file CSV">
+                                            <button type="submit" id="export-csv-tinhhinhthumua" class="btn btn-secondary">
+                                                <i class="bi bi-filetype-csv"></i> Xuất file CSV
+                                            </button>
                                         </form>
                                         {{-- <form class="mx-2" method="post">
                                             @csrf

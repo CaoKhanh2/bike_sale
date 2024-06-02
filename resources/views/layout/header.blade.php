@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-xl border-bottom">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('Image\Logo\logo.png') }}" alt="Logo" width="80" height="70"
+                    <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo" width="80" height="70"
                         class="d-inline-block align-text-center rounded-circle">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -61,7 +61,7 @@
                                     <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30"
                                         height="24" class="img-fluid mx-auto d-block">
                                     <span class="text-center mx-auto d-block"> Giỏ hàng 
-                                        <span id="cart-count" class="badge badge-pill bg-success cart-count">0</span> 
+                                        <span id="cart-count" class="badge badge-pill bg-success cart-count"></span> 
                                     </span>
                                 </a>
                             </li>

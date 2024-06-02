@@ -91,9 +91,9 @@
 <div class="left-side-bar">
     <div class="brand-logo">
         <a href="">
-            <img src="{{ asset('Image\Logo\logo.png') }}" alt="" width="80" height="70"
+            <img src="{{ asset('Image\logo\logo.png') }}" alt="" width="80" height="70"
                 class="rounded-circle dark-logo" />
-            <img src="{{ asset('Image\Logo\logo.png') }}" alt="" width="80" height="70"
+            <img src="{{ asset('Image\logo\logo.png') }}" alt="" width="80" height="70"
                 class="rounded-circle light-logo" />
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
@@ -155,8 +155,9 @@
                                 hàng</a></li>
                         {{-- <li><a href="{{ url('dashboard/category/shipping/ship-infor') }}">Quản lý vận chuyển
                                 hàng</a></li> --}}
-                        <li><a href="{{ url('dashboard/category/sales-agent/staff-infor') }}">Quản lý nhân viên
-                                bán hàng</a></li>
+                        @if (Auth::user()->phanquyen == 'Quản lý' || Auth::user()->phanquyen == 'Quản trị viên')
+                            <li><a href="{{ url('dashboard/category/sales-agent/staff-infor') }}">Quản lý nhân viên</a></li>
+                        @endif
                         <li><a href="{{ route('thongtinkhohang') }}">Quản lý kho hàng</a></li>
                     </ul>
                 </li>
@@ -179,7 +180,6 @@
                         </li>
                         <li><a href="form-pickers.html">Quản lý thanh toán</a></li>
                         <li><a href="image-cropper.html">Quản lý rủi ro</a></li>
-                       
                     </ul>
                 </li>
                 {{-- <li class="dropdown">

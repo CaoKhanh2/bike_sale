@@ -5,7 +5,7 @@
 @section('title')
     Chi tiết đơn hàng
 @endsection 
-@include('guest-acc.layout.header')
+{{-- @include('guest-acc.layout.header') --}}
 @section('guest-content')
     <div class="container py-5 ">
         <div class="row">

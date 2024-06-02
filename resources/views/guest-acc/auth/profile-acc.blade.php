@@ -10,7 +10,7 @@
 @endphp
 
 @section('guest-content')
-    @include('guest-acc.layout.header')
+    {{-- @include('guest-acc.layout.header') --}}
 
     {{-- Thông báo --}}
     @if (Session::has('success-thaydoi-matkhau-Guest'))

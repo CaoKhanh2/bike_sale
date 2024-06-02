@@ -8,20 +8,36 @@
 @section('st4', 'true')
 
 @section('main')
-
+    @if (Session::has('success-xoa-taikhoan'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-xoa-taikhoan') }}",
+            });
+        </script>
+    @endif
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
                 {{-- Page Header --}}
                 @include('dashboard.layout.page-header')
                 {{-- End Page Header --}}
-
                 <div class="card-box mb-30">
-                    <div class="pd-20">
+                    <div class="table-responsive pd-20">
                         <h4 class="text-blue h4"></h4>
                     </div>
-                    <div class="pb-20">
-                        <table class="table hover data-table-export">
+                    <div class="table-responsive pb-20">
+                        <div class="col-md-12 mb-30">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ route('them-taikhoannhanvien') }}" class="btn btn-primary"> <i
+                                            class="fa-solid fa-user-plus"></i> Tạo tài khoản nhân viên</a>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table hover multiple-select-row nowrap">
                             <thead>
                                 <tr>
                                     <th>Mã nhân viên</th>
@@ -31,7 +47,7 @@
                                     <th>Tên tài khoản</th>
                                     <th>Số điện thoại</th>
                                     <th>Trạng thái</th>
-                                    <th></th>
+                                    <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,8 +74,12 @@
                                         </td>
                                         <td>
                                             <a type="button" class="btn btn-primary"
-                                                href="">
+                                                href="{{ route('chitiet-thongtinnhanvien', ['id' => $i->manv]) }}">
                                                 <i class="bi bi-eye"></i> Xem
+                                            </a>
+                                            <a class="btn btn-danger"
+                                                href="{{ route('xoa-taikhoan-nhanvien', ['id' => $i->matk]) }}">
+                                                <i class="bi bi-trash3"></i> Xóa
                                             </a>
                                         </td>
                                     </tr>
@@ -68,12 +88,9 @@
                         </table>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
-
     <script>
         // Bắt sự kiện thay đổi của checkbox
         $('.switch-btn').change(function() {

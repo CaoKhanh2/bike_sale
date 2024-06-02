@@ -23,32 +23,17 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class NguoiDungController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $nd = DB::table('nguoidung')->get();
         return view('dashboard.category.customer.customer-info', ['nguoidung' => $nd]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $mand = $this->generateUniqueNumericId_guest(7);
@@ -168,13 +153,14 @@ class NguoiDungController extends Controller
     {
         request()->validate(
             [
-                'password' => 'required|min:8|max:32',
+                'password' => ['required', 'min:8', 'max:32', 'regex:/[A-Z]/', 'regex:/[!@#$%^&*(),.?":{}|<>]/'],
                 'confirm-password' => 'required|same:password',
             ],
             [
                 'password.required' => 'Vui lòng nhập mật khẩu.',
                 'password.min' => 'Mật khẩu phải chứa ít nhất 8 ký tự.',
                 'password.max' => 'Mật khẩu không được quá 32 ký tự.',
+                'password.regex' => 'Mật khẩu mới phải có ít nhất 1 ký tự đặc biệt và 1 ký tự viết hoa!',
                 'confirm-password.required' => 'Vui lòng nhập xác nhận mật khẩu.',
                 'confirm-password.same' => 'Mật khẩu xác nhận phải khớp với mật khẩu đã nhập.',
             ],
@@ -199,35 +185,13 @@ class NguoiDungController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $nd = DB::table('nguoidung')->where('mand', $id)->first();
         return view('/dashboard/category/customer/detail-customer-info', ['nd' => $nd]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         if ($id) {
@@ -258,9 +222,9 @@ class NguoiDungController extends Controller
                 'ngaysinh' => 'required',
                 'gioitinh' => 'required',
                 'tentaikhoan' => 'required',
-                'cccd' => 'required|min:11|max:11',
-                'sodienthoai' => 'required|min:11|max:11',
-                'diachi' => 'required|max:100',
+                'cccd' => 'required|min:12|max:12',
+                'sodienthoai' => 'required|numeric|digits_between:10,11',
+                'diachi' => 'required|max:150',
                 
             ],
             [
@@ -278,9 +242,12 @@ class NguoiDungController extends Controller
                 'sodienthoai.max' => 'Số điện thoại của bạn không vượt quá 11 ký tự!',
                 'diachi.max' => 'Địa chỉ của bạn không vượt quá 100 ký tự!',
                 
-                'cccd.min' => 'Số căn cước công dân của bạn phải bao gồm 11 ký tự!',
-                'sodienthoai.min' => 'Số điện thoại của bạn phải bao gồm 11 ký tự!',
+                'cccd.min' => 'Số căn cước công dân của bạn tối thiểu phải bao gồm 12 ký tự!',
+                'sodienthoai.min' => 'Số điện thoại của bạn tối thiểu phải gồm 11 ký tự!',
                 
+                'sodienthoai.numeric' => 'Số điện thoại phải là định dạng số!',
+                'sodienthoai.digits_between' => 'Số điện thoại phải có từ 10 đến 11 chữ số!',
+
             ],
         );
 
@@ -351,12 +318,6 @@ class NguoiDungController extends Controller
         return back()->with('success-thaydoi-matkhau-Guest', 'Mật khẩu đã được thay đổi thành công!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //Sử dụng Query Builder:

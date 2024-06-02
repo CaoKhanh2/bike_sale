@@ -3,7 +3,7 @@
 
 @section('pg-hd-2', 'Giỏ hàng') @section('act2', 'text-dark')
 
-@include('guest-acc.layout.header')
+{{-- @include('guest-acc.layout.header') --}}
 
 @section('guest-content')
 
