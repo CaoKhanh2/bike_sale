@@ -170,7 +170,7 @@ class XeDangKyThuMuaController extends Controller
                 //'tinhtrang' => $request->tt
             ]);
 
-            return back()->with('success-them-thongtinxe', 'Thông tin xe đã được thêm.');
+            return redirect()->route('xedkthumua')->with('success-them-thongtinxe', 'Thông tin xe đã được thêm.');
         } elseif ($request->xe == 2) {
             $maxedap = $this->generateUniqueId_bike();
 
