@@ -2,7 +2,7 @@
 @section('title', 'Thông tin xe')
 
 @section('pg-hd-2', 'Xe máy')
-@section('pg-hd-3', 'fassdf') @section('act3', 'true') @section('act3', 'text-dark')
+@section('pg-hd-3', '') @section('act3', 'true') @section('act3', 'text-dark')
 
 @section('main')
     <div class="container">

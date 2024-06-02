@@ -2,15 +2,9 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\FromView;
-use Maatwebsite\Excel\Concerns\Exportable;
+
 use Maatwebsite\Excel\Concerns\WithDefaultStyles;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
 
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithDrawings;
@@ -20,7 +14,7 @@ use PhpOffice\PhpSpreadsheet\Style\Style;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 
 use Maatwebsite\Excel\Events\AfterSheet;
-use Illuminate\Support\Collection;
+
 
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -29,13 +23,15 @@ use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class TinhHinhBanHangExport implements FromCollection, WithDefaultStyles, WithDrawings, WithMapping, WithEvents, ShouldAutoSize, WithStyles
+class TinhHinhBanHangExport implements WithDefaultStyles, WithDrawings, WithMapping, WithEvents, WithStyles
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
 
-    use Exportable;
+    protected $thongtintbanhang;
+
+    public function __construct($thongtintbanhang)
+    {
+        $this->thongtintbanhang = $thongtintbanhang;
+    }
 
     public function drawings()
     {
@@ -49,28 +45,28 @@ class TinhHinhBanHangExport implements FromCollection, WithDefaultStyles, WithDr
         return $drawing;
     }
 
-    public function collection(): Collection
-    {
-        $data = DB::table('donhang')
-            ->join('giohang', 'donhang.magh', '=', 'giohang.magh')
-            ->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')
-            ->join('xedangban', 'ctgiohang.maxedangban', '=', 'xedangban.maxedangban')
-            ->join('thongtinxe', 'xedangban.maxe', '=', 'thongtinxe.maxe')
-            ->join('dongxe', 'dongxe.madx', '=', 'thongtinxe.madx')
-            ->select('xedangban.maxe', 'dongxe.loaixe', 'thongtinxe.tenxe', 'donhang.ngaytaodon', 'donhang.tongtien')
-            ->orderBy('donhang.madh', 'asc')
-            ->get()
-            ->map(function ($item, $index) {
-                $ngaytaodon = Carbon::parse($item->ngaytaodon);
-                $item->ngaytaodon = $ngaytaodon->format('d/m/Y');
-                $item->stt = $index + 1; // Add 'stt' field
-                return $item;
-            });
+    // public function collection(): Collection
+    // {
+    //     $data = DB::table('donhang')
+    //         ->join('giohang', 'donhang.magh', '=', 'giohang.magh')
+    //         ->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')
+    //         ->join('xedangban', 'ctgiohang.maxedangban', '=', 'xedangban.maxedangban')
+    //         ->join('thongtinxe', 'xedangban.maxe', '=', 'thongtinxe.maxe')
+    //         ->join('dongxe', 'dongxe.madx', '=', 'thongtinxe.madx')
+    //         ->select('xedangban.maxe', 'dongxe.loaixe', 'thongtinxe.tenxe', 'donhang.ngaytaodon', 'donhang.tongtien')
+    //         ->orderBy('donhang.madh', 'asc')
+    //         ->get()
+    //         ->map(function ($item, $index) {
+    //             $ngaytaodon = Carbon::parse($item->ngaytaodon);
+    //             $item->ngaytaodon = $ngaytaodon->format('d/m/Y');
+    //             $item->stt = $index + 1; // Add 'stt' field
+    //             return $item;
+    //         });
 
-        // Add empty rows
-        $emptyRows = collect(array_fill(0, 10, (object) ['stt' => '', 'maxe' => '', 'loaixe' => '', 'tenxe' => '', 'ngaytaodon' => '', 'tongtien' => '']));
-        return $emptyRows->concat($data);
-    }
+    //     // Add empty rows
+    //     $emptyRows = collect(array_fill(0, 10, (object) ['stt' => '', 'maxe' => '', 'loaixe' => '', 'tenxe' => '', 'ngaytaodon' => '', 'tongtien' => '']));
+    //     return $emptyRows->concat($data);
+    // }
 
     public function map($row): array
     {
@@ -111,10 +107,17 @@ class TinhHinhBanHangExport implements FromCollection, WithDefaultStyles, WithDr
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
+
+                $event->sheet->getColumnDimension('B')->setWidth(15);
+                $event->sheet->getColumnDimension('D')->setWidth(25);
+                $event->sheet->getColumnDimension('E')->setWidth(15);
+                $event->sheet->getColumnDimension('F')->setWidth(15);
+
+
                 // Tên công ty
                 $event->sheet->mergeCells('D1:F1');
                 $event->sheet->setCellValue('D1', 'Công ty trách nhiệm hữu hạn thương mại dịch vụ kỹ thuật Toàn Phương');
-                $event->sheet->getRowDimension(1)->setRowHeight(30);
+                $event->sheet->getRowDimension(1)->setRowHeight(33);
 
                 $event->sheet->getStyle('D1')->applyFromArray([
                     'font' => ['bold' => true, 'size' => 12, 'color' => ['rgb' => '366092']],
@@ -184,6 +187,21 @@ class TinhHinhBanHangExport implements FromCollection, WithDefaultStyles, WithDr
                 $event->sheet->setCellValue('D10', 'Tên xe');
                 $event->sheet->setCellValue('E10', 'Ngày tạo đơn');
                 $event->sheet->setCellValue('F10', 'Tổng tiền');
+
+                $thongtintbanhang = $this->thongtintbanhang;
+
+                // Thiết lập dòng tiêu đề từ dữ liệu trong view
+                $count = 12;
+                $index = 1;
+                foreach ($thongtintbanhang as $i) {
+                    $event->sheet->setCellValue('A' . $count, $index);
+                    $event->sheet->setCellValue('B' . $count, $i->maxedangban);
+                    $event->sheet->setCellValue('C' . $count, $i->loaixe);
+                    $event->sheet->setCellValue('D' . $count, $i->tenxe);
+                    $event->sheet->setCellValue('E' . $count, date('d-m-Y', strtotime($i->ngaytaodon)));
+                    $event->sheet->setCellValue('F' . $count, $i->tongtien);
+                    $count++; $index++;
+                }
 
                 $lastRow = $event->sheet->getHighestRow();
 

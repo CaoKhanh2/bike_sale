@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('xedangkythumua', function (Blueprint $table) {
             $table->string('madkthumua',20);
-            $table->string('mand',10)->nullable();
+            $table->string('mand',10);
             $table->string('manv',10)->nullable();
             $table->datetime('ngaydk');
+            $table->datetime('ngayduyet')->nullable();
             $table->text('hinhanh');
-            $table->decimal('giaban',10,2);
-            $table->text('mota')->nullable();
+            $table->decimal('giaban',10,2)->nullable();
+            $table->text('ghichu')->nullable();
             $table->enum('trangthaipheduyet',['Duyệt','Chờ duyệt','Không duyệt','Đang kiểm tra'])->default('Chờ duyệt');
 
             $table->primary('madkthumua');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('maphieunhap',10);
             $table->string('manv',10);
             $table->dateTime('ngaynhap');
-            $table->decimal('tongtien',12,2);
+            $table->decimal('thanhtien',12,2)->nullable();
 
             $table->primary('maphieunhap');
             $table->foreign('manv')->references('manv')->on('nhanvien')->onDelete('cascade');

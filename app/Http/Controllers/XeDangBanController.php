@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class XeDangBanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // $dk_banxe = DB::select('SELECT xedangkyban.*,khachhang.hovaten FROM xedangkyban INNER JOIN khachhang ON xedangkyban.makh = khachhang.makh');
@@ -35,22 +30,11 @@ class XeDangBanController extends Controller
     //     return view('/sub-index', ['db_xemay' => $xedangban_xemay, 'db_xedapdien' => $xedangban_xedapdien, 'hangxemay' => $hxm, 'hangxedapdien' => $hxdd]);
     // }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -78,10 +62,33 @@ class XeDangBanController extends Controller
             ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
             ->join('ctkhohang', 'ctkhohang.maxe', 'thongtinxe.maxe')
             ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('xedangban.trangthai','Còn xe')
             ->where('ctkhohang.trangthai', 'Còn trong kho')
             ->get();
 
-        $db_xedapdien = DB::select('SELECT xedangban.*, thongtinxe.*, thongsokythuatxedapdien.*, dongxe.tendongxe, dongxe.loaixe, hangxe.tenhang FROM xedangban INNER JOIN thongtinxe  ON xedangban.maxe = thongtinxe.maxe INNER JOIN thongsokythuatxedapdien ON thongtinxe.matsxedapdien = thongsokythuatxedapdien.matsxedapdien INNER JOIN dongxe ON thongtinxe.madx = dongxe.madx INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
+        $db_xedapdien = DB::table('xedangban')
+            ->select(
+                'xedangban.*',
+                'xedangban.giaban as giagoc',
+                'thongtinxe.*',
+                'thongsokythuatxedapdien.*',
+                'dongxe.tendongxe',
+                'dongxe.loaixe',
+                'hangxe.tenhang',
+                'tilegiamgia',
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                                        ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                                    END AS giaban'),
+            )
+            ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+            ->join('thongsokythuatxedapdien', 'thongtinxe.matsxedapdien', 'thongsokythuatxedapdien.matsxedapdien')
+            ->join('dongxe', 'thongtinxe.madx', 'dongxe.madx')
+            ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
+            ->join('ctkhohang', 'ctkhohang.maxe', 'thongtinxe.maxe')
+            ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('xedangban.trangthai','Còn xe')
+            ->where('ctkhohang.trangthai', 'Còn trong kho')
+            ->get();
 
         $hangxemay = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe máy"');
 
@@ -90,9 +97,71 @@ class XeDangBanController extends Controller
         return view('sub-index', compact('db_xemay', 'db_xedapdien', 'hangxemay', 'hangxedapdien'));
     }
 
+    public function showData2()
+    {
+        $db_xemay = DB::table('xedangban')
+            ->select(
+                'xedangban.*',
+                'xedangban.giaban as giagoc',
+                'thongtinxe.*',
+                'thongsokythuatxemay.*',
+                'hangxe.tenhang',
+                'dongxe.tendongxe',
+                'dongxe.loaixe',
+                'hangxe.tenhang',
+                'tilegiamgia',
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                                            ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                                        END AS giaban'),
+            )
+            ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+            ->join('thongsokythuatxemay', 'thongtinxe.matsxemay', 'thongsokythuatxemay.matsxemay')
+            ->join('dongxe', 'thongtinxe.madx', 'dongxe.madx')
+            ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
+            ->join('ctkhohang', 'ctkhohang.maxe', 'thongtinxe.maxe')
+            ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('ctkhohang.trangthai', 'Còn trong kho')
+            ->where('xedangban.trangthai','Còn xe')
+            ->orderBy('xedangban.ngayban', 'desc')
+            ->limit(4)
+            ->get();
+
+            $db_xedapdien = DB::table('xedangban')
+            ->select(
+                'xedangban.*',
+                'xedangban.giaban as giagoc',
+                'thongtinxe.*',
+                'thongsokythuatxedapdien.*',
+                'hangxe.tenhang',
+                'dongxe.tendongxe',
+                'dongxe.loaixe',
+                'hangxe.tenhang',
+                'tilegiamgia',
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                                        ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                                    END AS giaban'),
+            )
+            ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+            ->join('thongsokythuatxedapdien', 'thongtinxe.matsxedapdien', 'thongsokythuatxedapdien.matsxedapdien')
+            ->join('dongxe', 'thongtinxe.madx', 'dongxe.madx')
+            ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
+            ->join('ctkhohang', 'ctkhohang.maxe', 'thongtinxe.maxe')
+            ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('ctkhohang.trangthai', 'Còn trong kho')
+            ->where('xedangban.trangthai','Còn xe')
+            ->orderBy('xedangban.ngayban', 'desc')
+            ->limit(4)
+            ->get();
+
+        $hangxe = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx');
+
+
+            return view('index',compact('db_xemay','db_xedapdien', 'hangxe'));
+    }
+
     public function show_Detail_Data($id)
     {
-        $ct_thongtin_xe = DB::table('xedangban')
+        $ct_thongtin_xemay = DB::table('xedangban')
             ->select(
                 'xedangban.*',
                 'xedangban.giaban as giagoc',
@@ -101,6 +170,7 @@ class XeDangBanController extends Controller
                 'dongxe.tendongxe',
                 'dongxe.loaixe',
                 'hangxe.tenhang',
+                'khuyenmai.motakhuyenmai',
                 'tilegiamgia',
                 DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                     ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
@@ -114,7 +184,30 @@ class XeDangBanController extends Controller
             ->where('thongtinxe.maxe', $id)
             ->get();
 
-        return view('sale-page', compact('ct_thongtin_xe'));
+        $ct_thongtin_xedapdien = DB::table('xedangban')
+            ->select(
+                'xedangban.*',
+                'xedangban.giaban as giagoc',
+                'thongtinxe.*',
+                'thongsokythuatxedapdien.*',
+                'dongxe.tendongxe',
+                'dongxe.loaixe',
+                'hangxe.tenhang',
+                'khuyenmai.motakhuyenmai',
+                'tilegiamgia',
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                    ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                END AS giaban'),
+            )
+            ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+            ->join('thongsokythuatxedapdien', 'thongtinxe.matsxedapdien', 'thongsokythuatxedapdien.matsxedapdien')
+            ->join('dongxe', 'thongtinxe.madx', 'dongxe.madx')
+            ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
+            ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('thongtinxe.maxe', $id)
+            ->get();
+
+        return view('sale-page', compact('ct_thongtin_xemay', 'ct_thongtin_xedapdien'));
     }
 
     public function index_post_sale_1(Request $request)
@@ -135,10 +228,14 @@ class XeDangBanController extends Controller
         $ngayban = Carbon::now();
 
         $thongtinxe = DB::table('thongtinxe')
-        ->leftJoin('xedangban', 'thongtinxe.maxe', 'xedangban.maxe')
-        ->whereNull('xedangban.maxe')
-        ->select('thongtinxe.*')
-        ->get();
+            ->whereNotExists(function ($query) {
+                $query->select(DB::raw(1))->from('xedangban')->whereRaw('xedangban.maxe = thongtinxe.maxe');
+            })
+            ->whereExists(function ($query) {
+                $query->select(DB::raw(1))->from('ctkhohang')->whereRaw('ctkhohang.maxe = thongtinxe.maxe');
+            })
+            ->select('thongtinxe.*')
+            ->get();
 
         return view('dashboard.transaction.selling.car-selling.vehicle-directly', compact('thongtinxe', 'maxedangban', 'ngayban'));
     }
@@ -181,7 +278,7 @@ class XeDangBanController extends Controller
 
     public function destroy_post_sale($id)
     {
-        DB::table('xedangban')->where('maxedangban',$id)->delete();
+        DB::table('xedangban')->where('maxedangban', $id)->delete();
         return redirect()->route('danhsach-donhang-dangbanxe')->with('success-xoa-xedangban', 'Xe đã được xóa khỏi mục đăng bán.');
     }
 

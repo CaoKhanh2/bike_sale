@@ -4,13 +4,40 @@
     $url = url()->current();
     $arr = explode('/', $url);
     $res = end($arr);
+
+    $parsedUrl = parse_url($url);
+    $path = isset($parsedUrl['path']) ? $parsedUrl['path'] : '';
+
+    // Define the prefix to check
+    $prefix = '/sub-index/search';
+
+    // Check if the path starts with the prefix
+    $hasPrefix = substr($path, 0, strlen($prefix)) === $prefix;
 @endphp
 
-@if ($res == 'xemay')
-    @section('title-subpage', 'Xe máy')
-@elseif($res == 'xedapdien')
-    @section('title-subpage', 'Xe đạp điện')
-@endif
+@foreach ($hangxe as $i)
+    @if ($res == $i->mahx)
+        @php
+            $titleSubpage = $i->loaixe;
+            $pgHd2 = $i->loaixe;
+            $pgHd3 = $i->tenhang;
+            $check = 'true';
+            $act3 = 'text-dark';
+        @endphp
+    @elseif($hasPrefix)
+        @php
+            $titleSubpage = 'Xe';
+            $pgHd2 = 'Kết quả tìm kiếm';
+            $act2 = 'text-dark';
+            $check = 'false';
+        @endphp
+    @endif
+@endforeach
+
+@section('title-subpage', $titleSubpage ?? 'Default Title')
+@section('pg-hd-2', $pgHd2 ?? 'Default Title') @section('act2', $act2 ?? 'Default Class')
+@section('pg-hd-3', $pgHd3 ?? 'Default Title') @section('act3', $act3 ?? 'Default Class') @section('st3', $check)
+
 
 @section('main')
 
@@ -24,13 +51,8 @@
             <h2>Mua bán @yield('title-subpage') giá rẻ</h2>
         </div>
 
-        <div class="row mt-4 mb-4">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">@yield('title-subpage')</li>
-                </ol>
-            </nav>
+        <div>
+            @include('layout.header-breadcrum')
         </div>
 
         <div class="row mt-4 mb-4">
@@ -50,5 +72,5 @@
         </div>
 
     </div>
-    
+
 @endsection

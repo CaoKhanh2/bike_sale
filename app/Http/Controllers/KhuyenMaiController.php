@@ -15,13 +15,17 @@ class KhuyenMaiController extends Controller
         $hxd = DB::table('hangxe')->select('hangxe.tenhang', 'hangxe.mahx')->join('dongxe', 'hangxe.mahx', 'dongxe.mahx')->where('loaixe', 'Xe đạp điện')->distinct()->get();
         $dxdd = DB::table('dongxe')->select('dongxe.madx', 'dongxe.mahx', 'dongxe.tendongxe')->where('loaixe', 'Xe đạp điện')->distinct()->get();
         $dxm = DB::table('dongxe')->select('dongxe.madx', 'dongxe.mahx', 'dongxe.tendongxe')->where('loaixe', 'Xe máy')->distinct()->get();
-        $km = DB::table('khuyenmai')->where('hieuluc','Hết hạn')->get();
-        $km_active = DB::table('khuyenmai')->selectRaw('*,
+        $km = DB::table('khuyenmai')->where('hieuluc', 'Hết hạn')->get();
+        $km_active = DB::table('khuyenmai')
+            ->selectRaw(
+                '*,
                                         CASE WHEN DATEDIFF(thoigianketthuc,CURDATE()) > 0 THEN DATEDIFF(thoigianketthuc,CURDATE())
                                              WHEN DATEDIFF(thoigianketthuc,CURDATE()) <= 0 THEN "Hết hạn"
-                                        END AS thoigianconlai')
-                                        ->where('hieuluc','Còn hiệu lực')
-                                        ->orderBy('thoigianconlai','desc')->get();
+                                        END AS thoigianconlai',
+            )
+            ->where('hieuluc', 'Còn hiệu lực')
+            ->orderBy('thoigianconlai', 'desc')
+            ->get();
         return view('dashboard.category.saling-events.saling-manage', compact('km', 'km_active', 'hxm', 'hxd', 'dxdd', 'dxm'));
     }
     public function store(Request $request)
@@ -74,16 +78,21 @@ class KhuyenMaiController extends Controller
                     'makhuyenmai' => $request->makhuyemai,
                 ]);
 
-            return back()->with('success', 'Post created successfully!');
+            return redirect()->back()->with('success', 'Post created successfully!');
+        } else {
+            return redirect('dashboard/category/saling-events/saling-manage')->with('error', 'Chưa chọn điều kiện áp dụng');
         }
-        else return redirect('dashboard/category/saling-events/saling-manage')->with('error','Chưa chọn điều kiện áp dụng');
     }
 
     public function xoa_khuyenmai($id)
     {
         $makm = $id;
-        DB::table('khuyenmai')->where('makhuyenmai',$makm)->update(['hieuluc' => 'Hết hạn']);
-        DB::table('xedangban')->where('makhuyenmai',$makm)->update(['makhuyenmai' => null]);
+        DB::table('khuyenmai')
+            ->where('makhuyenmai', $makm)
+            ->update(['hieuluc' => 'Hết hạn']);
+        DB::table('xedangban')
+            ->where('makhuyenmai', $makm)
+            ->update(['makhuyenmai' => null]);
         return redirect()->back();
     }
 }

@@ -26,8 +26,8 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('dashboard_src/src/plugins/datatables/css/dataTables.bootstrap4.min.css') }}" />
         
-    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/select2/dist/css/select2.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet">
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_src/src/plugins/select2/dist/css/select2.css') }}"> --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css"
         href="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.css') }}" />
@@ -116,7 +116,9 @@
     <script src="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/vendors/scripts/advanced-components.js') }}"></script>
     
-    <script src="{{ asset('dashboard_src/src/plugins/select2/dist/js/select2.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard_src/src/plugins/select2/dist/js/select2.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <!-- buttons for Export datatable -->
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/buttons.bootstrap4.min.js') }}"></script>

@@ -42,14 +42,14 @@
                     </li>
                     @if ($__env->yieldContent('st3') == 'true')
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="@yield('url3') text-decoration-none" class="@yield('act3')">
+                            <a href="@yield('url3')" class="@yield('act3') text-decoration-none">
                                 @yield('pg-hd-3')
                             </a>
                         </li>
                     @endif
                     @if ($__env->yieldContent('st4') == 'true')
                         <li class="breadcrumb-item" aria-current="page">
-                            <a href="@yield('url4') text-decoration-none" class="@yield('act4')">
+                            <a href="@yield('url4')" class="@yield('act4') text-decoration-none">
                                 @yield('pg-hd-4')
                             </a>
                         </li>

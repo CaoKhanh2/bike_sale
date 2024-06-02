@@ -25,7 +25,6 @@ class NhanVienSeeder extends Seeder
                 'ngaysinh' => $fake->date($format = 'Y-m-d', $max = 'now'),
                 'gioitinh' => $fake->randomElement(['Nam', 'Nữ']),
                 'sodienthoai' => $fake->numerify('0##########'),
-                'email' => $fake->unique()->safeEmail,
                 'diachi' => $fake->unique()->streetAddress(),
                 'ghichu' => $fake -> sentence(4)
 

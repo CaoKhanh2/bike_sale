@@ -27,10 +27,14 @@
                             <form action="{{ route('xoa-giohang-Guest') }}" method="POST">
                                 @csrf
                                 <input type="text" name="mactgh" value="{{ $i->mactgh }}" hidden>
-                                <button class="btn btn-danger" type="submit"> <i class="bi bi-trash3"> Xóa </i> </button>
+                                <button class="btn btn-danger" type="submit"> <i class="bi bi-trash3"> Xóa </i>
+                                </button>
                             </form>
                         </div>
                     </div>
+                    @php
+                        $magh = $i->magh;
+                    @endphp
                 @endforeach
             </div>
             <div class="card-footer">
@@ -43,22 +47,29 @@
                             @endif
                         @endforeach
                     </h6>
-                    <div class="row">
-                        <div class="col-6 d-flex justify-content-start">
-                            <a href="{{ route('xacnhan-giohang-Guest') }}" class="btn btn-outline-success"><Strong>Xác nhận</Strong></a>
-                        </div>
-                        <div class="col-6 d-flex justify-content-end">
-                            <a href="{{ route('indexWeb') }}" class="btn btn-outline-primary"><strong>Tiếp tục mua hàng</strong></a>
-                        </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ route('xacnhan-giohang-Guest',[$magh]) }}"
+                            class="btn btn-outline-success d-flex align-items-center">
+                            <i class="bi bi-bag-check me-2 fs-4"></i>
+                            <strong>Xác nhận mua hàng</strong>
+                        </a>
+                        <a href="{{ route('indexWeb') }}" class="btn btn-outline-primary d-flex align-items-center">
+                            <i class="bi bi-arrow-left fs-4 me-2"></i>
+                            <strong>Tiếp tục mua xe</strong>
+                        </a>
                     </div>
-                    
                 </div>
             </div>
         @else
             <div class="card-body text-center">
                 {{-- {{ Auth::guard('guest')->user()->hovaten}} --}}
                 <h2><i class="fa fa-shopping-cart"> Giỏ hàng của bạn trống.</i></h2>
-                <a href="{{ route('indexWeb') }}" class="btn btn-outline-primary float-end">Tiếp tục mua hàng</a>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{{ route('indexWeb') }}" class="btn btn-outline-primary d-flex align-items-center">
+                        <i class="bi bi-arrow-left fs-4 me-2"></i>
+                        <strong>Tiếp tục mua xe</strong>
+                    </a>
+                </div>
             </div>
         @endif
     </div>

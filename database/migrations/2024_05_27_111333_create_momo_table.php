@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('signature',191);
             $table->timestamps();
 
-            $table->primary('id');
         });
     }
 

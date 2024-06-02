@@ -16,7 +16,14 @@
 
 <div class="card-box mb-30">
     <div class="pd-20">
-        <h4 class="text-blue h4">Phiếu nhập kho</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="text-blue h4">Phiếu nhập kho</h4>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="{{ route('thongtinkhohang') }}" class="btn btn-warning">Quay lại</a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-3">
                 <select name="selectRowCount" id="selectRowCount" class="form-control">

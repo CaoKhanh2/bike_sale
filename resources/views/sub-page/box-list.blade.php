@@ -14,7 +14,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-8">
-            @if ($res == 'xemay')
+            @if ($res == 'motorbike')
                 <div id="carouselExample" class="carousel slide">
                     <div class="carousel-inner">
                         @php $chunks = array_chunk($hangxemay, 4); @endphp
@@ -27,9 +27,11 @@
                                             <a href="" class="text-decoration-none">
                                                 @foreach (explode(',', $i->logo) as $path)
                                                     @if ($loop->first)
-                                                        <img src="{{ asset('storage/' . $path) }}"
-                                                            class="object-fit-contain border rounded" alt="..."
-                                                            width="50" height="50">
+                                                        <a href="{{ route('timkiem-theohangxe', ['id' => $i->mahx]) }}">
+                                                            <img src="{{ asset('storage/' . $path) }}"
+                                                                class="object-fit-contain border rounded" alt="..."
+                                                                width="50" height="50">
+                                                        </a>
                                                     @endif
                                                 @endforeach
                                                 <span>
@@ -53,7 +55,7 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-            @elseif($res == 'xedapdien')
+            @elseif($res == 'electric-bicycles')
                 <div id="carouselExample" class="carousel slide">
                     <div class="carousel-inner">
                         @php $chunks = array_chunk($hangxedapdien, 4); @endphp
@@ -66,9 +68,11 @@
                                             <a href="" class="text-decoration-none">
                                                 @foreach (explode(',', $i->logo) as $path)
                                                     @if ($loop->first)
-                                                        <img src="{{ asset('storage/' . $path) }}"
-                                                            class="object-fit-contain border rounded" alt="..."
-                                                            width="50" height="50">
+                                                        <a href="{{ route('timkiem-theohangxe', ['id' => $i->mahx]) }}">
+                                                            <img src="{{ asset('storage/' . $path) }}"
+                                                                class="object-fit-contain border rounded" alt="..."
+                                                                width="50" height="50">
+                                                        </a>
                                                     @endif
                                                 @endforeach
                                                 <span>
