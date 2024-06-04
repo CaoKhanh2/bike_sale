@@ -103,11 +103,11 @@
                                                 <div class="col-12 col-md-4 mt-3">
                                                     <h4>
                                                         <span>
-                                                            <p class="h6 text-secondary">
+                                                            <strong  class="h6 text-secondary">
                                                                 <span><s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s></span>
-                                                            </p>
-                                                            <p class="d-inline text-danger">
-                                                                {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                                            </strong >
+                                                            <strong class="d-inline text-danger">
+                                                                {{ number_format($i->giaban, 0, ',') . ' đ' }}</strong >
                                                         </span>
                                                     </h4>
                                                 </div>

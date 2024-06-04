@@ -62,7 +62,7 @@
                             placeholder="Thời gian sử dụng" required>
                     </div>
                     <div class="mb-4 form-group">
-                        <input type="text" name="tinhtrangxe" id="Xuatxu"
+                        <input type="text" name="tinhtrangxe" id="tinhtrangxe"
                             class="form-control form-control-lg border border-3 border-primary" placeholder="Tình trạng xe">
                     </div>
                     <div class="mb-4 form-group">
@@ -90,10 +90,6 @@
                     <div class="mb-4 form-group">
                         <input type="text" name="sdt" id="sdt"
                             class="form-control form-control-lg border border-3 border-primary" placeholder="Số điện thoại liên lạc" required>
-                    </div>
-                    <div class="mb-4 form-group" hidden>
-                        <input type="text" name="mand" id="sdt"
-                            class="form-control form-control-lg border border-3 border-primary" value="" required>
                     </div>
                 </div>
             </div>

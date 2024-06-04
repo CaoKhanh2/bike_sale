@@ -94,10 +94,14 @@ class DonHangController extends Controller
         $trangthai = 'Đang chờ xử lý';
 
         $giohang_items = DB::select(
-            'SELECT ctgiohang.*, giohang.*, xedangban.*, thongtinxe.* FROM ctgiohang
+            'SELECT ctgiohang.*, giohang.*, xedangban.*, thongtinxe.*, CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                        ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                        END AS giaban
+                        FROM ctgiohang
                         INNER JOIN giohang ON giohang.magh = ctgiohang.magh
                         INNER JOIN xedangban ON xedangban.maxedangban = ctgiohang.maxedangban
                         INNER JOIN thongtinxe ON thongtinxe.maxe = xedangban.maxe
+                        LEFT JOIN khuyenmai ON xedangban.makhuyenmai = khuyenmai.makhuyenmai
                         WHERE giohang.mand = ? AND giohang.ghichu = ? AND giohang.magh = ?',
             [$mand, $trangthai, $id],
         );

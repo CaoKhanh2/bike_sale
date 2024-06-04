@@ -35,7 +35,7 @@ class GioHangController extends Controller
 
         $gh = DB::select(
             'SELECT ctgiohang.*, giohang.*, xedangban.*, thongtinxe.* ,
-                        CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                        CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                             ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                             END AS giaban
                         FROM ctgiohang
@@ -69,7 +69,7 @@ class GioHangController extends Controller
         $gh = DB::table('giohang')->where('mand', $mand)->where('ghichu','Đang chờ xử lý')->first();
 
         $ctgh = DB::table('xedangban')->select('maxe', 
-                                            DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                                            DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL  OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                                                     ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                                                     END AS giaban'))
                                         ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')

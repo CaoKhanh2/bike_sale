@@ -79,7 +79,7 @@
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
                                 <div class="weight-700 font-24 text-dark">{{number_format($tt, 0, '', ',') . ' đ' }}</div>
-                                <div class="font-14 text-secondary weight-500">Doanh thu tháng này</div>
+                                <div class="font-14 text-dark weight-500">Doanh thu tháng này</div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#09cc06">
@@ -95,7 +95,7 @@
                             <a href="{{ route('thongtinxe-index')}}"> <button class="btn btn-outline-dark mb-3 col-12">Thêm thông tin xe </button></a>
                             <a href="{{ route('xedangban2-thongtinxe')}}"> <button class="btn btn-outline-dark mb-3 col-12">Đăng bán xe</button></a>
                             <a href="{{ route('xedkthumua')}}"> <button class="btn btn-outline-dark mb-3 col-12">Duyệt đơn thu mua</button></a>
-                            <a href="{{ route('thongtinxe-index')}}"> <button class="btn btn-outline-dark mb-3 col-12">Thêm thông tin xe </button></a>
+                            <a href="{{ route('thongtinkhohang')}}"> <button class="btn btn-outline-dark mb-3 col-12">Kiểm tra kho hàng</button></a>
                         </div>
                     </div>
                 </div>
