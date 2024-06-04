@@ -403,31 +403,28 @@ class NguoiDungController extends Controller
                 ->join('giohang', 'giohang.magh', 'donhang.magh')
                 ->where('giohang.mand', $mand)
                 ->where('donhang.trangthai', "Đã hoàn thành")
-                ->orWhere('donhang.trangthai', "Đã hủy")
                 ->where('giohang.mand', $mand)
                 ->get();
 
-        // dd($donhang);
         return view('guest-acc.orders.index', compact('donhang'));
     }
 
 
     // Lịch sử mua hàng của khách
-    public function view($id)
+    public function view(Request $request)
     {
         $donhang_items = DB::table('donhang')
                     ->select('thongtinxe.*', 'xedangban.giaban', 'donhang.*')
                     ->join('giohang', 'giohang.magh', 'donhang.magh')->join('ctgiohang', 'giohang.magh', 'ctgiohang.magh')
                     ->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
-                    ->where('donhang.madh', $id)
+                    ->where('donhang.madh', $request->madonhang)
                     ->get();
 
-        $tt_nguoidung = DB::table('nguoidung')->select('nguoidung.*')->join('giohang', 'giohang.mand', 'nguoidung.mand')->join('donhang', 'donhang.magh', 'giohang.magh')->where('donhang.madh', $id)->first();
+        $tt_nguoidung = DB::table('nguoidung')->select('nguoidung.*')->join('giohang', 'giohang.mand', 'nguoidung.mand')->join('donhang', 'donhang.magh', 'giohang.magh')->where('donhang.madh', $request->madonhang)->first();
 
-        // dd($tt_nguoidung);
+        $donhang_infor = DB::table('donhang')->select('*')->where('madh', $request->madonhang)->first();
 
-        // dd($donhang_items);
-        return view('guest-acc.orders.view', compact('donhang_items', 'tt_nguoidung'));
+        return view('guest-acc.orders.view', compact('donhang_items', 'tt_nguoidung', 'donhang_infor'));
     }
 
 }

@@ -94,7 +94,9 @@ class XeDangBanController extends Controller
 
         $hangxedapdien = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
 
-        return view('sub-index', compact('db_xemay', 'db_xedapdien', 'hangxemay', 'hangxedapdien'));
+        $dongxe = DB::table('dongxe')->select('dongxe.loaixe','hangxe.*')->join('hangxe','dongxe.mahx','hangxe.mahx')->distinct()->get();
+
+        return view('sub-index', compact('db_xemay', 'db_xedapdien', 'hangxemay', 'hangxedapdien', 'dongxe'));
     }
 
     public function showData2()

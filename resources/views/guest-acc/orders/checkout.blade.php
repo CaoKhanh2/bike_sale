@@ -26,7 +26,7 @@
         <div class="row justify-content-center">
             <div class="col-xl">
                 <div class="container mt-3">
-                    <form action="{{ route('dathang-Guest') }}" method="post">
+                    <form action="{{ route('dathang-Guest') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-7">
@@ -65,7 +65,6 @@
                                                     value="{{ Auth::guard('guest')->user()->diachi }}" name="diachi"
                                                     placeholder="Nhập địa chỉ">
                                             </div>
-            
                                         </div>
                                     </div>
                                 </div>

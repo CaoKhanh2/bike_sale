@@ -26,6 +26,7 @@
                         <div class="col d-flex justify-content-center align-items-center">
                             <form action="{{ route('xoa-giohang-Guest') }}" method="POST">
                                 @csrf
+                                <input type="text" name="magh" value="{{ $i->magh }}" hidden>
                                 <input type="text" name="mactgh" value="{{ $i->mactgh }}" hidden>
                                 <button class="btn btn-danger" type="submit"> <i class="bi bi-trash3"> Xóa </i>
                                 </button>

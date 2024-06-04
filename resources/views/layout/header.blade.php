@@ -47,7 +47,6 @@
                             </a>
                         </li>
                         @if (Auth::guard('guest')->check())
-
                             {{-- @php
                                 $cartcount = DB::table('ctgiohang')
                                     ->join('giohang', 'giohang.magh', 'ctgiohang.magh')
@@ -60,8 +59,8 @@
                                 <a class="nav-link active" aria-disabled="true" href="{{ url('/cart-index') }}">
                                     <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30"
                                         height="24" class="img-fluid mx-auto d-block">
-                                    <span class="text-center mx-auto d-block"> Giỏ hàng 
-                                        <span id="cart-count" class="badge badge-pill bg-success cart-count"></span> 
+                                    <span class="text-center mx-auto d-block"> Giỏ hàng
+                                        <span id="cart-count" class="badge badge-pill bg-success cart-count"></span>
                                     </span>
                                 </a>
                             </li>
@@ -153,10 +152,16 @@
     // Hàm để lấy số lượng sản phẩm từ localStorage và hiển thị
     function loadCartCount() {
         let cartCount = localStorage.getItem('cartCount');
-        if (cartCount) {
-            document.getElementById('cart-count').innerText = cartCount;
+        let cartCountElement = document.getElementById('cart-count');
+
+        if (cartCountElement) {
+            if (cartCount) {
+                cartCountElement.innerText = cartCount;
+            } else {
+                cartCountElement.innerText = 0;
+            }
         } else {
-            document.getElementById('cart-count').innerText = 0;
+            
         }
     }
 
@@ -166,19 +171,18 @@
 
 <script>
     $(document).ready(function() {
-    
+
         loadcart();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-    
-        function loadcart()
-        {
+
+        function loadcart() {
             $.ajax({
                 method: "GET",
-                url :  '/load-cart-data',
+                url: '/load-cart-data',
                 success: function(response) {
                     console.log(response.count);
                     $('.cart-count').html('');
@@ -193,10 +197,13 @@
         position: relative;
         display: inline-block;
     }
+
     .cart-count {
         position: absolute;
-        top: 18px; /* Điều chỉnh giá trị này để thay đổi vị trí theo chiều dọc */
-        right: 98px; /* Điều chỉnh giá trị này để thay đổi vị trí theo chiều ngang */
+        top: 18px;
+        /* Điều chỉnh giá trị này để thay đổi vị trí theo chiều dọc */
+        right: 98px;
+        /* Điều chỉnh giá trị này để thay đổi vị trí theo chiều ngang */
         transform: translate(-50%, -50%);
     }
 </style>

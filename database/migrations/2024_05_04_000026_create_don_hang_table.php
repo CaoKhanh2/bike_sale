@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('donhang', function (Blueprint $table) {
-            $table->string('madh',10);
+            $table->string('madh',12);
             $table->string('magh',10);
             // $table->string('mand',10);
             // $table->string('maxedangban',20);
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('makhuyenmai',5)->nullable();
             $table->dateTime('ngaytaodon')->nullable();
             $table->decimal('tongtien',12,2)->nullable();
-            $table->enum('trangthai',['Đang chờ xử lý']);
+            $table->enum('trangthai',['Đã hoàn thành','Đang chờ xử lý','Đã hủy']);
 
             $table->primary('madh');
             $table->foreign('magh')->references('magh')->on('giohang')->onDelete('cascade');

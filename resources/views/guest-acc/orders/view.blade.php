@@ -8,27 +8,40 @@
 {{-- @include('guest-acc.layout.header') --}}
 @section('guest-content')
     <div class="container py-5 ">
+        @include('dashboard.layout.page-header')
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    @include('dashboard.layout.page-header')
                     <div class="card-header ">
-                        <h4 class="text">Chi tiết đơn hàng</h4>
+                        <h4 class="text">Đơn hàng No. {{ $donhang_infor->madh }} </h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 order-details">
-                                <h4>Thông tin vận chuyển</h4>
+                                <h4>Thông tin</h4>
                                 <hr>
-                                <label for="">Họ và tên</label>
-                                <div class="border">{{ $tt_nguoidung->hovaten }}</div>
-                                <label for="">Số điện thoại</label>
-                                <div class="border">{{ $tt_nguoidung->sodienthoai }}</div>
-                                <label for="">Email</label>
-                                <div class="border">{{ $tt_nguoidung->email }}</div>
-                                <label for="">Địa chỉ nhận hàng</label>
-                                <div class="border">
-                                    {{ $tt_nguoidung->diachi }}
+                                <div class="my-2">
+                                    <label for="hovaten" class="form-label">Họ và tên</label>
+                                    <input class="form-control" type="text" value="{{ $tt_nguoidung->hovaten }}" id="hovaten" disabled>
+                                </div>
+                                <div class="my-2">
+                                    <label for="sodienthoai" class="form-label">Số điện thoại</label>
+                                    <input class="form-control" type="text" value="{{ $tt_nguoidung->sodienthoai }}" id="sodienthoai" disabled>
+                                </div>
+                                <div class="my-2">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input class="form-control" type="text" value="{{ $tt_nguoidung->email }}" id="email" disabled>
+                                </div>
+                                <div class="my-2">
+                                    <label for="email" class="form-label">Địa chỉ nhận hàng</label>
+                                    <input class="form-control" type="text" value="{{ $tt_nguoidung->diachi }}" id="email" disabled>
+                                </div>
+                                <div class="my-4">
+                                    <form action="{{ route('xuatfile-pdf-hoadon') }}" method="POST">
+                                        @csrf
+                                        <input type="text" name="madh" value="{{ $donhang_infor->madh }}" hidden>
+                                        <button type="submit" class="btn btn-primary">In hóa đơn</button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -72,7 +85,7 @@
                                             @csrf
                                             @method('PUT')
                                             @if ($loop->first)
-                                                <select class="form-select" name="order_status">
+                                                <select class="form-select" name="order_status" disabled>
                                                     @if ($item->trangthai == "Đang xử lý")
                                                         <option {{ $item->trangthai == 'Đang xử lý' ? 'selected' : '' }} value="Đang xử lý" hidden>Đang xử lý</option> 
                                                         <option {{ $item->trangthai == 'Đã hoàn thành' ? 'selected' : '' }} value="Đã hoàn thành">Đã hoàn thành</option>
