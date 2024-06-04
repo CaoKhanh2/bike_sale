@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Mail\ThongBaoDuyetXeThuMuaMail;
+use App\Mail\ThongBaoTuChoiXeThuMuaMail;
+use Mail;
 
 class XeDangKyThuMuaController extends Controller
 {
@@ -83,16 +86,23 @@ class XeDangKyThuMuaController extends Controller
         DB::table('xedangkythumua')
             ->where('madkthumua', $id)
             ->update(['trangthaipheduyet' => 'Đang kiểm tra', 'manv' => $manv, 'ngayduyet' => $now]);
-
+        $dtm = DB::table('xedangkythumua')->where('madkthumua', $id)->first();
+        $acc = DB::table('nguoidung')->join('xedangkythumua', 'xedangkythumua.mand','nguoidung.mand')->where('madkthumua', $id)->first();
+        $mail = $acc->email;
+        Mail::to($mail)->send(new ThongBaoDuyetXeThuMuaMail($dtm,$acc));
         return redirect()->route('xedkthumua');
     }
     public function huydon(Request $request, $id)
     {
         $manv = Auth::user()->manv;
+        $now = date('Y-m-d');
         DB::table('xedangkythumua')
             ->where('madkthumua', $id)
             ->update(['trangthaipheduyet' => 'Không duyệt', 'manv' => $manv, 'ngayduyet' => $now]);
-
+        $dtm = DB::table('xedangkythumua')->where('madkthumua', $id)->first();
+        $acc = DB::table('nguoidung')->join('xedangkythumua', 'xedangkythumua.mand','nguoidung.mand')->where('madkthumua', $id)->first();
+        $mail = $acc->email;
+        Mail::to($mail)->send(new ThongBaoTuChoiXeThuMuaMail($dtm,$acc));
         return redirect()->route('xedkthumua');
     }
     public function dondep()
