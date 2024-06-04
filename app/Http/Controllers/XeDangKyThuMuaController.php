@@ -55,17 +55,16 @@ class XeDangKyThuMuaController extends Controller
             ->select('mahx', 'tenhang')
             ->where('mahx', $request->hangxe)
             ->first();
-        $mota = 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Thời gian sử dụng: ' . $request->tgsd . ' năm' . ', Tình trạng xe: ' . $request->tinhtrangxe . ', Mô tả: ' . $request->mota;
+        $ghichu = 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Thời gian sử dụng: ' . $request->tgsd . ' năm' . ', Tình trạng xe: ' . $request->tinhtrangxe . ', Mô tả: ' . $request->mota;
         $imagePathsString = implode(',', $imagePaths);
         $mand = Auth::guard('guest')->user()->mand;
-
         DB::table('xedangkythumua')->insert([
             'madkthumua' => $id,
             'mand' => $mand,
             'ngaydk' => $ngaydk,
             'hinhanh' => $imagePathsString,
             'giaban' => $request->giaban,
-            'mota' => $mota,
+            'ghichu' => $ghichu,
         ]);
 
         return redirect()->route('gui-form-thumua-Guest')->with('success-form-posting-Guest', 'Thông tin đã được gửi đi !');
@@ -103,7 +102,7 @@ class XeDangKyThuMuaController extends Controller
     public function add_bike($id)
     {
         $dtm = $dstm_uncheck = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('madkthumua', $id)->first();
-        $str = $dtm->mota;
+        $str = $dtm->ghichu;
         //
         $parts = explode(',', $str);
         $info = [

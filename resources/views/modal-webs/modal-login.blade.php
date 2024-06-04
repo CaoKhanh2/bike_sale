@@ -1,5 +1,8 @@
 <!-- Modal -->
+<!-- Modal -->
 
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -8,7 +11,10 @@
             </div>
             <div class="modal-body">
                 <div class="row my-3 justify-content-center">
+                <div class="row my-3 justify-content-center">
                     {{-- <a href="{{ route('indexWeb') }}">
+                        <div class="row my-3 justify-content-center">
+                            <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo" class="align-text-center rounded-circle w-50">
                         <div class="row my-3 justify-content-center">
                             <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo" class="align-text-center rounded-circle w-50">
                         </div>
@@ -44,6 +50,9 @@
                     <div class="d-grid gap-2 col-6 mx-auto my-4">
                         <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                     </div>
+                    <div class="d-grid gap-2 col-6 mx-auto my-4">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                    </div>
                     <!-- Register buttons -->
                     <div class="text-center">
                         <p>Chưa có tài khoản? <a href="{{ route('thuchien-dangky-Guest') }}">Đăng ký tài khoản mới</a>
@@ -54,17 +63,20 @@
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>{{ Session::get('success-dangky-Guest') }}</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
                 @if (Session::has('success-xacnhanmail-Guest'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>{{ Session::get('success-xacnhanmail-Guest') }}</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
                 @if (Session::has('success-datlai-matkhau-Guest'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>{{ Session::get('success-datlai-matkhau-Guest') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
@@ -73,3 +85,8 @@
     </div>
 </div>
 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

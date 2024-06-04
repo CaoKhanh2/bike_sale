@@ -4,8 +4,8 @@
             <div class="col-md-3 mb-3">
                 <h5>Về chúng tôi</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Trang chủ
-                            động</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Trang chủ</a>
+                    </li>
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Giới thiệu</a>
                     </li>
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Tuyển dụng</a>

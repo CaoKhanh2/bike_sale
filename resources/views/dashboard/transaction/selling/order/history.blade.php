@@ -29,8 +29,7 @@
                                             <tr>
                                                 <th>Mã đơn hàng</th>
                                                 <th>Ngày đặt hàng</th>
-                                                <th>Mã giỏ hàng</th>
-                                                <th>Mã vận chuyển</th>
+                                                <th>Mã giỏ hàng</th>                   
                                                 <th>Tổng giá tiền</th>
                                                 <th>Trạng thái</th>
                                                 <th>Hành động</tkh>
@@ -42,7 +41,6 @@
                                                     <td>{{ $item->madh }}</td>
                                                     <td>{{ $item->magh }}</td>
                                                     <td>{{ date('d-m-Y', strtotime($item->ngaytaodon)) }}</td>
-                                                    <td>{{ $item->mavanchuyen }}</td>
                                                     <td>{{ $item->tongtien }}</td>
                                                     <td>{{ $item->trangthai == 'Đã hoàn thành' ? 'Đã hoàn thành' : 'Đã hủy' }}</td>
                                                     <td>

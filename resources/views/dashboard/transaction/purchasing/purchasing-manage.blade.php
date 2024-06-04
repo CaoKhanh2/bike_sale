@@ -63,7 +63,7 @@
                                                             echo $formattedDate;
                                                         @endphp
                                                     </td>
-                                                    <td>{{ $i->mota }}</td>
+                                                    <td>{{ $i->ghichu }}</td>
                                                     <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
                                                     <td>
                                                         <a href="{{ route('ctthongtinmua',['id' => $i->madkthumua]) }}">

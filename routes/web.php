@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\BaoCaoThongKeController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ChucVuContrller;
 use App\Http\Controllers\CleanImagesController;
 use App\Http\Controllers\DataContrller;
@@ -241,9 +242,7 @@ Route::post('/profile/change-password', [TaiKhoanController::class, 'change_pass
  */
 
 Route::middleware(['auth', 'roleDash'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dash.index');
+    Route::get('/dashboard', [IndexController::class,'index'])->name('dash.index');
 
     /**
      *
@@ -301,7 +300,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     // ---------- **** ----------
 
     // ---------- Thông tin xe ----------
-    Route::get('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'index']);
+    Route::get('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'index'])->name('thongtinxe-index');
     Route::post('/dashboard/category/vehicle/vehicle-infor', [ThongTinXeController::class, 'store'])->name('themthongtinxe');
     Route::get('/dashboard/category/vehicle/vehicle-infor/{maxemay}', [ThongTinXeController::class, 'del_xemay'])->name('xoathongtinxemay');
     Route::get('/dashboard/category/vehicle/vehicle-infor/{maxedapdien}', [ThongTinXeController::class, 'del_xedapdien'])->name('xoathongtinxedapdien');

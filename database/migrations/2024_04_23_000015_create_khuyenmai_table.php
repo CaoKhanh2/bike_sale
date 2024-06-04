@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('makhuyenmai',5);
             $table->string('tenkhuyenmai',35);
             $table->string('dieukienapdung')->nullable();
-            $table->double('tilegiamgia',3,2);
+            $table->double('tilegiamgia',3,1);
             $table->string('motakhuyenmai')->nullable();
             $table->dateTime('thoigianbatdau');
             $table->dateTime('thoigianketthuc');
