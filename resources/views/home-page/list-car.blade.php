@@ -63,7 +63,8 @@
                                     <p class="mb-0">{{ $i->namsx }}</p>
                                 </div>
                                 <div class="col mt-3 d-flex align-items-center icon-text">
-                                    <i class="fa-solid fa-motorcycle me-2" style="font-size: 1.4rem; line-height: 1;"></i>
+                                    <i class="fa-solid fa-motorcycle me-2"
+                                        style="font-size: 1.4rem; line-height: 1;"></i>
                                     <p class="mb-0">{{ $i->loaixe }}</p>
                                 </div>
                             </div>
@@ -76,8 +77,16 @@
                                 </div>
                                 <div class="col mt-3">
                                     <div class="d-grid col mx-auto">
-                                        <a name="" id="" class="btn btn-primary btn-block"
-                                            href="#" role="button">Đặt mua</a>
+                                        @if (Auth('guest')->user() == true)
+                                            <a type="button"
+                                                href="{{ route('them-giohang-Guest', ['maxedangban' => $i->maxedangban]) }}"
+                                                class="btn btn-primary">Đặt mua</a>
+                                        @else
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#loginModal">
+                                                Đặt mua
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -147,8 +156,16 @@
                                 </div>
                                 <div class="col mt-3">
                                     <div class="d-grid col mx-auto">
-                                        <a name="" id="" class="btn btn-primary btn-block"
-                                            href="#" role="button">Đặt mua</a>
+                                        @if (Auth('guest')->user() == true)
+                                            <a type="button"
+                                                href="{{ route('them-giohang-Guest', ['maxedangban' => $i->maxedangban]) }}"
+                                                class="btn btn-primary">Đặt mua</a>
+                                        @else
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#loginModal">
+                                                Đặt mua
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -163,5 +180,8 @@
         <div class="col-md-6 center-column text-center fs-5"><a href="{{ route('hienthi-thongtinxedapdien-Guest') }}"
                 class="link-underline link-underline-opacity-0">XEM TẤT CẢ ></a></div>
     </div>
+
+    @include('modal-webs.modal-login')
+
 </div>
 {{-- ** End ** --}}

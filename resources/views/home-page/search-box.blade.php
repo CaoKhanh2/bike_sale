@@ -11,14 +11,15 @@
 </style>
 <div class="card bg-light display-center" id="search-box">
     <div class="card-body box-search border-0">
-        <form action="{{ route('timkiem') }}" method="GET">
+        <form action="{{ route('timkiem') }}" method="POST">
+            @csrf
             <div class="row">
                 <div class="col-12 col-lg-4 mb-2 mb-lg-0">
                     <input type="text" class="form-control" placeholder="Tìm tên, hãng, dòng xe, ..." name="tenxe">
                 </div>
                 <div class="col-12 col-lg-2 mb-2 mb-lg-0">
-                    <select id="inputState2" class="form-select">
-                        <option selected hidden>Loại xe</option>
+                    <select id="inputState2" class="form-select" name="loaixe">
+                        <option selected hidden value="">Loại xe</option>
                         <option>Xe máy</option>
                         <option>Xe đạp điện</option>
                     </select>

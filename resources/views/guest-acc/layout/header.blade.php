@@ -93,10 +93,16 @@
     // Hàm để lấy số lượng sản phẩm từ localStorage và hiển thị
     function loadCartCount() {
         let cartCount = localStorage.getItem('cartCount');
-        if (cartCount) {
-            document.getElementById('cart-count').innerText = cartCount;
+        let cartCountElement = document.getElementById('cart-count');
+
+        if (cartCountElement) {
+            if (cartCount) {
+                cartCountElement.innerText = cartCount;
+            } else {
+                cartCountElement.innerText = 0;
+            }
         } else {
-            document.getElementById('cart-count').innerText = 0;
+
         }
     }
 

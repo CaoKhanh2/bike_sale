@@ -9,6 +9,7 @@ use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\DongXeController;
 use App\Http\Controllers\HangXeController;
 use App\Http\Controllers\GioHangController;
+use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\KhoHangController;
 use App\Http\Controllers\NguoiDungController;
 use App\Http\Controllers\NhanVienController;
@@ -141,19 +142,21 @@ Route::middleware(['roleGuest'])->group(function () {
     // Đơn hàng ----------
     Route::get('/checkout/{id}', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
     Route::post('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
-    // Route::post('/online-checkout',[DonHangController::class, 'dat_hang'])->name('thanhtoan-onl');
+
     Route::get('/thanks', [DonHangController::class, 'thanks']);
+
+    
+    
+    // Route::post('/online-checkout',[DonHangController::class, 'dat_hang'])->name('thanhtoan-onl');
     // Route::post('/online-checkout',[OnlineCheckoutController::class, 'online_checkout'])->name('thanhtoan-onl');;
     // Route::get('/thanks',[OnlineCheckoutController::class, 'thanks']);
 
-    // Route::get('/cart-index/add/{maxedangban}', [GioHangController::class, 'add_cart'])->name('them-giohang-Guest');
-
-    // Route::post('/cart-index', [GioHangController::class, 'destroy_cart'])->name('xoa-giohang-Guest');
 
     // Lịch sử đơn hàng ----------
-
     Route::get('/my-order', [NguoiDungController::class, 'orderhistory'])->name('khach-donhang'); // Xem đơn hàng
-    Route::get('/view-order/{id}', [NguoiDungController::class, 'view'])->name('khach-ctdonhang'); // Xem chi tiết đơn hàng
+    Route::get('/my-order/view-order', [NguoiDungController::class, 'view'])->name('khach-ctdonhang'); // Xem chi tiết đơn hàng
+
+    Route::post('/my-order/view-order/export-invoice', [HoaDonController::class,'export_invoice_pdf'])->name('xuatfile-pdf-hoadon');
     
     // Hiển thị sản phẩm trong giỏ
     Route::get('load-cart-data', [GioHangController::class, 'cartcount']); // Xem chi tiết đơn hàng
@@ -164,7 +167,10 @@ Route::middleware(['roleGuest'])->group(function () {
 
 // Tìm kiếm ----------
 
-Route::get('/sub-index/search', [SearchContrller::class, 'searchData1'])->name('timkiem');
+Route::post('/sub-index/search', [SearchContrller::class, 'searchData1'])->name('timkiem');
+
+// Route::post('/sub-index/search', [SearchContrller::class, 'search_subData1'])->name('sub-timkiem');
+
 Route::get('/sub-index/search-automaker/{id}', [SearchContrller::class, 'searchData2'])->name('timkiem-theohangxe');
 
 // ----------
