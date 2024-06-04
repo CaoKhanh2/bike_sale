@@ -56,7 +56,7 @@
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianbatdau)) }}</td>
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianketthuc))}}
                                                         @if ($i->thoigianconlai === 'Hết hạn')   
-                                                        <td class="text-danger">{{$i->thoigianconlai}}</td>
+                                                        <td><div class="badge badge-danger">{{$i->thoigianconlai}}</div></td>
                                                         <td><a type="button" class="btn btn-danger"
                                                             href="{{ route('xoakhuyemai', ['id' => $i->makhuyenmai]) }}">
                                                             <i class="bi bi-trash"></i> Xóa
@@ -94,7 +94,7 @@
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianbatdau)) }}</td>
                                                         <td>{{ date('d/m/Y', strtotime($i->thoigianketthuc)) }}</td>
                                                         <td>
-                                                           <div class="text-danger"> {{ $i->hieuluc}} </div>
+                                                           <div class="badge badge-danger"> {{ $i->hieuluc}} </div>
                                                         </td>
                                                     </tr>
                                                 @endforeach

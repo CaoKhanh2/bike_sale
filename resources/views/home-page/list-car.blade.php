@@ -63,16 +63,30 @@
                                     <p class="mb-0">{{ $i->namsx }}</p>
                                 </div>
                                 <div class="col mt-3 d-flex align-items-center icon-text">
-                                    <i class="fa-solid fa-motorcycle me-2" style="font-size: 1.4rem; line-height: 1;"></i>
+                                    <i class="fa-solid fa-motorcycle me-2"
+                                        style="font-size: 1.4rem; line-height: 1;"></i>
                                     <p class="mb-0">{{ $i->loaixe }}</p>
                                 </div>
                             </div>
                             <div class="row justify-content-center align-items-center g-2 mx-2 my-4">
                                 <div class="col mt-3">
-                                    <h4><span>
-                                            <p class="ms-auto mb-0">{{ number_format($i->giaban, 0, '', ',') . ' đ' }}
-                                            </p>
-                                        </span></h4>
+                                    @if ($i->giagoc != $i->giaban)
+                                        <h4>
+                                            <span>
+                                                <strong class="h6 text-secondary">
+                                                    <span><s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s></span>
+                                                </strong>
+                                                <strong class="d-inline text-danger">
+                                                    {{ number_format($i->giaban, 0, ',') . ' đ' }}</strong>
+                                            </span>
+                                        </h4>
+                                    @else
+                                        <h4><span>
+                                                <strong class="ms-auto mb-0 text-danger">
+                                                    {{ number_format($i->giaban, 0, '', ',') . ' đ' }}
+                                                </strong>
+                                            </span></h4>
+                                    @endif
                                 </div>
                                 <div class="col mt-3">
                                     <div class="d-grid col mx-auto">

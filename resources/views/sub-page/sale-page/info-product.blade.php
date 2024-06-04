@@ -21,7 +21,7 @@
                         <div class="price-detail text-start">
                             @if ($i->giagoc == $i->giaban)
                                 <span>
-                                    <p class="fs-3">{{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                    <p class="fs-3 text-danger">{{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
                                 </span>
                             @else
                                 <span>
