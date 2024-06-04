@@ -6,7 +6,7 @@
 </style>
 <div class="container my-auto">
     <div id="change-password-form" class="mt-3 hidden">
-        <form method="POST" action="{{ route('thuchien-thaydoi-matkhu-Guest') }}" id="password-form">
+        <form method="POST" action="{{ route('thuchien-thaydoi-matkhau-Guest') }}" id="password-form">
             @csrf
             <div class="form-group mb-4 ">
                 <div class="col-12 col-md-12">

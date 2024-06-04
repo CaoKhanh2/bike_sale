@@ -38,7 +38,8 @@
                                     <div class="col-md-12 col-sm-12">
                                         <label  for="quy">Các quý</label>
                                         <select name="quy" id="quy" class="form-control">
-                                            <option selected hidden>Lựa chọn</option>
+                                            <option value="0" {{ session('quy') == '0' ? 'selected' : '' }}>Tất cả
+                                            </option>
                                             <option value="1" {{ session('quy') == '1' ? 'selected' : '' }}>Quý 1
                                             </option>
                                             <option value="2" {{ session('quy') == '2' ? 'selected' : '' }}>Quý 2
@@ -46,8 +47,6 @@
                                             <option value="3" {{ session('quy') == '3' ? 'selected' : '' }}>Quý 3
                                             </option>
                                             <option value="4" {{ session('quy') == '4' ? 'selected' : '' }}>Quý 4
-                                            </option>
-                                            <option value="0" {{ session('quy') == '0' ? 'selected' : '' }}>Tất cả
                                             </option>
                                         </select>
                                     </div>
@@ -78,13 +77,13 @@
                                         <form class="mx-2" action="{{ route('xuatfile-excel-thongtintinhhinhthumua') }}"
                                             method="POST">
                                             @csrf
-
                                             <input type="text" name="tunam" id="tunam-export" hidden>
                                             <input type="text" name="dennam" id="dennam-export" hidden>
                                             <input type="text" name="quy" id="quy-export" hidden>
 
-                                            <input type="submit" id="export-csv-tinhhinhthumua" class="btn btn-secondary"
-                                                value="Xuất file CSV"> 
+                                            <button type="submit" id="export-csv-tinhhinhthumua" class="btn btn-secondary">
+                                                <i class="bi bi-filetype-csv"></i> Xuất file CSV
+                                            </button>                                            
                                         </form>
                                         {{-- <form class="mx-2" method="post">
                                             @csrf

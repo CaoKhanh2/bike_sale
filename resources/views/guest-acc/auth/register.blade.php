@@ -6,7 +6,7 @@
             <div class="col-lg-8">
                 <div class="row my-3 justify-content-center">
                     <div class="col">
-                        <img src="{{ asset('Image\Logo\logo.png') }}" alt="Logo" class="align-text-center rounded-circle"
+                        <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo" class="align-text-center rounded-circle"
                             width="124" height="124">
                     </div>
                 </div>

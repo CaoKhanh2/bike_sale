@@ -36,8 +36,8 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="table" role="tabpanel">
-                                    <div class="pt-20">
-                                        <table class="table hover multiple-select-row">
+                                    <div class="pt-20 table-responsive">
+                                        <table class="table hover multiple-select-row nowrap dtr-inline">
                                             <thead>
                                                 <tr>
                                                     <th class="table-plus datatable-nosort">Mã khách hàng</th>
@@ -80,7 +80,7 @@
                                                         <td>
                                                             <a type="button" class="btn btn-primary"
                                                                 href="{{ route('ctthongtinkhachhang', ['id' => $i->mand]) }}">
-                                                                <i class="bi bi-pencil-fill"></i> Sửa
+                                                                <i class="bi bi-eye"></i> Xem
                                                             </a>
                                                             <a type="button" class="btn btn-danger"
                                                                 href="{{ route('xoathongtinkhachhang', ['id' => $i->mand]) }}">

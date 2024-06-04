@@ -1,13 +1,12 @@
 @extends('guest-acc.layout.content')
+
 @section('title', 'Giỏ hàng')
-
 @section('pg-hd-2', 'Giỏ hàng') @section('act2', 'text-dark')
-
-@include('guest-acc.layout.header')
 
 @section('guest-content')
 
     <div class="container my-5">
+        
         {{-- breadcrum --}}
         <div class="row justify-content-around">
             <div class="col-xl">
@@ -15,6 +14,7 @@
             </div>
         </div>
         {{-- endbreadcrum --}}
+
         {{-- content --}}
         <div class="row justify-content-center">
             <div class="col-xl">

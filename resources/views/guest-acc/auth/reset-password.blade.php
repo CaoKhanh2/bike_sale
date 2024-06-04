@@ -9,7 +9,7 @@
                 <div class="row my-3">
                     <a href="{{ route('indexWeb') }}">
                         <div class="row my-3 d-flex justify-content-center">
-                            <img src="{{ asset('Image\Logo\logo.png') }}" alt="Logo"
+                            <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo"
                                 class="align-text-center rounded-circle w-50">
                         </div>
                     </a>

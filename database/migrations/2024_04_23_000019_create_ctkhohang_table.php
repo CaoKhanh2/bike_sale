@@ -20,7 +20,7 @@ return new class extends Migration
             $table->tinyInteger('soluong',false,false)->nullable();
             $table->decimal('gianhapkho',12,2)->nullable();
             $table->date('ngaynhapkho');
-            $table->enum('trangthai', ['Đang xử lý','Đã xuất kho', 'Còng trong kho'])->nullable();
+            $table->enum('trangthai', ['Đang xử lý','Đã xuất kho', 'Còn trong kho'])->nullable();
 
             $table->primary('machitietkho');
             $table->foreign('makho')->references('makho')->on('khohang')->onDelete('cascade');

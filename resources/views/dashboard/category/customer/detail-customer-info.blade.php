@@ -101,7 +101,7 @@
                         <label class="col-sm-12 col-md-2 col-form-label" for="tinhtrang">Tình trạng</label>
                         <div class="col-sm-12 col-md-10">
                             <select class="custom-select col-12" id="tinhtrang" name="tt">
-                                <option value="" {{ $nd->tinhtrang == '' ? 'selected' : '' }}>Choose...</option>
+                                <option value="" {{ $nd->tinhtrang == '' ? 'selected' : '' }} hidden>Lựa chọn...</option>
                                 <option value="1" {{ $nd->tinhtrang == '1' ? 'selected' : '' }}>Hoạt động</option>
                                 <option value="0" {{ $nd->tinhtrang == '0' ? 'selected' : '' }}>Ngừng hoạt động</option>
                             </select>

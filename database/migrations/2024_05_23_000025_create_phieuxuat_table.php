@@ -19,7 +19,7 @@ return new class extends Migration
             //$table->string('maxe',15)->nullable();
             $table->string('manv',10);
             $table->dateTime('ngayxuat');
-            $table->decimal('tongtien',12,2);
+            $table->decimal('thanhtien',12,2)->nullable();
 
             $table->primary('maphieuxuat');
             //$table->foreign('makho')->references('makho')->on('khohang')->onDelete('cascade');

@@ -65,8 +65,8 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="table" role="tabpanel">
-                                    <div class="pt-20">
-                                        <table class="table hover multiple-select-row data-table-export nowrap">
+                                    <div class="table-responsive pt-20">
+                                        <table class="table hover multiple-select-row nowrap">
                                             <thead>
                                                 <tr>
                                                     <th class="table-plus datatable-nosort">Mã nhân viên</th>
@@ -97,8 +97,8 @@
                                                         {{-- <td>{{ $i->email }}</td> --}}
                                                         <td>{{ $i->diachi }}</td>
                                                         <td>
-                                                            <a type="button" class="btn btn-primary" href="">
-                                                                <i class="bi bi-pencil-fill"></i> Sửa
+                                                            <a type="button" class="btn btn-primary" href="{{ route('chitiet-thongtinnhanvien',['id'=>$i->manv]) }}">
+                                                                <i class="bi bi-eye"></i> Xem
                                                             </a>
                                                             <a type="button" class="btn btn-danger"
                                                                 href="{{ route('xoa-thongtinnhanvien', ['id' => $i->manv]) }}">
@@ -192,14 +192,6 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            {{-- <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label"
-                                                    for="email">Email</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control" type="ngaysinh" name="email"
-                                                        id="email" required />
-                                                </div>
-                                            </div> --}}
                                             <div class="form-group row">
                                                 <label class="col-sm-12 col-md-2 col-form-label" for="diachi">Địa
                                                     chỉ</label>
