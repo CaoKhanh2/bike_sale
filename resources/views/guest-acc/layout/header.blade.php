@@ -32,6 +32,7 @@
                         <span class="text-center mx-auto d-block">Mua xe đạp điện</span>
                     </a>
                 </li>
+                
             </ul>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -67,6 +68,7 @@
                             </li>
                             <li><a class="dropdown-item" href="">Thông báo</a></li>
                             <li><a class="dropdown-item" href="{{ route('khach-donhang') }}">Lịch sử đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="#">Hỗ trợ khách hàng</a></li>
                             <li>
                                 <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}" class="mb-0">
                                     @csrf

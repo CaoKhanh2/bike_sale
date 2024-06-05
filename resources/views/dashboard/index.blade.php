@@ -96,6 +96,7 @@
                             <a href="{{ route('xedangban2-thongtinxe')}}"> <button class="btn btn-outline-dark mb-3 col-12">Đăng bán xe</button></a>
                             <a href="{{ route('xedkthumua')}}"> <button class="btn btn-outline-dark mb-3 col-12">Duyệt đơn thu mua</button></a>
                             <a href="{{ route('thongtinkhohang')}}"> <button class="btn btn-outline-dark mb-3 col-12">Kiểm tra kho hàng</button></a>
+                            <a href="#"> <button class="btn btn-outline-dark mb-3 col-12">Quản lý thanh toán</button></a>
                         </div>
                     </div>
                 </div>

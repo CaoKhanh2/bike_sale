@@ -79,6 +79,7 @@
                                     <li><a class="dropdown-item" href="">Thông báo</a></li>
                                     <li><a class="dropdown-item" href="{{ route('khach-donhang') }}">Lịch sử đơn
                                             hàng</a></li>
+                                    <li><a class="dropdown-item" href="#">Hỗ trợ khách hàng</a></li>
                                     <li>
                                         <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}"
                                             class="mb-0">
@@ -125,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-9 py-3 text-white">Miễn phí vận chuyển<br>
-                                    <strong class="text-warning">Bán kính 10Km</strong>
+                                    <strong class="text-warning">Bán kính 5Km</strong>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +162,7 @@
                 cartCountElement.innerText = 0;
             }
         } else {
-            
+
         }
     }
 

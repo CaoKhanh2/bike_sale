@@ -1,10 +1,10 @@
-@extends('layout.content')
+@extends('guest-acc.layout.content')
 @section('title', 'Đăng ký bán xe')
 @section('pg-hd-2', 'Đăng ký bán xe') @section('act2', 'text-dark')
 
 <link rel="stylesheet" href="{{ asset('dashboard_src\src\plugins\dropzone\src\dropzone.css') }}" type="text/css" />
 
-@section('main')
+@section('guest-content')
 
     <div class="container">
         {{-- breadcrum --}}
@@ -16,11 +16,13 @@
         {{-- endbreadcrum --}}
 
         {{-- Content --}}
-        <div class="row justify-content-center">
-            <div class="col-xl">
-                @include('guest-acc.purchasing.posting-item')
+       
+            <div class="row pb-3">
+                <div class="col-md-12">
+                    @include('guest-acc.purchasing.posting-item')
+                </div>
             </div>
-        </div>
+ 
         @include('modal-webs.inform-posting-item')
 
     </div>
@@ -49,7 +51,8 @@
                 document.getElementById("formthumua").addEventListener("submit", function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    if (myDropzone.getUploadingFiles().length === 0 && myDropzone.getQueuedFiles().length === 0) {
+                    if (myDropzone.getUploadingFiles().length === 0 && myDropzone.getQueuedFiles()
+                        .length === 0) {
                         Swal.fire({
                             icon: "warning",
                             title: "Lỗi!",

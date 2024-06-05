@@ -58,7 +58,7 @@ class XeDangKyThuMuaController extends Controller
             ->select('mahx', 'tenhang')
             ->where('mahx', $request->hangxe)
             ->first();
-        $ghichu = 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Thời gian sử dụng: ' . $request->tgsd . ' năm' . ', Tình trạng xe: ' . $request->tinhtrangxe . ', Mô tả: ' . $request->mota;
+        $ghichu = 'Thông tin liêu hệ: ' . $request->sdt . ' - '. $request->diachi . 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Thời gian sử dụng: ' . $request->tgsd . ' năm' . ', Mô tả: ' . $request->mota;
         $imagePathsString = implode(',', $imagePaths);
         $mand = Auth::guard('guest')->user()->mand;
         DB::table('xedangkythumua')->insert([
