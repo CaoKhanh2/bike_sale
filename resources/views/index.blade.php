@@ -1,6 +1,8 @@
 @extends('layout.content')
 @section('title', 'Trang chủ')
+
 <link rel="stylesheet" href="{{ asset('home_src\css\main.css') }}">
+
 @include('modal-webs.inform-success-login')
 
 @section('main')
@@ -36,9 +38,9 @@
         {{-- End --}}
 
         {{-- Tin tức --}}
-        {{-- <div class="row justify-content-md-center mt-4">
-            @include('home-page.news')
-        </div> --}}
+            {{-- <div class="row justify-content-md-center mt-4">
+                @include('home-page.news')
+            </div> --}}
         {{-- End --}}
 
     </div>

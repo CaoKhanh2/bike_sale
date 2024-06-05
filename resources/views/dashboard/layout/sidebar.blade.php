@@ -178,7 +178,7 @@
                                 <li><a href="{{ route('danhsach-donhang-dangbanxe') }}">Đăng bán xe</a></li>
                             </ul>
                         </li>
-                        <li><a href="form-pickers.html">Quản lý thanh toán</a></li>
+                        <li><a href="{{ route('thongtin-thanhtoan') }}">Quản lý thanh toán</a></li>
                         <li><a href="image-cropper.html">Quản lý rủi ro</a></li>
                     </ul>
                 </li>

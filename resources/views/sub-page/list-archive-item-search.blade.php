@@ -85,7 +85,7 @@
                                             <div class="col-12 col-md-4 mt-3">
                                                 <h4>
                                                     <span>
-                                                        <strong class="d-inline text-danger fs-2">
+                                                        <strong class="d-inline text-danger">
                                                             {{ number_format($i->giaban, 0, ',') . ' đ' }}</strong>
                                                     </span>
                                                 </h4>

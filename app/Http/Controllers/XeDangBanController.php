@@ -30,15 +30,6 @@ class XeDangBanController extends Controller
     //     return view('/sub-index', ['db_xemay' => $xedangban_xemay, 'db_xedapdien' => $xedangban_xedapdien, 'hangxemay' => $hxm, 'hangxedapdien' => $hxdd]);
     // }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
 
     public function showData()
     {
@@ -276,6 +267,61 @@ class XeDangBanController extends Controller
         ]);
 
         return redirect()->route('danhsach-donhang-dangbanxe')->with('success-them-xedangban', 'Xe đã được thêm vào mục đăng bán.');
+    }
+
+    public function update_post_sale(Request $request){
+
+        $xedangban = DB::table('xedangban')
+                        ->select('xedangban.*','nhanvien.hovaten')
+                        ->join('nhanvien','nhanvien.manv','xedangban.manv')
+                        ->where('maxedangban', $request->maxedangban)
+                        ->first();
+
+        return view ('dashboard.transaction.selling.car-selling.update-sale-infor', compact('xedangban'));
+
+    }
+
+    public function act_update_post_sale(Request $request){
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'namsx' => 'required|digits:4',
+                'ngayban' => 'required|date',
+                'giaban' => 'required|max:11|min:8',
+            ],
+            [
+                'namsx.required' => 'Năm sản xuất không được để trống!',
+                'namsx.digits' => 'Trường thông tin chỉ gồm 4 số!',
+
+                'ngayban.required' => 'Ngày bán không được để trống!',
+                'ngayban.date' => 'Trường thông tin nhập vào không hợp lệ!',
+
+                'giaban.required' => 'Giá bán không được đê trống!',
+                'giaban.max' => 'Giá bán không vượt quá 100,000,000 đ',
+                'giaban.min' => 'Giá bán không được dưới quá 1,000,000 đ',
+            ],
+        );
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->with('cross-capnhat-xedangban', 'Thông tin xe đăng bán chưa được cập nhật!');
+        }
+        
+        $giaban = str_replace(',','', $request->giaban);
+
+        $time = Carbon::now()->format('H:i:s');
+        $date = Carbon::createFromFormat('d/m/Y', $request->ngayban)->format('Y-m-d');
+        $datetime = $date . ' ' . $time;
+
+        DB::table('xedangban')->where('xedangban.maxedangban', $request->maxedangban)
+            ->update([
+                'namsx' => $request->namsx,
+                'giaban' => $giaban,
+                'ngayban' => $datetime,
+                'mota' => $request->mota,
+                'trangthai' => $request->trangthai,
+            ]);
+        return back()->with('success-capnhat-xedangban', 'Thông tin xe đăng bán đã được cập nhật thành công.');
     }
 
     public function destroy_post_sale($id)

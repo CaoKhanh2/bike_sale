@@ -440,6 +440,9 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     Route::post('/dashboard/transaction/selling/sell-manage/add', [XeDangBanController::class, 'add_post_sale'])->name('them-xedangban-thongtinxe');
     Route::get('/dashboard/transaction/selling/sell-manage/delete/{id}', [XeDangBanController::class, 'destroy_post_sale'])->name('xoa-xedangban-thongtinxe');
 
+    Route::get('/dashboard/transaction/selling/sell-manage/edit-post-sale/{maxedangban}', [XeDangBanController::class, 'update_post_sale'])->name('capnhat-thongtin-xedangban');
+    Route::patch('/dashboard/transaction/selling/sell-manage/edit-post-sale', [XeDangBanController::class, 'act_update_post_sale'])->name('thuchien-capnhat-thongtin-xedangban');
+
     // ---------- **** ----------
 
     /**
@@ -449,6 +452,12 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
     /**
      * ---------- Quản lý thanh toán ----------
      */
+
+        Route::get('/dashboard/transaction/payment-management', [HoaDonController::class, 'index'])->name('thongtin-thanhtoan');
+        Route::get('/dashboard/transaction/payment-management/detail-payment/{madonhang}/{mand}', [DonHangController::class, 'detail_infor_payment_1'])->name('chitiet-thongtin-thanhtoan1');
+        
+        Route::post('/dashboard/transaction/payment-management/update-payment/{madonhang}/{mand}', [DonHangController::class, 'check_oder_customer'])->name('thuchien-kiemtra-donhang');
+        Route::post('/dashboard/transaction/payment-management/cancel-order/{madonhang}', [DonHangController::class, 'destroy_oder_customer'])->name('thuchien-huy-donhang');
 
     /**
      * ---------- **** ----------

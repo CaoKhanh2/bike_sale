@@ -262,6 +262,5 @@
         <div class="col-6 col-md-4"></div>
     </div>
 
-
     <script src="{{ asset('home_src\js\pagination.js') }}"></script>
 </div>
