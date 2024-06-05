@@ -1,8 +1,5 @@
 <!-- Modal -->
-<!-- Modal -->
 
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -12,13 +9,7 @@
             <div class="modal-body">
                 <div class="row my-3 justify-content-center">
                 <div class="row my-3 justify-content-center">
-                    {{-- <a href="{{ route('indexWeb') }}">
-                        <div class="row my-3 justify-content-center">
-                            <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo" class="align-text-center rounded-circle w-50">
-                        <div class="row my-3 justify-content-center">
-                            <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo" class="align-text-center rounded-circle w-50">
-                        </div>
-                    </a> --}}
+
                     <h4 class="fw-bold text-center">Đăng nhập</h4>
                 </div>
                 @if (Session::has('cross-dangnhap-Guest'))
@@ -86,7 +77,5 @@
 </div>
 
 
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

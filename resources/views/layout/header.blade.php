@@ -47,20 +47,13 @@
                             </a>
                         </li>
                         @if (Auth::guard('guest')->check())
-                            {{-- @php
-                                $cartcount = DB::table('ctgiohang')
-                                    ->join('giohang', 'giohang.magh', 'ctgiohang.magh')
-                                    // ->join('nguoidung', 'giohang.mand', 'nguoidung.mand')
-                                    ->where('mand', Auth::guard('guest')->user()->mand)
-                                    ->count();
-                            @endphp --}}
-
-                            <li class="nav-item">
+                            <li class="nav-item position-relative">
                                 <a class="nav-link active" aria-disabled="true" href="{{ url('/cart-index') }}">
                                     <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30"
                                         height="24" class="img-fluid mx-auto d-block">
                                     <span class="text-center mx-auto d-block"> Giỏ hàng
-                                        <span id="cart-count" class="badge badge-pill bg-success cart-count"></span>
+                                        <span id="cart-count"
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-success"></span>
                                     </span>
                                 </a>
                             </li>
@@ -148,62 +141,39 @@
     </div>
 </section>
 
-<script>
-    // Hàm để lấy số lượng sản phẩm từ localStorage và hiển thị
-    function loadCartCount() {
-        let cartCount = localStorage.getItem('cartCount');
-        let cartCountElement = document.getElementById('cart-count');
+@if (Auth::guard('guest')->check())
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Hàm để lấy số lượng sản phẩm từ localStorage và hiển thị
+            function loadCartCount() {
+                let cartCount = localStorage.getItem('cartCount');
+                let cartCountElement = document.getElementById('cart-count');
 
-        if (cartCountElement) {
-            if (cartCount) {
-                cartCountElement.innerText = cartCount;
-            } else {
-                cartCountElement.innerText = 0;
-            }
-        } else {
-            
-        }
-    }
-
-    // Gọi hàm loadCartCount khi trang được tải
-    window.onload = loadCartCount;
-</script>
-
-<script>
-    $(document).ready(function() {
-
-        loadcart();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        function loadcart() {
-            $.ajax({
-                method: "GET",
-                url: '/load-cart-data',
-                success: function(response) {
-                    console.log(response.count);
-                    $('.cart-count').html('');
-                    $('.cart-count').html(response.count);
+                if (cartCountElement) {
+                    if (cartCount) {
+                        cartCountElement.innerText = cartCount;
+                    } else {
+                        cartCountElement.innerText = 0;
+                    }
                 }
-            });
-        }
-    });
-</script>
-<style>
-    .cart-icon {
-        position: relative;
-        display: inline-block;
-    }
+            }
 
-    .cart-count {
-        position: absolute;
-        top: 18px;
-        /* Điều chỉnh giá trị này để thay đổi vị trí theo chiều dọc */
-        right: 98px;
-        /* Điều chỉnh giá trị này để thay đổi vị trí theo chiều ngang */
-        transform: translate(-50%, -50%);
-    }
-</style>
+            // Hàm để tải số lượng sản phẩm từ server và hiển thị
+            function loadCartFromServer() {
+                $.ajax({
+                    method: "GET",
+                    url: '/load-cart-data',
+                    success: function(response) {
+                        console.log(response.count);
+                        localStorage.setItem('cartCount', response.count);
+                        document.getElementById('cart-count').innerText = response.count;
+                    }
+                });
+            }
+
+            // Gọi hàm loadCartCount khi trang được tải
+            loadCartCount();
+            loadCartFromServer();
+        });
+    </script>
+@endif

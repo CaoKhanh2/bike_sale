@@ -18,7 +18,7 @@ class IndexController extends Controller
                                     ->orderBy('ngaynhap','desc')->get();
         $this_month = Carbon::now()->month;
         $tt = DB::table('hoadon')->whereMonth('ngaytaohoadon',  $this_month)
-                                 ->sum('tonggiatrihoadon');
+                                ->sum('tonggiatrihoadon');
         return view('dashboard.index',compact('sl_kh','sl_dtm','xe','tt'));
     }
 }

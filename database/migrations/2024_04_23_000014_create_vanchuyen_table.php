@@ -13,18 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vanchuyen', function (Blueprint $table) {
-            $table->string('mavanchuyen',10);
-            $table->string('mand',10);
-            $table->enum('trangthaivanchuyen',['Đã giao','Đang giao','Chưa được giao']);
-            $table->date('ngaygui');
-            $table->date('ngaynhan');
-            $table->string('diachigiaohang',100);
-            $table->text('ghichu')->nullable();
+        // Schema::create('vanchuyen', function (Blueprint $table) {
+        //     $table->string('mavanchuyen',10);
+        //     $table->string('mand',10);
+        //     $table->enum('trangthaivanchuyen',['Đã giao','Đang giao','Chưa được giao']);
+        //     $table->date('ngaygui');
+        //     $table->date('ngaynhan');
+        //     $table->string('diachigiaohang',100);
+        //     $table->text('ghichu')->nullable();
 
-            $table->primary('mavanchuyen');
-            $table->foreign('mand')->references('mand')->on('nguoidung')->onDelete('cascade');
-        });
+        //     $table->primary('mavanchuyen');
+        //     $table->foreign('mand')->references('mand')->on('nguoidung')->onDelete('cascade');
+        // });
     }
 
     /**

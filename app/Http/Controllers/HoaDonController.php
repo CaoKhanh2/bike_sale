@@ -8,13 +8,31 @@ use Illuminate\Support\Facades\DB;
 
 class HoaDonController extends Controller
 {
+
+    public function index(){
+
+        $donhang_chuathanhtoan = DB::table('donhang')
+            ->select('donhang.*','nguoidung.hovaten','nguoidung.mand')
+            ->join('giohang','giohang.magh','donhang.magh')
+            ->join('nguoidung','nguoidung.mand','giohang.mand')
+            ->where('donhang.trangthai','Đang chờ xử lý')
+            ->get();
+
+        $donhang_dathanhtoan = DB::table('donhang')
+            ->select('donhang.*','nguoidung.hovaten','nguoidung.mand')
+            ->join('giohang','giohang.magh','donhang.magh')
+            ->join('nguoidung','nguoidung.mand','giohang.mand')
+            ->where('donhang.trangthai','Đã hoàn thành')
+            ->get();
+
+        return view('dashboard.transaction.payment.pay-infor', compact('donhang_chuathanhtoan','donhang_dathanhtoan'));
+
+    }
+
     public function export_invoice_pdf(Request $request)
     {   
         $mand = Auth('guest')->user()->mand;
-
         $madh = $request->madh;
-
-        //dd( $madh_string);
 
         $hoadon = DB::table('hoadon')
                 ->select('hoadon.*', 'nguoidung.*', 'donhang.trangthai')
@@ -38,8 +56,6 @@ class HoaDonController extends Controller
             ->union($khuyenmai)
             ->get();
                 
-
-
         $pdf = Pdf::loadView('guest-acc.invoice.export-invoice', compact('hoadon','chitiethoadon'));
 
         return $pdf->stream('myPDF.pdf');

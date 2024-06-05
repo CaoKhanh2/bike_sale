@@ -52,7 +52,7 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Mô tả</label>
                         <div class="col-sm-12 col-md-10">
-                            <textarea class="form-control" rows="3" name="mt">{{ $dtm->mota }}</textarea>
+                            <textarea class="form-control" rows="3" name="mt">{{ $dtm->ghichu }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">

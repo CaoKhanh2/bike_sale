@@ -159,8 +159,8 @@ class GioHangController extends Controller
     {
         $cartcount = DB::table('ctgiohang')
             ->join('giohang', 'giohang.magh', 'ctgiohang.magh')
-            ->where('ghichu', 'Đang chờ xử lý')
             ->where('mand', Auth::guard('guest')->user()->mand)
+            ->where('ghichu', 'Đang chờ xử lý')
             ->count();
         return response()->json(['count' => $cartcount]);
         // return view('layout.header',compact('cartcount'));

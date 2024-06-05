@@ -133,7 +133,8 @@ class SearchContrller extends Controller
             ->get();
 
         $hangxe = DB::table('hangxe')->select('hangxe.*', 'dongxe.loaixe')->join('dongxe', 'hangxe.mahx', 'dongxe.mahx')->get();
+        $dongxe = DB::table('dongxe')->select('dongxe.loaixe', 'hangxe.*')->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')->distinct()->get();
 
-        return view('/sub-index-result', compact('timkiem', 'hangxe'));
+        return view('/sub-index-result', compact('timkiem', 'hangxe', 'dongxe'));
     }
 }

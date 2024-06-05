@@ -44,12 +44,13 @@
                     </a>
                 </li>
                 @if (Auth::guard('guest')->check())
-                    <li class="nav-item cart-icon">
+                    <li class="nav-item position-relative">
                         <a class="nav-link active" aria-disabled="true" href="{{ url('/cart-index') }}">
                             <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30" height="24"
                                 class="img-fluid mx-auto d-block">
                             <span class="text-center mx-auto d-block"> Giỏ hàng
-                                <span id="cart-count" class="badge badge-pill bg-success cart-count"></span>
+                                <span id="cart-count"
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-success"></span>
                             </span>
                         </a>
                     </li>
@@ -126,7 +127,7 @@
     };
 </script>
 
-<style>
+{{-- <style>
     .cart-icon {
         position: relative;
         display: inline-block;
@@ -143,4 +144,4 @@
         border-radius: 50%;
         font-size: 0.8rem;
     }
-</style>
+</style> --}}
