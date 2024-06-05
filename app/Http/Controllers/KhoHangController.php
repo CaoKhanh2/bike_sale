@@ -418,10 +418,9 @@ class KhoHangController extends Controller
             ->get();
 
         $ctphieunhap = DB::table('ctphieunhap')
-            ->select('ctphieunhap.*', 'ctkhohang.maxe', 'thongtinxe.tenxe', 'xedangban.giaban')
+            ->select('ctphieunhap.*', 'ctkhohang.maxe', 'thongtinxe.tenxe')
             ->join('ctkhohang', 'ctkhohang.machitietkho', 'ctphieunhap.machitietkho')
             ->join('thongtinxe', 'thongtinxe.maxe', 'ctkhohang.maxe')
-            ->join('xedangban', 'thongtinxe.maxe', 'xedangban.maxe')
             ->where('ctphieunhap.maphieunhap', $request->maphieunhap)
             ->get();
 

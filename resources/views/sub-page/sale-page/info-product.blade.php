@@ -21,15 +21,15 @@
                         <div class="price-detail text-start">
                             @if ($i->giagoc == $i->giaban)
                                 <span>
-                                    <p class="fs-3">{{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                    <strong class="fs-3 text-danger">{{ number_format($i->giaban, 0, ',') . ' đ' }}</strong>
                                 </span>
                             @else
                                 <span>
-                                    <p class="h5 text-secondary">
+                                    <strong class="h5 text-secondary">
                                         <s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s>
-                                    </p>
-                                    <p class="text-danger fs-3">
-                                        {{ number_format($i->giaban, 0, ',') . ' đ' }}</p>
+                                    </strong>
+                                    <strong class="text-danger fs-3">
+                                        {{ number_format($i->giaban, 0, ',') . ' đ' }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -309,13 +309,13 @@
                 </div>
             </div>
         @endforeach
-
     </div>
-
 
     @include('modal-webs.modal-login')
 
-
     {{-- <div class="col-6 col-md-4"></div> --}}
-
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

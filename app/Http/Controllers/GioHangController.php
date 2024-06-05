@@ -16,16 +16,16 @@ class GioHangController extends Controller
     public function show_cart()
     {
         $mand = Auth::guard('guest')->user()->mand;
-        
-        $trangthai = "Đang chờ xử lý";
+
+        $trangthai = 'Đang chờ xử lý';
 
         $magh = $this->generateUniqueNumericId_cart(7);
 
-        $cre_cart = DB::table('giohang')->where('ghichu',$trangthai)->where('mand', $mand)->exists();
+        $cre_cart = DB::table('giohang')->where('ghichu', $trangthai)->where('mand', $mand)->exists();
 
-        if($cre_cart == false){
+        if ($cre_cart == false) {
             DB::table('giohang')->insert([
-                'magh' => 'GH-'.$magh,
+                'magh' => 'GH-' . $magh,
                 'mand' => $mand,
                 'ngaytao' => Carbon::now(),
                 'tonggiatien' => 0,
@@ -35,7 +35,7 @@ class GioHangController extends Controller
 
         $gh = DB::select(
             'SELECT ctgiohang.*, giohang.*, xedangban.*, thongtinxe.* ,
-                        CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                        CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                             ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                             END AS giaban
                         FROM ctgiohang
@@ -44,7 +44,7 @@ class GioHangController extends Controller
                         INNER JOIN thongtinxe ON thongtinxe.maxe = xedangban.maxe
                         LEFT JOIN khuyenmai ON khuyenmai.makhuyenmai = xedangban.makhuyenmai
                         WHERE giohang.mand = ? AND giohang.ghichu = ?',
-            [$mand, $trangthai]
+            [$mand, $trangthai],
         );
 
         $tongtien = ChiTietGioHang::selectRaw('SUM(dongia) as tonggiatien, magh')->groupBy('magh')->orderBy('magh')->get();
@@ -66,65 +66,102 @@ class GioHangController extends Controller
     {
         $mand = Auth::guard('guest')->user()->mand;
 
-        $gh = DB::table('giohang')->where('mand', $mand)->where('ghichu','Đang chờ xử lý')->first();
+        $gh = DB::table('giohang')->where('mand', $mand)->where('ghichu', 'Đang chờ xử lý')->first();
 
         $ctgh = DB::table('xedangban')->select('maxe', 
-                                            DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                                            DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL  OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                                                     ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
-                                                    END AS giaban'))
-                                        ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
-                                        ->where('maxedangban', $id)->first();
+                                                    END AS giaban'),
+            )
+            ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('maxedangban', $id)
+            ->first();
 
-        $check = DB::table('ctgiohang')
-                            ->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')
-                            ->join('giohang', 'giohang.magh', 'ctgiohang.magh')
-                            ->select('maxedangban.*', 'giohang.mand', 'ctgiohang.*')
-                            ->where('ctgiohang.maxedangban', $id)
-                            ->where('giohang.mand', $mand)
-                            ->count();
-        //dd($check);
+        $check = DB::table('ctgiohang')->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')->join('giohang', 'giohang.magh', 'ctgiohang.magh')->select('maxedangban.*', 'giohang.mand', 'ctgiohang.*')->where('ctgiohang.maxedangban', $id)->where('giohang.mand', $mand)->count();
 
         $randomString = Str::random(15);
 
-        if (substr($ctgh->maxe, 0, 2) == 'XM' && $check < 1) {
-            DB::table('ctgiohang')->insert([
-                'mactgh' => $randomString,
-                'magh' => $gh->magh,
-                'maxedangban' => $request->maxedangban,
-                'dongia' => $ctgh->giaban,
-            ]);
-            return redirect()->route('hienthi-thongtinxemay-Guest')->with('success-themvaogiohang-Guest', 'Sản phẩm đã được thêm vào giỏ hàng.');
-        }else{
-            return redirect()->route('hienthi-thongtinxemay-Guest')->with('cross-themvaogiohang-Guest', 'Sản phẩm này đã có trong giỏ hàng !');
-        }
-        if(substr($ctgh->maxe, 0, 2) == 'XDD') {
-            DB::table('ctgiohang')->insert([
-                'mactgh' => $randomString,
-                'magh' => $gh->magh,
-                'maxedangban' => $request->maxedangban,
-                'dongia' => $ctgh->giaban,
-            ]);
-            return redirect()->route('hienthi-thongtinxedapdien-Guest')->with('success-themvaogiohang-Guest', 'Sản phẩm đã được thêm vào giỏ hàng.');
-        }
+        if (substr($ctgh->maxe, 0, 2) == 'XM') {
+            if ($check < 1) {
+                DB::table('ctgiohang')->insert([
+                    'mactgh' => $randomString,
+                    'magh' => $gh->magh,
+                    'maxedangban' => $request->maxedangban,
+                    'dongia' => $ctgh->giaban,
+                ]);
 
-        
+                $thanhtien = DB::table('ctgiohang')
+                    ->selectRaw('SUM(dongia) as tongtien')
+                    ->where('magh', $gh->magh)
+                    ->groupBy('magh')
+                    ->first();
+
+                DB::table('giohang')
+                    ->where('magh', $gh->magh)
+                    ->update([
+                        'tonggiatien' => $thanhtien->tongtien,
+                    ]);
+
+                return redirect()->route('hienthi-thongtinxemay-Guest')->with('success-themvaogiohang-Guest', 'Sản phẩm đã được thêm vào giỏ hàng.');
+            } else {
+                return redirect()->route('hienthi-thongtinxemay-Guest')->with('cross-themvaogiohang-Guest', 'Sản phẩm này đã có trong giỏ hàng!');
+            }
+        } elseif (substr($ctgh->maxe, 0, 2) == 'XD') {
+            if ($check < 1) {
+                DB::table('ctgiohang')->insert([
+                    'mactgh' => $randomString,
+                    'magh' => $gh->magh,
+                    'maxedangban' => $request->maxedangban,
+                    'dongia' => $ctgh->giaban,
+                ]);
+
+                $thanhtien = DB::table('ctgiohang')
+                    ->selectRaw('SUM(dongia) as tongtien')
+                    ->where('magh', $gh->magh)
+                    ->groupBy('magh')
+                    ->first();
+
+                DB::table('giohang')
+                    ->where('magh', $gh->magh)
+                    ->update([
+                        'tonggiatien' => $thanhtien->tongtien,
+                    ]);
+
+                return redirect()->route('hienthi-thongtinxedapdien-Guest')->with('success-themvaogiohang-Guest', 'Sản phẩm đã được thêm vào giỏ hàng.');
+            } else {
+                # code...
+                return redirect()->route('hienthi-thongtinxedapdien-Guest')->with('cross-themvaogiohang-Guest', 'Sản phẩm này đã có trong giỏ hàng!');
+            }
+        }
     }
 
-    public function destroy_cart(Request $request){
+    public function destroy_cart(Request $request)
+    {
+        $magh = $request->magh;
         $mactgh = $request->mactgh;
+
         DB::table('ctgiohang')->where('mactgh', $mactgh)->delete();
 
-        return redirect()->route('hienthi-giohang-Guest')->with('success-xoa-sp-giohang-Guest', 'Sản phẩm đã được xóa khỏi giỏ hàng !');
+        $check = DB::table('ctgiohang')->select('magh')->where('magh', $magh)->exists();
 
+        if ($check == false) {
+            DB::table('giohang')
+                ->where('magh', $magh)
+                ->update([
+                    'tonggiatien' => 0,
+                ]);
+        }
+
+        return back()->with('success-xoa-sp-giohang-Guest', 'Sản phẩm đã được xóa khỏi giỏ hàng !');
     }
 
     public function cartcount()
-    {   
+    {
         $cartcount = DB::table('ctgiohang')
-                ->join('giohang', 'giohang.magh', 'ctgiohang.magh')
-                ->where('ghichu','Đang chờ xử lý')
-                ->where('mand', Auth::guard('guest')->user()->mand)
-                ->count();
+            ->join('giohang', 'giohang.magh', 'ctgiohang.magh')
+            ->where('ghichu', 'Đang chờ xử lý')
+            ->where('mand', Auth::guard('guest')->user()->mand)
+            ->count();
         return response()->json(['count' => $cartcount]);
         // return view('layout.header',compact('cartcount'));
     }
@@ -148,5 +185,4 @@ class GioHangController extends Controller
         $max = pow(10, $length) - 1;
         return str_pad(rand($min, $max), $length, '0', STR_PAD_LEFT);
     }
-
 }

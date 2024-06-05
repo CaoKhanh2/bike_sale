@@ -34,7 +34,7 @@
                                     <td>{{ number_format($item->tongtien, 0, ',', '.') . ' đ' }}</td>
                                     <td>{{ $item->trangthai == 'Đã hủy' ? 'Đã hủy' : 'Đã hoàn thành' }}</td>
                                     <td>
-                                        <a href="{{ route('khach-ctdonhang', ['id' => $item->madh]) }}" class="btn btn-primary">View</a>
+                                        <a href="{{ route('khach-ctdonhang', ['madonhang' => $item->madh]) }}" class="btn btn-primary">View</a>
                                     </td>
                                 </tr>   
                             @endforeach

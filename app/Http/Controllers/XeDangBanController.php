@@ -52,7 +52,7 @@ class XeDangBanController extends Controller
                 'dongxe.loaixe',
                 'hangxe.tenhang',
                 'tilegiamgia',
-                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                                             ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                                         END AS giaban'),
             )
@@ -94,7 +94,9 @@ class XeDangBanController extends Controller
 
         $hangxedapdien = DB::select('SELECT DISTINCT hangxe.*, dongxe.loaixe FROM hangxe INNER JOIN dongxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
 
-        return view('sub-index', compact('db_xemay', 'db_xedapdien', 'hangxemay', 'hangxedapdien'));
+        $dongxe = DB::table('dongxe')->select('dongxe.loaixe','hangxe.*')->join('hangxe','dongxe.mahx','hangxe.mahx')->distinct()->get();
+
+        return view('sub-index', compact('db_xemay', 'db_xedapdien', 'hangxemay', 'hangxedapdien', 'dongxe'));
     }
 
     public function showData2()
@@ -110,7 +112,7 @@ class XeDangBanController extends Controller
                 'dongxe.loaixe',
                 'hangxe.tenhang',
                 'tilegiamgia',
-                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                                             ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                                         END AS giaban'),
             )
@@ -137,7 +139,7 @@ class XeDangBanController extends Controller
                 'dongxe.loaixe',
                 'hangxe.tenhang',
                 'tilegiamgia',
-                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                                         ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                                     END AS giaban'),
             )
@@ -172,7 +174,7 @@ class XeDangBanController extends Controller
                 'hangxe.tenhang',
                 'khuyenmai.motakhuyenmai',
                 'tilegiamgia',
-                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                     ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                 END AS giaban'),
             )
@@ -195,7 +197,7 @@ class XeDangBanController extends Controller
                 'hangxe.tenhang',
                 'khuyenmai.motakhuyenmai',
                 'tilegiamgia',
-                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
                     ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
                 END AS giaban'),
             )
