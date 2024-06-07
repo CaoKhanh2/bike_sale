@@ -11,6 +11,14 @@
     <link rel="shortcut icon" href="{{ asset('Image\logo\logo.png') }}" type="image/x-icon">
 
     <link rel="stylesheet" href="{{ asset('bootstrap-tool\css\bootstrap.min.css') }}">
+    <style>
+        #cart-count {
+            position: relative;
+            top: -62px; /* Điều chỉnh giá trị top để định vị đúng */
+            right: -22px; /* Điều chỉnh giá trị right để định vị đúng */
+            display: inline-block; /* Đảm bảo phần tử được hiển thị inline */
+        }
+    </style>
     <script src="{{ asset('bootstrap-tool\js\bootstrap.bundle.min.js') }}"></script>
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

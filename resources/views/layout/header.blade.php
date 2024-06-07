@@ -50,11 +50,15 @@
                             <li class="nav-item position-relative">
                                 <a class="nav-link active" aria-disabled="true" href="{{ url('/cart-index') }}">
                                     <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30"
-                                        height="24" class="img-fluid mx-auto d-block">
-                                    <span class="text-center mx-auto d-block"> Giỏ hàng
-                                        <span id="cart-count"
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-success"></span>
+                                    height="24" class="img-fluid mx-auto d-block">
+                                    <span class="text-center mx-auto d-block"> 
+                                        Giỏ hàng
                                     </span>
+                                    <div class="text-center mx-auto d-block">
+                                        <span id="cart-count"
+                                            class="badge rounded-pill text-bg-success">
+                                        </span>
+                                    </div>
                                 </a>
                             </li>
                         @endif
