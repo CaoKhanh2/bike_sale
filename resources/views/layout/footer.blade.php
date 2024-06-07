@@ -31,9 +31,12 @@
             <div class="col-md-3 mb-3">
                 <h5>Chính sách</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Chính sách bảo mật</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Chính sách mua bán</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Chính sách bảo hành</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Chính sách bảo mật</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Chính sách mua bán</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Chính sách bảo hành</a>
+                    </li>
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black"></a></li>
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black"></a></li>
                 </ul>
@@ -41,9 +44,12 @@
             <div class="col-md-3 mb-3">
                 <h5>Danh mục</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Thông tin xe máy</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Thông tin xe đạp điện</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Dịch vụ bảo dưỡng</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Thông tin xe máy</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Thông tin xe đạp
+                            điện</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black">Dịch vụ bảo dưỡng</a>
+                    </li>
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black"></a></li>
                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-black"></a></li>
                 </ul>
@@ -53,8 +59,8 @@
                     <div class="col-md-5 my-3">
                         <a href="url{{ '/index' }}"
                             class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
-                            <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo" width="80"
-                                height="70" class="rounded-circle">
+                            <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo" width="80" height="70"
+                                class="rounded-circle">
                         </a>
                         <p class="text-body-secondary">© 2024</p>
                         <p>Số 1/115 đường Máng Nước, thôn Cái Tắt, Xã An Đồng, Huyện An Dương, Thành phố Hải Phòng</p>
@@ -66,9 +72,10 @@
                             <div class="col-12">
                                 <div class="d-block text-center">Nhận thông tin khuyễn mãi từ cửa hàng</div>
                                 <form class="d-flex mt-2" role="search">
-                                    <input class="form-control me-2 col" type="text" placeholder="Đăng ký" aria-label="Dangky">
+                                    <input class="form-control me-2 col" type="text" placeholder="Đăng ký"
+                                        aria-label="Dangky">
                                     <button class="btn btn-danger col-3p" type="submit">Đăng ký</button>
-                                  </form> 
+                                </form>
                             </div>
                             <div class="col-12 mt-2">
                                 <div class="hstack gap-3 justify-content-end">

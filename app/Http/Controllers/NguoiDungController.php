@@ -408,6 +408,12 @@ class NguoiDungController extends Controller
 
         return view('guest-acc.orders.index', compact('donhang'));
     }
+    public function purchasehistory()
+    {
+        $mand = Auth::guard('guest')->user()->mand;
+        $db = DB::table('xedangkythumua')->where('mand',$mand)->where('trangthaipheduyet','Duyệt')->get();
+        return view('guest-acc.purchasing.purchasing-history', compact('db'));
+    }
 
 
     // Lịch sử mua hàng của khách

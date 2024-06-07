@@ -5,7 +5,7 @@
 
 @section('guest-content')
 
-    <div class="container my-5">
+    <div class="container">
         
         {{-- breadcrum --}}
         <div class="row justify-content-around">
@@ -24,9 +24,9 @@
         {{-- endcontetn --}}
 
     </div>
-    <footer>
-        @include('layout.footer')
-    </footer>
+    {{-- <footer>
+        @include('guest-acc.layout.footer')
+    </footer> --}}
     
 @endsection
 

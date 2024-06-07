@@ -50,11 +50,15 @@
                             <li class="nav-item position-relative">
                                 <a class="nav-link active" aria-disabled="true" href="{{ url('/cart-index') }}">
                                     <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30"
-                                        height="24" class="img-fluid mx-auto d-block">
-                                    <span class="text-center mx-auto d-block"> Giỏ hàng
-                                        <span id="cart-count"
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-success"></span>
+                                    height="24" class="img-fluid mx-auto d-block">
+                                    <span class="text-center mx-auto d-block"> 
+                                        Giỏ hàng
                                     </span>
+                                    <div class="text-center mx-auto d-block">
+                                        <span id="cart-count"
+                                            class="badge rounded-pill text-bg-success">
+                                        </span>
+                                    </div>
                                 </a>
                             </li>
                         @endif
@@ -69,9 +73,11 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('thongtin-Guest') }}">Thông tin tài
                                             khoản</a></li>
-                                    <li><a class="dropdown-item" href="">Thông báo</a></li>
+                                   
                                     <li><a class="dropdown-item" href="{{ route('khach-donhang') }}">Lịch sử đơn
                                             hàng</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('khach-banxe') }}">Lịch sử bán xe</a></li>
+                                    <li><a class="dropdown-item" href="{{url('/support')}}">Hỗ trợ khách hàng</a></li>
                                     <li>
                                         <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}"
                                             class="mb-0">
@@ -118,7 +124,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-9 py-3 text-white">Miễn phí vận chuyển<br>
-                                    <strong class="text-warning">Bán kính 10Km</strong>
+                                    <strong class="text-warning">Bán kính 5Km</strong>
                                 </div>
                             </div>
                         </div>

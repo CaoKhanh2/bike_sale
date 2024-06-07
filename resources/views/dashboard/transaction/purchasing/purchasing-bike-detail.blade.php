@@ -46,7 +46,7 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" name="bsx" value="{{ $dtm->giaban }}" maxlength="12">
+                            <input class="form-control" name="bsx" value="{{number_format($dtm->giaban, 0, ',') . ' đ'}}" maxlength="12">
                         </div>
                     </div>
                     <div class="form-group row">

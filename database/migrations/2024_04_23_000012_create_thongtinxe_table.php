@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('thongtinxe', function (Blueprint $table) {
             $table->string('maxe', 15);
-            $table->string('madx',10);
+            $table->string('madx',10)->nullable();
             $table->string('matsxemay',10)->nullable();
             $table->string('matsxedapdien',10)->nullable();
             $table->string('tenxe', 50);
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('thoigiandasudung',25);
             $table->string('tinhtrangxe',50);
             $table->string('sokmdadi',25);
-            $table->text('hinhanh');
+            $table->text('hinhanh')->nullable();
             $table->string('biensoxe',15)->nullable();
             $table->text('ghichu')->nullable();
 

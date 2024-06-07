@@ -9,6 +9,14 @@
     <title>@yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('Image\logo\logo.png') }}" type="image/x-icon">
 
+    <style>
+        #cart-count {
+            position: relative;
+            top: -62px; /* Điều chỉnh giá trị top để định vị đúng */
+            right: -22px; /* Điều chỉnh giá trị right để định vị đúng */
+            display: inline-block; /* Đảm bảo phần tử được hiển thị inline */
+        }
+    </style>
     <!-- Boostrap -->
     <link rel="stylesheet" href="{{ asset('bootstrap-tool\css\bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">

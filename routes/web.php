@@ -22,6 +22,7 @@ use App\Http\Controllers\KhuyenMaiController;
 use App\Http\Controllers\ThongTinXeController;
 use App\Http\Controllers\XeDangBanController;
 use App\Http\Controllers\XeDangKyThuMuaController;
+use App\Http\Controllers\RuiRoController;
 use App\Http\Controllers\OnlineCheckoutController;
 
 use App\Models\ThongSoKyThuatXeDapDien;
@@ -152,7 +153,8 @@ Route::middleware(['roleGuest'])->group(function () {
     // Route::post('/online-checkout',[OnlineCheckoutController::class, 'online_checkout'])->name('thanhtoan-onl');;
     // Route::get('/thanks',[OnlineCheckoutController::class, 'thanks']);
 
-
+    // Lịch sử bán xe
+    Route::get('/sold-history', [NguoiDungController::class, 'purchasehistory'])->name('khach-banxe'); // Xem đơn hàng
     // Lịch sử đơn hàng ----------
     Route::get('/my-order', [NguoiDungController::class, 'orderhistory'])->name('khach-donhang'); // Xem đơn hàng
     Route::get('/my-order/view-order', [NguoiDungController::class, 'view'])->name('khach-ctdonhang'); // Xem chi tiết đơn hàng
@@ -419,7 +421,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             Route::get('/dashboard/transaction/purchasing/purchasing-manage/{id}', [XeDangKyThuMuaController::class, 'duyetdon'])->name('duyetdonthumua'); // Duyệt đơn thu mua
             Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/{id}', [XeDangKyThuMuaController::class, 'show'])->name('ctthongtinmua'); // Xem chi tiết đơn thu mua
             Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/add/{id}', [XeDangKyThuMuaController::class, 'add_bike'])->name('themxe-xethumua'); // Xem chi tiết đơn thu mua
-            Route::post('/dashboard/transaction/purchasing/purchasing-bike-detail/add/accepted', [XeDangKyThuMuaController::class,'store2'])->name('themxe-xethumua-accepted'); // Xem chi tiết đơn thu mua
+            Route::post('/dashboard/transaction/purchasing/purchasing-bike-detail/add/accepted/{id}', [XeDangKyThuMuaController::class,'store2'])->name('themxe-xethumua-accepted'); // Xem chi tiết đơn thu mua
 
     // ---------- **** ----------
 
@@ -540,7 +542,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
  *
  */
 
-// Route::get('/chart', [BaoCaoThongKeController::class, 'purchasingChart']);
+Route::get('/support', [RuiRoController::class, 'index'])->name('ruiro-index');
 
 /**
  *
