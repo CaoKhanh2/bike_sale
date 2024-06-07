@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 {{-- Thong tin xe may --}}
-                <form action="{{ route('themxe-xethumua-accepted') }}" class="form mt-2" method="POST"
+                <form action="{{ route('themxe-xethumua-accepted', ['id' => $id]) }}" class="form mt-2" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row" hidden>
@@ -45,39 +45,45 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control"  value="{{ $hangxe['tenhang']}}"/>
-                                <input class="form-control" name="hx" value="{{ $hangxe['mahx']}}" hidden/>
+                                <input class="form-control" value="{{ $hangxe['tenhang'] }}" />
+                                <input class="form-control" name="hx" value="{{ $hangxe['mahx'] }}" hidden />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tx" value="{{ $tt['Ten xe']}}"/>
+                                <input class="form-control" name="tx" value="{{ $tt['Ten xe'] }}" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
                                 dụng</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tgsd" value="{{ $tt['tgsd']}}"/>
+                                <input class="form-control" name="tgsd" value="{{ $tt['tgsd'] }}" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi']}}"/>
+                                <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi'] }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" name="giaban" oninput="formatCurrency(this)"
+                                    oninput="limitLength(this,11)" />
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit"
-                                class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
+                            <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
                         </div>
                     </div>
 
                 </form>
                 {{-- Het --}}
                 {{-- Thong tin xe dap dien --}}
-                <form action="{{ route('themxe-xethumua-accepted') }}" class="form mt-2" method="POST"
+                <form action="{{ route('themxe-xethumua-accepted', ['id' => $id]) }}" class="form mt-2" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row" hidden>
@@ -87,38 +93,33 @@
                     </div>
                     <div id="form2" style="display: none;">
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control"  value="{{ $hangxe['tenhang']}}"/>
-                                <input class="form-control" name="hx" value="{{ $hangxe['mahx']}}" hidden/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tx" value="{{ $tt['Ten xe']}}"/>
+                                <input class="form-control" name="tx" value="{{ $tt['Ten xe'] }}" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
                                 dụng</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tgsd" value="{{ $tt['tgsd']}}"/>
+                                <input class="form-control" name="tgsd" value="{{ $tt['tgsd'] }}" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi']}}" />
+                                <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi'] }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" name="giaban" oninput="formatCurrency(this)"
+                                    oninput="limitLength(this,11)" />
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit"
-                                class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
-                        </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <button type="button"
-                                class="btn btn-primary me-md-2 mx-3 my-3">Quay về</button>
+                            <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
                         </div>
                     </div>
                 </form>
@@ -126,17 +127,14 @@
         </div>
     </div>
     <script>
-            $(document).ready(function() {
+        $(document).ready(function() {
             var lx = "{{ $tt['Loai xe'] }}"
-            if(lx === 'Xe may')
-            {
+            if (lx === 'Xe may') {
                 $('#vehicle').val('1');
-            }
-            else
-            {
+            } else {
                 $('#vehicle').val('2');
             }
-           
+
             $('#vehicle').change(function() {
                 var selectedValue = $(this).val();
                 if (selectedValue == 1) {
@@ -153,4 +151,28 @@
             $('#vehicle').trigger('change');
         });
     </script>
-    @endsection
+    <script>
+        function formatCurrency(input) {
+            // Remove any non-numeric characters except for the decimal point
+            let value = input.value.replace(/[^0-9.]/g, '');
+
+            // Split the value into whole and decimal parts if there's a decimal point
+            let parts = value.split('.');
+            let wholePart = parts[0];
+            let decimalPart = parts.length > 1 ? '.' + parts[1].substring(0, 2) : '';
+
+            // Add commas to the whole part
+            wholePart = wholePart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+            // Combine the whole and decimal parts and set the input value
+            input.value = wholePart + decimalPart;
+        }
+    </script>
+    <script>
+        function limitLength(element, maxLength) {
+            if (element.value.length > maxLength) {
+                element.value = element.value.slice(0, maxLength);
+            }
+        }
+    </script>
+@endsection

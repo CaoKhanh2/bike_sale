@@ -16,13 +16,13 @@
         {{-- endbreadcrum --}}
 
         {{-- Content --}}
-       
-            <div class="row pb-3">
-                <div class="col-md-12">
-                    @include('guest-acc.purchasing.posting-item')
-                </div>
+
+        <div class="row pb-3">
+            <div class="col-md-12">
+                @include('guest-acc.purchasing.posting-item')
             </div>
- 
+        </div>
+
         @include('modal-webs.inform-posting-item')
 
     </div>
@@ -58,13 +58,10 @@
                             title: "Lỗi!",
                             text: "Bạn chưa tải ảnh của xe.",
                             showConfirmButton: false,
-                            timer: 3000 // Thời gian hiển thị thông báo (ms)
+                            timer: 2500
                         }).then((result) => {
-                            // Sau khi thông báo đã biến mất, chuyển hướng người dùng
-                            window.location.href = '{{ route('gui-form-thumua-Guest') }}';
                         });
                     } else {
-                        // var formData = $('#formthumua').serialize();
                         myDropzone.processQueue();
                     }
                 });
@@ -78,20 +75,14 @@
                         }
                     });
                 });
-                // this.on("successmultiple", function(files, response) {
-                //     // myDropzone.removeAllFiles();
-                //     // document.getElementById("formthumua").reset();
-                //     window.location.href = '{{ route('gui-form-thumua-Guest') }}';
-                // });
                 this.on("successmultiple", function(files, response) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Thành công!',
                         text: "Thông tin đã được gửi đi.",
                         showConfirmButton: false,
-                        timer: 1500 // Thời gian hiển thị thông báo (ms)
+                        timer: 1500 
                     }).then((result) => {
-                        // Sau khi thông báo đã biến mất, chuyển hướng người dùng
                         myDropzone.removeAllFiles();
                         document.getElementById("formthumua").reset();
                         window.location.href = '{{ route('gui-form-thumua-Guest') }}';
@@ -136,4 +127,28 @@
 
         });
     </script>
+  <script>
+    function formatCurrency(input) {
+        // Remove any non-numeric characters except for the decimal point
+        let value = input.value.replace(/[^0-9.]/g, '');
+
+        // Split the value into whole and decimal parts if there's a decimal point
+        let parts = value.split('.');
+        let wholePart = parts[0];
+        let decimalPart = parts.length > 1 ? '.' + parts[1].substring(0, 2) : '';
+
+        // Add commas to the whole part
+        wholePart = wholePart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+        // Combine the whole and decimal parts and set the input value
+        input.value = wholePart + decimalPart;
+    }
+</script>
+<script>
+     function limitLength(element, maxLength) {
+            if (element.value.length > maxLength) {
+                element.value = element.value.slice(0, maxLength);
+            }
+        }
+</script>
 @endsection

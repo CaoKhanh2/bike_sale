@@ -79,6 +79,18 @@
                             </div>
                         </div>
                     </div>
+                    {{-- <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="/"><button class="btn btn-outline-primary">lịch sử mua hàng</button></a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="/"><button class="btn btn-outline-primary">lịch sử mua hàng</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-8">
                     <div class="card mb-4">

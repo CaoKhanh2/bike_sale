@@ -58,7 +58,11 @@ class XeDangKyThuMuaController extends Controller
             ->select('mahx', 'tenhang')
             ->where('mahx', $request->hangxe)
             ->first();
-        $ghichu = 'Thông tin liêu hệ: ' . $request->sdt . ' - '. $request->diachi . 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Thời gian sử dụng: ' . $request->tgsd . ' năm' . ', Mô tả: ' . $request->mota;
+       
+        $giaban = $request->giaban;
+        $giaban = str_replace(',', '', $giaban);
+        $giaban = (int)$giaban;
+        $ghichu = 'Thông tin liêu hệ: ' . $request->sdt . ' - '. $request->diachi . ' '. 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Thời gian sử dụng: ' . $request->tgsd . ' năm' . ', Mô tả: ' . $request->mota;
         $imagePathsString = implode(',', $imagePaths);
         $mand = Auth::guard('guest')->user()->mand;
         DB::table('xedangkythumua')->insert([
@@ -66,7 +70,7 @@ class XeDangKyThuMuaController extends Controller
             'mand' => $mand,
             'ngaydk' => $ngaydk,
             'hinhanh' => $imagePathsString,
-            'giaban' => $request->giaban,
+            'giaban' => $giaban,
             'ghichu' => $ghichu,
         ]);
 
@@ -152,16 +156,22 @@ class XeDangKyThuMuaController extends Controller
         $hx = explode('-', $info['Ten hang']);
         $hangxe['mahx'] = trim($hx[0]);
         $hangxe['tenhang'] = trim($hx[1]);
-        DB::table('xedangkythumua')
-        ->where('madkthumua', $id)
-        ->update(['trangthaipheduyet' => 'Duyệt']);
+        $id = $dtm->madkthumua;
         return view('dashboard.transaction.purchasing.purchasing-submit-form', [
             'tt' => $info,
             'hangxe' => $hangxe,
+            'id' => $id,
+
         ]);
     }
-    public function store2(Request $request)
+    public function store2(Request $request, $id)
     {
+        $giaban = $request->giaban;
+        $giaban = str_replace(',', '', $giaban);
+        $giaban = (int)$giaban;
+        DB::table('xedangkythumua')
+        ->where('madkthumua', $id)
+        ->update(['trangthaipheduyet' => 'Duyệt','giaban' => $giaban]);
         if ($request->xe == 1) {
             $maxemay = $this->generateUniqueId_moto();
             DB::table('thongsokythuatxemay')->insert([
@@ -203,6 +213,7 @@ class XeDangKyThuMuaController extends Controller
             return redirect()->route('xedkthumua')->with('cross-them-thongtinxe', 'Thông tin xe chưa được thêm!');
         }
     }
+
     private function generateUniqueId_moto()
     {
         $lastCar = DB::table('thongtinxe')->where('maxe', 'like', 'XM%')->orderBy('maxe', 'desc')->first();

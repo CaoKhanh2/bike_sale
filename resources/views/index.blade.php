@@ -19,7 +19,7 @@
         {{-- End --}}
 
         {{-- Danh sách xe bán --}}
-        <div class="row justify-content-md-center mt-4">
+        <div class="row justify-content-md-center mt-3">
             @include('home-page.list-car')
         </div>
         {{-- End --}}

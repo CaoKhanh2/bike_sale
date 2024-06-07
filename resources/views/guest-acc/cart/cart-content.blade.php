@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="container mb-5">
     <div class="card shadow">
         @php $magh = "";@endphp
         @if (!empty($gh))

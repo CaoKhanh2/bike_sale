@@ -15,10 +15,11 @@ class IndexController extends Controller
         $sl_dtm = DB::table('xedangkythumua')->where('trangthaipheduyet', 'Chờ duyệt')->count();
         $xe = DB::table('thongtinxe')->select('thongtinxe.*','xedangban.giaban')
                                     ->join('xedangban','thongtinxe.maxe','xedangban.maxe')
-                                    ->orderBy('ngaynhap','desc')->get();
+                                    ->orderBy('ngaynhap','asc')->limit(5)->get();
         $this_month = Carbon::now()->month;
+        $sl_xedb = DB::table('xedangban')->where('trangthai','Còn xe')->count();
         $tt = DB::table('hoadon')->whereMonth('ngaytaohoadon',  $this_month)
                                 ->sum('tonggiatrihoadon');
-        return view('dashboard.index',compact('sl_kh','sl_dtm','xe','tt'));
+        return view('dashboard.index',compact('sl_kh','sl_dtm','xe','tt','sl_xedb'));
     }
 }

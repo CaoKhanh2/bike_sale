@@ -58,15 +58,15 @@
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">400+</div>
+                                <div class="weight-700 font-24 text-dark">{{$sl_xedb}}</div>
                                 <div class="font-14 text-secondary weight-500">
-                                    Total Doctor
+                                   Xe đang bán
                                 </div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon">
                                     <i
-                                        class="icon-copy fa fa-stethoscope"
+                                        class="icon-copy fa fa-motorcycle"
                                         aria-hidden="true"
                                     ></i>
                                 </div>
@@ -103,7 +103,7 @@
                 <div class="col-xl-9 mb-30">
                     <div class="card-box height-100-p widget-style1">
                         <div class="text-center mb-3">
-                            <h4> Xe mới được thêm gần đây </h4>
+                            <h4> Xe mới được đăng bán gần đây </h4>
                         </div>
                         <table class="table table-bordered table-striped border-dark">
                             <thead class="text-center">

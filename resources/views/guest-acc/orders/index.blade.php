@@ -5,11 +5,11 @@
 
 @section('title')
     Đơn hàng của tôi
-@endsection 
+@endsection
 {{-- @include('guest-acc.layout.header') --}}
 @section('guest-content')
     <div class="container py-5">
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-primary">
@@ -28,21 +28,34 @@
                             </thead>
                             <tbody>
                                 @foreach ($donhang as $item)
-                                <tr>
-                                    <td>{{ $item->madh}}</td>
-                                    <td>{{ date('d-m-Y', strtotime($item->ngaytaodon)) }}</td>
-                                    <td>{{ number_format($item->tongtien, 0, ',', '.') . ' đ' }}</td>
-                                    <td>{{ $item->trangthai == 'Đã hủy' ? 'Đã hủy' : 'Đã hoàn thành' }}</td>
-                                    <td>
-                                        <a href="{{ route('khach-ctdonhang', ['madonhang' => $item->madh]) }}" class="btn btn-primary">View</a>
-                                    </td>
-                                </tr>   
-                            @endforeach
+                                    <tr>
+                                        <td>{{ $item->madh }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($item->ngaytaodon)) }}</td>
+                                        <td>{{ number_format($item->tongtien, 0, ',', '.') . ' đ' }}</td>
+                                        <td>@if($item->trangthai == 'Đã hủy')
+                                            <div class="badge badge-pill bg-warning">
+                                                Đã hủy
+                                            </div>
+                                            @else
+                                            <div class="badge badge-pill bg-success">
+                                                Đã hoàn thành
+                                            </div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('khach-ctdonhang', ['madonhang' => $item->madh]) }}"
+                                                class="btn btn-primary">View</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
-                        </table>     
+                        </table>
                     </div>
                 </div>
             </div>
+            <div class="col-md-3 mt-3">
+                <a href="/"><button class="btn btn-outline-primary">Quay lại trang chủ</button></a>
+            </div>
         </div>
     </div>
-@endsection 
+@endsection

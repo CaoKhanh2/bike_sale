@@ -35,15 +35,15 @@
                         <div class="mb-2">
                             <h3>Thông tin liên hệ</h3>
                         </div>
-                        <div class="mb-4 form-group">
+                        <div class="mb-3 form-group">
                             <input type="text" name="diachi" id="diachi"
                                 class="form-control form-control-lg border border-3 border-primary"
                                 placeholder="Địa chỉ" required>
                         </div>
-                        <div class="mb-4 form-group">
+                        <div class="mb-3 form-group">
                             <input type="text" name="sdt" id="sdt"
                                 class="form-control form-control-lg border border-3 border-primary"
-                                placeholder="Số điện thoại liên lạc" required>
+                                placeholder="Số điện thoại liên lạc" oninput="limitLength(this,11)" required>
                         </div>
                         <div class="mb-3 form-group">
                             <input type="hidden" class="userid" name="userid" id="mand" value="">
@@ -82,22 +82,32 @@
                         </div>
                         <div class="mb-4 form-group">
                             <div class="row">
-                                <div class="col-md-6 mb-3 mb-md-0">
-                                    <input type="number" name="tgsd" id="tgsd"
-                                        class="form-control form-control-lg border border-3 border-primary"
+                                <div class="col-md-6 mb-3 mb-md-0 d-flex justify-content-center">
+                                    <div class="input-group input-group-lg">
+                                          <input type="number" name="tgsd" id="tgsd" class="form-control form-control-lg border border-end-0 border-3 border-primary rounded-start"
                                         placeholder="Thời gian sử dụng" required>
+                                        <span class="input-group-text  border border-3 border-primary">Năm</span>
+                                    </div>
+                                      
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="input-group input-group-lg">
                                     <input type="number" name="kmdadi" id="KMdadi"
-                                        class="form-control form-control-lg border border-3 border-primary"
+                                        class="form-control form-control-lg border border-end-0 border-3 border-primary rounded-start"
                                         placeholder="Số km đã đi" required>
+                                        <span class="input-group-text border border-3 border-primary">Km</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-4 form-group">
-                            <input type="number" name="giaban" id="Giaban"
-                                class="form-control form-control-lg border border-3 border-primary"
-                                placeholder="Giá bán">
+                            <div class="input-group input-group-lg">
+                            <input name="giaban" id="Giaban"
+                                class="form-control form-control-lg border border-end-0 border-3 border-primary rounded-start"
+                                placeholder="Giá bán"
+                                oninput="formatCurrency(this)">
+                                <span class="input-group-text border border-3 border-primary">VND</span>
+                            </div>
                         </div>
                         <div class="mb-2">
                             <h3>Mô tả cho xe</h3>

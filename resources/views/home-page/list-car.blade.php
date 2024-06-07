@@ -28,7 +28,7 @@
 </style>
 {{-- ** Xe máy ** --}}
 <div id="list-car">
-    <h3 class="mt-4 mb-5">Xe máy</h3>
+    <h3 class="mb-4" style="color:#4a90e2">Xe máy</h3>
     <div class="row row-cols-1 row-cols-md-2 g-4">
         @foreach ($db_xemay as $i)
             <div class="col">
@@ -69,25 +69,25 @@
                                 </div>
                             </div>
                             <div class="row justify-content-center align-items-center g-2 mx-2 my-4">
-                                <div class="col mt-3">
-                                    @if ($i->giagoc != $i->giaban)
-                                        <h4>
-                                            <span>
-                                                <strong class="h6 text-secondary">
-                                                    <span><s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s></span>
-                                                </strong>
-                                                <strong class="d-inline text-danger">
-                                                    {{ number_format($i->giaban, 0, ',') . ' đ' }}</strong>
-                                            </span>
-                                        </h4>
-                                    @else
-                                        <h4><span>
-                                                <strong class="ms-auto mb-0 text-danger">
-                                                    {{ number_format($i->giaban, 0, '', ',') . ' đ' }}
-                                                </strong>
+                                @if ($i->giagoc != $i->giaban)
+                                    <div class="col mt-2">
+                                        <h4 class="mb-0"><span>
+                                            <strong class="h6 text-secondary">
+                                                <span><s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s></span>
+                                            </strong>
+                                            <strong class="d-inline text-danger">
+                                                {{ number_format($i->giaban, 0, ',') . ' đ' }}</strong>
                                             </span></h4>
-                                    @endif
-                                </div>
+                                    </div>
+                                @else
+                                    <div class="col mt-3">
+                                        <h4><span>
+                                            <strong class="ms-auto mb-0 text-danger">
+                                                {{ number_format($i->giaban, 0, '', ',') . ' đ' }}
+                                            </strong>
+                                        </span></h4>
+                                    </div>
+                                @endif
                                 <div class="col mt-3">
                                     <div class="d-grid col mx-auto">
                                         @if (Auth('guest')->user() == true)
@@ -109,7 +109,7 @@
             </div>
         @endforeach
     </div>
-    <div class="row justify-content-center mt-4 mb-5">
+    <div class="row justify-content-center mt-4 mb-3">
         <div class="col-md-6 center-column text-center fs-5"><a href="{{ route('hienthi-thongtinxemay-Guest') }}"
                 class="link-underline link-underline-opacity-0">XEM TẤT CẢ ></a></div>
     </div>
@@ -121,7 +121,7 @@
 {{-- ** Xe đạp điện ** --}}
 
 <div id="list-car">
-    <h3 class="mt-4 mb-5">Xe đạp điện</h3>
+    <h3 class="mb-3" style="color:#4a90e2">Xe đạp điện</h3>
     <div class="row row-cols-1 row-cols-md-2 g-4">
         @foreach ($db_xedapdien as $i)
             <div class="col">
@@ -161,12 +161,25 @@
                                 </div>
                             </div>
                             <div class="row justify-content-center align-items-center g-2 mx-2 my-4">
-                                <div class="col mt-3">
-                                    <h4><span>
-                                            <p class="ms-auto mb-0">{{ number_format($i->giaban, 0, '', ',') . ' đ' }}
-                                            </p>
+                                @if ($i->giagoc != $i->giaban)
+                                <div class="col mt-2">
+                                    <h4 class="mb-0"><span>
+                                        <strong class="h6 text-secondary">
+                                            <span><s><em>{{ number_format($i->giagoc, 0, ',') . ' đ' }}</em></s></span>
+                                        </strong>
+                                        <strong class="d-inline text-danger">
+                                            {{ number_format($i->giaban, 0, ',') . ' đ' }}</strong>
                                         </span></h4>
                                 </div>
+                            @else
+                                <div class="col mt-3">
+                                    <h4><span>
+                                        <strong class="ms-auto mb-0 text-danger">
+                                            {{ number_format($i->giaban, 0, '', ',') . ' đ' }}
+                                        </strong>
+                                    </span></h4>
+                                </div>
+                            @endif
                                 <div class="col mt-3">
                                     <div class="d-grid col mx-auto">
                                         @if (Auth('guest')->user() == true)
