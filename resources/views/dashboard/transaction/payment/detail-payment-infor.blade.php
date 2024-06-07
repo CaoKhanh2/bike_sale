@@ -70,49 +70,90 @@
                         class="form mt-2">
                         @csrf
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label" for="madonhang">Mã đơn hàng</label>
+                            <label class="col-sm-12 col-md-2 col-form-label" for="madh">Mã đơn hàng</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="madonhang" id="madonhang"
+                                <input class="form-control" name="madh" id="madh"
                                     value="{{ $chitiet_donhang_chuathanhtoan->madh }}" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label" for="thongtinxe">Thông tin xe</label>
+                            <label class="col-sm-12 col-md-2 col-form-label">Thông tin xe</label>
                             <div class="col-sm-12 col-md-10">
                                 @foreach ($thongtinxe_donhang as $i)
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6">
-                                            <input class="form-control" value="{{ $i->tenxe }}" readonly />
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text border" id="label-tenxe">Tên xe</span>
+                                                <input class="form-control text-center" name="tenxe"
+                                                    value="{{ $i->tenxe }}"
+                                                    aria-describedby="label-tenxe" readonly />
+                                            </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
-                                            <input class="form-control"
-                                                value="{{ number_format($i->dongia, 0, '.', ',') . ' đ' }}" readonly />
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text border" id="label-dongia">Giá bán</span>
+                                                    <input class="form-control text-center" name="dongia"
+                                                        value="{{ number_format($i->dongia, 0, '.', ',') . ' đ' }}"
+                                                        aria-describedby="label-dongia" readonly />
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label" for="thongtinxe">Thông tin khách hàng</label>
+                            <label class="col-sm-12 col-md-2 col-form-label">Thông tin khách
+                                hàng</label>
                             <div class="col-sm-12 col-md-10">
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6">
-                                        <input class="form-control" value="{{ $chitiet_donhang_chuathanhtoan->mand }}"
-                                            readonly />
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text border" id="label-mand">Mã người dùng</span>
+                                            <input class="form-control text-center" name="mand"
+                                                value="{{ $chitiet_donhang_chuathanhtoan->mand }}"
+                                                aria-describedby="label-mand" readonly />
+                                        </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
-                                        <input class="form-control" value="{{ $chitiet_donhang_chuathanhtoan->hovaten }}"
-                                            readonly />
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text border" id="label-hovaten">Họ và tên</span>
+                                            <input class="form-control text-center"
+                                                value="{{ $chitiet_donhang_chuathanhtoan->hovaten }}" aria-describedby="label-hovaten" readonly />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row my-4">
                                     <div class="col-sm-6 col-md-6">
-                                        <input class="form-control"
-                                            value="{{ $chitiet_donhang_chuathanhtoan->sodienthoai }}" readonly />
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text border" id="label-cccd">Số Căn cước công dân</span>
+                                            <input class="form-control text-center"
+                                                value="{{ $chitiet_donhang_chuathanhtoan->cccd }}" aria-describedby="label-cccd" readonly />
+                                        </div>
                                     </div>
                                     <div class="col-sm-6 col-md-6">
-                                        <input class="form-control" value="{{ $chitiet_donhang_chuathanhtoan->diachi }}"
-                                            readonly />
+                                        <div class="input-group">
+                                            <span class="input-group-text border" id="label-email">Email</span>
+                                            <input class="form-control text-center" aria-describedat="label-email"
+                                                value="{{ $chitiet_donhang_chuathanhtoan->email }}" readonly />
+                                            {{-- <textarea class="form-control" aria-label="With textarea" disabled>{{ $chitiet_donhang_chuathanhtoan->diachi }}</textarea> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row my-4">
+                                    <div class="col-sm-6 col-md-6">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text border" id="label-sodienthoai">Số điện thoại</span>
+                                            <input class="form-control text-center" aria-describedat="label-sodienthoai"
+                                                value="{{ $chitiet_donhang_chuathanhtoan->sodienthoai }}" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text border" id="label-diachi">Địa chỉ</span>
+                                            <input class="form-control text-center" aria-describedat="label-diachi"
+                                                value="{{ $chitiet_donhang_chuathanhtoan->diachi }}" readonly />
+                                            {{-- <textarea class="form-control" aria-label="With textarea" disabled>{{ $chitiet_donhang_chuathanhtoan->diachi }}</textarea> --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -184,9 +225,13 @@
                                         <input class="form-control" name="tientra" id="tientra" value=""
                                             oninput="formatCurrency(this)" disabled />
                                         <span class="input-group-text">VND</span>
-                                    @else
+                                    @elseif ($trangthai->trangthai == 'Đang chờ xử lý')
                                         <input class="form-control" name="tientra" id="tientra" value=""
                                             oninput="formatCurrency(this)" />
+                                        <span class="input-group-text">VND</span>
+                                    @else
+                                        <input class="form-control" name="tientra" id="tientra" value=""
+                                        oninput="formatCurrency(this)" disabled />
                                         <span class="input-group-text">VND</span>
                                     @endif
                                 </div>
@@ -200,19 +245,23 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label" for="trangthai">Trạng thái</label>
                             <div class="col-sm-12 col-md-10">
-                                <select name="" id="" class="form-control" disabled>
+                                <select name="trangthai" id="trangthai" class="form-control" disabled>
                                     <option value="">{{ $chitiet_donhang_chuathanhtoan->trangthai }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             @if ($chitiet_donhang_chuathanhtoan->trangthai == 'Đang chờ xử lý')
-                                <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Xác nhận</button>
-                                <button type="submit" formaction="{{ route('thuchien-huy-donhang', ['madonhang' => $chitiet_donhang_chuathanhtoan->madh]) }}" id="submit-huy-don"
-                                    class="btn btn-danger me-md-2 mx-3 my-3">Hủy
+                                <button type="submit" class="btn btn-primary me-md-2 mx-1 my-3"><i
+                                        class="bi bi-check2-all fs-2"></i> Xác nhận</button>
+                                <button type="submit"
+                                    formaction="{{ route('thuchien-huy-donhang', ['madonhang' => $chitiet_donhang_chuathanhtoan->madh]) }}"
+                                    id="submit-huy-don" class="btn btn-danger me-md-2 mx-1 my-3"> <i
+                                        class="bi bi-x-lg"></i> Hủy
                                     đơn</button>
-                            @else
-                                <button formaction="" type="button" class="btn btn-secondary me-md-2 mx-3 my-3">In hóa
+                            @elseif($chitiet_donhang_chuathanhtoan->trangthai == 'Đã hoàn thành')
+                                <button formaction="{{ route('xuatfile-pdf-hoadon-dash') }}" type="submit"
+                                    class="btn btn-secondary me-md-2 mx-3 my-3"> <i class="bi bi-filetype-pdf"></i> In hóa
                                     đơn</button>
                             @endif
                         </div>
@@ -238,17 +287,6 @@
             // Combine the whole and decimal parts and set the input value
             input.value = wholePart + decimalPart;
         }
-    </script>
-
-    <script>
-        // Lắng nghe sự kiện click của nút "Submit Form 1"
-        document.getElementById("submit-huy-don").addEventListener("click", function() {
-            // Lấy ra form 1
-            var form1 = document.getElementById("form1");
-
-            // Submit form 1
-            form1.submit();
-        });
     </script>
 
 

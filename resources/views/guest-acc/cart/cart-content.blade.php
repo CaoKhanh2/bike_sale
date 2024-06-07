@@ -49,14 +49,14 @@
                         @endforeach
                     </h6>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ route('indexWeb') }}" class="btn btn-outline-primary d-flex align-items-center">
+                            <i class="bi bi-arrow-left fs-4 me-2"></i>
+                            <strong>Tiếp tục mua xe</strong>
+                        </a>
                         <a href="{{ route('xacnhan-giohang-Guest',[$magh]) }}"
                             class="btn btn-outline-success d-flex align-items-center">
                             <i class="bi bi-bag-check me-2 fs-4"></i>
                             <strong>Xác nhận mua hàng</strong>
-                        </a>
-                        <a href="{{ route('indexWeb') }}" class="btn btn-outline-primary d-flex align-items-center">
-                            <i class="bi bi-arrow-left fs-4 me-2"></i>
-                            <strong>Tiếp tục mua xe</strong>
                         </a>
                     </div>
                 </div>

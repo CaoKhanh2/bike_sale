@@ -157,9 +157,9 @@
                                         <table class="table multiple-select-row table-striped nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th class="table-plus datatable-nosort">Mã phiếu xuất</th>
+                                                    <th class="table-plus datatable-nosort">Mã phiếu nhập</th>
                                                     <th>Nhân viên thực hiện</th>
-                                                    <th>Ngày xuất</th>
+                                                    <th>Ngày nhập</th>
                                                     <th>Kho hàng</th>
                                                     <th>Tổng tiền</th>
                                                     <th>Tình trạng</th>

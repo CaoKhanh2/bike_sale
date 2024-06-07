@@ -455,9 +455,20 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
 
         Route::get('/dashboard/transaction/payment-management', [HoaDonController::class, 'index'])->name('thongtin-thanhtoan');
         Route::get('/dashboard/transaction/payment-management/detail-payment/{madonhang}/{mand}', [DonHangController::class, 'detail_infor_payment_1'])->name('chitiet-thongtin-thanhtoan1');
+
+        Route::get('/dashboard/transaction/payment-management/make-invoice', [HoaDonController::class, 'make_invoice_customer'])->name('thuchien-lap-hoadon');
+        Route::post('/dashboard/transaction/payment-management/make-invoice/add-vehicle', [HoaDonController::class, 'add_vehicle_invoice'])->name('thuchien-themxe-hoadon');
         
+        Route::post('/dashboard/transaction/payment-management/make-invoice/add-customer', [HoaDonController::class, 'add_customer_invoice'])->name('thuchien-them-nguoidung');
+
+        Route::post('/dashboard/transaction/payment-management/confirm-invoice/{id}', [HoaDonController::class, 'confirm_invoice_customer'])->name('thuchien-xacnhan-hoadon');
+
+        Route::post('/dashboard/transaction/payment-management/destroy-invoice/{id}', [HoaDonController::class, 'destroy_invoice_customer'])->name('thuchien-huy-hoadon');
+
         Route::post('/dashboard/transaction/payment-management/update-payment/{madonhang}/{mand}', [DonHangController::class, 'check_oder_customer'])->name('thuchien-kiemtra-donhang');
         Route::post('/dashboard/transaction/payment-management/cancel-order/{madonhang}', [DonHangController::class, 'destroy_oder_customer'])->name('thuchien-huy-donhang');
+
+        Route::post('/dashboard/transaction/payment-management/export-invoice', [HoaDonController::class,'export_invoice_pdf_dashboard'])->name('xuatfile-pdf-hoadon-dash');
 
     /**
      * ---------- **** ----------

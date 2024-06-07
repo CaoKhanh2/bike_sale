@@ -20,7 +20,7 @@ class DonHangController extends Controller
 
     public function index()
     {
-        $trangthai = 'Đang chờ xử lý';
+        $trangthai = 'Đã hoàn thành';
 
         $donhang = DB::table('donhang')->where('donhang.trangthai', $trangthai)->get();
         $xedangban = DB::table('xedangban')->select('xedangban.*', 'thongtinxe.tenxe')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')->get();
@@ -29,31 +29,31 @@ class DonHangController extends Controller
         return view('dashboard.transaction.selling.index', compact('donhang', 'xedangban'));
     }
 
-    public function view($id)
-    {
-        $donhang_items = DB::table('donhang')->select('thongtinxe.*', 'xedangban.giaban', 'donhang.*')->join('giohang', 'giohang.magh', 'donhang.magh')->join('ctgiohang', 'giohang.magh', 'ctgiohang.magh')->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')->where('donhang.madh', $id)->get();
+    // public function view($id)
+    // {
+    //     $donhang_items = DB::table('donhang')->select('thongtinxe.*', 'xedangban.giaban', 'donhang.*')->join('giohang', 'giohang.magh', 'donhang.magh')->join('ctgiohang', 'giohang.magh', 'ctgiohang.magh')->join('xedangban', 'xedangban.maxedangban', 'ctgiohang.maxedangban')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')->where('donhang.madh', $id)->get();
 
-        $tt_nguoidung = DB::table('nguoidung')->select('nguoidung.*')->join('giohang', 'giohang.mand', 'nguoidung.mand')->join('donhang', 'donhang.magh', 'giohang.magh')->where('donhang.madh', $id)->first();
+    //     $tt_nguoidung = DB::table('nguoidung')->select('nguoidung.*')->join('giohang', 'giohang.mand', 'nguoidung.mand')->join('donhang', 'donhang.magh', 'giohang.magh')->where('donhang.madh', $id)->first();
 
-        return view('dashboard.transaction.selling.order.view', compact('donhang_items', 'tt_nguoidung'));
-    }
+    //     return view('dashboard.transaction.selling.order.view', compact('donhang_items', 'tt_nguoidung'));
+    // }
 
-    public function updateorder(Request $request, $id)
-    {
-        $trangthai = $request->input('order_status');
-        DB::table('donhang')
-            ->where('donhang.madh', $id)
-            ->update(['trangthai' => $trangthai]);
+    // public function updateorder(Request $request, $id)
+    // {
+    //     $trangthai = $request->input('order_status');
+    //     DB::table('donhang')
+    //         ->where('donhang.madh', $id)
+    //         ->update(['trangthai' => $trangthai]);
 
-        return redirect()->route('danhsach-donhang-dangbanxe')->with('success-capnhat-donhang', 'Sản phẩm đã được thêm vào giỏ hàng.');
-    }
+    //     return redirect()->route('danhsach-donhang-dangbanxe')->with('success-capnhat-donhang', 'Sản phẩm đã được thêm vào giỏ hàng.');
+    // }
 
-    public function orderhistory()
-    {
-        $donhang = DB::table('donhang')->where('donhang.trangthai', 'Đã hoàn thành')->orWhere('donhang.trangthai', 'Đã hủy')->get();
+    // public function orderhistory()
+    // {
+    //     $donhang = DB::table('donhang')->where('donhang.trangthai', 'Đã hoàn thành')->orWhere('donhang.trangthai', 'Đã hủy')->get();
 
-        return view('dashboard.transaction.selling.order.history', compact('donhang'));
-    }
+    //     return view('dashboard.transaction.selling.order.history', compact('donhang'));
+    // }
 
     public function detail_infor_payment_1(Request $request, $id)
     {
@@ -109,22 +109,36 @@ class DonHangController extends Controller
             return back()->withErrors($validator)->with('cross-kiemtra-donhang', 'Thông tin đơn hàng chưa được cập nhật!');
         }
         
-
         $tientra = $request->tientra;
+        $manv = Auth::user()->manv;
         $tientra = str_replace(',', '', $tientra);
 
         $donhang = DB::table('donhang')
-            ->select('tongtien', 'ghichu')
+            ->select('tongtien', 'ghichu','magh')
             ->where('madh', $request->madonhang)
             ->first();
+        
+        $chitietgiohang = DB::table('ctgiohang')
+            ->select('xedangban.maxe', 'ctgiohang.dongia')
+            ->join('xedangban', 'ctgiohang.maxedangban', 'xedangban.maxedangban')
+            ->join('thongtinxe', 'thongtinxe.maxe', 'xedangban.maxe')
+            ->where('ctgiohang.magh', $donhang->magh)
+            ->get();
 
-        if ($tientra == $donhang->tongtien) {
+        // Kiểm tra giá tiền nhập vào so với số tiền cần trả
+        if ($tientra == $donhang->tongtien && $donhang->ghichu == null) {
+            $newGhichu = 'Đã thu: ' . $tientra . ', Ngày thu: ' . Carbon::now() . ', Đã hoàn thành';
             DB::table('donhang')
                 ->where('madh', $request->madonhang)
                 ->update([
                     'trangthai' => 'Đã hoàn thành',
-                    'ghichu' => 'Đã thanh toán, ' . Carbon::now(),
+                    'ghichu' => $newGhichu,
                 ]);
+
+            // Thực hiện insert thêm hóa đơn
+            $this->insert_invoice($request->madonhang, $request->mand, $manv, $chitietgiohang);
+
+            return back()->with('success-kiemtra-donhang', 'Đơn hàng số ' . $request->madonhang . ' đã được thanh toán.');
         } elseif ($tientra < $donhang->tongtien) {
             if ($donhang->ghichu == null) {
                 DB::table('donhang')
@@ -140,6 +154,8 @@ class DonHangController extends Controller
 
                 return back()->with('infor-kiemtra-donhang', 'Đã thanh toán ' . $tientra . ' cho đơn hàng mã số ' . $request->madonhang . ' số tiền chưa thanh toán còn ' . $tienconthieu . '.');
             } else {
+
+                // Thực hiện truy vấn dữ liệu trong ghi chú và đưa vào 1 mảng
                 $sum = 0;
                 $ghichuArray = $this->array_ghichu($request->madonhang);
 
@@ -155,7 +171,8 @@ class DonHangController extends Controller
                             'trangthai' => 'Đang chờ xử lý',
                             'ghichu' => $newGhichu,
                         ]);
-
+                    
+                    // Thực hiện truy vấn dữ liệu trong ghi chú và đưa vào 1 mảng
                     $sum = 0;
                     $ghichuArray = $this->array_ghichu($request->madonhang);
 
@@ -167,6 +184,10 @@ class DonHangController extends Controller
                                 ->update([
                                     'trangthai' => 'Đã hoàn thành',
                                 ]);
+                            
+                            // Thực hiện insert thêm hóa đơn
+                            $this->insert_invoice($request->madonhang, $request->mand, $manv, $chitietgiohang);
+                            
                             return back()->with('success-kiemtra-donhang', 'Đơn hàng số ' . $request->madonhang . ' đã được thanh toán.');
                         }
                     }
@@ -528,30 +549,6 @@ class DonHangController extends Controller
         return view('guest-acc.orders.thanks');
     }
 
-    // private function generateUniqueNumericId_momo($length)
-    // {
-    //     $id = $this->generateRandomNumber($length);
-
-    //     // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
-    //     while (DB::table('momo')->where('orderId', $id)->exists()) {
-    //         // Nếu ID đã tồn tại, tạo lại một ID mới
-    //         $id = $this->generateRandomNumber($length);
-    //     }
-
-    //     return $id;
-    // }
-    // private function generateUniqueNumericId_vnpay($length)
-    // {
-    //     $id = $this->generateRandomNumber($length);
-
-    //     // Kiểm tra xem ID đã tồn tại trong cơ sở dữ liệu chưa
-    //     while (DB::table('vnpay')->where('vnp_TxnRef', $id)->exists()) {
-    //         // Nếu ID đã tồn tại, tạo lại một ID mới
-    //         $id = $this->generateRandomNumber($length);
-    //     }
-
-    //     return $id;
-    // }
 
     private function array_ghichu($madonhang)
     {
@@ -584,6 +581,29 @@ class DonHangController extends Controller
         }
 
         return $ghichuArray;
+    }
+
+    private function insert_invoice($madonhang, $mand, $manv, $chitietgiohang){
+        $mahoadon = $this->generateUniqueNumericId_invoice(10);
+        $donhang = DB::table('donhang')->select('tongtien')->where('madh', $madonhang)->first();
+        
+        DB::table('hoadon')->insert([
+            'mahoadon' => $mahoadon,
+            'mand' => $mand,
+            'manv' => $manv,
+            'madh' => $madonhang,
+            'tonggiatrihoadon' => $donhang->tongtien,
+        ]);
+
+        foreach ($chitietgiohang as $i) {
+            DB::table('cthoadon')->insert([
+                'macthoadon' => Str::random(15),
+                'mahoadon' => $mahoadon,
+                'maxe' => $i->maxe,
+                'soluong' => '1',
+                'dongia' => $i->dongia,
+            ]);
+        }
     }
 
     private function generateUniqueNumericId_invoice($length)

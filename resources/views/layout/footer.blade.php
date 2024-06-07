@@ -50,7 +50,7 @@
             </div>
             <div class="container">
                 <div class="row border-top border-dark">
-                    <div class="col-md-4 my-3">
+                    <div class="col-md-5 my-3">
                         <a href="url{{ '/index' }}"
                             class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
                             <img src="{{ asset('Image\logo\logo.png') }}" alt="Logo" width="80"
@@ -59,9 +59,9 @@
                         <p class="text-body-secondary">© 2024</p>
                         <p>Số 1/115 đường Máng Nước, thôn Cái Tắt, Xã An Đồng, Huyện An Dương, Thành phố Hải Phòng</p>
                         <p>Thứ 2 - Chủ nhật: 9:00 - 18:00</p>
-                        <p>Điện thoại: 1900 6750 - Email: support@st.vimaru.ed.vn</p>
+                        <p>Điện thoại: 1900 6750 - Email: xetottoanphuong@gmail.com</p>
                     </div>
-                    <div class="col-md-8 my-3">
+                    <div class="col-md-7 my-3">
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-block text-center">Nhận thông tin khuyễn mãi từ cửa hàng</div>

@@ -22,6 +22,7 @@
                     <div class="card shadow">
                         <p>Mã đơn hàng của bạn: </p>
                         <h3 class="text-center mt-3" style="font-size: 30px"> Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.</h3>
+                        <img src="" alt="">
                         <p class="text-center my-3">Bạn sẽ được nhận được liên hệ từ nhân viên để xác nhận đơn hàng và thời gian nhận hàng của bạn! </p>
                     </div>
                 </div>

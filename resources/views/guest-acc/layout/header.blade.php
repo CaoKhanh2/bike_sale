@@ -90,6 +90,7 @@
     </div>
 </nav>
 
+@if (Auth::guard('guest')->check())
 <script>
     // Hàm để lấy số lượng sản phẩm từ localStorage và hiển thị
     function loadCartCount() {
@@ -126,22 +127,5 @@
         loadCartFromServer();
     };
 </script>
+@endif
 
-{{-- <style>
-    .cart-icon {
-        position: relative;
-        display: inline-block;
-    }
-
-    .cart-count {
-        position: absolute;
-        top: 0;
-        right: 10px;
-        transform: translate(50%, -50%);
-        background-color: #28a745;
-        color: white;
-        padding: 2px 8px;
-        border-radius: 50%;
-        font-size: 0.8rem;
-    }
-</style> --}}
