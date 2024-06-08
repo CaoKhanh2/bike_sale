@@ -17,8 +17,8 @@
 
         {{-- Content --}}
 
-        <div class="row pb-3">
-            <div class="col-md-12">
+        <div class="row pb-3 justify-content-center">
+            <div class="col-md-10">
                 @include('guest-acc.purchasing.posting-item')
             </div>
         </div>

@@ -111,7 +111,6 @@
                 </div>
             </div>
         @endforeach
-
         @foreach ($ct_thongtin_xedapdien as $i)
             <div class="col-sm-4 col-md-8">
                 <div class="row">
