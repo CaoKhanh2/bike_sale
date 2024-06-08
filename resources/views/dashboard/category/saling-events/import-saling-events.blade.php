@@ -33,7 +33,10 @@
     <div class="form-group row">
         <label class="col-sm-12 col-md-2 col-form-label">Tỉ lệ giảm</label>
         <div class="col-sm-12 col-md-10">
-            <input class="form-control" type="number" min="10" max="99" name="tile" required />
+            <div class="input-group">
+                <input class="form-control" type="number" min="10" max="99" name="tile" required>
+                <span class="input-group-text">%</span>
+            </div>
         </div>
     </div>
     <div class="form-group row">
@@ -145,7 +148,7 @@
                 }
             @endforeach
 
-        
+
             dongXeSelect.trigger('change');
         });
         $('#hangxedapdien').on('change', function() {
@@ -158,7 +161,7 @@
                 }
             @endforeach
 
-        
+
             dongXeSelect.trigger('change');
         });
     });

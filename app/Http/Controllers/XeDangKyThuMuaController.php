@@ -62,7 +62,7 @@ class XeDangKyThuMuaController extends Controller
         $giaban = $request->giaban;
         $giaban = str_replace(',', '', $giaban);
         $giaban = (int)$giaban;
-        $ghichu = 'Thông tin liêu hệ: ' . $request->sdt . ' - '. $request->diachi . ' '. 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Thời gian sử dụng: ' . $request->tgsd . ' năm' . ', Mô tả: ' . $request->mota;
+        $ghichu = 'Thông tin liêu hệ: ' . $request->sdt . ' - '. $request->diachi . ', '. 'Loại xe: ' . $request->loaixe . ', Tên hãng: ' . $hangxe->mahx . '-' . $hangxe->tenhang . ', Tên xe: ' . $request->tenxe . ', Số km đã đi: ' . $request->kmdadi . ', Thời gian sử dụng: ' . $request->tgsd . ' năm' . ', Mô tả: ' . $request->mota;
         $imagePathsString = implode(',', $imagePaths);
         $mand = Auth::guard('guest')->user()->mand;
         DB::table('xedangkythumua')->insert([
@@ -153,14 +153,18 @@ class XeDangKyThuMuaController extends Controller
                     break;
             }
         }
+       // dd($info['Loai xe']);
         $hx = explode('-', $info['Ten hang']);
         $hangxe['mahx'] = trim($hx[0]);
         $hangxe['tenhang'] = trim($hx[1]);
         $id = $dtm->madkthumua;
+        $dongxe = DB::table('dongxe')->select('tendongxe','madx')->where('loaixe',$info['Loai xe'])->get();
+        //dd($dongxe);
         return view('dashboard.transaction.purchasing.purchasing-submit-form', [
             'tt' => $info,
             'hangxe' => $hangxe,
             'id' => $id,
+            'dongxe' => $dongxe
 
         ]);
     }
@@ -189,15 +193,13 @@ class XeDangKyThuMuaController extends Controller
                 //'tinhtrang' => $request->tt
             ]);
 
-            return redirect()->route('xedkthumua')->with('success-them-thongtinxe', 'Thông tin xe đã được thêm.');
+            return redirect()->route('xedkthumua')->with('success-them-thongtinxe-thumua', 'Thông tin xe đã được thêm.');
         } elseif ($request->xe == 2) {
             $maxedap = $this->generateUniqueId_bike();
 
             DB::table('thongsokythuatxedapdien')->insert([
                 'matsxedapdien' => 'TS' . $maxedap,
-            ]);
-
-          
+            ]);   
             DB::table('thongtinxe')->insert([
                 'maxe' => $maxedap,
                 'matsxedapdien' => 'TS' . $maxedap,
@@ -208,9 +210,9 @@ class XeDangKyThuMuaController extends Controller
                 'sokmdadi' => $request->sokmdadi,
             ]);
 
-            return redirect()->route('xedkthumua')->with('success-them-thongtinxe', 'Thông tin xe đã được thêm.');
+            return redirect()->route('xedkthumua')->with('success-them-thongtinxe-thumua', 'Thông tin xe đã được thêm.');
         } else {
-            return redirect()->route('xedkthumua')->with('cross-them-thongtinxe', 'Thông tin xe chưa được thêm!');
+            return redirect()->route('xedkthumua')->with('cross-them-thongtinxe-thumua', 'Thông tin xe chưa được thêm!');
         }
     }
 

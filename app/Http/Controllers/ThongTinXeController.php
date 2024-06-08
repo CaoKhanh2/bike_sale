@@ -30,7 +30,7 @@ class ThongTinXeController extends Controller
         $dxdd = DB::select('SELECT dongxe.madx, dongxe.tendongxe, dongxe.loaixe, dongxe.mahx FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx WHERE loaixe = "Xe đạp điện"');
 
         $xedangban = DB::table('thongtinxe')->leftJoin('xedangban', 'thongtinxe.maxe', 'xedangban.maxe')->whereNull('xedangban.maxe')->select('thongtinxe.*')->get();
-
+      
         return view('dashboard.category.vehicle.vehicle-infor', [
             'thongtinxemay' => $ttxm,
             'thongtinxedapdien' => $ttxdd,
@@ -239,7 +239,6 @@ class ThongTinXeController extends Controller
 
         return back()->with('cross-thaydoi-thongtinxe', 'Thông tin chưa được cập nhật thành công!');
     }
-
     /**
      * Remove the specified resource from storage.
      *

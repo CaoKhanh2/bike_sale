@@ -26,7 +26,6 @@
 
         {{-- Banner-2 --}}
         <div class="row justify-content-md-center mt-4" id="banner-2">
-            {{-- <div class="full-image" style="background-image: url('{{ asset('Image/Banner/63e1d192789c7.jpg') }}');"> --}}
             <img src="{{ asset('Image/Banner/63e1d192789c7.jpg') }}" alt="" class="img-fluid mx-auto d-block">
         </div>
         {{-- End --}}
@@ -36,13 +35,6 @@
             @include('home-page.car-brand')
         </div>
         {{-- End --}}
-
-        {{-- Tin tức --}}
-            {{-- <div class="row justify-content-md-center mt-4">
-                @include('home-page.news')
-            </div> --}}
-        {{-- End --}}
-
     </div>
 
 

@@ -9,7 +9,25 @@
 
 
 @section('main')
-
+    @if (Session::has('success-them-thongtinxe'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-them-thongtinxe-thumua') }}",
+            });
+        </script>
+    @elseif(Session::has('cross-them-thongtinxe'))
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('cross-them-thongtinxe-thumua') }}",
+            });
+        </script>
+    @endif
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             {{-- Page Header --}}
@@ -56,16 +74,33 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                            <div class="col-sm-12 col-md-10">
+                                <select class="custom-select col-12" id="vehicle" name="xe">
+                                    @foreach ($dongxe as $i)
+                                        <option value="{{ $i->madx }}">{{ $i->tendongxe }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
                                 dụng</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tgsd" value="{{ $tt['tgsd'] }}" />
+                                <input class="form-control" name="tgsd" value="{{ $tt['tgsd'] }}" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi'] }}" />
+                                <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi'] }}"
+                                    required />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="tinhtrangxe" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -79,7 +114,6 @@
                             <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
                         </div>
                     </div>
-
                 </form>
                 {{-- Het --}}
                 {{-- Thong tin xe dap dien --}}
@@ -93,9 +127,26 @@
                     </div>
                     <div id="form2" style="display: none;">
                         <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" value="{{ $hangxe['tenhang'] }}" readonly />
+                                <input class="form-control" name="hx" value="{{ $hangxe['mahx'] }}" hidden />
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
                             <div class="col-sm-12 col-md-10">
                                 <input class="form-control" name="tx" value="{{ $tt['Ten xe'] }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                            <div class="col-sm-12 col-md-10">
+                                <select class="custom-select col-12" id="vehicle" name="xe" required>
+                                    @foreach ($dongxe as $i)
+                                        <option value="{{ $i->madx }}">{{ $i->tendongxe }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -106,16 +157,23 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" name="tinhtrangxe" required />
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi'] }}" />
+                                <input class="form-control" type="number" name="sokmdadi"
+                                    value="{{ $tt['kmdadi'] }}" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
                             <div class="col-sm-12 col-md-10">
                                 <input class="form-control" name="giaban" oninput="formatCurrency(this)"
-                                    oninput="limitLength(this,11)" />
+                                    oninput="limitLength(this,11)" required />
                             </div>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -134,7 +192,6 @@
             } else {
                 $('#vehicle').val('2');
             }
-
             $('#vehicle').change(function() {
                 var selectedValue = $(this).val();
                 if (selectedValue == 1) {
@@ -151,6 +208,7 @@
             $('#vehicle').trigger('change');
         });
     </script>
+
     <script>
         function formatCurrency(input) {
             // Remove any non-numeric characters except for the decimal point

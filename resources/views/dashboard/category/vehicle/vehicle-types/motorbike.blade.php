@@ -78,7 +78,7 @@
                     @endif
 
                     @if ($check_xedangban == true)
-                        <a type="button" class="btn btn-info disabled"
+                        <a type="button" class="btn btn btn-secondary disabled"
                             href="{{ route('xedangban1-thongtinxe', ['maxe' => $i->maxe]) }}" aria-disabled="true">
                             <i class="bi bi-postcard"></i> Đăng bán
                         </a>

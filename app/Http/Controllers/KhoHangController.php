@@ -284,7 +284,8 @@ class KhoHangController extends Controller
     {
         $thongtinxe = DB::table('thongtinxe')
             ->leftJoin('ctkhohang', 'thongtinxe.maxe', '=', 'ctkhohang.maxe') // Lấy dữ liệu ở phía bảng thongtinxe
-            ->whereNull('ctkhohang.maxe') //Chỉ lấy các kết quả trong bảng thongtinxe mà bên phía bên bảng ctkhohang không có
+            ->whereNull('ctkhohang.maxe')
+            ->whereNotNull('thongtinxe.madx') //Chỉ lấy các kết quả trong bảng thongtinxe mà bên phía bên bảng ctkhohang không có
             ->select('thongtinxe.*')
             ->get();
         $khohang = DB::table('khohang')->get();

@@ -30,15 +30,18 @@ class KhuyenMaiController extends Controller
     }
     public function store(Request $request)
     {
+        // $a = implode(",",$request->hangxemay);
+        // dd($a);
         if (!empty($request->xemay) || !empty($request->xedapdien)) {
             $query = DB::table('xedangban')->select('xedangban.maxedangban')->join('thongtinxe', 'thongtinxe.maxe', 'xedangban.maxe')->join('dongxe', 'thongtinxe.madx', 'dongxe.madx');
-
+            $xm = $request->xemay;
+            $xd = $request->xedapdien;
             $query->where(function ($query) use ($request) {
                 if (!empty($request->xemay)) {
                     $query->where('dongxe.loaixe', 'Xe máy');
-
                     if (!empty($request->hangxemay)) {
                         $query->whereIn('dongxe.mahx', $request->hangxemay);
+                    
                     }
 
                     if (!empty($request->dongxemay)) {
@@ -59,13 +62,26 @@ class KhuyenMaiController extends Controller
                     }
                 }
             });
+            if (!empty($request->hangxemay)) {
+                $xm = $xm .', Hãng xe: ' . implode(",",$request->hangxemay);
+            }
+            if (!empty($request->dongxemay)) {
+                $xm = $xm .', Dòng xe: ' . implode(",",$request->dongxemay);
+            }
+            if (!empty($request->hangxedapdien)) {
+                $xd = $xd .', Hãng xe: ' . implode(",",$request->hangxedapdien);
+            }
+            if (!empty($request->dongxedapdien)) {
+                $xd = $xd .', Dòng xe: ' . implode(",",$request->dongxedapdien);
+            }
+            $data = $xm . ' ,' . $xd;
             $maxedangban = $query->pluck('maxedangban')->toArray();
             //dd($maxedangban);
 
             DB::table('khuyenmai')->insert([
                 'makhuyenmai' => $request->makhuyemai,
                 'tenkhuyenmai' => $request->tenkhuyenmai,
-                //'dieukienapdung' => $maxedangban,
+                'dieukienapdung' => $data,
                 'tilegiamgia' => $request->tile,
                 'motakhuyenmai' => $request->mota,
                 'thoigianbatdau' => $request->ngaybatdau,

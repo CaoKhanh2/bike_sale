@@ -79,7 +79,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3" 
                         name="duyetdon" formaction="{{ route('duyetdonthumua', ['id' => $dtm->madkthumua]) }}">Duyệt đơn</button>
