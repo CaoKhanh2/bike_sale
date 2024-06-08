@@ -26,7 +26,7 @@
         <div class="row justify-content-center">
             <div class="col-xl">
                 <div class="container mt-3">
-                    <form action="{{ route('dathang-Guest') }}" method="POST">
+                    <form>
                         @csrf
                         <div class="row">
                             <div class="col-md-5">
@@ -39,7 +39,7 @@
                                                 <label for="hovaten">Họ và tên</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ Auth::guard('guest')->user()->hovaten }}" name="hovaten"
-                                                    id="hovaten" placeholder="Nhập họ tên">
+                                                    id="hovaten" placeholder="Nhập họ tên" required>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="gioitinh">Giới tính</label>
@@ -57,11 +57,11 @@
                                                 <label for="sdt">Số điện thoại</label>
                                                 <input type="text" class="form-control"
                                                     value="{{ Auth::guard('guest')->user()->sodienthoai }}" name="sdt"
-                                                    id="sdt" placeholder="Nhập số điện thoại">
+                                                    id="sdt" placeholder="Nhập số điện thoại" required>
                                             </div>
                                             <div class="col-md-12 mt-3">
                                                 <label for="diachi">Địa chỉ</label>
-                                                <textarea class="form-control" name="diachi" id="diachi" cols="30" rows="4">{{ Auth::guard('guest')->user()->diachi }}</textarea>
+                                                <textarea class="form-control" name="diachi" id="diachi" cols="30" rows="4" required>{{ Auth::guard('guest')->user()->diachi }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -104,10 +104,10 @@
                                             @endif
                                         @endforeach
                                         <input type="text" value="{{ $res }}" name="magh" hidden>
-                                        <button type="submit" name="cod" class="btn btn-info w-100 mb-3">Đặt
+                                        <button type="submit" formaction="{{ route('dathang-Guest') }}" formmethod="POST" class="btn btn-info w-100 mb-3">Đặt
                                             hàng</button>
                                         {{-- <button type="submit" name="payUrl" class="btn btn-danger w-100 mb-3">Momo</button> --}}
-                                        <button type="submit" name="redirect"
+                                        <button type="submit" formaction="{{ route('dathang-vnpay-Guest') }}" formmethod="POST"
                                             class="btn btn-primary w-100 d-flex justify-content-center align-items-center p-2">
                                             <img src="{{ asset('/Image/Icon/icon-vnpay.svg') }}" alt="VNPay Icon"
                                                 class="btn-icon" width="80" height="40">

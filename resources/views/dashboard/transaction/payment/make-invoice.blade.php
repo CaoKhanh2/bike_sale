@@ -9,16 +9,16 @@
 
 @section('main')
 
-    {{-- @if (Session::has('success-them-xedangban'))
+    @if (Session::has('success-create-customer-inInvoice'))
         <script>
             Swal.fire({
                 icon: "success",
                 title: "Thông báo",
                 position: "center",
-                text: "{{ Session::get('success-them-xedangban') }}",
+                text: "{{ Session::get('success-create-customer-inInvoice') }}",
             });
         </script>
-    @endif --}}
+    @endif
     @if (Session::has('success-huy-donhang'))
         <script>
             Swal.fire({
@@ -135,7 +135,7 @@
                                     formmethod="POST" class="btn btn-primary">
                                     <i class="bi bi-check-lg"></i> Thêm
                                 </button>
-                                <button type="submit" formaction="" class="btn btn-primary">
+                                <button type="submit" formaction="{{ route('taomoi-nguoidung-hoadon') }}" formmethod="GET" class="btn btn-primary">
                                     <i class="bi bi-person-plus"></i> Tạo mới
                                 </button>
                             </div>

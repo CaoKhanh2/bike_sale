@@ -36,6 +36,10 @@
                                             <div class="badge badge-pill bg-warning">
                                                 Đã hủy
                                             </div>
+                                            @elseif($item->trangthai == 'Đang chờ xử lý')
+                                            <div class="badge badge-pill bg-warning">
+                                                Đang chờ xử lý
+                                            </div>
                                             @else
                                             <div class="badge badge-pill bg-success">
                                                 Đã hoàn thành

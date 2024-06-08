@@ -120,7 +120,7 @@
             method: "GET",
             url: '/load-cart-data',
             success: function(response) {
-                console.log(response.count);
+                // console.log(response.count);
                 localStorage.setItem('cartCount', response.count);
                 document.getElementById('cart-count').innerText = response.count;
             }

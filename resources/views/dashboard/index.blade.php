@@ -1,8 +1,10 @@
 @extends('dashboard.layout.content')
 @section('title_ds', 'Dashboard')
 
+@php
+    Session::forget('check');
+@endphp
 @section('main')
-
     <div class="main-container">
         @include('dashboard.modal-dash.success-login')
         <div class="pd-ltr-20">
@@ -24,9 +26,9 @@
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{$sl_kh}}</div>
+                                <div class="weight-700 font-24 text-dark">{{ $sl_kh }}</div>
                                 <div class="font-14 text-dark weight-500">
-                                   Khách hàng
+                                    Khách hàng
                                 </div>
                             </div>
                             <div class="widget-icon">
@@ -41,7 +43,7 @@
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{$sl_dtm}}</div>
+                                <div class="weight-700 font-24 text-dark">{{ $sl_dtm }}</div>
                                 <div class="font-14 text-dark weight-500">
                                     Đơn thu mua chưa duyệt
                                 </div>
@@ -58,17 +60,14 @@
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{$sl_xedb}}</div>
+                                <div class="weight-700 font-24 text-dark">{{ $sl_xedb }}</div>
                                 <div class="font-14 text-secondary weight-500">
-                                   Xe đang bán
+                                    Xe đang bán
                                 </div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon">
-                                    <i
-                                        class="icon-copy fa fa-motorcycle"
-                                        aria-hidden="true"
-                                    ></i>
+                                    <i class="icon-copy fa fa-motorcycle" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +77,7 @@
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{number_format($tt, 0, '', ',') . ' đ' }}</div>
+                                <div class="weight-700 font-24 text-dark">{{ number_format($tt, 0, '', ',') . ' đ' }}</div>
                                 <div class="font-14 text-dark weight-500">Doanh thu tháng này</div>
                             </div>
                             <div class="widget-icon">
@@ -92,11 +91,16 @@
                 <div class="col-xl-3 mb-30">
                     <div class="card-box height-100-p widget-style1">
                         <div class="text-center">
-                            <a href="{{ route('thongtinxe-index')}}"> <button class="btn btn-outline-dark mb-3 col-12">Thêm thông tin xe </button></a>
-                            <a href="{{ route('xedangban2-thongtinxe')}}"> <button class="btn btn-outline-dark mb-3 col-12">Đăng bán xe</button></a>
-                            <a href="{{ route('xedkthumua')}}"> <button class="btn btn-outline-dark mb-3 col-12">Duyệt đơn thu mua</button></a>
-                            <a href="{{ route('thongtinkhohang')}}"> <button class="btn btn-outline-dark mb-3 col-12">Kiểm tra kho hàng</button></a>
-                            <a href="#"> <button class="btn btn-outline-dark mb-3 col-12">Quản lý thanh toán</button></a>
+                            <a href="{{ route('thongtinxe-index') }}"> <button class="btn btn-outline-dark mb-3 col-12">Thêm
+                                    thông tin xe </button></a>
+                            <a href="{{ route('xedangban2-thongtinxe') }}"> <button
+                                    class="btn btn-outline-dark mb-3 col-12">Đăng bán xe</button></a>
+                            <a href="{{ route('xedkthumua') }}"> <button class="btn btn-outline-dark mb-3 col-12">Duyệt đơn
+                                    thu mua</button></a>
+                            <a href="{{ route('thongtinkhohang') }}"> <button class="btn btn-outline-dark mb-3 col-12">Kiểm
+                                    tra kho hàng</button></a>
+                            <a href="#"> <button class="btn btn-outline-dark mb-3 col-12">Quản lý thanh
+                                    toán</button></a>
                         </div>
                     </div>
                 </div>
@@ -108,25 +112,24 @@
                         <table class="table table-bordered table-striped border-dark">
                             <thead class="text-center">
                                 <th>Mã xe</th>
-                              
                                 <th>Tên xe</th>
                                 <th>Giá bán</th>
                             </thead>
                             <tbody class="text-center">
-                                @foreach($xe as $i)
-                                <tr>
-                                <td>{{$i->maxe}}</td>
-                            
-                                <td>{{$i->tenxe}}</td>
-                                <td>{{$i->giaban}}</td>
-                                </tr>
+                                @foreach ($xe as $i)
+                                    <tr>
+                                        <td>{{ $i->maxe }}</td>
+
+                                        <td>{{ $i->tenxe }}</td>
+                                        <td>{{ number_format($i->giaban, 0, '', ',') . ' đ' }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 

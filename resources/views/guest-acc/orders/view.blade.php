@@ -37,11 +37,13 @@
                                     <input class="form-control" type="text" value="{{ $tt_nguoidung->diachi }}" id="email" disabled>
                                 </div>
                                 <div class="my-4">
-                                    <form action="{{ route('xuatfile-pdf-hoadon') }}" method="POST">
-                                        @csrf
-                                        <input type="text" name="madh" value="{{ $donhang_infor->madh }}" hidden>
-                                        <button type="submit" class="btn btn-primary">In hóa đơn</button>
-                                    </form>
+                                    @if ($donhang_infor->trangthai == 'Đã hoàn thành')
+                                        <form action="{{ route('xuatfile-pdf-hoadon') }}" method="POST">
+                                            @csrf
+                                            <input type="text" name="madh" value="{{ $donhang_infor->madh }}" hidden>
+                                            <button type="submit" class="btn btn-primary">In hóa đơn</button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-6">

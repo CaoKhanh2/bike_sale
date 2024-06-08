@@ -29,10 +29,40 @@ class NguoiDungController extends Controller
         return view('dashboard.category.customer.customer-info', ['nguoidung' => $nd]);
     }
 
-    public function create()
+    public function show_for_invoice($id)
     {
+        $nd = DB::table('nguoidung')->where('mand', $id)->first();
+        return view('/dashboard/category/customer/create-info-customer', ['nd' => $nd]);
     }
 
+    public function create_for_invoice(){
+        $mand = $this->generateUniqueNumericId_guest(7);
+        DB::table('nguoidung')->insert([
+            'mand' => $mand,
+            'tinhtrang' => '1',
+        ]);
+
+        return redirect()->route('hienthi-thongtin-nd-hoadon',['id'=>$mand]);
+    }
+
+    public function update_for_invoice(Request $request, $id)
+    {
+        if ($id) {
+            DB::table('nguoidung')
+                ->where('mand', $id)
+                ->update([
+                    'hovaten' => $request->hoten,
+                    'ngaysinh' => $request->ngsinh,
+                    'cccd' => $request->cccd,
+                    'gioitinh' => $request->gt,
+                    'sodienthoai' => $request->sdt,
+                    'email' => $request->email,
+                    'diachi' => $request->dc,
+                ]);
+
+            return redirect()->route('thuchien-lap-hoadon')->with('success-create-customer-inInvoice', 'Thông tin của khách hàng mới đã được thêm!');
+        }
+    }
 
     public function store(Request $request)
     {
@@ -401,8 +431,6 @@ class NguoiDungController extends Controller
         $donhang = DB::table('donhang')
                 ->select('donhang.*')
                 ->join('giohang', 'giohang.magh', 'donhang.magh')
-                ->where('giohang.mand', $mand)
-                ->where('donhang.trangthai', "Đã hoàn thành")
                 ->where('giohang.mand', $mand)
                 ->get();
 

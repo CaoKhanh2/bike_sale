@@ -199,8 +199,58 @@ class XeDangBanController extends Controller
             ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
             ->where('thongtinxe.maxe', $id)
             ->get();
+            
 
-        return view('sale-page', compact('ct_thongtin_xemay', 'ct_thongtin_xedapdien'));
+        $thongtin_xemay = DB::table('xedangban')
+            ->select(
+                'xedangban.*',
+                'xedangban.giaban as giagoc',
+                'thongtinxe.*',
+                'thongsokythuatxemay.*',
+                'dongxe.tendongxe',
+                'dongxe.loaixe',
+                'hangxe.tenhang',
+                'khuyenmai.motakhuyenmai',
+                'tilegiamgia',
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                    ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                END AS giaban'),
+            )
+            ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+            ->join('thongsokythuatxemay', 'thongtinxe.matsxemay', 'thongsokythuatxemay.matsxemay')
+            ->join('dongxe', 'thongtinxe.madx', 'dongxe.madx')
+            ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
+            ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('xedangban.trangthai','Còn xe')
+            ->get();
+
+        $thongtin_xedapdien = DB::table('xedangban')
+            ->select(
+                'xedangban.*',
+                'xedangban.giaban as giagoc',
+                'thongtinxe.*',
+                'thongsokythuatxedapdien.*',
+                'dongxe.tendongxe',
+                'dongxe.loaixe',
+                'hangxe.tenhang',
+                'khuyenmai.motakhuyenmai',
+                'tilegiamgia',
+                DB::raw('CASE WHEN xedangban.makhuyenmai IS NULL OR khuyenmai.thoigianbatdau > now() OR khuyenmai.thoigianketthuc < now() THEN xedangban.giaban
+                    ELSE xedangban.giaban - (xedangban.giaban * tilegiamgia / 100)
+                END AS giaban'),
+            )
+            ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+            ->join('thongsokythuatxedapdien', 'thongtinxe.matsxedapdien', 'thongsokythuatxedapdien.matsxedapdien')
+            ->join('dongxe', 'thongtinxe.madx', 'dongxe.madx')
+            ->join('hangxe', 'dongxe.mahx', 'hangxe.mahx')
+            ->leftJoin('khuyenmai', 'xedangban.makhuyenmai', 'khuyenmai.makhuyenmai')
+            ->where('xedangban.trangthai','Còn xe')
+            ->get();
+        
+        $thongtin_xemay_array = $thongtin_xemay->toArray();
+        $thongtin_xedapdien_array = $thongtin_xedapdien->toArray();
+        
+        return view('sale-page', compact('ct_thongtin_xemay', 'ct_thongtin_xedapdien', 'thongtin_xemay_array','thongtin_xedapdien_array'));
     }
 
     public function index_post_sale_1(Request $request)

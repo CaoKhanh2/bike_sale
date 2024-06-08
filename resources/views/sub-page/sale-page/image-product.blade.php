@@ -109,6 +109,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         @endforeach
 
         @foreach ($ct_thongtin_xedapdien as $i)
@@ -169,6 +170,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         @endforeach
 
         {{-- <div class="col-6 col-md-4"></div> --}}

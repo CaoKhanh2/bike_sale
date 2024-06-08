@@ -41,9 +41,6 @@
                     <div class="d-grid gap-2 col-6 mx-auto my-4">
                         <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                     </div>
-                    <div class="d-grid gap-2 col-6 mx-auto my-4">
-                        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
-                    </div>
                     <!-- Register buttons -->
                     <div class="text-center">
                         <p>Chưa có tài khoản? <a href="{{ route('thuchien-dangky-Guest') }}">Đăng ký tài khoản mới</a>
