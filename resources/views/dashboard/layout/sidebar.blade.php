@@ -89,7 +89,7 @@
 </div>
 
 <div class="left-side-bar">
-    <div class="brand-logo">
+    <div class="brand-logo d-flex flex-column align-items-center justify-content-center text-center">
         <a href="">
             <img src="{{ asset('Image\logo\logo.png') }}" alt="" width="80" height="70"
                 class="rounded-circle dark-logo" />

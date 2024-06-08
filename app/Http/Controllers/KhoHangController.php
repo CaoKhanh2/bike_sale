@@ -38,17 +38,18 @@ class KhoHangController extends Controller
         return view('dashboard.category.warehouse.warehouse-infor', compact('kho', 'ttkho', 'maphieuxuat', 'thongtinphieuxuat', 'thongtinphieunhap'));
     }
 
-    public function index_add_warehouse(){ 
-
-        return view('dashboard.category.warehouse.add-warehouse'); 
+    public function index_add_warehouse()
+    {
+        return view('dashboard.category.warehouse.add-warehouse');
     }
 
-    public function add_warehouse(Request $request){
+    public function add_warehouse(Request $request)
+    {
         $rs = $request->validate(
             [
                 'makho' => 'required|unique:khohang|max:5',
                 'tenkho' => 'required|max:25',
-                'diachi' => 'required|max:50'
+                'diachi' => 'required|max:50',
             ],
             [
                 'makho.required' => 'Bạn chưa nhập thông tin mã kho!',
@@ -57,24 +58,22 @@ class KhoHangController extends Controller
 
                 'tenkho.required' => 'Bạn chưa nhập thông tin tên kho hàng!',
                 'tenkho.max' => 'Tên kho hàng không được vượt quá 25 ký tự!',
-                
+
                 'diachi.required' => 'Bạn chưa nhập thông tin địa chỉ kho hàng!',
                 'diachi.max' => 'Địa chỉ không được vượt quá 50 ký tự!',
-            ]
+            ],
         );
 
-        if($rs){
+        if ($rs) {
             DB::table('khohang')->insert([
-            
                 'makho' => $request->makho,
                 'tenkhohang' => $request->tenkho,
                 'diachi' => $request->diachi,
             ]);
             return back()->with('success-them-khohang', 'Kho hàng được thêm mới thành công!');
-        }else {
+        } else {
             return back()->withInput();
         }
-
     }
 
     public function mutil_index_export(Request $request)
@@ -277,7 +276,8 @@ class KhoHangController extends Controller
 
         $pdf = PDF::loadView('dashboard.category.warehouse.receipt-export.export.export-a4', $data);
 
-        return $pdf->stream('myPDF.pdf');
+        return $pdf->stream('export');
+
     }
 
     public function mutil_index_receipt()
@@ -359,7 +359,7 @@ class KhoHangController extends Controller
                     'soluong' => $data['soluong'][$i],
                     'gianhapkho' => $data['gianhapkho'][$i],
                     'ngaynhapkho' => $ngaynhapkho->ngaynhap,
-                    'trangthai' => "Còn trong kho",
+                    'trangthai' => 'Còn trong kho',
                 ]);
 
                 DB::table('ctphieunhap')->insert([
@@ -431,7 +431,7 @@ class KhoHangController extends Controller
             ->first();
 
         $data = [
-            'title' => 'Thông tin Phiếu Xuất',
+            'title' => 'Thông tin Phiếu Nhập',
             'phieunhap' => $phieunhap,
             'ct_phieunhap' => $ct_phieunhap,
             'ttkho' => $ttkho,
@@ -441,7 +441,10 @@ class KhoHangController extends Controller
 
         $pdf = PDF::loadView('dashboard.category.warehouse.receipt-export.receipt.receipt-a4', $data);
 
-        return $pdf->stream('myPDF.pdf');
+        return $pdf->stream('receipt.pdf');
+
+        // return Pdf::loadFile(public_path().view('dashboard.category.warehouse.receipt-export.receipt.receipt-a4'))->stream('download.pdf');
+
     }
 
     private function generateUniqueNumericId_detail_warehouse($length)

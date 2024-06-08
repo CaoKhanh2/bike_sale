@@ -26,7 +26,7 @@
                                 <h4 class="text-blue h4"></h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <a href="{{ route('thongtinkhohang') }}" class="btn btn-warning">Quay lại</a>
+                                <a href="{{ url()->previous() }}" class="btn btn-warning">Quay lại</a>
                             </div>
                         </div>
                     </div>

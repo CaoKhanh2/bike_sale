@@ -7,11 +7,11 @@
     <title>@yield('title_ds')</title>
 
     <!-- Site favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('dashboard_src/vendors/images/apple-touch-icon.png') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('Image/logo/logo.png') }}" />
     <link rel="icon" type="image/png" sizes="32x32"
-        href="{{ asset('dashboard_src/vendors/images/favicon-32x32.png') }}" />
+        href="{{ asset('Image/logo/logo.pngg') }}" />
     <link rel="icon" type="image/png" sizes="16x16"
-        href="{{ asset('dashboard_src/vendors/images/favicon-16x16.png') }}" />
+        href="{{ asset('Image/logo/logo.png') }}" />
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -110,7 +110,7 @@
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('dashboard_src/vendors/scripts/dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard_src/vendors/scripts/dashboard.js') }}"></script> --}}
 
     <!-- switchery js -->
     <script src="{{ asset('dashboard_src/src/plugins/switchery/switchery.min.js') }}"></script>
@@ -122,10 +122,10 @@
     <!-- buttons for Export datatable -->
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('dashboard_src/src/plugins/datatables/js/buttons.print.min.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard_src/src/plugins/datatables/js/buttons.print.min.js') }}"></script> --}}
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('dashboard_src/src/plugins/datatables/js/pdfmake.min.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard_src/src/plugins/datatables/js/pdfmake.min.js') }}"></script> --}}
     <script src="{{ asset('dashboard_src/src/plugins/datatables/js/vfs_fonts.js') }}"></script>
     <!-- Datatable Setting js -->
     <script src="{{ asset('dashboard_src/vendors/scripts/datatable-setting.js') }}"></script>

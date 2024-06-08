@@ -46,6 +46,7 @@
                             </li> --}}
                         </ul>
                         <div class="tab-content">
+                            {{-- Xe đăng bán --}}
                             <div class="tab-pane fade show active" id="table1" role="tabpanel">
                                 <div class="row">
                                     <div class="col-md-12">
