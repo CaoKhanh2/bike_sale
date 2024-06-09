@@ -9,25 +9,6 @@
 
 
 @section('main')
-    @if (Session::has('success-them-thongtinxe'))
-        <script>
-            Swal.fire({
-                icon: "success",
-                title: "Thông báo",
-                position: "center",
-                text: "{{ Session::get('success-them-thongtinxe-thumua') }}",
-            });
-        </script>
-    @elseif(Session::has('cross-them-thongtinxe'))
-        <script>
-            Swal.fire({
-                icon: "error",
-                title: "Thông báo",
-                position: "center",
-                text: "{{ Session::get('cross-them-thongtinxe-thumua') }}",
-            });
-        </script>
-    @endif
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             {{-- Page Header --}}
@@ -76,7 +57,7 @@
                         <div class="form-group row">
                             <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
                             <div class="col-sm-12 col-md-10">
-                                <select class="custom-select col-12" id="vehicle" name="xe">
+                                <select class="custom-select col-12" id="vehicle" name="dx">
                                     @foreach ($dongxe as $i)
                                         <option value="{{ $i->madx }}">{{ $i->tendongxe }}</option>
                                     @endforeach
@@ -139,10 +120,10 @@
                                 <input class="form-control" name="tx" value="{{ $tt['Ten xe'] }}" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row"> 
                             <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
                             <div class="col-sm-12 col-md-10">
-                                <select class="custom-select col-12" id="vehicle" name="xe" required>
+                                <select class="custom-select col-12" id="vehicle" name="dx" required>
                                     @foreach ($dongxe as $i)
                                         <option value="{{ $i->madx }}">{{ $i->tendongxe }}</option>
                                     @endforeach

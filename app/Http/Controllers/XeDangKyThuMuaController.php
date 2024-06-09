@@ -109,10 +109,11 @@ class XeDangKyThuMuaController extends Controller
         Mail::to($mail)->send(new ThongBaoTuChoiXeThuMuaMail($dtm,$acc));
         return redirect()->route('xedkthumua');
     }
-    public function dondep()
-    {
-        $del = DB::table('xedangkythumua')->where('ngaydk')->delete();
-    }
+    // public function dondep1()
+    // {
+    //     DB::table('xedangkythumua')->whereRaw('DATEDIFF(ngayduyet,CURDATE())' > 92 )->delete();
+    //     return redirect()->back();
+    // }
     public function add_bike($id)
     {
         $dtm = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('madkthumua', $id)->first();

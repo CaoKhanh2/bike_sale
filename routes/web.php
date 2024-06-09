@@ -412,7 +412,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
             Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/{id}', [XeDangKyThuMuaController::class, 'show'])->name('ctthongtinmua'); // Xem chi tiết đơn thu mua
             Route::get('/dashboard/transaction/purchasing/purchasing-bike-detail/add/{id}', [XeDangKyThuMuaController::class, 'add_bike'])->name('themxe-xethumua'); // Xem chi tiết đơn thu mua
             Route::post('/dashboard/transaction/purchasing/purchasing-bike-detail/add/accepted/{id}', [XeDangKyThuMuaController::class,'store2'])->name('themxe-xethumua-accepted'); // Xem chi tiết đơn thu mua
-
+           // Route::get('/dashboard/transaction/purchasing/purchasing-bike/delete',[XeDangKyThuMuaController::class, 'dondep1'])->name('xetmdahuy-xoa');
     // ---------- **** ----------
 
     // ---------- Tiến trình bán xe ----------

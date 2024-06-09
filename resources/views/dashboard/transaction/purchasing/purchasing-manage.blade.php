@@ -165,7 +165,8 @@
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="text">Danh sách đăng ký thu mua
-    
+                                                    {{-- <a href="{{ route('xetmdahuy-xoa') }}"
+                                                    class="btn btn-warning float-right">Dọn dẹp đơn quá 30 ngày</a> --}}
                                                 </h4>
                                             </div>
                                             <div class="card-body table-responsive">
