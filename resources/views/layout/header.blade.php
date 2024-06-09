@@ -50,13 +50,12 @@
                             <li class="nav-item position-relative">
                                 <a class="nav-link active" aria-disabled="true" href="{{ url('/cart-index') }}">
                                     <img src="{{ asset('Image\Icon\icons8-cart-94.png') }}" width="30"
-                                    height="24" class="img-fluid mx-auto d-block">
-                                    <span class="text-center mx-auto d-block"> 
+                                        height="24" class="img-fluid mx-auto d-block">
+                                    <span class="text-center mx-auto d-block">
                                         Giỏ hàng
                                     </span>
                                     <div class="text-center mx-auto d-block">
-                                        <span id="cart-count"
-                                            class="badge rounded-pill text-bg-success">
+                                        <span id="cart-count" class="badge rounded-pill text-bg-success">
                                         </span>
                                     </div>
                                 </a>
@@ -73,11 +72,12 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('thongtin-Guest') }}">Thông tin tài
                                             khoản</a></li>
-                                   
                                     <li><a class="dropdown-item" href="{{ route('khach-donhang') }}">Lịch sử đơn
                                             hàng</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('khach-banxe') }}">Lịch sử bán xe</a></li>
-                                    <li><a class="dropdown-item" href="{{url('/support')}}">Hỗ trợ khách hàng</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('khach-banxe') }}">Lịch sử bán xe</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ url('/support') }}">Hỗ trợ khách hàng</a>
+                                    </li>
                                     <li>
                                         <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}"
                                             class="mb-0">
@@ -145,41 +145,39 @@
             </div>
         </div>
     </div>
-</section>
+    @if (Auth::guard('guest')->check())
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Hàm để lấy số lượng sản phẩm từ localStorage và hiển thị
+                function loadCartCount() {
+                    let cartCount = localStorage.getItem('cartCount');
+                    let cartCountElement = document.getElementById('cart-count');
 
-@if (Auth::guard('guest')->check())
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Hàm để lấy số lượng sản phẩm từ localStorage và hiển thị
-            function loadCartCount() {
-                let cartCount = localStorage.getItem('cartCount');
-                let cartCountElement = document.getElementById('cart-count');
-
-                if (cartCountElement) {
-                    if (cartCount) {
-                        cartCountElement.innerText = cartCount;
-                    } else {
-                        cartCountElement.innerText = 0;
+                    if (cartCountElement) {
+                        if (cartCount) {
+                            cartCountElement.innerText = cartCount;
+                        } else {
+                            cartCountElement.innerText = 0;
+                        }
                     }
                 }
-            }
 
-            // Hàm để tải số lượng sản phẩm từ server và hiển thị
-            function loadCartFromServer() {
-                $.ajax({
-                    method: "GET",
-                    url: '/load-cart-data',
-                    success: function(response) {
-                        console.log(response.count);
-                        localStorage.setItem('cartCount', response.count);
-                        document.getElementById('cart-count').innerText = response.count;
-                    }
-                });
-            }
+                // Hàm để tải số lượng sản phẩm từ server và hiển thị
+                function loadCartFromServer() {
+                    $.ajax({
+                        method: "GET",
+                        url: '/load-cart-data',
+                        success: function(response) {
+                            localStorage.setItem('cartCount', response.count);
+                            document.getElementById('cart-count').innerText = response.count;
+                        }
+                    });
+                }
 
-            // Gọi hàm loadCartCount khi trang được tải
-            loadCartCount();
-            loadCartFromServer();
-        });
-    </script>
-@endif
+                // Gọi hàm loadCartCount khi trang được tải
+                loadCartCount();
+                loadCartFromServer();
+            });
+        </script>
+    @endif
+</section>

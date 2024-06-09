@@ -9,16 +9,18 @@
     <style>
         body {
             font-family: "DejaVu Sans", sans-serif;
+            font-size: 12px
         }
 
         .invoice-wrap {
             max-width: 800px;
             margin: 0 auto;
             background-color: #fff;
+            padding: 10px;
         }
 
         .invoice-box {
-            padding: 30px;
+            padding: 10px;
         }
 
         .invoice-header {
@@ -32,6 +34,10 @@
 
         .text-right {
             text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
         }
 
         .mb-30 {
@@ -91,25 +97,21 @@
             float: left;
         }
 
-        .word-table{
+        .word-table {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
-        }
-
-        .invoice-desc {
             margin-top: 30px;
         }
 
         .bordered-table th,
         .bordered-table td {
-            border: 0px solid #ffffff;
+            border: 0px solid #000;
             padding: 8px;
             text-align: center;
         }
 
         .bordered-table th {
-            border: 0px solid #ffffff;
             background: rgb(212, 209, 209);
         }
 
@@ -123,27 +125,31 @@
     <div class="invoice-wrap">
         <div class="invoice-box">
             <div class="invoice-header">
-                <div class="logo text-center">
-                    <img src="{{ public_path('Image/logo/logo.png') }}" alt="Logo" height="150" width="150" />
+                <div class="logo text-left">
+                    <img src="{{ public_path('Image/logo/logo.png') }}" alt="Logo" height="100" width="100" />
+                    <h2 class="text-left mb-30" style="color: gray">Hóa đơn {{ $hoadon->mahoadon }}</h2>
                 </div>
             </div>
-            <h2 class="text-center mb-30">HÓA ĐƠN</h2>
             <div class="row pb-30">
                 <div class="col-md-6">
-                    <h5 class="mb-15">Tên khách hàng</h5>
-                    <p class="font-14 mb-5">
-                        <strong> Ngày tạo: </strong> {{ date('d/m/Y', strtotime($hoadon->ngaytaohoadon)) }}
-                    </p>
-                    <p class="font-14 mb-5">
-                        <strong class="">Mã số hóa đơn:</strong> {{ $hoadon->mahoadon }}
-                    </p>
+                    <h3>Bên mua</h3>
+                    <p>Tên khách hàng: {{ $hoadon->hovaten }}</p>
+                    <p>Địa chỉ: {{ $hoadon->diachi }}</p>
+                    <p>Ngày tạo: {{ date('d/m/Y', strtotime($hoadon->ngaytaohoadon)) }}</p>
                 </div>
-                <div class="col-md-6 text-right">
-                    <p class="font-14 mb-5">{{ $hoadon->hovaten }}</p>
-                    <p class="font-14 mb-5"><strong>Địa chỉ: </strong> {{ $hoadon->diachi }}</p>
+                <div class="col-md-6">
+                    <h3>Bên bán</h3>
+                    <p>Công ty TNHH thương mại dịch vụ kỹ thuật Toàn Phương</p>
+                    <p>Địa chỉ: Số 1/115 đường Máng Nước, thôn Cái Tắt, Xã An Đồng, Huyện An Dương, Thành phố Hải Phòng.
+                    </p>
+                    <p>Mã số thuế: 020162448</p>
+                    <p>Số điện thoại: 0225 359 3816</p>
                 </div>
             </div>
             <div class="invoice-desc pb-30">
+                <p class="font-14 mb-5">
+                    Trạng thái: <strong>Đã thanh toán</strong>
+                </p>
                 <table class="word-table bordered-table">
                     <thead>
                         <tr>
@@ -158,38 +164,44 @@
                         @foreach ($chitiethoadon as $i)
                             <tr>
                                 <td>{{ $i->tenxe }}</td>
-                                <td>{{ number_format($i->giaban,0,'',','). ' VND' }}</td>
+                                <td>{{ number_format($i->giaban, 0, '', ',') . ' VND' }}</td>
                                 <td>1</td>
-                                <td>{{ number_format($i->tilegiamgia,0,'',','). '%' }}</td>
-                                <td>{{ number_format($i->dongia,0,'',','). ' VND' }}</td>
+                                <td>{{ number_format($i->tilegiamgia, 0, '', ',') . '%' }}</td>
+                                <td>{{ number_format($i->dongia, 0, '', ',') . ' VND' }}</td>
                             </tr>
                         @endforeach
                         <tr style="background:rgb(212, 209, 209);">
                             <td colspan="3"><strong>Tổng tiền</strong></td>
-
                             <td colspan="2">
-                                <span class="weight-600 font-24 text-danger">{{ number_format($hoadon->tonggiatrihoadon,0,'',','). ' VND' }}</span>
+                                <span
+                                    class="weight-600 font-20 text-danger">{{ number_format($hoadon->tonggiatrihoadon, 0, '', ',') . ' VND' }}</span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="invoice-desc-body">
-                <ul>
-                    <li class="clearfix">
-                        <div class="invoice-sub">
-                            <p class="font-14 mb-5">
-                                Ngày giao dịch:
-                                <strong class="">{{ date('d/m/Y', strtotime($hoadon->ngaytaohoadon)) }}</strong>
-                            </p>
-                            <p class="font-14 mb-5">
-                                Trạng thái: <strong>{{ $hoadon->trangthai == "Đã hoàn thành" ? "Đã thanh toán" : "Chưa thanh toán" }}</strong>
-                            </p>
-                        </div>
-                    </li>
-                </ul>
+                <p class="font-14 mb-5">
+                    Ngày giao dịch:
+                    <strong class="">06/06/2024</strong>
+                </p>
+                <table class="word-table bordered-table">
+                    <thead>
+                        <tr>
+                            <th>Hính thức thanh toán</th>
+                            <th>Mã giao dịch</th>
+                            <th>Số tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $giaodich->vnp_CardType == "ATM" ? 'Thanh toán qua chuyển khoản' : 'Thanh toán bằng tiền mặt' }}</td>
+                            <td>{{ $giaodich->vnp_TransactionNo }}</td>
+                            <td>{{ number_format($giaodich->vnp_Amount, 0, '', ',') . ' VND' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <h4 class="text-center font-20">Cảm ơn!!</h4>
         </div>
     </div>
 </body>

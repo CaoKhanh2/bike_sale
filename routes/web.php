@@ -23,7 +23,7 @@ use App\Http\Controllers\ThongTinXeController;
 use App\Http\Controllers\XeDangBanController;
 use App\Http\Controllers\XeDangKyThuMuaController;
 use App\Http\Controllers\RuiRoController;
-use App\Http\Controllers\OnlineCheckoutController;
+
 
 use App\Models\ThongSoKyThuatXeDapDien;
 use App\Models\ThongSoKyThuatXeMay;
@@ -98,15 +98,6 @@ Route::group(['prefix' => 'account'], function () {
     // ----------
 });
 
-// Route::get('/success', function() {
-//     return view('modal-webs.inform-success-login');
-// });
-
-// Route::get('/mail', function () {
-//     return view('mail.forgot-password-mail');
-// });
-
-// Route::get('/mail', [NguoiDungController::class, 'sendmail']);
 
 /**
  *
@@ -120,10 +111,6 @@ Route::group(['prefix' => 'account'], function () {
  *
  */
 
-// Route::get('/', function () {
-//     [XeDangBanController::class, 'showdata2'],
-//     return view('index');
-// })->name('indexWeb');
 
 Route::get('/', [XeDangBanController::class, 'showdata2'])->name('indexWeb');
 
@@ -143,9 +130,13 @@ Route::middleware(['roleGuest'])->group(function () {
 
     // Đơn hàng ----------
     Route::get('/checkout/{id}', [DonHangController::class, 'index_checkout'])->name('xacnhan-giohang-Guest');
-    Route::post('/place-order', [DonHangController::class, 'dat_hang'])->name('dathang-Guest');
+    Route::post('/place-order/1', [DonHangController::class, 'dat_hang1'])->name('dathang-Guest');
+    Route::post('/place-order/2', [DonHangController::class, 'dat_hang2'])->name('dathang-vnpay-Guest');
 
-    Route::get('/thanks', [DonHangController::class, 'thanks']);
+    Route::get('/make-payments', [DonHangController::class, 'add_vnpay']);
+
+    Route::get('/thanhs1', [DonHangController::class, 'show_thank1'])->name('thanks1');
+    Route::get('/thanks2', [DonHangController::class, 'show_thank2'])->name('thanks2');
 
     
     
@@ -461,7 +452,18 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
         Route::get('/dashboard/transaction/payment-management/make-invoice', [HoaDonController::class, 'make_invoice_customer'])->name('thuchien-lap-hoadon');
         Route::post('/dashboard/transaction/payment-management/make-invoice/add-vehicle', [HoaDonController::class, 'add_vehicle_invoice'])->name('thuchien-themxe-hoadon');
         
-        Route::post('/dashboard/transaction/payment-management/make-invoice/add-customer', [HoaDonController::class, 'add_customer_invoice'])->name('thuchien-them-nguoidung');
+        
+        //? Thực hiện tạo một thông tin cho người dùng mới trong khi lập hóa đơn
+            Route::get('/dashboard/transaction/payment-management/make-invoice/create-customer', [NguoiDungController::class, 'create_for_invoice'])->name('taomoi-nguoidung-hoadon');
+
+            Route::get('/dashboard/transaction/payment-management/make-invoice/create-customer/{id}', [NguoiDungController::class, 'show_for_invoice'])->name('hienthi-thongtin-nd-hoadon'); 
+
+            Route::post('/dashboard/transaction/payment-management/make-invoice/act-create-customer/{id}', [NguoiDungController::class, 'update_for_invoice'])->name('thuchien-taomoi-nguoidung-hoadon');
+
+            Route::post('/dashboard/transaction/payment-management/make-invoice/add-customer', [HoaDonController::class, 'add_customer_invoice'])->name('thuchien-them-nguoidung');
+        //?
+
+
 
         Route::post('/dashboard/transaction/payment-management/confirm-invoice/{id}', [HoaDonController::class, 'confirm_invoice_customer'])->name('thuchien-xacnhan-hoadon');
 

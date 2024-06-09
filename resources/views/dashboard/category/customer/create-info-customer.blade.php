@@ -28,9 +28,8 @@
                         <h4 class="text-blue h4">Thông tin khách hàng</h4>
                     </div>
                 </div>
-                <form action="{{ route('capnhatthongtinkhachhang', ['id' => $nd->mand] )}}" method="POST" class="mt-4">
+                <form action="{{ route('thuchien-taomoi-nguoidung-hoadon', ['id' => $nd->mand] )}}" method="POST" class="mt-4">
                     @csrf
-                    @method('PATCH')
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="mand">Mã khách hàng</label>
                         <div class="col-sm-12 col-md-10">
@@ -52,7 +51,7 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="cccd">Căn cước công dân</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" id="cccd" type="number" value="{{ $nd->cccd }}" name="cccd" maxlength="11" disabled/>
+                            <input class="form-control" id="cccd" type="number" value="{{ $nd->cccd }}" name="cccd" maxlength="12"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -75,19 +74,7 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label" for="email">Email</label>
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" id="email" value="{{ $nd->email }}" type="email" name="email" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label" for="tentk">Tên tài khoản</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" id="tentk" value="{{ $nd->tentk }}" type="text" name="tentk" @yield('taikhoan') readonly>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label" for="password">Mật khẩu</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" id="password" value="{{ $nd->password }}" type="text" name="password" @yield('matkhau') readonly>
+                            <input class="form-control" id="email" value="{{ $nd->email }}" type="email" name="email">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -97,18 +84,8 @@
                                 name="dc">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label" for="tinhtrang">Tình trạng</label>
-                        <div class="col-sm-12 col-md-10">
-                            <select class="custom-select col-12" id="tinhtrang" name="tt">
-                                <option value="" {{ $nd->tinhtrang == '' ? 'selected' : '' }} hidden>Lựa chọn...</option>
-                                <option value="1" {{ $nd->tinhtrang == '1' ? 'selected' : '' }}>Hoạt động</option>
-                                <option value="0" {{ $nd->tinhtrang == '0' ? 'selected' : '' }}>Ngừng hoạt động</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Cập nhật</button>
+                        <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Tạo</button>
                     </div>
                 </form>
             </div>

@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
-
 class DonHangController extends Controller
 {
     //Dashboard
@@ -93,7 +92,6 @@ class DonHangController extends Controller
 
     public function check_oder_customer(Request $request)
     {
-
         $validator = Validator::make(
             $request->all(),
             [
@@ -108,16 +106,16 @@ class DonHangController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->with('cross-kiemtra-donhang', 'Thông tin đơn hàng chưa được cập nhật!');
         }
-        
+
         $tientra = $request->tientra;
         $manv = Auth::user()->manv;
         $tientra = str_replace(',', '', $tientra);
 
         $donhang = DB::table('donhang')
-            ->select('tongtien', 'ghichu','magh')
+            ->select('tongtien', 'ghichu', 'magh')
             ->where('madh', $request->madonhang)
             ->first();
-        
+
         $chitietgiohang = DB::table('ctgiohang')
             ->select('xedangban.maxe', 'ctgiohang.dongia')
             ->join('xedangban', 'ctgiohang.maxedangban', 'xedangban.maxedangban')
@@ -154,7 +152,6 @@ class DonHangController extends Controller
 
                 return back()->with('infor-kiemtra-donhang', 'Đã thanh toán ' . $tientra . ' cho đơn hàng mã số ' . $request->madonhang . ' số tiền chưa thanh toán còn ' . $tienconthieu . '.');
             } else {
-
                 // Thực hiện truy vấn dữ liệu trong ghi chú và đưa vào 1 mảng
                 $sum = 0;
                 $ghichuArray = $this->array_ghichu($request->madonhang);
@@ -171,7 +168,7 @@ class DonHangController extends Controller
                             'trangthai' => 'Đang chờ xử lý',
                             'ghichu' => $newGhichu,
                         ]);
-                    
+
                     // Thực hiện truy vấn dữ liệu trong ghi chú và đưa vào 1 mảng
                     $sum = 0;
                     $ghichuArray = $this->array_ghichu($request->madonhang);
@@ -184,10 +181,10 @@ class DonHangController extends Controller
                                 ->update([
                                     'trangthai' => 'Đã hoàn thành',
                                 ]);
-                            
+
                             // Thực hiện insert thêm hóa đơn
                             $this->insert_invoice($request->madonhang, $request->mand, $manv, $chitietgiohang);
-                            
+
                             return back()->with('success-kiemtra-donhang', 'Đơn hàng số ' . $request->madonhang . ' đã được thanh toán.');
                         }
                     }
@@ -200,7 +197,7 @@ class DonHangController extends Controller
                     return back()->with('cross-kiemtra-donhang', 'Số tiền nhập vào lớn hơn số tiền cần được thanh toán!');
                 }
             }
-        }else{
+        } else {
             return back()->with('cross-kiemtra-donhang', 'Số tiền nhập vào lớn hơn số tiền cần được thanh toán!');
         }
     }
@@ -212,7 +209,9 @@ class DonHangController extends Controller
             ->update([
                 'trangthai' => 'Đã hủy',
             ]);
-        return redirect()->route('thongtin-thanhtoan')->with('success-huy-donhang', 'Đơn hàng số ' . $request->madonhang . ' đã bị hủy!');
+        return redirect()
+            ->route('thongtin-thanhtoan')
+            ->with('success-huy-donhang', 'Đơn hàng số ' . $request->madonhang . ' đã bị hủy!');
     }
 
     //Khách hàng
@@ -255,7 +254,87 @@ class DonHangController extends Controller
         return view('guest-acc.orders.checkout', compact('giohang_items'));
     }
 
-    public function dat_hang(Request $request)
+    public function dat_hang1(Request $request)
+    {
+        $mand = Auth::guard('guest')->user()->mand;
+        $magh = $request->magh;
+
+        $giohang_items = DB::select(
+            'SELECT ctgiohang.maxedangban, giohang.*, xedangban.maxedangban, thongtinxe.maxe FROM ctgiohang
+                        INNER JOIN giohang ON giohang.magh = ctgiohang.magh
+                        INNER JOIN xedangban ON xedangban.maxedangban = ctgiohang.maxedangban
+                        INNER JOIN thongtinxe ON thongtinxe.maxe = xedangban.maxe
+                        WHERE giohang.mand = ? AND giohang.magh = ?',
+            [$mand, $magh],
+        );
+
+        $madonhang_random = $this->generateUniqueNumericId_order(4);
+
+        DB::table('donhang')->insert([
+            'madh' => $madonhang_random,
+            'ngaytaodon' => Carbon::now(),
+            'trangthai' => 'Đang chờ xử lý',
+        ]);
+
+        foreach ($giohang_items as $item) {
+            DB::table('donhang')
+                ->where('madh', $madonhang_random)
+                ->update([
+                    'magh' => $item->magh,
+                    'tongtien' => $item->tonggiatien,
+                ]);
+            DB::table('xedangban')
+                ->where('maxedangban', $item->maxedangban)
+                ->update([
+                    'trangthai' => 'Đang xử lý',
+                ]);
+        }
+
+        DB::table('giohang')
+            ->where('magh', $magh)
+            ->update([
+                'ghichu' => 'Chờ thanh toán',
+            ]);
+
+        // Tạo một giỏ hàng mới
+        $magh_random = $this->generateUniqueNumericId_cart(7);
+
+        $cre_cart = DB::table('giohang')->where('ghichu', 'Đang chờ xử lý')->where('mand', $mand)->exists();
+
+        if ($cre_cart == false) {
+            DB::table('giohang')->insert([
+                'magh' => 'GH-' . $magh_random,
+                'mand' => $mand,
+                'ngaytao' => Carbon::now(),
+                'tonggiatien' => 0,
+                'ghichu' => 'Đang chờ xử lý',
+            ]);
+        }
+        //
+
+        if (Auth::guard('guest')->user()->diachi == null) {
+            $user = NguoiDung::where('mand', Auth::guard('guest')->user()->mand)->first();
+            $user->hovaten = $request->input('hovaten');
+            $user->gioitinh = $request->input('gioitinh');
+            $user->sodienthoai = $request->input('sdt');
+            $user->diachi = $request->input('diachi');
+            $user->update();
+        }
+
+        return redirect()->route('thanks1');
+    }
+
+    public function show_thank1()
+    {
+        return view('guest-acc.orders.thank1');
+    }
+
+    public function show_thank2()
+    {
+        return view('guest-acc.orders.thank2');
+    }
+
+    public function dat_hang2(Request $request)
     {
         $mand = Auth::guard('guest')->user()->mand;
         $magh = $request->magh;
@@ -324,231 +403,187 @@ class DonHangController extends Controller
 
         // Thanh toán
 
-        $giatien = DB::table('donhang')->select('donhang.tongtien')->join('giohang', 'giohang.magh', 'donhang.magh')->join('nguoidung', 'giohang.mand', 'nguoidung.mand')->where('giohang.mand', $mand)->first();
+        $giatien = DB::table('donhang')->select('donhang.tongtien')
+                    ->join('giohang', 'giohang.magh', 'donhang.magh')
+                    ->join('nguoidung', 'giohang.mand', 'nguoidung.mand')
+                    ->where('giohang.mand', $mand)
+                    ->where('donhang.madh', $madonhang_random)
+                    ->first();
 
-        if (isset($_POST['cod'])) {
-            return view('guest-acc.orders.thank2');
-        } elseif (isset($_POST['payUrl'])) {
-            $endpoint = 'https://test-payment.momo.vn/v2/gateway/api/create';
-            $partnerCode = 'MOMOBKUN20180529';
-            $accessKey = 'klm05TvNBzhg7h7j';
-            $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+        error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
 
-            $orderInfo = 'Thanh toán qua MoMo';
-            $amount = intval($giatien->tongtien);
-            $orderId = $madonhang_random;
-            $redirectUrl = 'http://127.0.0.1:8000/thanks';
-            $ipnUrl = 'http://127.0.0.1:8000/thanks';
-            $extraData = '';
+        $vnp_Url = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
+        $vnp_Returnurl = 'http://127.0.0.1:8000/make-payments';
+        $vnp_TmnCode = 'CH2VBH65'; //Mã website tại VNPAY
+        $vnp_HashSecret = 'WTF0OLLF2ZR9MTQB7XU3BEYNM8IENE9J'; //Chuỗi bí mật
 
-            $requestId = time() . '';
-            $requestType = 'payWithATM';
+        //$vnp_TxnRef = $madonhang_random; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo = 'Noi dung thanh toan';
+        $vnp_OrderType = 'billpayment';
+        $vnp_Amount = intval($giatien->tongtien) * 100;
+        $vnp_Locale = 'vn';
+        $vnp_BankCode = 'NCB';
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
 
-            //before sign HMAC SHA256 signature
-            $rawHash = 'accessKey=' . $accessKey . '&amount=' . $amount . '&extraData=' . $extraData . '&ipnUrl=' . $ipnUrl . '&orderId=' . $orderId . '&orderInfo=' . $orderInfo . '&partnerCode=' . $partnerCode . '&redirectUrl=' . $redirectUrl . '&requestId=' . $requestId . '&requestType=' . $requestType;
-            $signature = hash_hmac('sha256', $rawHash, $secretKey);
-            $data = ['partnerCode' => $partnerCode, 'partnerName' => 'Test', 'storeId' => 'MomoTestStore', 'requestId' => $requestId, 'amount' => $amount, 'orderId' => $orderId, 'orderInfo' => $orderInfo, 'redirectUrl' => $redirectUrl, 'ipnUrl' => $ipnUrl, 'lang' => 'vi', 'extraData' => $extraData, 'requestType' => $requestType, 'signature' => $signature];
-            $result = $this->execPostRequest($endpoint, json_encode($data));
-            $jsonResult = json_decode($result, true); // decode json
+        $inputData = [
+            'vnp_Version' => '2.1.0',
+            'vnp_TmnCode' => $vnp_TmnCode,
+            'vnp_Amount' => $vnp_Amount,
+            'vnp_Command' => 'pay',
+            'vnp_CreateDate' => date('YmdHis'),
+            'vnp_CurrCode' => 'VND',
+            'vnp_IpAddr' => $vnp_IpAddr,
+            'vnp_Locale' => $vnp_Locale,
+            'vnp_OrderInfo' => $vnp_OrderInfo,
+            'vnp_OrderType' => $vnp_OrderType,
+            'vnp_ReturnUrl' => $vnp_Returnurl,
+            'vnp_TxnRef' => $madonhang_random,
+        ];
 
-            if (isset($jsonResult['payUrl'])) {
-                header('Location: ' . $jsonResult['payUrl']);
-                exit(); // Đảm bảo không có mã nào khác chạy sau header
-            } else {
-                echo 'Không tìm thấy URL thanh toán trong phản hồi.';
-                // Ghi log phản hồi để kiểm tra lỗi
-                error_log('Phản hồi: ' . json_encode($jsonResult));
-            }
-        } elseif (isset($_POST['redirect'])) {
-            error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-            date_default_timezone_set('Asia/Ho_Chi_Minh');
-
-            $vnp_Url = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
-            $vnp_Returnurl = 'http://127.0.0.1:8000/thanks';
-            $vnp_TmnCode = 'CH2VBH65'; //Mã website tại VNPAY
-            $vnp_HashSecret = 'WTF0OLLF2ZR9MTQB7XU3BEYNM8IENE9J'; //Chuỗi bí mật
-
-            //$vnp_TxnRef = $madonhang_random; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-            $vnp_OrderInfo = 'Noi dung thanh toan';
-            $vnp_OrderType = 'billpayment';
-            $vnp_Amount = intval($giatien->tongtien) * 100;
-            $vnp_Locale = 'vn';
-            $vnp_BankCode = 'NCB';
-            $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
-
-            $inputData = [
-                'vnp_Version' => '2.1.0',
-                'vnp_TmnCode' => $vnp_TmnCode,
-                'vnp_Amount' => $vnp_Amount,
-                'vnp_Command' => 'pay',
-                'vnp_CreateDate' => date('YmdHis'),
-                'vnp_CurrCode' => 'VND',
-                'vnp_IpAddr' => $vnp_IpAddr,
-                'vnp_Locale' => $vnp_Locale,
-                'vnp_OrderInfo' => $vnp_OrderInfo,
-                'vnp_OrderType' => $vnp_OrderType,
-                'vnp_ReturnUrl' => $vnp_Returnurl,
-                'vnp_TxnRef' => $madonhang_random,
-            ];
-
-            if (isset($vnp_BankCode) && $vnp_BankCode != '') {
-                $inputData['vnp_BankCode'] = $vnp_BankCode;
-            }
-
-            //var_dump($inputData);
-            ksort($inputData);
-            $query = '';
-            $i = 0;
-            $hashdata = '';
-            foreach ($inputData as $key => $value) {
-                if ($i == 1) {
-                    $hashdata .= '&' . urlencode($key) . '=' . urlencode($value);
-                } else {
-                    $hashdata .= urlencode($key) . '=' . urlencode($value);
-                    $i = 1;
-                }
-                $query .= urlencode($key) . '=' . urlencode($value) . '&';
-            }
-
-            $vnp_Url = $vnp_Url . '?' . $query;
-            if (isset($vnp_HashSecret)) {
-                $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret); //
-                $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
-            }
-            $returnData = ['code' => '00', 'message' => 'success', 'data' => $vnp_Url];
-            if (isset($_POST['redirect'])) {
-                header('Location: ' . $vnp_Url);
-                die();
-            } else {
-                echo json_encode($returnData);
-            }
-            // vui lòng tham khảo thêm tại code demoP
+        if (isset($vnp_BankCode) && $vnp_BankCode != '') {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
         }
+
+        //var_dump($inputData);
+        ksort($inputData);
+        $query = '';
+        $i = 0;
+        $hashdata = '';
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . '=' . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . '=' . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . '=' . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $vnp_Url . '?' . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret); //
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        $returnData = ['code' => '00', 'message' => 'success', 'data' => $vnp_Url];
+
+        header('Location: ' . $vnp_Url);
+        die();
     }
 
-    public function thanks()
+    public function add_vnpay()
     {
-        if (isset($_GET['partnerCode'])) {
-            $data_momo = [
-                'partnerCode' => $_GET['partnerCode'],
-                'orderId' => $_GET['orderId'],
-                'requestId' => $_GET['requestId'],
-                'amount' => $_GET['amount'],
-                'orderInfo' => $_GET['orderInfo'],
-                'orderType' => $_GET['orderType'],
-                'transId' => $_GET['transId'],
-                'payType' => $_GET['payType'],
-                'signature' => $_GET['signature'],
-            ];
-            $result = DB::table('momo')->insert($data_momo);
-        } elseif (isset($_GET['vnp_Amount'])) {
-            $data_vnpay = [
-                'vnp_Amount' => $_GET['vnp_Amount'],
-                'vnp_BankCode' => $_GET['vnp_BankCode'],
-                //'vnp_BankTranNo' => $_GET['vnp_BankTranNo'],
-                'vnp_CardType' => $_GET['vnp_CardType'],
-                'vnp_OrderInfo' => $_GET['vnp_OrderInfo'],
-                'vnp_PayDate' => $_GET['vnp_PayDate'],
-                'vnp_ResponseCode' => $_GET['vnp_ResponseCode'],
-                'vnp_TmnCode' => $_GET['vnp_TmnCode'],
-                'vnp_TransactionNo' => $_GET['vnp_TransactionNo'],
-                'vnp_TransactionStatus' => $_GET['vnp_TransactionStatus'],
-                'vnp_TxnRef' => $_GET['vnp_TxnRef'],
-                'vnp_SecureHash' => $_GET['vnp_SecureHash'],
-            ];
+        $data_vnpay = [
+            'vnp_Amount' => ($_GET['vnp_Amount'])/100,
+            'vnp_BankCode' => $_GET['vnp_BankCode'],
+            //'vnp_BankTranNo' => $_GET['vnp_BankTranNo'],
+            'vnp_CardType' => $_GET['vnp_CardType'],
+            'vnp_OrderInfo' => $_GET['vnp_OrderInfo'],
+            'vnp_PayDate' => $_GET['vnp_PayDate'],
+            'vnp_ResponseCode' => $_GET['vnp_ResponseCode'],
+            'vnp_TmnCode' => $_GET['vnp_TmnCode'],
+            'vnp_TransactionNo' => $_GET['vnp_TransactionNo'],
+            'vnp_TransactionStatus' => $_GET['vnp_TransactionStatus'],
+            'vnp_TxnRef' => $_GET['vnp_TxnRef'],
+            'vnp_SecureHash' => $_GET['vnp_SecureHash'],
+        ];
+
+        $check = DB::table('vnpay')->select('vnp_TxnRef')->exists();
+
+        if($check == false){
             DB::table('vnpay')->insert($data_vnpay);
-
-            $madh = DB::table('donhang')
-                ->select('donhang.madh', 'donhang.tongtien', 'donhang.trangthai')
-                ->join('vnpay', 'vnpay.vnp_TxnRef', 'donhang.madh')
-                ->where('vnpay.vnp_ResponseCode', '00')
-                ->where('donhang.madh', $_GET['vnp_TxnRef'])
-                ->first();
-
-            $magh = DB::table('giohang')
-                ->select('donhang.magh')
-                ->join('donhang', 'donhang.magh', 'giohang.magh')
-                ->where('donhang.madh', $_GET['vnp_TxnRef'])
-                ->first();
-
-            $maxedangban = DB::table('donhang')
-                ->select('ctgiohang.maxedangban')
-                ->join('giohang', 'donhang.magh', 'giohang.magh')
-                ->join('ctgiohang', 'giohang.magh', 'ctgiohang.magh')
-                ->where('donhang.madh', $_GET['vnp_TxnRef'])
-                ->get();
-
-            $chitietgiohang = DB::table('ctgiohang')
-                ->select('xedangban.maxe', 'ctgiohang.dongia')
-                ->join('xedangban', 'ctgiohang.maxedangban', 'xedangban.maxedangban')
-                ->join('thongtinxe', 'thongtinxe.maxe', 'xedangban.maxe')
-                ->where('ctgiohang.magh', $magh->magh)
-                ->get();
-
-            $check_payment = DB::table('donhang')->join('vnpay', 'vnpay.vnp_TxnRef', 'donhang.madh')->where('vnpay.vnp_ResponseCode', '00')->exists();
-
-            if ($check_payment == true) {
-                DB::table('donhang')
-                    ->where('madh', $madh->madh)
-                    ->update([
-                        'trangthai' => 'Đã hoàn thành',
-                    ]);
-                DB::table('giohang')
-                    ->where('magh', $magh->magh)
-                    ->update([
-                        'ghichu' => 'Đã thanh toán',
-                    ]);
-                foreach ($maxedangban as $i) {
-                    DB::table('xedangban')
-                        ->where('maxedangban', $i->maxedangban)
-                        ->update([
-                            'trangthai' => 'Đã bán xe',
-                        ]);
-                }
-
-                $mahoadon = $this->generateUniqueNumericId_invoice(10);
-                $mand = Auth('guest')->user()->mand;
-
-                DB::table('hoadon')->insert([
-                    'mahoadon' => $mahoadon,
-                    'mand' => $mand,
-                    'madh' => $madh->madh,
-                    'tonggiatrihoadon' => $madh->tongtien,
-                    'ghichu' => 'Đã hoàn thành',
-                ]);
-
-                foreach ($chitietgiohang as $i) {
-                    DB::table('cthoadon')->insert([
-                        'macthoadon' => Str::random(15),
-                        'mahoadon' => $mahoadon,
-                        'maxe' => $i->maxe,
-                        'soluong' => '1',
-                        'dongia' => $i->dongia,
-                    ]);
-                }
-            } else {
-                DB::table('donhang')
-                    ->where('madh', $_GET['vnp_TxnRef'])
-                    ->delete();
-
-                DB::table('giohang')
-                    ->where('magh', $magh->magh)
-                    ->update([
-                        'ghichu' => 'Đang chờ xử lý',
-                    ]);
-                foreach ($maxedangban as $i) {
-                    DB::table('xedangban')
-                        ->where('maxedangban', $i->maxedangban)
-                        ->update([
-                            'trangthai' => 'Còn xe',
-                        ]);
-                }
-            }
         }
 
-        return view('guest-acc.orders.thanks');
-    }
+        $madh = DB::table('donhang')
+            ->select('donhang.madh', 'donhang.tongtien', 'donhang.trangthai')
+            ->join('vnpay', 'vnpay.vnp_TxnRef', 'donhang.madh')
+            ->where('vnpay.vnp_ResponseCode', '00')
+            ->where('donhang.madh', $_GET['vnp_TxnRef'])
+            ->first();
 
+        $magh = DB::table('giohang')
+            ->select('donhang.magh')
+            ->join('donhang', 'donhang.magh', 'giohang.magh')
+            ->where('donhang.madh', $_GET['vnp_TxnRef'])
+            ->first();
+
+        $maxedangban = DB::table('donhang')
+            ->select('ctgiohang.maxedangban')
+            ->join('giohang', 'donhang.magh', 'giohang.magh')
+            ->join('ctgiohang', 'giohang.magh', 'ctgiohang.magh')
+            ->where('donhang.madh', $_GET['vnp_TxnRef'])
+            ->get();
+
+        $chitietgiohang = DB::table('ctgiohang')
+            ->select('xedangban.maxe', 'ctgiohang.dongia')
+            ->join('xedangban', 'ctgiohang.maxedangban', 'xedangban.maxedangban')
+            ->join('thongtinxe', 'thongtinxe.maxe', 'xedangban.maxe')
+            ->where('ctgiohang.magh', $magh->magh)
+            ->get();
+
+        $check_payment = DB::table('donhang')->join('vnpay', 'vnpay.vnp_TxnRef', 'donhang.madh')->where('vnpay.vnp_ResponseCode', '00')->exists();
+
+        if ($check_payment == true) {
+            DB::table('donhang')
+                ->where('madh', $madh->madh)
+                ->update([
+                    'trangthai' => 'Đã hoàn thành',
+                ]);
+            DB::table('giohang')
+                ->where('magh', $magh->magh)
+                ->update([
+                    'ghichu' => 'Đã thanh toán',
+                ]);
+            foreach ($maxedangban as $i) {
+                DB::table('xedangban')
+                    ->where('maxedangban', $i->maxedangban)
+                    ->update([
+                        'trangthai' => 'Đã bán xe',
+                    ]);
+            }
+
+            $mahoadon = $this->generateUniqueNumericId_invoice(10);
+            $mand = Auth('guest')->user()->mand;
+
+            DB::table('hoadon')->insert([
+                'mahoadon' => $mahoadon,
+                'mand' => $mand,
+                'madh' => $madh->madh,
+                'tonggiatrihoadon' => $madh->tongtien,
+                'ghichu' => 'Đã hoàn thành',
+            ]);
+
+            foreach ($chitietgiohang as $i) {
+                DB::table('cthoadon')->insert([
+                    'macthoadon' => Str::random(15),
+                    'mahoadon' => $mahoadon,
+                    'maxe' => $i->maxe,
+                    'soluong' => '1',
+                    'dongia' => $i->dongia,
+                ]);
+            }
+            $madh = $_GET['vnp_TxnRef'];
+            return view('guest-acc.orders.thank2', compact('madh'));
+        } else {
+            DB::table('donhang')
+                ->where('madh', $_GET['vnp_TxnRef'])
+                ->delete();
+
+            DB::table('giohang')
+                ->where('magh', $magh->magh)
+                ->update([
+                    'ghichu' => 'Đang chờ xử lý',
+                ]);
+            foreach ($maxedangban as $i) {
+                DB::table('xedangban')
+                    ->where('maxedangban', $i->maxedangban)
+                    ->update([
+                        'trangthai' => 'Còn xe',
+                    ]);
+            }
+            return view('guest-acc.orders.cancel');
+        }
+    }
 
     private function array_ghichu($madonhang)
     {
@@ -583,10 +618,11 @@ class DonHangController extends Controller
         return $ghichuArray;
     }
 
-    private function insert_invoice($madonhang, $mand, $manv, $chitietgiohang){
+    private function insert_invoice($madonhang, $mand, $manv, $chitietgiohang)
+    {
         $mahoadon = $this->generateUniqueNumericId_invoice(10);
         $donhang = DB::table('donhang')->select('tongtien')->where('madh', $madonhang)->first();
-        
+
         DB::table('hoadon')->insert([
             'mahoadon' => $mahoadon,
             'mand' => $mand,

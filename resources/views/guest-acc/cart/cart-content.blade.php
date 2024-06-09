@@ -64,6 +64,7 @@
         @else
             <div class="card-body text-center">
                 {{-- {{ Auth::guard('guest')->user()->hovaten}} --}}
+                <img src="{{ asset('Image/Icon/empty-cart.png') }}" alt="" class="" width="150" height="150">
                 <h2><i class="fa fa-shopping-cart"> Giỏ hàng của bạn trống.</i></h2>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <a href="{{ route('indexWeb') }}" class="btn btn-outline-primary d-flex align-items-center">

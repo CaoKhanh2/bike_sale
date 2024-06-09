@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('matsxemay',10)->nullable();
             $table->string('matsxedapdien',10)->nullable();
             $table->string('tenxe', 50);
-            $table->timeStamps('ngaynhap')->useCurrent();
+            $table->dateTime('ngaynhap')->useCurrent();
             $table->string('thoigiandasudung',25);
             $table->string('tinhtrangxe',50);
             $table->string('sokmdadi',25);
