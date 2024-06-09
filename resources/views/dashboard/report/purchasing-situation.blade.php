@@ -98,7 +98,9 @@
                                     <h4 class="text-blue h4">Báo cáo tình hình thu mua xe</h4>
                                 </div>
                             </div>
-                            @include('dashboard.report.table.table-purchasing-situation')
+                            <div class="table-responsive">
+                                @include('dashboard.report.table.table-purchasing-situation')
+                            </div>
                         </div>
                     </div>
                 </div>

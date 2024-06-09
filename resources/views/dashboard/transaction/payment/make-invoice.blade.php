@@ -105,7 +105,7 @@
                                                     <td>{{ $i->soluong }}</td>
                                                     <td>{{ number_format($i->dongia, 0, '.', ',') . ' đ' }}</td>
                                                     <td>
-                                                        <a href="" class="btn btn-danger">Xóa</a>
+                                                        <a href="{{ route('thuchien-xoaxe-hoadon',['id'=>$i->macthoadon]) }}" class="btn btn-danger">Xóa</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

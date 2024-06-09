@@ -77,7 +77,9 @@
                                     <h4 class="text-blue h4">Báo cáo tình hình bán hàng</h4>
                                 </div>
                             </div>
+                            <div class="table-responsive">
                                 @include('dashboard.report.table.table-sales-stiuation')
+                            </div>
                         </div>
                     </div>
                 </div>

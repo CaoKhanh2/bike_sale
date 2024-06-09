@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Exports\TinhHinhBanHangExport;
 use App\Exports\TinhHinhThuMuaExport;
+use App\Exports\TonKhoExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Return_;
@@ -91,7 +92,14 @@ class BaoCaoThongKeController extends Controller
         $den_ngay = date('Y-m-d', strtotime($denngay));
 
         if (empty($tungay) && empty($denngay)) {
-            $thongtintbanhang = DB::table('donhang')->select('donhang.*', 'giohang.magh', 'ctgiohang.maxedangban', 'xedangban.maxedangban', 'thongtinxe.tenxe', 'dongxe.loaixe')->join('giohang', 'donhang.magh', '=', 'giohang.magh')->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')->join('xedangban', 'ctgiohang.maxedangban', '=', 'xedangban.maxedangban')->join('thongtinxe', 'xedangban.maxe', '=', 'thongtinxe.maxe')->join('dongxe', 'dongxe.madx', '=', 'thongtinxe.madx')->where('donhang.trangthai', 'Đã hoàn thành')->get();
+            $thongtintbanhang = DB::table('donhang')
+                ->select('donhang.*', 'giohang.magh', 'ctgiohang.maxedangban', 'xedangban.maxedangban', 'thongtinxe.tenxe', 'dongxe.loaixe')
+                ->join('giohang', 'donhang.magh', '=', 'giohang.magh')
+                ->join('ctgiohang', 'giohang.magh', '=', 'ctgiohang.magh')
+                ->join('xedangban', 'ctgiohang.maxedangban', '=', 'xedangban.maxedangban')
+                ->join('thongtinxe', 'xedangban.maxe', '=', 'thongtinxe.maxe')
+                ->join('dongxe', 'dongxe.madx', '=', 'thongtinxe.madx')
+                ->where('donhang.trangthai', 'Đã hoàn thành')->get();
         } else {
             $thongtintbanhang = DB::table('donhang')
                 ->select('donhang.*', 'giohang.magh', 'ctgiohang.maxedangban', 'xedangban.maxedangban', 'thongtinxe.tenxe', 'dongxe.loaixe')
@@ -111,11 +119,6 @@ class BaoCaoThongKeController extends Controller
         return Excel::download($export, 'bao_cao_ban_hang.xlsx');
     }
 
-    public function purchasingChart()
-    {
-        return view('dashboard.report.graph.chart-2');
-        // return response()->json($thumuaxe);
-    }
 
     public function data_purchasing_situation(Request $request)
     {
@@ -190,7 +193,11 @@ class BaoCaoThongKeController extends Controller
 
         if ($quater == 0) {
             $thongtinxethumua = DB::table('xedangkythumua')
-                ->select(DB::raw('YEAR(ngaydk) as year'), DB::raw('QUARTER(ngaydk) as quarter'), DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe máy%" THEN 1 ELSE 0 END) AS total_xemay'), DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe đạp điện%" THEN 1 ELSE 0 END) AS total_xedapdien'), DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe máy%" THEN giaban ELSE 0 END) AS total_giaban_xemay'), DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe đạp điện%" THEN giaban ELSE 0 END) AS total_giaban_xedapdien'))
+                ->select(DB::raw('YEAR(ngaydk) as year'), DB::raw('QUARTER(ngaydk) as quarter'), 
+                        DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe máy%" THEN 1 ELSE 0 END) AS total_xemay'), 
+                        DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe đạp điện%" THEN 1 ELSE 0 END) AS total_xedapdien'), 
+                        DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe máy%" THEN giaban ELSE 0 END) AS total_giaban_xemay'), 
+                        DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe đạp điện%" THEN giaban ELSE 0 END) AS total_giaban_xedapdien'))
                 ->where('trangthaipheduyet', 'Duyệt')
                 ->whereBetween(DB::raw('YEAR(ngaydk)'), [$startYear, $endYear])
                 ->groupBy(DB::raw('YEAR(ngaydk)'), DB::raw('QUARTER(ngaydk)'))
@@ -199,7 +206,12 @@ class BaoCaoThongKeController extends Controller
                 ->get();
         } else {
             $thongtinxethumua = DB::table('xedangkythumua')
-                ->select(DB::raw('YEAR(ngaydk) as year'), DB::raw('QUARTER(ngaydk) as quarter'), DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe máy%" THEN 1 ELSE 0 END) AS total_xemay'), DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe đạp điện%" THEN 1 ELSE 0 END) AS total_xedapdien'), DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe máy%" THEN giaban ELSE 0 END) AS total_giaban_xemay'), DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe đạp điện%" THEN giaban ELSE 0 END) AS total_giaban_xedapdien'))
+                ->select(DB::raw('YEAR(ngaydk) as year'), 
+                        DB::raw('QUARTER(ngaydk) as quarter'), 
+                        DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe máy%" THEN 1 ELSE 0 END) AS total_xemay'), 
+                        DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe đạp điện%" THEN 1 ELSE 0 END) AS total_xedapdien'), 
+                        DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe máy%" THEN giaban ELSE 0 END) AS total_giaban_xemay'), 
+                        DB::raw('SUM(CASE WHEN ghichu LIKE "%Xe đạp điện%" THEN giaban ELSE 0 END) AS total_giaban_xedapdien'))
                 ->where('trangthaipheduyet', 'Duyệt')
                 ->whereBetween(DB::raw('YEAR(ngaydk)'), [$startYear, $endYear])
                 ->where(DB::raw('QUARTER(ngaydk)'), $quater)
@@ -214,4 +226,122 @@ class BaoCaoThongKeController extends Controller
 
         return Excel::download($export, 'tinh_hinh_thu_mua_xe.xlsx');
     }
+
+    public function data_inventory(Request $request)
+    {
+        $thang_nam = $request->thoigian;
+        $khohang = $request->khohang;
+
+        
+        $tenkhohang = DB::table('khohang')->select('khohang.tenkhohang')->where('makho',$khohang)->first();
+        
+
+        $request->session()->put('thoigian', $request->input('thoigian'));
+        $request->session()->put('khohang', $request->input('khohang'));
+        if($tenkhohang != null){
+            $request->session()->put('tenkhohang', $tenkhohang->tenkhohang);
+        }
+
+        // Lấy danh sách các kho hàng
+        $makho = DB::table('khohang')->orderBy('tenkhohang')->get();
+
+        // Nếu không có thời gian được cung cấp, chỉ hiển thị danh sách kho hàng
+        if (!isset($thang_nam)) {
+            return view('dashboard.report.inventory', compact('makho'));
+        } else {
+            // Nếu có thời gian nhưng không có kho hàng, lấy toàn bộ dữ liệu tồn kho cho các kho hàng
+            if (!isset($khohang)) {
+                $thang = date("m", strtotime($thang_nam));
+                $nam = date("Y", strtotime($thang_nam));
+
+                $tonkho = DB::table('khohang')
+                    ->select('ctkhohang.gianhapkho', 'ctkhohang.soluong', 'thongtinxe.tenxe', 'ctkhohang.maxe')
+                    ->join('ctkhohang', 'khohang.makho', '=', 'ctkhohang.makho')
+                    ->join('thongtinxe', 'ctkhohang.maxe', '=', 'thongtinxe.maxe')
+                    ->whereMonth('ctkhohang.ngaynhapkho', $thang)
+                    ->whereYear('ctkhohang.ngaynhapkho', $nam)
+                    ->where('ctkhohang.trangthai', 'Còn trong kho')
+                    ->get();
+
+                return view('dashboard.report.inventory', compact('tonkho', 'makho'));
+            } else {
+                // Nếu có cả thời gian và kho hàng, lấy dữ liệu tồn kho cho kho hàng và thời gian đã chỉ định
+                $thang = date("m", strtotime($thang_nam));
+                $nam = date("Y", strtotime($thang_nam));
+
+                $tonkho = DB::table('khohang')
+                    ->select('ctkhohang.gianhapkho', 'ctkhohang.soluong', 'thongtinxe.tenxe', 'ctkhohang.maxe')
+                    ->join('ctkhohang', 'khohang.makho', '=', 'ctkhohang.makho')
+                    ->join('thongtinxe', 'ctkhohang.maxe', '=', 'thongtinxe.maxe')
+                    ->where('ctkhohang.makho', $khohang)
+                    ->whereMonth('ctkhohang.ngaynhapkho', $thang)
+                    ->whereYear('ctkhohang.ngaynhapkho', $nam)
+                    ->where('ctkhohang.trangthai', 'Còn trong kho')
+                    ->get();
+
+                return view('dashboard.report.inventory', compact('tonkho', 'makho'));
+            }
+        }
+    }
+
+    public function export_report_inventory(Request $request)
+    {
+
+        $thang_nam = $request->thoigian;
+        $khohang = $request->khohang;
+
+        if (!isset($khohang)) {
+            $thang = date("m", strtotime($thang_nam));
+            $nam = date("Y", strtotime($thang_nam));
+
+            $tonkho = DB::table('khohang')
+                ->select('ctkhohang.gianhapkho', 'ctkhohang.soluong', 'thongtinxe.tenxe', 'ctkhohang.maxe')
+                ->join('ctkhohang', 'khohang.makho', '=', 'ctkhohang.makho')
+                ->join('thongtinxe', 'ctkhohang.maxe', '=', 'thongtinxe.maxe')
+                ->whereMonth('ctkhohang.ngaynhapkho', $thang)
+                ->whereYear('ctkhohang.ngaynhapkho', $nam)
+                ->where('ctkhohang.trangthai', 'Còn trong kho')
+                ->get();
+
+            $tenkho = DB::table('khohang')
+                ->select('khohang.tenkhohang','ctkhohang.ngaynhapkho')
+                ->join('ctkhohang', 'khohang.makho', '=', 'ctkhohang.makho')
+                ->join('thongtinxe', 'ctkhohang.maxe', '=', 'thongtinxe.maxe')
+                ->whereMonth('ctkhohang.ngaynhapkho', $thang)
+                ->whereYear('ctkhohang.ngaynhapkho', $nam)
+                ->where('ctkhohang.trangthai', 'Còn trong kho')
+                ->first();
+
+        } else {
+            // Nếu có cả thời gian và kho hàng, lấy dữ liệu tồn kho cho kho hàng và thời gian đã chỉ định
+            $thang = date("m", strtotime($thang_nam));
+            $nam = date("Y", strtotime($thang_nam));
+
+            $tonkho = DB::table('khohang')
+                ->select('ctkhohang.gianhapkho', 'ctkhohang.soluong', 'thongtinxe.tenxe', 'ctkhohang.maxe')
+                ->join('ctkhohang', 'khohang.makho', '=', 'ctkhohang.makho')
+                ->join('thongtinxe', 'ctkhohang.maxe', '=', 'thongtinxe.maxe')
+                ->where('ctkhohang.makho', $khohang)
+                ->whereMonth('ctkhohang.ngaynhapkho', $thang)
+                ->whereYear('ctkhohang.ngaynhapkho', $nam)
+                ->where('ctkhohang.trangthai', 'Còn trong kho')
+                ->get();
+
+            $tenkho = DB::table('khohang')
+                ->select('khohang.tenkhohang','ctkhohang.ngaynhapkho')
+                ->join('ctkhohang', 'khohang.makho', '=', 'ctkhohang.makho')
+                ->join('thongtinxe', 'ctkhohang.maxe', '=', 'thongtinxe.maxe')
+                ->where('ctkhohang.makho', $khohang)
+                ->whereMonth('ctkhohang.ngaynhapkho', $thang)
+                ->whereYear('ctkhohang.ngaynhapkho', $nam)
+                ->where('ctkhohang.trangthai', 'Còn trong kho')
+                ->first();
+        }
+        
+        // Create the export instance
+        $export = new TonKhoExport($tonkho, $tenkho);
+
+        return Excel::download($export, 'bao_cao_ton_kho.xlsx');
+    }
+
 }

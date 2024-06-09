@@ -132,6 +132,11 @@ class HoaDonController extends Controller
 
     }
 
+    public function destroy_vehicle_invoice($id){
+        DB::table('cthoadon')->where('macthoadon',$id)->delete();
+        return back();
+    }
+
     public function add_customer_invoice(Request $request){
 
         $mand = $request->nguoidung;
