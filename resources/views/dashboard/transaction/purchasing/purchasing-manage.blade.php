@@ -42,8 +42,7 @@
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h4 class="text">Danh sách đăng ký thu mua
-                                                   
+                                                <h4 class="text">Danh sách đăng ký thu mua   
                                                 </h4>
                                             </div>
                                             <div class="card-body table-responsive">
@@ -55,7 +54,6 @@
                                                             <th>Ngày đăng bán</th>
                                                             <th>Mô tả</th>
                                                             <th>Giá bán</th>
-                                                            <th>Chi tiết</th>
                                                             <th>Hành động</th>
                                                         </tr>
                                                     </thead>
@@ -73,19 +71,17 @@
                                                                 <td>{{ $i->ghichu }}</td>
                                                                 <td>{{ number_format($i->giaban, 0, ',') . ' đ' }}</td>
                                                                 <td>
-                                                                    <a href="{{ route('ctthongtinmua',['id' => $i->madkthumua]) }}">
-                                                                        <img src={{ asset('Image\Icon\eye.png') }} width="30px"
-                                                                            height="30px">
+                                                                    <a type="button" class="btn btn-outline-dark col" href="{{ route('ctthongtinmua',['id' => $i->madkthumua]) }}">
+                                                                        <i class="bi bi-eye"></i>
+                                                                         Chi tiết
                                                                     </a>
-                                                                </td>
-                                                                <td>
-                                                                    <a type="button" class="btn btn-outline-primary col"
+                                                                    <a type="button" class="btn btn-outline-primary col mt-2 "
                                                                         href="{{ route('duyetdonthumua', ['id' => $i->madkthumua]) }}">
                                                                         <i class="bi bi-pencil-fill"></i> Chấp nhận
                                                                     </a>
                                                                     <a type="button" class="btn btn-danger col mt-2"
                                                                         href="{{ route('huydonthumua', ['id' => $i->madkthumua]) }}">
-                                                                        <i class="bi bi-trash"></i> Không chấp nhận
+                                                                        <i class="bi bi-trash"></i> Từ chối
                                                                     </a>
                                                                 </td>
                                                             </tr>

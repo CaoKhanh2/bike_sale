@@ -16,152 +16,157 @@
             {{-- End Page Header --}}
 
             <div class="pd-20 card-box px-3 mb-30">
-                <div class="clearfix">
-                    <div class="pull-left">
+                <div class="card">
+                    <div class="card-header">
                         <h4 class="text-blue h4">Thông tin đơn bán xe</h4>
+                        <a href="{{ route('xedkthumua') }}"
+                                        class="btn btn-warning float-right">Quay lại</a>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-12 col-md-2 col-form-label">Phương tiện</label>
-                    <div class="col-sm-12 col-md-10">
-                        <select class="custom-select col-12" id="vehicle" name="xe" disabled>
-                            <option selected hidden>Choose...</option>
-                            <option value="1">Xe máy</option>
-                            <option value="2">Xe đạp điện</option>
-                        </select>
-                    </div>
-                </div>
-                {{-- Thong tin xe may --}}
-                <form action="{{ route('themxe-xethumua-accepted', ['id' => $id]) }}" class="form mt-2" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group row" hidden>
-                        <div class="col-sm-12 col-md-10">
-                            <input type="text" value="1" name="xe">
-                        </div>
-                    </div>
-                    <div id="form1" style="display: none;">
+                    <div class="card-body">
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
+                            <label class="col-sm-12 col-md-2 col-form-label">Phương tiện</label>
                             <div class="col-sm-12 col-md-10">
-                                <input class="form-control" value="{{ $hangxe['tenhang'] }}" />
-                                <input class="form-control" name="hx" value="{{ $hangxe['mahx'] }}" hidden />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tx" value="{{ $tt['Ten xe'] }}" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <select class="custom-select col-12" id="vehicle" name="dx">
-                                    @foreach ($dongxe as $i)
-                                        <option value="{{ $i->madx }}">{{ $i->tendongxe }}</option>
-                                    @endforeach
+                                <select class="custom-select col-12" id="vehicle" name="xe" disabled>
+                                    <option selected hidden>Choose...</option>
+                                    <option value="1">Xe máy</option>
+                                    <option value="2">Xe đạp điện</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
-                                dụng</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tgsd" value="{{ $tt['tgsd'] }}" required />
+                        {{-- Thong tin xe may --}}
+                        <form action="{{ route('themxe-xethumua-accepted', ['id' => $id]) }}" class="form mt-2"
+                            method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row" hidden>
+                                <div class="col-sm-12 col-md-10">
+                                    <input type="text" value="1" name="xe">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="number" name="sokmdadi" value="{{ $tt['kmdadi'] }}"
-                                    required />
+                            <div id="form1" style="display: none;">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" value="{{ $hangxe['tenhang'] }}" />
+                                        <input class="form-control" name="hx" value="{{ $hangxe['mahx'] }}" hidden />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" name="tx" value="{{ $tt['Ten xe'] }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <select class="custom-select col-12" id="vehicle" name="dx">
+                                            @foreach ($dongxe as $i)
+                                                <option value="{{ $i->madx }}">{{ $i->tendongxe }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
+                                        dụng</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" name="tgsd" value="{{ $tt['tgsd'] }}" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" type="number" name="sokmdadi"
+                                            value="{{ $tt['kmdadi'] }}" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" type="text" name="tinhtrangxe" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" name="giaban" oninput="formatCurrency(this)"
+                                            oninput="limitLength(this,11)" />
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" name="tinhtrangxe" required />
+                        </form>
+                        {{-- Het --}}
+                        {{-- Thong tin xe dap dien --}}
+                        <form action="{{ route('themxe-xethumua-accepted', ['id' => $id]) }}" class="form mt-2"
+                            method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row" hidden>
+                                <div class="col-sm-12 col-md-10">
+                                    <input type="text" value="2" name="xe">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="giaban" oninput="formatCurrency(this)"
-                                    oninput="limitLength(this,11)" />
+                            <div id="form2" style="display: none;">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" value="{{ $hangxe['tenhang'] }}" readonly />
+                                        <input class="form-control" name="hx" value="{{ $hangxe['mahx'] }}" hidden />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" name="tx" value="{{ $tt['Ten xe'] }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <select class="custom-select col-12" id="vehicle" name="dx" required>
+                                            @foreach ($dongxe as $i)
+                                                <option value="{{ $i->madx }}">{{ $i->tendongxe }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
+                                        dụng</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" name="tgsd" value="{{ $tt['tgsd'] }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" type="text" name="tinhtrangxe" required />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" type="number" name="sokmdadi"
+                                            value="{{ $tt['kmdadi'] }}" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
+                                    <div class="col-sm-12 col-md-10">
+                                        <input class="form-control" name="giaban" oninput="formatCurrency(this)"
+                                            oninput="limitLength(this,11)" required />
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
-                        </div>
+                        </form>
                     </div>
-                </form>
-                {{-- Het --}}
-                {{-- Thong tin xe dap dien --}}
-                <form action="{{ route('themxe-xethumua-accepted', ['id' => $id]) }}" class="form mt-2" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group row" hidden>
-                        <div class="col-sm-12 col-md-10">
-                            <input type="text" value="2" name="xe">
-                        </div>
-                    </div>
-                    <div id="form2" style="display: none;">
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Hãng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" value="{{ $hangxe['tenhang'] }}" readonly />
-                                <input class="form-control" name="hx" value="{{ $hangxe['mahx'] }}" hidden />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Tên xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tx" value="{{ $tt['Ten xe'] }}" />
-                            </div>
-                        </div>
-                        <div class="form-group row"> 
-                            <label class="col-sm-12 col-md-2 col-form-label">Dòng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <select class="custom-select col-12" id="vehicle" name="dx" required>
-                                    @foreach ($dongxe as $i)
-                                        <option value="{{ $i->madx }}">{{ $i->tendongxe }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Thời gian đã sử
-                                dụng</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="tgsd" value="{{ $tt['tgsd'] }}" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Tình trạng xe</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" name="tinhtrangxe" required />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Số Km đã đi</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="number" name="sokmdadi"
-                                    value="{{ $tt['kmdadi'] }}" />
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label">Giá bán</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" name="giaban" oninput="formatCurrency(this)"
-                                    oninput="limitLength(this,11)" required />
-                            </div>
-                        </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
+
             </div>
         </div>
     </div>
