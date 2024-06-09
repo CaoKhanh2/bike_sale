@@ -99,7 +99,7 @@
                                     thu mua</button></a>
                             <a href="{{ route('thongtinkhohang') }}"> <button class="btn btn-outline-dark mb-3 col-12">Kiểm
                                     tra kho hàng</button></a>
-                            <a href="#"> <button class="btn btn-outline-dark mb-3 col-12">Quản lý thanh
+                            <a href="{{ route('thongtin-thanhtoan')}}"> <button class="btn btn-outline-dark mb-3 col-12">Quản lý thanh
                                     toán</button></a>
                         </div>
                     </div>

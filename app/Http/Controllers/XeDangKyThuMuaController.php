@@ -116,9 +116,9 @@ class XeDangKyThuMuaController extends Controller
     // }
     public function add_bike($id)
     {
-        $dtm = $dstm_uncheck = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('madkthumua', $id)->first();
+        $dtm = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('madkthumua', $id)->first();
         $str = $dtm->ghichu;
-        //
+        //dd($dtm);
         $parts = explode(',', $str);
         $info = [
             'Loai xe' => null,
@@ -177,6 +177,7 @@ class XeDangKyThuMuaController extends Controller
         DB::table('xedangkythumua')
         ->where('madkthumua', $id)
         ->update(['trangthaipheduyet' => 'Duyệt','giaban' => $giaban]);
+
         if ($request->xe == 1) {
             $maxemay = $this->generateUniqueId_moto();
             DB::table('thongsokythuatxemay')->insert([
