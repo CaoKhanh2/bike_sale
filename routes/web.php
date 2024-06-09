@@ -271,23 +271,22 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
      */
 
     // ---------- Hãng xe ----------
-    Route::get('/dashboard/category/vehicle/automaker-info', [HangXeController::class, 'index']);
+    Route::get('/dashboard/category/vehicle/automaker-info', [HangXeController::class, 'index'])->name('thongtinhangxe');
     Route::post('/dashboard/category/vehicle/automaker-info', [HangXeController::class, 'store'])->name('themhangxe');
+    Route::get('/dashboard/category/vehicle/automaker-info/detail-automaker-info/{id}', [HangXeController::class, 'update'])->name('capnhathangxe');
+    Route::patch('/dashboard/category/vehicle/automaker-info/detail-automaker-info/{id}', [HangXeController::class, 'act_update'])->name('thuchien-capnhathangxe');
     Route::get('/dashboard/category/vehicle/automaker-info/{id}', [HangXeController::class, 'destroy'])->name('xoahangxe');
 
-    Route::get('/dashboard/category/vehicle/detail-automaker-info', function () {
-        return view('dashboard.category.automaker.vehicle.detail-automaker-info');
-    });
 
     // ---------- **** ----------
 
     // ---------- Dòng xe ----------
-    Route::get('/dashboard/category/vehicle/vehicle-line-infor', function () {
-        return view('dashboard.category.vehicle.vehicle-line.vehicle-line-infor');
-    });
 
-    Route::get('/dashboard/category/vehicle/vehicle-line-infor', [DongXeController::class, 'index']);
+    Route::get('/dashboard/category/vehicle/vehicle-line-infor', [DongXeController::class, 'index'])->name('thongtindongxe');
     Route::post('/dashboard/category/vehicle/vehicle-line-infor', [DongXeController::class, 'store'])->name('themdongxe');
+    Route::get('/dashboard/category/vehicle/vehicle-line-infor/detail-line-infor/{id}', [DongXeController::class, 'update'])->name('capnhatdongxe');
+    Route::patch('/dashboard/category/vehicle/vehicle-line-infor/detail-line-infor/{id}', [DongXeController::class, 'act_update'])->name('thuchien-capnhatdongxe');
+
     Route::get('/dashboard/category/vehicle/vehicle-line-infor/{id}', [DongXeController::class, 'destroy'])->name('xoadongxe');
 
     // ---------- **** ----------

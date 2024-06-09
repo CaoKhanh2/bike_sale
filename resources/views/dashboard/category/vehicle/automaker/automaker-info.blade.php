@@ -9,6 +9,39 @@
 
 @section('main')
 
+    @if (Session::has('success-update-hangxe'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-update-hangxe') }}",
+            });
+        </script>
+    @endif
+
+    @if (Session::has('success-add-hangxe'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-add-hangxe') }}",
+            });
+        </script>
+    @endif 
+
+    @if (Session::has('success-xoa-hangxe'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('success-xoa-hangxe') }}",
+            });
+        </script>
+    @endif
+
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
@@ -35,8 +68,8 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="table" role="tabpanel">
-                                <div class="pt-20">
-                                    <table class="table hover data-table-export">
+                                <div class="table-responsive pt-20">
+                                    <table class="table hover multiple-select-row nowrap">
                                         <thead>
                                             <tr>
                                                 <th>Mã hãng xe</th>
@@ -59,7 +92,7 @@
                                                     </td>
                                                     <td>{{ $i->xuatxu }}</td>
                                                     <td><a type="button" class="btn btn-primary"
-                                                            href="{{ url('/dashboard/category/vehicle/detail_automaker-info') }}">
+                                                            href="{{ route('capnhathangxe', ['id' => $i->mahx]) }}">
                                                             <i class="bi bi-pencil-fill"></i> Sửa
                                                         </a>
                                                         <a type="button" class="btn btn-danger"
@@ -79,35 +112,52 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-md-2 col-form-label">Mã hãng xe</label>
+                                            <label class="col-sm-12 col-md-2 col-form-label" for="mahx">Mã hãng
+                                                xe</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <input class="form-control" name="mahx" id="mahx" />
+                                                <input class="form-control" name="mahx" id="mahx" value="{{ $mahx }}" readonly/>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-md-2 col-form-label">Tên hãng xe</label>
+                                            <label class="col-sm-12 col-md-2 col-form-label" for="tenhang">Tên hãng
+                                                xe</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <input class="form-control" name="tenhang" id="tenhang" />
+                                                <input class="form-control" name="tenhang" id="tenhang" required/>
                                             </div>
+                                            @error('tenhang')
+                                                <small class="help-block">
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </small>
+                                            @enderror
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-md-2 col-form-label">Ảnh logo</label>
+                                            <label class="col-sm-12 col-md-2 col-form-label" for="logo">Ảnh logo</label>
                                             <div class="col-sm-12 col-md-10">
                                                 <div class="custom-file">
-                                                    <input type="file" class="form-control" id="logos" name="logo"
-                                                        required>
-
+                                                    <input type="file" class="form-control" id="logo"
+                                                        name="logo">
+                                                    {{-- <label class="custom-file-label">Chọn ảnh</label> --}}
                                                 </div>
                                             </div>
+                                            @error('logo')
+                                                <small class="help-block">
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </small>
+                                            @enderror
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-md-2 col-form-label">Xuất xứ</label>
+                                            <label class="col-sm-12 col-md-2 col-form-label" for="xs">Xuất xứ</label>
                                             <div class="col-sm-12 col-md-10">
-                                                <input class="form-control" name="xs" id="xs" />
+                                                <input class="form-control" name="xs" id="xs" required/>
                                             </div>
+                                            @error('xs')
+                                                <small class="help-block">
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                </small>
+                                            @enderror
                                         </div>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
+                                            <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3"><i class="bi bi-plus-lg"></i> Thêm</button>
                                         </div>
                                     </form>
                                 </div>
@@ -121,27 +171,27 @@
         </div>
 
     </div>
-    </div>
+
 
     <script>
         // Kiểm tra dữ liệu trước khi gửi form
-        document.getElementById('form-add').addEventListener('submit', function(event) {
-            var mahxInput = document.getElementById('mahx');
-            var tenhangInput = document.getElementById('tenhang');
-            var xsInput = document.getElementById('xs');
-            var isValid = true;
+        // document.getElementById('form-add').addEventListener('submit', function(event) {
+        //     var mahxInput = document.getElementById('mahx');
+        //     var tenhangInput = document.getElementById('tenhang');
+        //     var xsInput = document.getElementById('xs');
+        //     var isValid = true;
 
-            !mahxInput.value.trim() ? (mahxInput.classList.add('is-invalid'), isValid = false) : mahxInput.classList
-                .remove('is-invalid');
-            !tenhangInput.value.trim() ? (tenhangInput.classList.add('is-invalid'), isValid = false) : tenhangInput
-                .classList.remove('is-invalid');
-            !xsInput.value.trim() ? (xsInput.classList.add('is-invalid'), isValid = false) : xsInput.classList
-                .remove('is-invalid');
+        //     !mahxInput.value.trim() ? (mahxInput.classList.add('is-invalid'), isValid = false) : mahxInput.classList
+        //         .remove('is-invalid');
+        //     !tenhangInput.value.trim() ? (tenhangInput.classList.add('is-invalid'), isValid = false) : tenhangInput
+        //         .classList.remove('is-invalid');
+        //     !xsInput.value.trim() ? (xsInput.classList.add('is-invalid'), isValid = false) : xsInput.classList
+        //         .remove('is-invalid');
 
-            if (!isValid) {
-                event.preventDefault();
-            }
-        });
+        //     if (!isValid) {
+        //         event.preventDefault();
+        //     }
+        // });
     </script>
 
 @endsection

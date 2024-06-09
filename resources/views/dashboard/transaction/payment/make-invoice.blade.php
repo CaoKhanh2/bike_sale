@@ -42,7 +42,7 @@
                             <h4 class="text-blue h4">Lập hóa đơn</h4>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a href="{{ route('thongtin-thanhtoan') }}" class="btn btn-warning">Quay lại</a>
+                            <a href="{{ route('thongtin-thanhtoan') }}" class="btn btn-warning"><i class="bi bi-arrow-left"></i> Quay lại</a>
                         </div>
                     </div>
                 </div>

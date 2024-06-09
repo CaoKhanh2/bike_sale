@@ -19,8 +19,8 @@
                     <div class="pd-20">
                         <h4 class="text-blue h4"></h4>
                     </div>
-                    <div class="pb-20">
-                        <table class="table hover data-table-export">
+                    <div class="table-responsive pb-20">
+                        <table class="table hover multiple-select-row nowrap">
                             <thead>
                                 <tr>
                                     <th>ID</th>

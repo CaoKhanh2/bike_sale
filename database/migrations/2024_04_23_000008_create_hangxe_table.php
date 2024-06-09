@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('hangxe', function (Blueprint $table) {
             $table->string('mahx',5);
             $table->string('tenhang',50);
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->string('xuatxu',20)->nullable();
 
             $table->primary('mahx');

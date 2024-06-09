@@ -174,7 +174,7 @@
                             <td colspan="3"><strong>Tổng tiền</strong></td>
                             <td colspan="2">
                                 <span
-                                    class="weight-600 font-20 text-danger">{{ number_format($hoadon->tonggiatrihoadon, 0, '', ',') . ' VND' }}</span>
+                                    class="weight-600 font-20">{{ number_format($hoadon->tonggiatrihoadon, 0, '', ',') . ' VND' }}</span>
                             </td>
                         </tr>
                     </tbody>

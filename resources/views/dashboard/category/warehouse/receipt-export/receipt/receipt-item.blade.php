@@ -21,7 +21,7 @@
                 <h4 class="text-blue h4">Phiếu nhập kho</h4>
             </div>
             <div class="col-md-6 text-right">
-                <a href="{{ url()->previous() }}" class="btn btn-warning">Quay lại</a>
+                <a href="{{ url()->previous() }}" class="btn btn-warning"> <i class="bi bi-arrow-left"></i> Quay lại</a>
             </div>
         </div>
         <div class="row">
@@ -79,7 +79,7 @@
             </table>
             <div class="">
                 <div class="col d-flex justify-content-end">
-                    <button type="button" class="btn btn-primary" onclick="submitCheckedForms()">Tạo phiếu
+                    <button type="button" class="btn btn-primary" onclick="submitCheckedForms()"> <i class="bi bi-file-earmark"></i> Tạo phiếu
                         nhập</button>
                 </div>
             </div>

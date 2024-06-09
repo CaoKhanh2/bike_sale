@@ -72,7 +72,7 @@
                                             <div class="card-header ">
                                                 <h4 class="text"> Quản lý thanh toán
                                                     <a href="{{ route('thuchien-lap-hoadon') }}"
-                                                        class="btn btn-warning float-right">Lập hóa đơn</a>
+                                                        class="btn btn-warning float-right"><i class="bi bi-receipt"></i> Lập hóa đơn</a>
                                                 </h4>
                                             </div>
                                             <div class="card-body table-responsive">

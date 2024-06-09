@@ -119,7 +119,7 @@
                                 <a href="javascript:;" class="dropdown-toggle"><span class="micon"><i
                                             class="fa-solid fa-user-tie"></i></span><span class="mtext">Quản lý tài khoản</span></a>
                                 <ul class="submenu child">
-                                    <li><a href="">Tài khoản khách hàng</a></li>
+                                    {{-- <li><a href="">Tài khoản khách hàng</a></li> --}}
                                     <li><a href="{{ url('/dashboard/sys/management-acc/employee-account') }}">Tài khoản nhân viên</a></li>
                                 </ul>
                             </li>

@@ -11,8 +11,6 @@
             <th>Dòng xe</th>
             <th>Hãng xe</th>
             <th>Tên xe</th>
-            {{-- <th>Giá bán</th>
-            <th>Tình trạng</th> --}}
             <th>Hình ảnh</th>
             <th>Hành động</th>
         </tr>
@@ -48,7 +46,7 @@
                 <td>
                     @foreach (explode(',', $i->hinhanh) as $path)
                         @if ($loop->first && $path != '')
-                            <img src="{{ asset('storage/' . $path) }}" alt="Ảnh" height="200" width="200">
+                            <img src="{{ asset('storage/' . $path) }}" alt="Empty image" height="200" width="200">
                         @endif
                     @endforeach
                 </td>

@@ -8,35 +8,33 @@ use Illuminate\Support\Facades\DB;
 
 class HangXeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $hx = DB::table('hangxe')->get();
-        return view('dashboard.category.vehicle.automaker.automaker-info', ['hangxe' => $hx]);
+
+        $mahx = $this->generateUniqueId();
+
+        return view('dashboard.category.vehicle.automaker.automaker-info', ['hangxe' => $hx, 'mahx' => $mahx]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+
+        $request->validate(
+            [
+                'tenhang' => 'required|max:50',
+                'xuatxu' => 'required|max:20',
+            ],
+            [
+                'tenhang.required' => 'Trường thông tin tên hãng xe không được để trống!',
+                'tenhang.max' => 'Trường thông tin tên hãng xe không được vượt quá 50 ký tự!',
+
+                'xuatxu.required' => 'Trường thông tin xuất xứ không được để trống!',
+                'xuatxu.max' => 'Trường thông tin xuất xứ không được vượt quá 50 ký tự!',
+            ]
+        );
+
         $logo = $request->file('logo');
         $path = $logo->store('logo', 'public');
 
@@ -48,53 +46,45 @@ class HangXeController extends Controller
             'xuatxu' => $request->xs,
         ]);
 
-        return redirect('dashboard/category/vehicle/automaker-info')->with('success', 'Post created successfully!');
+        return redirect('dashboard/category/vehicle/automaker-info')->with('success-add-hangxe', 'Hãng xe mới đã được thêm.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function update($id)
     {
-        //
+        $hangxe = DB::table('hangxe')->where('mahx',$id)->first();
+
+        return view('dashboard.category.vehicle.automaker.detail-automaker-info', compact('hangxe'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function act_update(Request $request, $id){
+        
+        $logo = $request->file('logo');
+        
+        if(isset($logo)){
+            $path = $logo->store('logo', 'public');
+
+            DB::table('hangxe')->where('mahx',$id)
+                ->update([
+                    'tenhang' => $request->tenhang,
+                    'xuatxu' => $request->xuatxu,
+                    'logo' =>  $path,
+                ]);
+        }else{
+            DB::table('hangxe')->where('mahx',$id)
+                ->update([
+                    'tenhang' => $request->tenhang,
+                    'xuatxu' => $request->xuatxu,
+                ]);
+        }
+        
+        return redirect()->route('thongtinhangxe')->with('success-update-hangxe','Thông tin hãng xe được cập nhật thành công.');
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         DB::table('hangxe')->where('mahx', $id)->delete();
-        return redirect('dashboard/category/vehicle/automaker-info')->with('success', 'Post created successfully!');
+        return redirect('dashboard/category/vehicle/automaker-info')->with('success-xoa-hangxe', 'Thông tin hãng xe đã được xóa thành công!');
     }
     public function data()
     {
@@ -113,5 +103,21 @@ class HangXeController extends Controller
         );
 
         HangXe::insert($hangxe);
+    }
+
+    private function generateUniqueId()
+    {
+        $lastCar = DB::table('hangxe')->where('mahx', 'like', 'HX%')->orderBy('mahx', 'desc')->first();
+
+        if ($lastCar) {
+            // Tăng mã xe lên 1
+            $lastCarCode = intval(substr($lastCar->mahx, 2));
+            $newCarCode = 'HX' . str_pad($lastCarCode + 1, 1, '0', STR_PAD_LEFT);
+        } else {
+            // Nếu không có xe nào trong bảng, khởi tạo mã đầu tiên
+            $newCarCode = 'HX01';
+        }
+
+        return $newCarCode;
     }
 }
