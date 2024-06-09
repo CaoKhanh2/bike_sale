@@ -20,12 +20,28 @@ class DonHangController extends Controller
     public function index()
     {
         $trangthai = 'Đã hoàn thành';
-
         $donhang = DB::table('donhang')->where('donhang.trangthai', $trangthai)->get();
-        $xedangban = DB::table('xedangban')->select('xedangban.*', 'thongtinxe.tenxe')->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')->get();
+        
+        $xedangban = DB::table('xedangban')
+                    ->select('xedangban.*', 'thongtinxe.tenxe', 'khuyenmai.tilegiamgia')
+                    ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+                    ->leftJoin('khuyenmai','khuyenmai.makhuyenmai','xedangban.makhuyenmai')
+                    ->where('xedangban.trangthai','Còn xe')
+                    ->get();
+        
+        $xedangban2 = DB::table('xedangban')
+                    ->select('xedangban.*', 'thongtinxe.tenxe', 'donhang.ngaytaodon', 'khuyenmai.tilegiamgia')
+                    ->join('thongtinxe', 'xedangban.maxe', 'thongtinxe.maxe')
+                    ->leftJoin('khuyenmai','khuyenmai.makhuyenmai','xedangban.makhuyenmai')
+                    ->join('ctgiohang','ctgiohang.maxedangban','xedangban.maxedangban')
+                    ->join('giohang','giohang.magh','ctgiohang.magh')
+                    ->join('donhang','donhang.magh','giohang.magh')
+                    ->where('xedangban.trangthai','Đã bán xe')
+                    ->where('donhang.trangthai','Đã hoàn thành')
+                    ->get();
 
         // dd($donhang);
-        return view('dashboard.transaction.selling.index', compact('donhang', 'xedangban'));
+        return view('dashboard.transaction.selling.index', compact('xedangban','xedangban2'));
     }
 
     // public function view($id)

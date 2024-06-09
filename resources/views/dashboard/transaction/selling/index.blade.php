@@ -40,10 +40,10 @@
                                 <a class="nav-link active text-blue" data-toggle="tab" href="#table1" role="tab"
                                     aria-selected="true">Xe đăng bán</a>
                             </li>
-                            {{-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link text-blue" data-toggle="tab" href="#table2" role="tab"
-                                    aria-selected="false">Đơn hàng</a>
-                            </li> --}}
+                                    aria-selected="false">Xe đã bán</a>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             {{-- Xe đăng bán --}}
@@ -54,7 +54,7 @@
                                             <div class="card-header ">
                                                 <h4 class="text">Danh sách xe đăng bán
                                                     <a href="{{ route('xedangban2-thongtinxe') }}"
-                                                        class="btn btn-warning float-right">Đăng bán xe</a>
+                                                        class="btn btn-warning float-right"> <i class="bi bi-postcard"></i> Đăng bán xe</a>
                                                 </h4>
                                             </div>
                                             <div class="card-body table-responsive">
@@ -63,7 +63,7 @@
                                                         <tr>
                                                             <th>Mã xe đăng bán</th>
                                                             <th>Ngày đăng bán</th>
-                                                            <th>Mã xe</th>
+                                                            <th>Giảm khuyến mãi</th>
                                                             <th>Tên xe</th>
                                                             <th>Giá bán</th>
                                                             <th>Trạng thái</th>
@@ -75,7 +75,7 @@
                                                             <tr>
                                                                 <td>{{ $i->maxedangban }}</td>
                                                                 <td>{{ date('d/m/Y H:m:s', strtotime($i->ngayban)) }}</td>
-                                                                <td>{{ $i->maxe }}</td>
+                                                                <td>{{ $i->tilegiamgia == null ? '0 %' : $i->tilegiamgia.' %'}}</td>
                                                                 <td>{{ $i->tenxe }}</td>
                                                                 <td>{{ number_format($i->giaban, 0, ',', '.') . ' đ' }}</td>
                                                                 <td>{{ $i->trangthai }}</td>
@@ -101,44 +101,53 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- Đơn hàng --}}
-                            {{-- <div class="tab-pane fade show" id="table2" role="tabpanel">
+                            {{-- Xe đã bán --}}
+                            <div class="tab-pane fade show" id="table2" role="tabpanel">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-header ">
-                                                <h4 class="text">Danh sách đơn hàng
-                                                    <a href="{{ route('lichsu-donhang') }}"
-                                                        class="btn btn-warning float-right">Lịch sử đơn hàng</a>
+                                                <h4 class="text"> Xe đã bán
+                                                    {{-- <a href="{{ route('lichsu-donhang') }}"
+                                                        class="btn btn-warning float-right">Lịch sử đơn hàng</a> --}}
                                                 </h4>
                                             </div>
                                             <div class="card-body table-responsive">
                                                 <table class="table multiple-select-row table-striped nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th>Mã đơn hàng</th>
-                                                            <th>Ngày đặt hàng</th>
-                                                            <th>Mã giỏ hàng</th>
-                                                            <th>Mã vận chuyển</th>
-                                                            <th>Tổng giá tiền</th>
+                                                            <th>Mã xe đăng bán</th>
+                                                            <th>Ngày đăng bán</th>
+                                                            <th>Giảm khuyến mãi</th>
+                                                            <th>Tên xe</th>
+                                                            <th>Giá bán</th>
+                                                            <th>Ngày bán</th>
                                                             <th>Trạng thái</th>
-                                                            <th>Hành động</th>
+                                                            <th>Hành động</tkh>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($donhang as $item)
+                                                        @foreach ($xedangban2 as $i)
                                                             <tr>
-                                                                <td>{{ $item->madh }}</td>
-                                                                <td>{{ date('d-m-Y', strtotime($item->ngaytaodon)) }}</td>
-                                                                <td>{{ $item->magh }}</td>
-                                                                <td></td>
-                                                                <td>{{ number_format($item->tongtien, 0, ',', '.') . ' đ' }}
-                                                                </td>
-                                                                <td>{{ $item->trangthai == 'Đang xử lý' ? 'Đang xử lý' : 'Đã hoàn thành' }}
-                                                                </td>
+                                                                <td>{{ $i->maxedangban }}</td>
+                                                                <td>{{ date('d/m/Y H:m:s', strtotime($i->ngayban)) }}</td>
+                                                                <td>{{ $i->tilegiamgia == null ? '0 %' : $i->tilegiamgia.' %'}}</td>
+                                                                <td>{{ $i->tenxe }}</td>
+                                                                <td>{{ number_format($i->giaban, 0, ',', '.') . ' đ' }}</td>
+                                                                <td>{{ date('d/m/Y H:m:s', strtotime($i->ngaytaodon)) }}</td>
+                                                                <td>{{ $i->trangthai }}</td>
                                                                 <td>
-                                                                    <a href="{{ route('xem-ctdonhang', ['id' => $item->madh]) }}"
-                                                                        class="btn btn-primary">View</a>
+                                                                    <div class="d-flex">
+                                                                        <a href="{{ route('capnhat-thongtin-xedangban',['maxedangban'=> $i->maxedangban]) }}" class="btn btn-primary mx-1"><i
+                                                                                class="bi bi-eye"></i>
+                                                                            Xem</a>
+                                                                        @if (Auth()->user()->phanquyen == 'Quản lý' || Auth()->user()->phanquyen == 'Quản trị viên')
+                                                                            <a href="{{ route('xoa-xedangban-thongtinxe', ['id' => $i->maxedangban]) }}"
+                                                                                class="btn btn-danger mx-1"><i
+                                                                                    class="bi bi-trash"></i>
+                                                                                Xóa</a>
+                                                                        @endif
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -148,7 +157,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>

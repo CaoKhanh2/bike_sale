@@ -223,10 +223,10 @@
                                 </div>
                             @endif
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button type="button" id="submitButton" class="btn btn-primary me-md-2 mx-3 my-3">Đặt
+                                <button type="button" id="submitButton" class="btn btn-secondary me-md-2 mx-3 my-3"> <i class="bi bi-arrow-clockwise"></i> Đặt
                                     lại mật
                                     khẩu</button>
-                                <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Cập nhật</button>
+                                <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3"> <i class="bi bi-upload"></i> Cập nhật</button>
                             </div>
                         </div>
                     </div>

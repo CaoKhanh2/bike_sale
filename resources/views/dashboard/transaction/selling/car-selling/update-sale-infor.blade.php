@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Cập nhật</button>
+                    <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3"> <i class="bi bi-upload"></i> Cập nhật</button>
                 </div>
                 </form>
             </div>

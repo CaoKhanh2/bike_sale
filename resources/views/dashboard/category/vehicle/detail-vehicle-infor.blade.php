@@ -157,7 +157,7 @@
                                                     </td>
                                                     <td>
                                                         <a href="{{ route('xoaanh', ['id' => $xe->maxe, 'index' => $index]) }}"
-                                                            class="btn btn-primary">Xóa</a>
+                                                            class="btn btn-danger"> <i class="bi bi-trash3"></i> Xóa ảnh</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -293,7 +293,7 @@
                         </div>
                     @endif
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3">Cập nhật</button>
+                        <button type="submit" class="btn btn-primary me-md-2 mx-3 my-3"><i class="bi bi-upload"></i> Cập nhật</button>
                     </div>
                 </form>
             </div>

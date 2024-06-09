@@ -115,7 +115,7 @@ class XeDangKyThuMuaController extends Controller
     }
     public function add_bike($id)
     {
-        $dtm = $dstm_uncheck = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('madkthumua', $id)->first();
+        $dtm = DB::table('xedangkythumua')->select('*', 'nguoidung.hovaten')->join('nguoidung', 'xedangkythumua.mand', '=', 'nguoidung.mand')->where('madkthumua', $id)->first();
         $str = $dtm->ghichu;
         //
         $parts = explode(',', $str);

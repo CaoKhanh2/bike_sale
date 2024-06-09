@@ -79,7 +79,7 @@
             </table>
             <div class="">
                 <div class="col d-flex justify-content-end">
-                    <button type="button" class="btn btn-primary" onclick="submitCheckedForms()">Tạo phiếu
+                    <button type="button" class="btn btn-primary" onclick="submitCheckedForms()"> <i class="bi bi-file-earmark"></i> Tạo phiếu
                         nhập</button>
                 </div>
             </div>

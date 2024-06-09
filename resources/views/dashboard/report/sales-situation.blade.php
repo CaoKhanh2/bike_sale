@@ -35,10 +35,11 @@
                                     </div>
                                 </div>
                                 <div class="pull-right my-3 px-1">
-                                    <a class="btn btn-lg btn-primary mt-3" href="{{ url('dashboard/report/sales-situation') }}"> Xóa </a>
+                                    <a class="btn btn-lg btn-danger mt-3" href="{{ url('dashboard/report/sales-situation') }}"> <i class="bi bi-x-square"></i>  Xóa </a>
                                 </div>
                                 <div class="pull-right my-3">
-                                    <input class="btn btn-lg btn-primary mt-3" type="submit" value="Áp dụng">
+                                    {{-- <input class="btn btn-lg btn-primary mt-3" type="submit" value="Áp dụng"> --}}
+                                    <button class="btn btn-lg btn-primary mt-3" type="submit"> <i class="bi bi-check2-square"></i> Áp dụng</button>
                                 </div>
                             </form>
                         </div>

@@ -193,7 +193,7 @@
 
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                     <button type="submit"
-                                                        class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
+                                                        class="btn btn-primary me-md-2 mx-3 my-3"><i class="bi bi-plus-lg"></i> Thêm</button>
                                                 </div>
                                             </div>
 
@@ -284,7 +284,7 @@
                                                 </div>
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                     <button type="submit"
-                                                        class="btn btn-primary me-md-2 mx-3 my-3">Thêm</button>
+                                                        class="btn btn-primary me-md-2 mx-3 my-3"> <i class="bi bi-plus-lg"></i> Thêm</button>
                                                 </div>
                                             </div>
                                         </form>

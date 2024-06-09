@@ -8,36 +8,77 @@ use Illuminate\Support\Facades\DB;
 
 class DongXeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $dx = DB::select('SELECT dongxe.*,hangxe.tenhang FROM dongxe INNER JOIN hangxe ON dongxe.mahx = hangxe.mahx');
         $hx = DB::table('hangxe')->get();
-        return view('dashboard.category.vehicle.vehicle-line.vehicle-line-infor',['dongxe'=>$dx, 'hangxe'=>$hx]);
+        $madongxe = $this->generateUniqueId();
+        return view('dashboard.category.vehicle.vehicle-line.vehicle-line-infor',['dongxe'=>$dx, 'hangxe'=>$hx, 'madongxe'=>$madongxe]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function update ($id){
+
+        $dongxe = DB::table('dongxe')
+                ->select('dongxe.*','hangxe.tenhang')
+                ->join('hangxe','hangxe.mahx','dongxe.mahx')
+                ->where('madx',$id)->first();
+        $hangxe = DB::table('hangxe')->get();
+
+        return view('dashboard.category.vehicle.vehicle-line.detail-vehicle-line-infor', compact('dongxe','hangxe'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function act_update(Request $request, $id){
+        
+        $request->validate(
+            [
+                'tendongxe' => 'required|max:50',
+                'mota' => 'max:50',
+            ],
+            [
+                'tendongxe.required' => 'Trường thông tin tên dòng xe không được để trống!',
+                'tendongxe.max' => 'Trường thông tin tên dòng xe không được vượt quá 50 ký tự!',
+
+                'mota.max' => 'Trường thông tin mô tả không được vượt quá 50 ký tự!',
+            ]
+        );
+        
+        DB::table('dongxe')->where('madx',$id)
+            ->update([
+                'loaixe' => $request->loaixe,
+                'mahx' => $request->hangxe,
+                'tendongxe' => $request->tendongxe,
+                'mota' => $request->mota,
+            ]);
+        
+        
+        return redirect()->route('thongtindongxe')->with('success-update-dongxe','Thông tin dòng xe được cập nhật thành công.');
+
+    }
+
     public function store(Request $request)
     {
+
+        $request->validate(
+            [
+                'hx' => 'required',
+                'lx' => 'required',
+                'tdx' => 'required|max:50',
+                'mt' => 'max:50',
+            ],
+            [
+
+                'hx.required' => 'Trường thông tin hãng xe không được để trống!',
+
+                'lx.required' => 'Trường thông tin loại xe không được để trống!',
+
+                'tdx.required' => 'Trường thông tin tên dòng xe không được để trống!',
+                'tdx.max' => 'Trường thông tin tên dòng xe không được vượt quá 50 ký tự!',
+
+                'mt.max' => 'Trường thông tin mô tả không được vượt quá 50 ký tự!',
+            ]
+        );
+
         DB::table('dongxe')->insert([
             'madx' => $request->mdx,
             'mahx' => $request->hx,
@@ -46,53 +87,14 @@ class DongXeController extends Controller
             'mota' => $request->mt,
         ]);
 
-        return redirect('dashboard/category/vehicle/vehicle-line-infor')->with('success', 'Post created successfully!');
+        return redirect('dashboard/category/vehicle/vehicle-line-infor')->with('success-add-dongxe', 'Dòng xe mới đã được thêm.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         DB::table('dongxe')->where('madx', $id)->delete();
-        return redirect('dashboard/category/vehicle/vehicle-line-infor')->with('success', 'Post created successfully!');
+        return redirect('dashboard/category/vehicle/vehicle-line-infor')->with('success-xoa-dongxe', 'Thông tin dòng xe đã được xóa thành công!');
     }
 
     public function data(){
@@ -114,5 +116,20 @@ class DongXeController extends Controller
             array('madx' => 'DX015','mahx' => 'HX09','loaixe' => 'Xe đạp điện','tendongxe' => 'Espero M133','mota' => NULL)
         );
         DongXe::insert($dongxe);
+    }
+    private function generateUniqueId()
+    {
+        $lastCar = DB::table('dongxe')->where('madx', 'like', 'DX%')->orderBy('madx', 'desc')->first();
+
+        if ($lastCar) {
+            // Tăng mã xe lên 1
+            $lastCarCode = intval(substr($lastCar->madx, 3));
+            $newCarCode = 'DX' . str_pad($lastCarCode + 1, 2, '0', STR_PAD_LEFT);
+        } else {
+            // Nếu không có xe nào trong bảng, khởi tạo mã đầu tiên
+            $newCarCode = 'DX001';
+        }
+
+        return $newCarCode;
     }
 }
