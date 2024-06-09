@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="col-md-3 mt-3">
-                <a href="/"><button class="btn btn-outline-primary">Quay lại trang chủ</button></a>
+                <a href="/"><button class="btn btn-outline-primary"><i class="bi bi-house"></i> Quay lại trang chủ</button></a>
             </div>
         </div>
     </div>

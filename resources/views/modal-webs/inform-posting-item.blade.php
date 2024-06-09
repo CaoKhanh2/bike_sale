@@ -19,7 +19,7 @@
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-primary" href="{{ route('dangnhap-Guest') }}">Đăng nhập</a>
-                    <a class="btn btn-secondary" href="{{ route('indexWeb') }}">Quay lại</a>
+                    <a class="btn btn-secondary" href="{{ route('indexWeb') }}"><i class="bi bi-arrow-left"></i> Quay lại</a>
                 </div>
             </div>
         </div>

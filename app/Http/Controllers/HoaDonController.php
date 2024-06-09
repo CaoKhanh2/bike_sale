@@ -271,11 +271,18 @@ class HoaDonController extends Controller
         $chitiethoadon = $chitiethoadon->rightJoin('khuyenmai', 'khuyenmai.makhuyenmai', '=', 'xedangban.makhuyenmai')
             ->union($khuyenmai)
             ->get();
+        
+        $thongtingiaodich = DB::table('vnpay')
+            ->select('vnpay.*')
+            ->join('donhang','vnpay.vnp_TxnRef','donhang.madh')
+            ->where('vnpay.vnp_TxnRef', $madh)
+            ->first();
                 
             $data = [
                 'title' => 'Hóa đơn',
                 'hoadon' => $hoadon,
                 'chitiethoadon' => $chitiethoadon,
+                'giaodich' => $thongtingiaodich,
             ];
             
             $pdf = PDF::loadView('dashboard.transaction.payment.invoice.export-invoice', $data);
