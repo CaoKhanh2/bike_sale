@@ -450,6 +450,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
 
         Route::get('/dashboard/transaction/payment-management/make-invoice', [HoaDonController::class, 'make_invoice_customer'])->name('thuchien-lap-hoadon');
         Route::post('/dashboard/transaction/payment-management/make-invoice/add-vehicle', [HoaDonController::class, 'add_vehicle_invoice'])->name('thuchien-themxe-hoadon');
+        Route::get('/dashboard/transaction/payment-management/make-invoice/destroy-vehicle/{id}', [HoaDonController::class, 'destroy_vehicle_invoice'])->name('thuchien-xoaxe-hoadon');
         
         
         //? Thực hiện tạo một thông tin cho người dùng mới trong khi lập hóa đơn
@@ -525,9 +526,22 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
          * ---------- **** ----------
          */
 
-        Route::get('/dashboard/report/inventory', function () {
-            return view('dashboard.report.inventory');
-        });
+        /**
+         * ---------- Báo cáo tồn kho ----------
+         */
+
+        // Route::get('/dashboard/report/inventory', function () {
+        //     return view('dashboard.report.inventory');
+        // });
+
+        Route::get('/dashboard/report/inventory', [BaoCaoThongKeController::class, 'data_inventory'])->name('baocaotonkho');
+        Route::post('/dashboard/report/inventory/data', [BaoCaoThongKeController::class, 'data_inventory'])->name('bang-baocaotonkho');
+        
+        Route::post('/dashboard/report/inventory/export', [BaoCaoThongKeController::class, 'export_report_inventory'])->name('xuatfile-excel-baocaotonkho');
+
+        /**
+         * ---------- **** ----------
+         */
     });
 
     /**

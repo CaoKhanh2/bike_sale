@@ -321,7 +321,7 @@
             });
 
             // Kiểm tra số lượng hàng được xuất ra khỏi kho hàng
-            if (checkedCount < 7) {
+            if (checkedCount < 5) {
                 // Thực hiện submit
                 mainForm.submit();
             } else {
