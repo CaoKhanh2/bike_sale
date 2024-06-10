@@ -73,7 +73,7 @@
                             </li>
                             <li><a class="dropdown-item" href="{{ route('khach-donhang') }}">Lịch sử đơn hàng</a></li>
                             <li><a class="dropdown-item" href="{{ route('khach-banxe') }}">Lịch sử bán xe</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/support')}}">Hỗ trợ khách hàng</a></li>
+                            {{-- <li><a class="dropdown-item" href="{{ url('/support')}}">Hỗ trợ khách hàng</a></li> --}}
                             <li>
                                 <form method="POST" action="{{ route('thuchien-dangxuat-Guest') }}" class="mb-0">
                                     @csrf

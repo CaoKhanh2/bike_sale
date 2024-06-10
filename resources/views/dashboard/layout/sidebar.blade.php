@@ -179,7 +179,7 @@
                             </ul>
                         </li>
                         <li><a href="{{ route('thongtin-thanhtoan') }}">Quản lý thanh toán</a></li>
-                        <li><a href="image-cropper.html">Quản lý rủi ro</a></li>
+                        {{-- //<li><a href="image-cropper.html">Quản lý rủi ro</a></li> --}}
                     </ul>
                 </li>
                 {{-- <li class="dropdown">
