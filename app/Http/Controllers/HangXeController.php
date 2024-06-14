@@ -24,19 +24,21 @@ class HangXeController extends Controller
         $request->validate(
             [
                 'tenhang' => 'required|max:50',
-                'xuatxu' => 'required|max:20',
+                'xs' => 'required|max:20',
             ],
             [
                 'tenhang.required' => 'Trường thông tin tên hãng xe không được để trống!',
                 'tenhang.max' => 'Trường thông tin tên hãng xe không được vượt quá 50 ký tự!',
 
-                'xuatxu.required' => 'Trường thông tin xuất xứ không được để trống!',
-                'xuatxu.max' => 'Trường thông tin xuất xứ không được vượt quá 50 ký tự!',
+                'xs.required' => 'Trường thông tin xuất xứ không được để trống!',
+                'xs.max' => 'Trường thông tin xuất xứ không được vượt quá 50 ký tự!',
             ]
         );
 
-        $logo = $request->file('logo');
-        $path = $logo->store('logo', 'public');
+        $logo = $request->file('logos');
+        $path = $logo->store('logos', 'public');
+
+        dd($path);
 
         // Sau đó, chèn đường dẫn của từng tập tin vào cơ sở dữ liệu
         DB::table('hangxe')->insert([

@@ -5,7 +5,7 @@
 @section('pg-hd-2', 'Danh mục')
 @section('pg-hd-3', 'Danh mục xe')
 @section('st4', 'true')
-@section('pg-hd-4', 'Danh mục xe máy') @section('act4', 'active')
+@section('pg-hd-4', 'Chi tiết thông tin xe') @section('act4', 'active')
 
 <style>
     .table-container {

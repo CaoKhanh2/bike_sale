@@ -22,8 +22,8 @@ class RoleAccDash
         if (Auth::check() && (Auth::user()->phanquyen == 'Quản trị viên' || Auth::user()->phanquyen == 'Nhân viên' || Auth::user()->phanquyen == 'Quản lý') && Auth::user()->trangthai == 1) {
             return $next($request);
         }else{
-            Session::flash('cross', 'Đăng nhập không thành công !');
-            return redirect('/login')->with('cross', 'Tài khoản của bạn đã bị khóa !');
+            Session::flash('cross-dangnhap-dash', 'Đăng nhập không thành công !');
+            return redirect('/login')->with('cross-dangnhap-dash', 'Tài khoản của bạn đã bị khóa !');
         }     
     }
 }

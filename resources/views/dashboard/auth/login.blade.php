@@ -60,9 +60,9 @@
                             </div>
                         </form>
                         <div class="my-4">
-                            @if (Session::has('cross'))
+                            @if (Session::has('cross-dangnhap-dash'))
                                 <div class="alert alert-danger">
-                                    {{ Session::get('cross') }}
+                                    {{ Session::get('cross-dangnhap-dash') }}
                                 </div>
                             @endif
                         </div>

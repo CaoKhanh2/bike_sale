@@ -238,27 +238,34 @@ class ThongTinXeController extends Controller
 
         return back()->with('cross-thaydoi-thongtinxe', 'Thông tin chưa được cập nhật thành công!');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function del_xemay($id)
     {
-        DB::table('thongtinxe')->where('maxe', $id)->delete();
-        DB::table('thongsokythuatxemay')
-            ->where('matsxemay', 'TS' . $id)
-            ->delete();
-        return back()->with('success-xoa-thongtinxemay', 'Thông tin xe đã được xóa!');
+        $check = DB::table('Xedangban')->join('thongtinxe','xedangban.maxe','thongtinxe.maxe')->exists();
+
+        if($check == false){
+                DB::table('thongtinxe')->where('maxe', $id)->delete();
+                DB::table('thongsokythuatxemay')
+                ->where('matsxemay', 'TS' . $id)
+                ->delete();
+            return back()->with('success-xoa-thongtinxemay', 'Thông tin xe đã được xóa!');
+        }else {
+            return back()->with('cross-xoa-thongtinxemay', 'Xe vẫn còn đang được đăng bán!');
+        }
     }
     public function del_xedapdien($id)
     {
-        DB::table('thongtinxe')->where('maxe', $id)->delete();
-        DB::table('thongsokythuatxedapdien')
-            ->where('matsxedapdien', 'TS' . $id)
-            ->delete();
-        return back()->with('success-xoa-thongtinxedap', 'Thông tin xe đã được xóa!');
+        $check = DB::table('Xedangban')->join('thongtinxe','xedangban.maxe','thongtinxe.maxe')->exists();
+        if ($check == false) {
+            DB::table('thongtinxe')->where('maxe', $id)->delete();
+            DB::table('thongsokythuatxedapdien')
+                ->where('matsxedapdien', 'TS' . $id)
+                ->delete();
+            return back()->with('success-xoa-thongtinxedap', 'Thông tin xe đã được xóa!');
+        }else {
+            return back()->with('cross-xoa-thongtinxedap', 'Xe vẫn còn đang được đăng bán!');
+        }
+        
     }
     public function delete_image($id, $index)
     {

@@ -254,8 +254,10 @@ class TaiKhoanController extends Controller
         }
     }
 
-    public function update2(Request $request, $id)
-    {
+    public function update2(Request $request)
+    {   
+
+        $id = $request->matk;
         if ($id) {
             $currentTime = Carbon::now();
             DB::table('taikhoan')
@@ -311,7 +313,7 @@ class TaiKhoanController extends Controller
         } else {
             // Session::flash('cross', 'Đăng nhập không thành công !');
             // return redirect('/login');
-            return redirect()->intended('/login')->with('cross', 'Tài khoản hoặc mặt khẩu không đúng!');
+            return redirect()->intended('/login')->with('cross-dangnhap-dash', 'Tài khoản hoặc mặt khẩu không đúng!');
         }
     }
 

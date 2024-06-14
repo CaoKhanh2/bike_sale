@@ -74,7 +74,7 @@
                                                         @foreach ($xedangban as $i)
                                                             <tr>
                                                                 <td>{{ $i->maxedangban }}</td>
-                                                                <td>{{ date('d/m/Y H:m:s', strtotime($i->ngayban)) }}</td>
+                                                                <td>{{ date('d/m/Y', strtotime($i->ngayban)) }}</td>
                                                                 <td>{{ $i->tilegiamgia == null ? '0 %' : $i->tilegiamgia.' %'}}</td>
                                                                 <td>{{ $i->tenxe }}</td>
                                                                 <td>{{ number_format($i->giaban, 0, ',', '.') . ' đ' }}</td>

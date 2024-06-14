@@ -211,7 +211,7 @@ Route::get('/profile', [TaiKhoanController::class, 'profile_account'])->middlewa
 Route::patch('/profile', [TaiKhoanController::class, 'update_profile_account'])->middleware(['auth', 'roleDash'])->name('capnhat-thongtin-taikhoan');
 
 Route::post('/profile/change-password', [TaiKhoanController::class, 'change_password'])
-        ->middleware(['roleGuest'])
+        ->middleware(['roleDash'])
         ->name('thuchien-thaydoi-matkhau');
 
 // Route::get('/dasboard', function () {
@@ -248,7 +248,7 @@ Route::middleware(['auth', 'roleDash'])->group(function () {
         Route::patch('/dashboard/sys/user-authorization/{id}', [TaiKhoanController::class, 'update1'])->name('capnhattrangthai');
 
         Route::get('/dashboard/sys/management-acc/employee-account', [TaiKhoanController::class, 'index2'])->name('thongtintaikhoannhanvien');
-        Route::patch('/dashboard/sys/management-acc/employee-account/{id}', [TaiKhoanController::class, 'update2']);
+        Route::patch('/dashboard/sys/management-acc/employee-account', [TaiKhoanController::class, 'update2'])->name('kiemsoattaikhoan');
         Route::get('/dashboard/sys/management-acc/employee-account/add-employee-account', [TaiKhoanController::class, 'add_acc_employee'])->name('them-taikhoannhanvien');
         Route::post('/dashboard/sys/management-acc/employee-account/add-employee-account', [TaiKhoanController::class, 'store1'])->name('thuchien-them-taikhoannhanvien');
         Route::get('/dashboard/sys/management-acc/employee-account/delete-employee-account/{id}', [TaiKhoanController::class, 'destroy'])->name('xoa-taikhoan-nhanvien');

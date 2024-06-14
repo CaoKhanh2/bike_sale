@@ -337,15 +337,15 @@ class XeDangBanController extends Controller
             $request->all(),
             [
                 'namsx' => 'required|digits:4',
-                'ngayban' => 'required|date',
+                // 'ngayban' => 'required|date',
                 'giaban' => 'required|max:11|min:8',
             ],
             [
                 'namsx.required' => 'Năm sản xuất không được để trống!',
                 'namsx.digits' => 'Trường thông tin chỉ gồm 4 số!',
 
-                'ngayban.required' => 'Ngày bán không được để trống!',
-                'ngayban.date' => 'Trường thông tin nhập vào không hợp lệ!',
+                // 'ngayban.required' => 'Ngày bán không được để trống!',
+                // 'ngayban.date' => 'Trường thông tin nhập vào không hợp lệ!',
 
                 'giaban.required' => 'Giá bán không được đê trống!',
                 'giaban.max' => 'Giá bán không vượt quá 100,000,000 đ',

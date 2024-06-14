@@ -131,11 +131,11 @@
                                             @enderror
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-md-2 col-form-label" for="logo">Ảnh logo</label>
+                                            <label class="col-sm-12 col-md-2 col-form-label" for="logos">Ảnh logo</label>
                                             <div class="col-sm-12 col-md-10">
                                                 <div class="custom-file">
-                                                    <input type="file" class="form-control" id="logo"
-                                                        name="logo">
+                                                    <input type="file" class="form-control" id="logos"
+                                                        name="logos">
                                                     {{-- <label class="custom-file-label">Chọn ảnh</label> --}}
                                                 </div>
                                             </div>

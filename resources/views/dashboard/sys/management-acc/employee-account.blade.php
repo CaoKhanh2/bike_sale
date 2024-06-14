@@ -60,16 +60,16 @@
                                         <td>{{ $i->tentaikhoan }}</td>
                                         <td>{{ $i->sodienthoai }}</td>
                                         <td>
-                                            <form
-                                                action="{{ url('/dashboard/sys/management-acc/employee-account/' . $i->matk) }}"
-                                                method="post" id="myForm">
+                                            <form action="{{ route('kiemsoattaikhoan') }}" method="post" id="myForm">
                                                 @csrf
                                                 @method('PATCH')
                                                 <input type="checkbox" class="switch-btn" data-size="small"
                                                     data-color="#28a745" data-secondary-color="#dc3545"
-                                                    {{ $i->trangthai == 1 ? 'checked' : '' }} />
-                                                <input type="hidden" id="hidden-value" name="trangthai"
-                                                    value="{{ $i->trangthai }}">
+                                                    {{ $i->trangthai == 1 ? 'checked' : '' }}
+                                                    onchange="document.getElementById('hidden-value-{{ $i->matk }}').value = this.checked ? 1 : 0; document.getElementById('form-{{ $i->matk }}').submit();" />
+                                                <input type="text" name="matk" value="{{ $i->matk }}" hidden>
+                                                <input type="hidden" id="hidden-value-{{ $i->matk }}"
+                                                    name="trangthai" value="{{ $i->trangthai }}">
                                             </form>
                                         </td>
                                         <td>
@@ -92,13 +92,19 @@
         </div>
     </div>
     <script>
-        // Bắt sự kiện thay đổi của checkbox
-        $('.switch-btn').change(function() {
-            // Lấy giá trị hiện tại của checkbox
-            var isChecked = $(this).is(':checked');
-            // Cập nhật giá trị của input hidden tương ứng
-            $('#hidden-value').val(isChecked ? 1 : 0);
-            $('#myForm').submit();
+        $(document).ready(function() {
+            // Bắt sự kiện thay đổi của checkbox
+            $('.switch-btn').change(function() {
+                // Lấy checkbox hiện tại
+                var $checkbox = $(this);
+                // Lấy giá trị hiện tại của checkbox
+                var isChecked = $checkbox.is(':checked');
+                // Cập nhật giá trị của input hidden tương ứng
+                var $form = $checkbox.closest('form');
+                $form.find('.hidden-value').val(isChecked ? 1 : 0);
+                // Submit form tương ứng
+                $form.submit();
+            });
         });
     </script>
 

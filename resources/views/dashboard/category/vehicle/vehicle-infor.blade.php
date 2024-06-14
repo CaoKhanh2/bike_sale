@@ -51,6 +51,27 @@
             });
         </script>
     @endif
+
+    @if (Session::has('cross-xoa-thongtinxemay'))
+    <script>
+        Swal.fire({
+            icon: "info",
+            title: "Thông báo",
+            position: "center",
+            text: "{{ Session::get('cross-xoa-thongtinxemay') }}",
+        });
+    </script>
+    @endif 
+    @if (Session::has('cross-xoa-thongtinxedap'))
+        <script>
+            Swal.fire({
+                icon: "info",
+                title: "Thông báo",
+                position: "center",
+                text: "{{ Session::get('cross-xoa-thongtinxedap') }}",
+            });
+        </script>
+    @endif
     {{-- End --}}
 
     <div class="main-container">
